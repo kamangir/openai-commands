@@ -9,12 +9,14 @@ parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
 parser.add_argument(
     "task",
     type=str,
-    help="version",
+    help="generate_image|version",
 )
 args = parser.parse_args()
 
 success = False
-if args.task == "version":
+if args.task == "generate_image":
+    success = generate_image()
+elif args.task == "version":
     print(f"{NAME}-{VERSION}")
     success = True
 else:
