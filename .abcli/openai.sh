@@ -22,14 +22,6 @@ function openai() {
         return
     fi
 
-    if [ "$task" == "generate" ] ; then
-        blue_stability_generate \
-            "$1" \
-            $(abcli_option_default "$2" app openai) \
-            ${@:3}
-        return
-    fi
-
     if [ "$task" == "version" ] ; then
         abcli_log $(python3 -m openai version)
         return
