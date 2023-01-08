@@ -4,6 +4,8 @@ function openai() {
     local task=$(abcli_unpack_keyword $1 help)
 
     if [ $task == "help" ] ; then
+        openai_generate $@
+
         abcli_show_usage "openai version" \
             "show openai version."
 
@@ -17,6 +19,14 @@ function openai() {
     local function_name=openai_$task
     if [[ $(type -t $function_name) == "function" ]] ; then
         $function_name ${@:2}
+        return
+    fi
+
+    if [ "$task" == "generate" ] ; then
+        blue_stability_generate \
+            "$1" \
+            $(abcli_option_default "$2" app openai) \
+            ${@:3}
         return
     fi
 
