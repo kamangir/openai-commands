@@ -1,6 +1,6 @@
 from setuptools import setup
 
-from openai import NAME, VERSION
+from openai_cli import NAME, VERSION
 
 setup(
     name=NAME,

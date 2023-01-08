@@ -10,7 +10,7 @@ function openai() {
             "show openai version."
 
         if [ "$(abcli_keyword_is $2 verbose)" == true ] ; then
-            python3 -m openai --help
+            python3 -m openai_cli --help
         fi
 
         return
@@ -23,7 +23,7 @@ function openai() {
     fi
 
     if [ "$task" == "version" ] ; then
-        abcli_log $(python3 -m openai version)
+        abcli_log $(python3 -m openai_cli version)
         return
     fi
 
