@@ -1,5 +1,3 @@
 NAME = "openai_cli"
 
-VERSION = "2.3.1"
-
-from .functions import *
+VERSION = "2.4.1"

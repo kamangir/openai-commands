@@ -1,5 +1,5 @@
 import argparse
-from . import *
+from . import NAME, VERSION
 from abcli import logging
 import logging
 
@@ -9,14 +9,12 @@ parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
 parser.add_argument(
     "task",
     type=str,
-    help="generate_image|version",
+    help="version",
 )
 args = parser.parse_args()
 
 success = False
-if args.task == "generate_image":
-    success = generate_image()
-elif args.task == "version":
+if args.task == "version":
     print(f"{NAME}-{VERSION}")
     success = True
 else:
