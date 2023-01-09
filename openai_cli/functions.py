@@ -1,5 +1,4 @@
 import os
-import openai
 from . import NAME
 from abcli.logging import crash_report
 from abcli import logging
@@ -21,6 +20,8 @@ def generate_image(
             f"{NAME}.generate: API key not found, trying exporting OPENAI_API_KEY."
         )
         return False
+
+    import openai
 
     logger.info(f"{NAME}.generate({prompt}) -> {filename}")
 
