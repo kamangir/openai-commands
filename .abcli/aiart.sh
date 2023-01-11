@@ -4,7 +4,7 @@ function openai_generate() {
     aiart_generate \
         "$1" \
         $(abcli_option_default "$2" app openai) \
-        ${@:3}
+        "${@:3}"
 }
 
 function openai_transform() {
