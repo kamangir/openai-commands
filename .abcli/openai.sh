@@ -5,14 +5,7 @@ function openai() {
 
     if [ $task == "help" ] ; then
         openai_generate $@
-
-        abcli_show_usage "openai version" \
-            "show openai version."
-
-        if [ "$(abcli_keyword_is $2 verbose)" == true ] ; then
-            python3 -m openai_cli --help
-        fi
-
+        openai_transform $@
         return
     fi
 
