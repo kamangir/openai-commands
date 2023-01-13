@@ -16,7 +16,7 @@ function openai() {
     fi
 
     if [ "$task" == "version" ] ; then
-        abcli_log $(python3 -m openai_cli version)
+        python3 -m openai_cli version
         return
     fi
 
