@@ -21,11 +21,11 @@ function openai_generate_function() {
         \"size\": \"1024x1024\"
         }' >> ./raw/$filename.json"
 
-    abcli_log $command_line
-
+    abcli_log "⚙️  $command_line"
     if [ "$dryrun" == 1 ] ; then
         return
     fi
+    eval "$command_line"
 
     # local image_url=$(jq ".data[0][url]" ./raw/$filename.json)
     # curl -o ./raw/$filename.png $image_url
