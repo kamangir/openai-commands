@@ -27,6 +27,8 @@ function openai_generate_function() {
     fi
     eval "$command_line"
 
-    # local image_url=$(jq ".data[0][url]" ./raw/$filename.json)
-    # curl -o ./raw/$filename.png $image_url
+    # https://stackoverflow.com/a/44656583/17619982
+    # https://cameronnokes.com/blog/working-with-json-in-bash-using-jq/
+    local image_url=$(jq -r '.data[0]["url"]' ./raw/$filename.json)
+    curl -o ./raw/$filename.png $image_url
 }
