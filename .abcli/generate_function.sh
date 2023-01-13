@@ -3,6 +3,8 @@
 function openai_generate_function() {
     local options=$1
     local dryrun=$(abcli_option_int "$options" dryrun 1)
+    local height=$(abcli_option "$options" height 1024)
+    local width=$(abcli_option "$options" width 1024)
 
     local filename=$(abcli_clarify_input $2 frame)
 
@@ -18,7 +20,7 @@ function openai_generate_function() {
         -d '{
         \"prompt\": \"$sentence\",
         \"n\": 1,
-        \"size\": \"1024x1024\"
+        \"size\": \"${height}x${width}\"
         }' >> ./raw/$filename.json"
 
     abcli_log "⚙️  $command_line"
