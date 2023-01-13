@@ -19,7 +19,7 @@ function openai_generate_function() {
         \"prompt\": \"$sentence\",
         \"n\": 1,
         \"size\": \"1024x1024\"
-        }' >> ./$filename.json"
+        }' >> ./raw/$filename.json"
 
     abcli_log $command_line
 
@@ -27,6 +27,6 @@ function openai_generate_function() {
         return
     fi
 
-    local image_url=$(jq ".data[0][url]" ./raw/$filename.json)
-    curl -o ./raw/$filename.png $image_url
+    # local image_url=$(jq ".data[0][url]" ./raw/$filename.json)
+    # curl -o ./raw/$filename.png $image_url
 }
