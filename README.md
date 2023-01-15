@@ -16,6 +16,8 @@ openai help verbose
 ## Sentence -> Image
 
 ```bash
+abcli select; \
+open .; \
 openai generate image \
   ~dryrun,height=576,width=768 \
   carrot.png - \
@@ -27,8 +29,10 @@ openai generate image \
 ## Text -> Video
 
 ```bash
+abcli select; \
+open .; \
 openai generate video \
-  ~dryrun,frame_count=100,marker=PART,url \
+  ~dryrun,frame_count=5,marker=PART,url \
   https://www.gutenberg.org/cache/epub/51833/pg51833.txt
 ```
 
