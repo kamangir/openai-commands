@@ -19,7 +19,7 @@ openai help verbose
 abcli select; \
 open .; \
 openai generate image \
-  ~dryrun,height=576,width=768 \
+  ~dryrun,height=1024,width=1024 \
   carrot - \
   "an orange carrot walking on Mars."
 ```
