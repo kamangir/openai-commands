@@ -20,7 +20,7 @@ abcli select; \
 open .; \
 openai generate image \
   ~dryrun,height=576,width=768 \
-  carrot.png - \
+  carrot - \
   "an orange carrot walking on Mars."
 ```
 
