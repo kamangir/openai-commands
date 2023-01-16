@@ -25,10 +25,18 @@ function openai_generate_function() {
             \"size\": \"${height}x${width}\"
             }' > ./raw/$filename.json"
     else
+        if [ "$dryrun" == 1 ] ; then
+            python3 -m aiart.image \
+                convert_to_RGB_A \
+                --source ./raw/$prev_filename.png \
+                --destination./raw/$prev_filename-RGBA.png \
+                ${@:4}
+        fi
+
         # https://beta.openai.com/docs/api-reference/images/create-edit?lang=curl
         local command_line="curl https://api.openai.com/v1/images/edits \
             -H 'Authorization: Bearer $OPENAI_API_KEY' \
-            -F image='@./raw/$prev_filename.png' \
+            -F image='@./raw/$prev_filename-RGBA.png' \
             -F prompt=\"$sentence\" \
             -F n=1 \
             -F size=\"${height}x${width}\" \
