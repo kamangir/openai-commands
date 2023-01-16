@@ -25,7 +25,7 @@ function openai_generate_function() {
             \"size\": \"${height}x${width}\"
             }' > ./raw/$filename.json"
     else
-        if [ "$dryrun" == 1 ] ; then
+        if [ "$dryrun" == 0 ] ; then
             python3 -m aiart.image \
                 convert_to_RGB_A \
                 --source ./raw/$prev_filename.png \
