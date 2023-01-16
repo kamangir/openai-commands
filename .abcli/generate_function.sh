@@ -29,7 +29,7 @@ function openai_generate_function() {
             python3 -m aiart.image \
                 convert_to_RGBA \
                 --source ./raw/$prev_filename.png \
-                --destination./raw/$prev_filename-RGBA.png \
+                --destination ./raw/$prev_filename-RGBA.png \
                 ${@:4}
         fi
 
