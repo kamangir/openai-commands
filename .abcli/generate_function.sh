@@ -27,7 +27,7 @@ function openai_generate_function() {
     else
         if [ "$dryrun" == 0 ] ; then
             python3 -m aiart.image \
-                convert_to_RGB_A \
+                convert_to_RGBA \
                 --source ./raw/$prev_filename.png \
                 --destination./raw/$prev_filename-RGBA.png \
                 ${@:4}
