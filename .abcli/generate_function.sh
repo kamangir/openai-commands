@@ -14,7 +14,7 @@ function openai_generate_function() {
 
     if [ -z "$OPENAI_API_KEY" ] ; then
         abcli_log_error "-openai: generate_function: OPENAI_API_KEY is missing, consider updating the cookie."
-        return
+        return 1
     fi
 
     abcli_log "openai: generate: image: \"$sentence\" -[$prev_filename.png ${@:5}]-> $filename.png"
