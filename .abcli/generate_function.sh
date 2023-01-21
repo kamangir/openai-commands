@@ -12,6 +12,7 @@ function openai_generate_function() {
 
     local sentence=$4
 
+    local OPENAI_API_KEY=$(abcli_cookie read openai_api_key)
     if [ -z "$OPENAI_API_KEY" ] ; then
         abcli_log_error "-openai: generate_function: OPENAI_API_KEY is missing, consider updating the cookie."
         return 1
