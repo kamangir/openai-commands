@@ -12,6 +12,11 @@ function openai_generate_function() {
 
     local sentence=$4
 
+    if [ -z "$OPENAI_API_KEY" ] ; then
+        abcli_log_error "-openai: generate_function: OPENAI_API_KEY is missing, consider updating the cookie."
+        return
+    fi
+
     abcli_log "openai: generate: image: \"$sentence\" -[$prev_filename.png ${@:5}]-> $filename.png"
 
     if [ -z "$prev_filename" ] ; then
