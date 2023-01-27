@@ -58,5 +58,10 @@ function openai_generate_function() {
     # https://stackoverflow.com/a/44656583/17619982
     # https://cameronnokes.com/blog/working-with-json-in-bash-using-jq/
     local image_url=$(jq -r '.data[0]["url"]' ./raw/$filename.json)
+    if [ "$image_url" == "null" ] ; then
+        abcli_log_error "-openai: generate_function: failed: $(cat ./raw/$filename.json)"
+        return 1
+    fi
+
     curl -o ./raw/$filename.png $image_url
 }
