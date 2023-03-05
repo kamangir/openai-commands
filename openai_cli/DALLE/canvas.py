@@ -1,5 +1,6 @@
 from io import BytesIO
 from PIL import Image
+import random
 import requests
 import abcli.logging
 import logging
@@ -18,8 +19,6 @@ class Canvas(object):
     ):
         self.canvas_width = canvas_width
         self.canvas_height = canvas_height
-        self.brush_width = brush_width
-        self.brush_height = brush_height
 
         self.image = Image.new(
             "RGB",
@@ -32,7 +31,13 @@ class Canvas(object):
             (0,),
         )
 
+        self.brush_width = brush_width
+        self.brush_height = brush_height
+
         self.init_cursor()
+
+        self.horizontal_brush_move = 0.5
+        self.vertical_brush_move = 0.5
 
     def generate(self, prompt):
         import openai
@@ -87,6 +92,37 @@ class Canvas(object):
             self.canvas_width // 2,
             self.canvas_height // 2,
         )
+        self.log()
+
+    def move_cursor(self):
+        self.cursor = (
+            min(
+                self.canvas_width - self.brush_width,
+                max(
+                    self.brush_width,
+                    int(
+                        random.normalvariate(
+                            0, self.horizontal_brush_move * self.brush_width
+                        )
+                        + self.cursor[0]
+                    ),
+                ),
+            ),
+            min(
+                self.canvas_height - self.brush_height,
+                max(
+                    self.brush_height,
+                    int(
+                        random.normalvariate(
+                            0, self.vertical_brush_move * self.brush_height
+                        )
+                        + self.cursor[1]
+                    ),
+                ),
+            ),
+        )
+        self.log()
+        return self
 
     def log(self):
         logger.info(
