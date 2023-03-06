@@ -2,6 +2,11 @@ import random
 import numpy as np
 import math
 
+import abcli.logging
+import logging
+
+logger = logging.getLogger()
+
 
 class Brush(object):
     def __init__(
@@ -80,10 +85,16 @@ class TilingBrush(Brush):
     def move(self, canvas):
         self.angle += self.delta_angle
 
-        if self.angle >= 2 * np.pi:
+        if self.angle >= 2 * np.pi - self.delta_angle / 2:
             self.ring += 1
             self.delta_angle = 2 * math.asin(1 / 2 / self.ring)
             self.angle = 0
+
+        logger.info(
+            "TilingBrush: ring:{} @ {:.02f} deg".format(
+                self.ring, self.angle / np.pi * 180
+            )
+        )
 
         self.cursor[0] = (
             canvas.width // 2
