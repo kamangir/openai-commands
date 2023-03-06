@@ -42,8 +42,8 @@ class Canvas(object):
 
         self.init_cursor()
 
-        self.horizontal_brush_move = 0.25
-        self.vertical_brush_move = 0.25
+        self.horizontal_brush_move = 1
+        self.vertical_brush_move = 1
 
     def generate(self, prompt):
         import openai
@@ -60,7 +60,8 @@ class Canvas(object):
         image_.save(image_byte_stream, format="PNG")
         image_byte_array = image_byte_stream.getvalue()
 
-        mask_ = self.mask.crop(box)
+        mask_ = image_.copy().convert("RGBA")
+        mask_.putalpha(self.mask.crop(box))
         mask_byte_stream = BytesIO()
         mask_.save(mask_byte_stream, format="PNG")
         mask_byte_array = mask_byte_stream.getvalue()
@@ -102,6 +103,11 @@ class Canvas(object):
             image.paste(image_, (0, 0))
             image.paste(mask_, (self.brush_width, 0))
             image.paste(image__, (2 * self.brush_width, 0))
+            display(image)
+
+            image = Image.new("RGB", (2 * self.canvas_width, self.canvas_height))
+            image.paste(self.mask, (0, 0))
+            image.paste(self.image, (self.canvas_width, 0))
             display(image)
 
         return self
