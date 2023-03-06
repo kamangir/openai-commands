@@ -123,5 +123,4 @@ class Canvas(object):
             from IPython.display import display, clear_output
 
             clear_output(wait=True)
-            display(mask)
-            display(image)
+s            display(image)
