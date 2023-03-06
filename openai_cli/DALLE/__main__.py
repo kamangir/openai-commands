@@ -25,6 +25,11 @@ parser.add_argument(
     type=str,
     help="tiling|randomwalk",
 )
+parser.add_argument(
+    "--lines",
+    type=int,
+    help="-1: disable",
+)
 args = parser.parse_args()
 
 success = False
@@ -44,6 +49,10 @@ if args.task == "render":
 
     if success:
         content = [line for line in content if line]
+
+        if args.lines != -1:
+            content = content[: args.lines]
+
         logger.info(f"loaded {len(content)} line(s) of text.")
 
         for index in tqdm(range(len(content))):
