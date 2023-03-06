@@ -18,8 +18,10 @@ class Canvas(object):
         brush_width=256,
         brush_height=256,
         verbose=False,
+        demo_mode=False,
     ):
         self.verbose = verbose
+        self.demo_mode = demo_mode
 
         self.canvas_width = canvas_width
         self.canvas_height = canvas_height
@@ -91,7 +93,18 @@ class Canvas(object):
             box,
         )
 
-        return image__
+        if self.demo_mode:
+            from IPython.display import display, clear_output
+
+            clear_output(wait=True)
+
+            image = Image.new("RGB", (3 * self.brush_width, self.brush_height))
+            image.paste(image_, (0, 0))
+            image.paste(mask_, (self.brush_width, 0))
+            image.paste(image__, (2 * self.brush_width, 0))
+            display(image)
+
+        return self
 
     def init_cursor(self):
         self.cursor = (
