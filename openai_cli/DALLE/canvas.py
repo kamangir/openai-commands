@@ -132,3 +132,5 @@ class Canvas(object):
 
             clear_output(wait=True)
             display(image)
+
+        logger.info(f"Canvas -> {filename}")
