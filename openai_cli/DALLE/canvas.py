@@ -2,6 +2,7 @@ from io import BytesIO
 from PIL import Image
 import random
 import requests
+import numpy as np
 import abcli.logging
 import logging
 
@@ -16,7 +17,10 @@ class Canvas(object):
         canvas_height=1024,
         brush_width=256,
         brush_height=256,
+        verbose=False,
     ):
+        self.verbose = verbose
+
         self.canvas_width = canvas_width
         self.canvas_height = canvas_height
 
@@ -36,8 +40,8 @@ class Canvas(object):
 
         self.init_cursor()
 
-        self.horizontal_brush_move = 0.5
-        self.vertical_brush_move = 0.5
+        self.horizontal_brush_move = 0.25
+        self.vertical_brush_move = 0.25
 
     def generate(self, prompt):
         import openai
@@ -68,12 +72,14 @@ class Canvas(object):
         )
 
         image_url = response["data"][0]["url"]
-        logger.info(f"Canvas.generate: received {image_url}")
+        if self.verbose:
+            logger.info(f"Canvas.generate: received {image_url}")
 
         response = requests.get(image_url)
         image_data = response.content
         image__ = Image.open(BytesIO(image_data))
-        logger.info(f"Canvas.generate: downloaded {image__.size}, {image__.mode}")
+        if self.verbose:
+            logger.info(f"Canvas.generate: downloaded {image__.size}, {image__.mode}")
 
         self.image.paste(image__, box)
         self.mask.paste(
@@ -92,7 +98,9 @@ class Canvas(object):
             self.canvas_width // 2,
             self.canvas_height // 2,
         )
-        self.log()
+
+        if self.verbose:
+            self.log()
 
     def move_cursor(self):
         self.cursor = (
@@ -101,8 +109,9 @@ class Canvas(object):
                 max(
                     self.brush_width,
                     int(
-                        random.normalvariate(
-                            0, self.horizontal_brush_move * self.brush_width
+                        random.uniform(
+                            -self.horizontal_brush_move * self.brush_width,
+                            self.horizontal_brush_move * self.brush_width,
                         )
                         + self.cursor[0]
                     ),
@@ -113,25 +122,30 @@ class Canvas(object):
                 max(
                     self.brush_height,
                     int(
-                        random.normalvariate(
-                            0, self.vertical_brush_move * self.brush_height
+                        random.uniform(
+                            -self.vertical_brush_move * self.brush_height,
+                            self.vertical_brush_move * self.brush_height,
                         )
                         + self.cursor[1]
                     ),
                 ),
             ),
         )
-        self.log()
+
+        if self.verbose:
+            self.log()
+
         return self
 
     def log(self):
         logger.info(
-            "Canvas: {:,}x{:,}, brush: {:,}x{:,}, @ {:,}x{:,}".format(
+            "Canvas: {:,}x{:,}, brush: {:,}x{:,}, @ {:,}x{:,} - {:.2f}%".format(
                 self.canvas_height,
                 self.canvas_width,
                 self.brush_width,
                 self.brush_height,
                 self.cursor[1],
                 self.cursor[0],
+                np.array(self.mask).mean() / 255 * 100,
             )
         )
