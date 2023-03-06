@@ -17,9 +17,11 @@ class Canvas(object):
         width=4096,
         height=2048,
         verbose=False,
+        debug_mode=False,
         demo_mode=False,
     ):
         self.verbose = verbose
+        self.debug_mode = debug_mode
         self.demo_mode = demo_mode
 
         self.width = width
@@ -35,6 +37,16 @@ class Canvas(object):
             (self.width, self.height),
             (0,),
         )
+
+    def box(self):
+        indices = np.nonzero(np.array(self.mask) == 255)
+
+        left = indices[1].min()
+        top = indices[0].min()
+        right = indices[1].max()
+        bottom = indices[0].max()
+
+        return (left, top, right, bottom)
 
     def generate(self, brush, prompt):
         import openai
@@ -85,33 +97,29 @@ class Canvas(object):
             box,
         )
 
-        if self.demo_mode:
+        if self.debug_mode or self.demo_mode:
             from IPython.display import display, clear_output
 
             clear_output(wait=True)
 
-            image = Image.new("RGB", (3 * brush.width, brush.height))
-            image.paste(image_, (0, 0))
-            image.paste(mask_, (brush.width, 0))
-            image.paste(image__, (2 * brush.width, 0))
-            display(image)
+            if self.debug_mode:
+                image = Image.new("RGB", (3 * brush.width, brush.height))
+                image.paste(image_, (0, 0))
+                image.paste(mask_, (brush.width, 0))
+                image.paste(image__, (2 * brush.width, 0))
+                display(image)
 
-            image = Image.new("RGB", (2 * self.width, self.height))
-            image.paste(self.mask, (0, 0))
-            image.paste(self.image, (self.width, 0))
-            display(image)
+                image = Image.new("RGB", (2 * self.width, self.height))
+                image.paste(self.mask, (0, 0))
+                image.paste(self.image, (self.width, 0))
+                display(image)
+            else:
+                display(self.image.crop(self.box()))
 
         return self
 
     def save(self, filename):
-        indices = np.nonzero(np.array(self.mask) == 255)
-
-        left = indices[1].min()
-        top = indices[0].min()
-        right = indices[1].max()
-        bottom = indices[0].max()
-
-        box = (left, top, right, bottom)
+        box = self.box()
 
         mask = self.mask.crop(box)
         image = self.image.crop(box)
@@ -119,7 +127,7 @@ class Canvas(object):
         image.save(filename)
         mask.save(file.add_postfix(filename, "mask"))
 
-        if self.demo_mode:
+        if self.debug_mode:
             from IPython.display import display, clear_output
 
             clear_output(wait=True)
