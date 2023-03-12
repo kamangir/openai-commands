@@ -22,11 +22,11 @@ class Canvas(object):
         height=2048,
         verbose=False,
         debug_mode=False,
-        demo_mode=False,
+        notebook_mode=False,
     ):
         self.verbose = verbose
         self.debug_mode = debug_mode
-        self.demo_mode = demo_mode
+        self.notebook_mode = notebook_mode
 
         self.width = width
         self.height = height
@@ -101,7 +101,7 @@ class Canvas(object):
             box,
         )
 
-        if self.debug_mode or self.demo_mode:
+        if self.debug_mode or self.notebook_mode:
             from IPython.display import display, clear_output
 
             clear_output(wait=True)
