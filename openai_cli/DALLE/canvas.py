@@ -125,12 +125,10 @@ class Canvas(object):
     @staticmethod
     def add_signature(image):
         return Image.fromarray(
-            (
-                add_signature(
-                    np.array(image),
-                    [" | ".join(object_signature())],
-                    [" | ".join([f"{NAME}-{VERSION}"] + host_signature())],
-                ),
+            add_signature(
+                np.array(image),
+                [" | ".join(object_signature())],
+                [" | ".join([f"{NAME}-{VERSION}"] + host_signature())],
             )
         )
 
