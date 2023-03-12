@@ -37,11 +37,20 @@ parser.add_argument(
     help="0|1",
     default=0,
 )
+parser.add_argument(
+    "--dryrun",
+    type=int,
+    help="0|1",
+    default=1,
+)
 args = parser.parse_args()
 
 success = False
 if args.task == "render":
-    canvas = Canvas(verbose=args.verbose == 1)
+    canvas = Canvas(
+        dryrun=args.dryrun == 1,
+        verbose=args.verbose == 1,
+    )
 
     success = True
     if args.brush == "tiling":

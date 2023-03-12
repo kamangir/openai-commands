@@ -23,9 +23,11 @@ class Canvas(object):
         height=2048,
         verbose=False,
         debug_mode=False,
+        dryrun=False,
     ):
         self.verbose = verbose
         self.debug_mode = debug_mode
+        self.dryrun = dryrun
         self.is_jupyter = is_jupyter()
 
         self.width = width
@@ -73,25 +75,29 @@ class Canvas(object):
         mask_.save(mask_byte_stream, format="PNG")
         mask_byte_array = mask_byte_stream.getvalue()
 
-        response = openai.Image.create_edit(
-            image=image_byte_array,
-            mask=mask_byte_array,
-            prompt=prompt,
-            n=1,
-            size=f"{brush.width}x{brush.height}",
-        )
+        if not self.dryrun:
+            response = openai.Image.create_edit(
+                image=image_byte_array,
+                mask=mask_byte_array,
+                prompt=prompt,
+                n=1,
+                size=f"{brush.width}x{brush.height}",
+            )
 
-        image_url = response["data"][0]["url"]
-        if self.verbose:
-            logger.info(f"Canvas.generate: received {image_url}")
+            image_url = response["data"][0]["url"]
+            if self.verbose:
+                logger.info(f"Canvas.generate: received {image_url}")
 
-        response = requests.get(image_url)
-        image_data = response.content
-        image__ = Image.open(BytesIO(image_data))
-        if self.verbose:
-            logger.info(f"Canvas.generate: downloaded {image__.size}, {image__.mode}")
+            response = requests.get(image_url)
+            image_data = response.content
+            image__ = Image.open(BytesIO(image_data))
+            if self.verbose:
+                logger.info(
+                    f"Canvas.generate: downloaded {image__.size}, {image__.mode}"
+                )
 
-        self.image.paste(image__, box)
+            self.image.paste(image__, box)
+
         self.mask.paste(
             Image.new(
                 "L",
