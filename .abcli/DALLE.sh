@@ -23,11 +23,6 @@ function DALL-E() {
             --lines $lines \
             "${@:4}"
 
-        python3 -m abcli.modules.host \
-            add_signature \
-            --application $(python3 -m openai_cli version) \
-            --filename "$(basename "$filename" .txt).png"
-
         return
     fi
 

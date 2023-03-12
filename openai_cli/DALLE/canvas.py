@@ -3,6 +3,10 @@ from PIL import Image
 from enum import Enum
 import requests
 import numpy as np
+from openai_cli import NAME, VERSION
+from abcli.modules.objects import signature as object_signature
+from abcli.modules.host import signature as host_signature
+from abcli.plugins.graphics import add_signature
 from abcli import file
 import abcli.logging
 import logging
@@ -123,6 +127,16 @@ class Canvas(object):
 
         mask = self.mask.crop(box)
         image = self.image.crop(box)
+
+        image = Image.fromarray(
+            (
+                add_signature(
+                    np.array(image),
+                    [" | ".join(object_signature())],
+                    [" | ".join([f"{NAME}-{VERSION}"] + host_signature())],
+                ),
+            )
+        )
 
         image.save(filename)
         mask.save(file.add_postfix(filename, "mask"))
