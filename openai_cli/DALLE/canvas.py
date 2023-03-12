@@ -6,6 +6,7 @@ import numpy as np
 from openai_cli import NAME, VERSION
 from abcli.modules.objects import signature as object_signature
 from abcli.modules.host import signature as host_signature
+from abcli.modules.host import is_jupyter
 from abcli.plugins.graphics import add_signature
 from abcli import file
 import abcli.logging
@@ -22,11 +23,10 @@ class Canvas(object):
         height=2048,
         verbose=False,
         debug_mode=False,
-        notebook_mode=False,
     ):
         self.verbose = verbose
         self.debug_mode = debug_mode
-        self.notebook_mode = notebook_mode
+        self.is_jupyter = is_jupyter()
 
         self.width = width
         self.height = height
@@ -101,7 +101,7 @@ class Canvas(object):
             box,
         )
 
-        if self.debug_mode or self.notebook_mode:
+        if self.debug_mode or self.is_jupyter:
             from IPython.display import display, clear_output
 
             clear_output(wait=True)
@@ -143,7 +143,7 @@ class Canvas(object):
         image.save(filename)
         mask.save(file.add_postfix(filename, "mask"))
 
-        if self.debug_mode:
+        if self.debug_mode and self.is_jupyter:
             from IPython.display import display, clear_output
 
             clear_output(wait=True)
