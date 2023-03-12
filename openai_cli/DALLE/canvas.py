@@ -111,24 +111,20 @@ class Canvas(object):
                 image.paste(image_, (0, 0))
                 image.paste(mask_, (brush.width, 0))
                 image.paste(image__, (2 * brush.width, 0))
-                display(image)
+                display(self.add_signature(image))
 
                 image = Image.new("RGB", (2 * self.width, self.height))
                 image.paste(self.mask, (0, 0))
                 image.paste(self.image, (self.width, 0))
-                display(image)
+                display(self.add_signature(image))
             else:
-                display(self.image.crop(self.box()))
+                display(self.add_signature(self.image.crop(self.box())))
 
         return self
 
-    def save(self, filename):
-        box = self.box()
-
-        mask = self.mask.crop(box)
-        image = self.image.crop(box)
-
-        image = Image.fromarray(
+    @staticmethod
+    def add_signature(image):
+        return Image.fromarray(
             (
                 add_signature(
                     np.array(image),
@@ -137,6 +133,14 @@ class Canvas(object):
                 ),
             )
         )
+
+    def save(self, filename):
+        box = self.box()
+
+        mask = self.mask.crop(box)
+        image = self.image.crop(box)
+
+        image = self.add_signature(image)
 
         image.save(filename)
         mask.save(file.add_postfix(filename, "mask"))
