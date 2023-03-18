@@ -21,8 +21,7 @@ logger = logging.getLogger()
 class Canvas(object):
     def __init__(
         self,
-        width=4096,
-        height=2048,
+        shape=(2048, 4096),
         verbose=False,
         debug_mode=False,
         dryrun=False,
@@ -32,18 +31,30 @@ class Canvas(object):
         self.dryrun = dryrun
         self.is_jupyter = is_jupyter()
 
-        self.width = width
-        self.height = height
+        self.height, self.width = shape
+
+        self.allocated = not dryrun
 
         self.image = Image.new(
             "RGB",
-            (self.width, self.height),
+            (
+                0 if dryrun else self.width,
+                0 if dryrun else self.height,
+            ),
             (0, 0, 0),
         )
         self.mask = Image.new(
             "L",
             (self.width, self.height),
             (0,),
+        )
+
+        logger.info(
+            "DALL-E Canvas({}x{}): {}allocated".format(
+                self.height,
+                self.width,
+                "" if self.allocated else "not ",
+            )
         )
 
     @staticmethod
@@ -65,6 +76,52 @@ class Canvas(object):
         bottom = indices[0].max()
 
         return (left, top, right, bottom)
+
+    @staticmethod
+    def box_for(
+        content,
+        brush_kind="tiling",
+        margin=0.05,
+    ):
+        canvas = Canvas(
+            (25000, 25000),
+            dryrun=True,
+        )
+
+        brush = canvas.create_brush(brush_kind)
+
+        content = [line for line in content if line]
+
+        for index in tqdm(range(len(content))):
+            canvas.paint(brush, content[index])
+            brush.move(canvas)
+
+        left, top, right, bottom = canvas.box()
+
+        plus_margin = 1 + 2 * margin
+
+        height = int(
+            2
+            * max(
+                canvas.height // 2 - top,
+                bottom - canvas.height // 2,
+            )
+            * plus_margin
+        )
+        width = int(
+            2
+            * max(
+                canvas.width // 2 - left,
+                right - canvas.height // 2,
+            )
+            * plus_margin
+        )
+
+        logger.info(
+            f"Canvas.box_for: {len(content)} line(s) @ {brush_kind}: {height}x{width}"
+        )
+
+        return height, width
 
     def create_brush(self, kind="tiling"):
         if kind == "tiling":
@@ -125,7 +182,7 @@ class Canvas(object):
             box,
         )
 
-        if self.debug_mode or self.is_jupyter:
+        if self.debug_mode and self.is_jupyter:
             from IPython.display import display, clear_output
 
             clear_output(wait=True)

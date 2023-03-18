@@ -82,6 +82,8 @@ class TilingBrush(Brush):
 
         self.ring_size = 0.7
 
+        self.verbose = canvas.verbose
+
     def move(self, canvas):
         self.angle += self.delta_angle
 
@@ -90,11 +92,12 @@ class TilingBrush(Brush):
             self.delta_angle = 2 * math.asin(1 / 2 / self.ring)
             self.angle = 0
 
-        logger.info(
-            "TilingBrush: ring:{} @ {:.02f} deg".format(
-                self.ring, self.angle / np.pi * 180
+        if self.verbose:
+            logger.info(
+                "TilingBrush: ring:{} @ {:.02f} deg".format(
+                    self.ring, self.angle / np.pi * 180
+                )
             )
-        )
 
         self.cursor[0] = (
             canvas.width // 2
