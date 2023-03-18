@@ -46,14 +46,15 @@ args = parser.parse_args()
 
 success = False
 if args.task == "render":
-    canvas = Canvas(
-        dryrun=args.dryrun == 1,
-        verbose=args.verbose == 1,
-    )
-
     success, content = file.load_text(args.filename)
 
     if success:
+        canvas = Canvas(
+            content=content,
+            dryrun=args.dryrun == 1,
+            verbose=args.verbose == 1,
+        )
+
         canvas.render_text(
             canvas.create_brush(args.brush),
             content[: args.lines] if args.lines != -1 else content,
