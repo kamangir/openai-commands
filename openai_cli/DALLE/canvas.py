@@ -25,11 +25,15 @@ class Canvas(object):
         verbose=False,
         debug_mode=False,
         dryrun=False,
+        content=None,
     ):
         self.verbose = verbose
         self.debug_mode = debug_mode
         self.dryrun = dryrun
         self.is_jupyter = is_jupyter()
+
+        if content is not None:
+            shape = Canvas.shape(content)
 
         self.height, self.width = shape
 
@@ -76,52 +80,6 @@ class Canvas(object):
         bottom = indices[0].max()
 
         return (left, top, right, bottom)
-
-    @staticmethod
-    def box_for(
-        content,
-        brush_kind="tiling",
-        margin=0.05,
-    ):
-        canvas = Canvas(
-            (25000, 25000),
-            dryrun=True,
-        )
-
-        brush = canvas.create_brush(brush_kind)
-
-        content = [line for line in content if line]
-
-        for index in tqdm(range(len(content))):
-            canvas.paint(brush, content[index])
-            brush.move(canvas)
-
-        left, top, right, bottom = canvas.box()
-
-        plus_margin = 1 + 2 * margin
-
-        height = int(
-            2
-            * max(
-                canvas.height // 2 - top,
-                bottom - canvas.height // 2,
-            )
-            * plus_margin
-        )
-        width = int(
-            2
-            * max(
-                canvas.width // 2 - left,
-                right - canvas.height // 2,
-            )
-            * plus_margin
-        )
-
-        logger.info(
-            f"Canvas.box_for: {len(content)} line(s) @ {brush_kind}: {height}x{width}"
-        )
-
-        return height, width
 
     def create_brush(self, kind="tiling"):
         if kind == "tiling":
@@ -182,7 +140,7 @@ class Canvas(object):
             box,
         )
 
-        if self.debug_mode and self.is_jupyter:
+        if self.is_jupyter and self.verbose:
             from IPython.display import display, clear_output
 
             clear_output(wait=True)
@@ -242,3 +200,49 @@ class Canvas(object):
             display(image)
 
         logger.info(f"Canvas -> {filename}")
+
+    @staticmethod
+    def shape(
+        content,
+        brush_kind="tiling",
+        margin=0.0,
+    ):
+        canvas = Canvas(
+            (25000, 25000),
+            dryrun=True,
+        )
+
+        brush = canvas.create_brush(brush_kind)
+
+        content = [line for line in content if line]
+
+        for index in tqdm(range(len(content))):
+            canvas.paint(brush, content[index])
+            brush.move(canvas)
+
+        left, top, right, bottom = canvas.box()
+
+        plus_margin = 1 + 2 * margin
+
+        height = int(
+            2
+            * max(
+                canvas.height // 2 - top,
+                bottom - canvas.height // 2,
+            )
+            * plus_margin
+        )
+        width = int(
+            2
+            * max(
+                canvas.width // 2 - left,
+                right - canvas.height // 2,
+            )
+            * plus_margin
+        )
+
+        logger.info(
+            f"Canvas.shape: {len(content)} line(s) @ {brush_kind}: {height}x{width}"
+        )
+
+        return height, width
