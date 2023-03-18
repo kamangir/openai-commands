@@ -57,7 +57,7 @@ if args.task == "render":
         canvas.render_text(
             canvas.create_brush(args.brush),
             content[: args.lines] if args.lines != -1 else content,
-            args.filename,
+            file.set_extension(args.filename, "png"),
         )
 
 else:
