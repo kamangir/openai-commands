@@ -1,8 +1,10 @@
 from io import BytesIO
 from PIL import Image
 from enum import Enum
+from tqdm import tqdm
 import requests
 import numpy as np
+from openai_cli.DALLE.brush import RandomWalkBrush, TilingBrush
 from openai_cli import NAME, VERSION
 from abcli.modules.objects import signature as object_signature
 from abcli.modules.host import signature as host_signature
@@ -63,6 +65,14 @@ class Canvas(object):
         bottom = indices[0].max()
 
         return (left, top, right, bottom)
+
+    def create_brush(self, kind="tiling"):
+        if kind == "tiling":
+            return TilingBrush(self)
+        elif kind == "randomwalk":
+            return RandomWalkBrush(self)
+        else:
+            raise ValueError(f"-DALL-E: Canvas: create_brush: {kind}: kind not found.")
 
     def paint(self, brush, prompt):
         import openai
@@ -133,6 +143,27 @@ class Canvas(object):
                 display(self.add_signature(image))
             else:
                 display(self.add_signature(self.image.crop(self.box())))
+
+        return self
+
+    def render_text(
+        self,
+        brush,
+        content,
+        filename,
+    ):
+        content = [line for line in content if line]
+
+        logger.info(f"Canvas.render_text: {len(content)} line(s).")
+
+        for index in tqdm(range(len(content))):
+            self.paint(brush, content[index])
+            brush.move(self)
+
+            if self.verbose:
+                self.save(file.add_postfix(filename, f"{index:05d}"))
+
+        self.save(filename)
 
         return self
 

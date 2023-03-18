@@ -3,7 +3,7 @@ from abcli import file
 from tqdm import tqdm
 from openai_cli.DALLE import NAME
 from openai_cli.DALLE.canvas import Canvas
-from openai_cli.DALLE.brush import RandomWalkBrush, TilingBrush
+from openai_cli.DALLE.brush import create_brush
 from openai_cli import VERSION
 from abcli import logging
 import logging
@@ -52,34 +52,15 @@ if args.task == "render":
         verbose=args.verbose == 1,
     )
 
-    success = True
-    if args.brush == "tiling":
-        brush = TilingBrush(canvas)
-    elif args.brush == "randomwalk":
-        brush = RandomWalkBrush(canvas)
-    else:
-        success = False
+    success, content = file.load_text(args.filename)
 
     if success:
-        success, content = file.load_text(args.filename)
+        canvas.render_text(
+            canvas.create_brush(args.brush),
+            content[: args.lines] if args.lines != -1 else content,
+            args.filename,
+        )
 
-    if success:
-        content = [line for line in content if line]
-
-        if args.lines != -1:
-            content = content[: args.lines]
-
-        logger.info(f"loaded {len(content)} line(s) of text.")
-
-        image_filename = file.set_extension(args.filename, "png")
-        for index in tqdm(range(len(content))):
-            canvas.paint(brush, content[index])
-            brush.move(canvas)
-
-            if args.verbose:
-                canvas.save(file.add_postfix(image_filename, f"{index:05d}"))
-
-        canvas.save(image_filename)
 else:
     logger.error(f"-{NAME}: {args.task}: command not found.")
 
