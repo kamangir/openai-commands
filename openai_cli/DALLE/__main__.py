@@ -3,7 +3,6 @@ from abcli import file
 from tqdm import tqdm
 from openai_cli.DALLE import NAME
 from openai_cli.DALLE.canvas import Canvas
-from openai_cli.DALLE.brush import create_brush
 from openai_cli import VERSION
 from abcli import logging
 import logging
