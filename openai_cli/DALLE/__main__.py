@@ -73,7 +73,7 @@ if args.task == "render":
 
         image_filename = file.set_extension(args.filename, "png")
         for index in tqdm(range(len(content))):
-            canvas.generate(brush, content[index])
+            canvas.paint(brush, content[index])
             brush.move(canvas)
 
             if args.verbose:

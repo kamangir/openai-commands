@@ -44,6 +44,16 @@ class Canvas(object):
             (0,),
         )
 
+    @staticmethod
+    def add_signature(image):
+        return Image.fromarray(
+            add_signature(
+                np.array(image),
+                [" | ".join(object_signature())],
+                [" | ".join([f"{NAME}-{VERSION}"] + host_signature())],
+            )
+        )
+
     def box(self):
         indices = np.nonzero(np.array(self.mask) == 255)
 
@@ -54,7 +64,7 @@ class Canvas(object):
 
         return (left, top, right, bottom)
 
-    def generate(self, brush, prompt):
+    def paint(self, brush, prompt):
         import openai
 
         box = (
@@ -86,15 +96,13 @@ class Canvas(object):
 
             image_url = response["data"][0]["url"]
             if self.verbose:
-                logger.info(f"Canvas.generate: received {image_url}")
+                logger.info(f"Canvas.paint: received {image_url}")
 
             response = requests.get(image_url)
             image_data = response.content
             image__ = Image.open(BytesIO(image_data))
             if self.verbose:
-                logger.info(
-                    f"Canvas.generate: downloaded {image__.size}, {image__.mode}"
-                )
+                logger.info(f"Canvas.paint: downloaded {image__.size}, {image__.mode}")
 
             self.image.paste(image__, box)
 
@@ -127,16 +135,6 @@ class Canvas(object):
                 display(self.add_signature(self.image.crop(self.box())))
 
         return self
-
-    @staticmethod
-    def add_signature(image):
-        return Image.fromarray(
-            add_signature(
-                np.array(image),
-                [" | ".join(object_signature())],
-                [" | ".join([f"{NAME}-{VERSION}"] + host_signature())],
-            )
-        )
 
     def save(self, filename):
         box = self.box()
