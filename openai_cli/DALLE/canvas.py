@@ -134,7 +134,7 @@ class Canvas(object):
 
                 self.image.paste(image__, box)
             except:
-                crash_report()
+                crash_report(f"{NAME}: paint({prompt})")
 
         self.mask.paste(
             Image.new(
