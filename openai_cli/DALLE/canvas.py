@@ -172,7 +172,11 @@ class Canvas(object):
         logger.info(f"Canvas.render_text: {len(content)} line(s).")
 
         for index in tqdm(range(len(content))):
+            if self.verbose:
+                logger.info(f"DALL-E: rendering {content[index]}")
+
             self.paint(brush, content[index])
+
             brush.move(self)
 
             if self.verbose:
