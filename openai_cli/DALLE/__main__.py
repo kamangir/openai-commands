@@ -68,7 +68,7 @@ if args.task == "render":
         canvas.render_text(
             canvas.create_brush(brush_kind),
             content[:lines] if lines != -1 else content,
-            args.destination,
+            output_filename,
         )
 
 else:
