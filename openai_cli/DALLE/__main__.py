@@ -47,9 +47,16 @@ if args.task == "render":
     else:
         success, content = file.load_text(args.source)
 
+    output_filename = args.destination
+    if not output_filename:
+        if not is_url:
+            output_filename = file.set_extension(args.source, "png")
+        else:
+            output_filename = objects.path_of("DALL-E.png")
+
     if success:
         logger.info(
-            f"DALL-E: render: {args.source} -{len(content)} lines> {args.destination}"
+            f"DALL-E: render: {args.source} -{len(content)} lines-> {output_filename}"
         )
 
         canvas = Canvas(
