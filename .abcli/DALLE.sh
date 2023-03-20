@@ -17,6 +17,13 @@ function DALL-E() {
             --source "$3" \
             --destination "$4" \
             "${@:5}"
+
+        abcli_tag set \
+            $abcli_object_name \
+            DALL-E,render
+
+        abcli_upload
+
         return
     fi
 
