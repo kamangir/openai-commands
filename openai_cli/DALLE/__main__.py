@@ -1,6 +1,7 @@
 import argparse
 from abcli import file
 from tqdm import tqdm
+from aiart import html
 from abcli.options import Options
 from abcli.modules import objects
 from openai_cli.DALLE import NAME
@@ -42,8 +43,7 @@ if args.task == "render":
     verbose = options.get("verbose", 0) == 1
 
     if is_url:
-        # TODO extract the poem
-        content = [...]
+        success, content = html.ingest_url(args.source)
     else:
         success, content = file.load_text(args.source)
 
