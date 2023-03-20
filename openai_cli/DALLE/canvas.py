@@ -178,7 +178,7 @@ class Canvas(object):
 
         for index in tqdm(range(len(content))):
             if self.verbose:
-                logger.info(f"DALL-E: rendering {content[index]}")
+                logger.info(f"DALL-E: {content[index]}")
 
             self.paint(brush, content[index])
 
