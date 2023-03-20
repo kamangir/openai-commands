@@ -1,6 +1,8 @@
 import argparse
 from abcli import file
 from tqdm import tqdm
+from abcli.options import Options
+from abcli.modules import objects
 from openai_cli.DALLE import NAME
 from openai_cli.DALLE.canvas import Canvas
 from openai_cli import VERSION
@@ -16,57 +18,50 @@ parser.add_argument(
     help="render",
 )
 parser.add_argument(
-    "--input_filename",
+    "--source",
     type=str,
 )
 parser.add_argument(
-    "--output_filename",
+    "--destination",
     type=str,
 )
 parser.add_argument(
-    "--brush",
+    "--options",
     type=str,
-    help="tiling|randomwalk",
-    default="tiling",
-)
-parser.add_argument(
-    "--lines",
-    type=int,
-    help="-1: disable",
-)
-parser.add_argument(
-    "--verbose",
-    type=int,
-    help="0|1",
-    default=0,
-)
-parser.add_argument(
-    "--dryrun",
-    type=int,
-    help="0|1",
-    default=1,
+    help="brush=tiling|randomwalk,~dryrun,lines=-1,url,verbose",
 )
 args = parser.parse_args()
 
 success = False
 if args.task == "render":
-    success, content = file.load_text(args.input_filename)
+    options = Options(args.options)
+    brush_kind = options.get("brush", "tiling")
+    dryrun = options.get("dryrun", 1) == 1
+    is_url = options.get("url", 0) == 1
+    lines = options.get("lines", -1)
+    verbose = options.get("verbose", 0) == 1
+
+    if is_url:
+        # TODO extract the poem
+        content = [...]
+    else:
+        success, content = file.load_text(args.source)
 
     if success:
-        canvas = Canvas(
-            content=content,
-            dryrun=args.dryrun == 1,
-            verbose=args.verbose == 1,
+        logger.info(
+            f"DALL-E: render: {args.source} -{len(content)} lines> {args.destination}"
         )
 
-        output_filename = args.output_filename
-        if not output_filename:
-            output_filename = file.set_extension(args.input_filename, "png")
+        canvas = Canvas(
+            content=content,
+            dryrun=dryrun,
+            verbose=verbose,
+        )
 
         canvas.render_text(
-            canvas.create_brush(args.brush),
-            content[: args.lines] if args.lines != -1 else content,
-            output_filename,
+            canvas.create_brush(brush_kind),
+            content[:lines] if lines != -1 else content,
+            args.destination,
         )
 
 else:
