@@ -15,7 +15,9 @@ args = parser.parse_args()
 
 success = False
 if args.task == "version":
-    print(f"{NAME}-{VERSION}")
+    import openai
+
+    print(f"{NAME}-{VERSION}-{openai.version.VERSION}")
     success = True
 else:
     logger.error(f"-{NAME}: {args.task}: command not found.")

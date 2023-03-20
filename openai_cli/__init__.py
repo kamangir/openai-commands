@@ -1,3 +1,3 @@
 NAME = "openai_cli"
 
-VERSION = "2.52.1"
+VERSION = "2.53.1"
