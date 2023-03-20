@@ -26,14 +26,14 @@ openai generate image \
 
 ![image](./assets/carrot.png)
 
-## Text -> Video
+## Text -> Mural
 
 ```bash
 abcli select; \
 open .; \
-openai generate video \
-  ~dryrun,frame_count=5,marker=PART,url \
-  https://www.gutenberg.org/cache/epub/51833/pg51833.txt
+DALL-E render \
+  ...
 ```
 
-![image](./assets/minds.gif)
+
+![image](./assets/8088.png)

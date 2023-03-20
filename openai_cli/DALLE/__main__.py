@@ -16,7 +16,11 @@ parser.add_argument(
     help="render",
 )
 parser.add_argument(
-    "--filename",
+    "--input_filename",
+    type=str,
+)
+parser.add_argument(
+    "--output_filename",
     type=str,
 )
 parser.add_argument(
@@ -46,7 +50,7 @@ args = parser.parse_args()
 
 success = False
 if args.task == "render":
-    success, content = file.load_text(args.filename)
+    success, content = file.load_text(args.input_filename)
 
     if success:
         canvas = Canvas(
@@ -55,10 +59,14 @@ if args.task == "render":
             verbose=args.verbose == 1,
         )
 
+        output_filename = args.output_filename
+        if not output_filename:
+            output_filename = file.set_extension(args.input_filename, "png")
+
         canvas.render_text(
             canvas.create_brush(args.brush),
             content[: args.lines] if args.lines != -1 else content,
-            file.set_extension(args.filename, "png"),
+            output_filename,
         )
 
 else:
