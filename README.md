@@ -31,8 +31,9 @@ openai generate image \
 ```bash
 abcli select; \
 open .; \
-DALL-E render \
-  ...
+DALL-E render  \
+  ~dryrun,url,verbose \
+  https://allpoetry.com/16-bit-Intel-8088-chip
 ```
 
 
