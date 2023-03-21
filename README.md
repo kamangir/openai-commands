@@ -28,6 +28,8 @@ openai generate image \
 
 ## Text -> Mural
 
+"[16-bit Intel 8088 chip](https://allpoetry.com/16-bit-Intel-8088-chip)" by Charles Bukowski.
+
 ```bash
 abcli select; \
 open .; \
