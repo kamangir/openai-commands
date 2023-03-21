@@ -8,6 +8,7 @@ function openai() {
             "browse openai dashboard."
         openai_generate $@
         openai_transform $@
+        DALL-E $@
         return
     fi
 
