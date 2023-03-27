@@ -87,11 +87,15 @@ class Canvas(object):
 
         return (left, top, right, bottom)
 
-    def create_brush(self, kind="tiling"):
+    def create_brush(
+        self,
+        kind="tiling",
+        brush_size=256,
+    ):
         if kind == "tiling":
-            return TilingBrush(self)
+            return TilingBrush(self, brush_size, brush_size)
         elif kind == "randomwalk":
-            return RandomWalkBrush(self)
+            return RandomWalkBrush(self, brush_size, brush_size)
         else:
             raise ValueError(f"-DALL-E: Canvas: create_brush: {kind}: kind not found.")
 

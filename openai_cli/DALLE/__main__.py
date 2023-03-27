@@ -1,7 +1,8 @@
 import argparse
-from abcli import file
+import os
 from tqdm import tqdm
 from aiart import html
+from abcli import file
 from abcli.options import Options
 from abcli.modules import objects
 from openai_cli.DALLE import NAME
@@ -29,14 +30,18 @@ parser.add_argument(
 parser.add_argument(
     "--options",
     type=str,
-    help="brush=tiling|randomwalk,~dryrun,lines=-1,url,verbose",
+    help="brush=tiling|randomwalk,brush_size={},~dryrun,lines=-1,url,verbose".format(
+        os.getenv("DALL_E_BRUSH_SIZES", "")
+    ),
 )
+
 args = parser.parse_args()
 
 success = False
 if args.task == "render":
     options = Options(args.options)
     brush_kind = options.get("brush", "tiling")
+    brush_size = options.get("brush_size", 256)
     dryrun = options.get("dryrun", 1) == 1
     is_url = options.get("url", 0) == 1
     lines = options.get("lines", -1)
@@ -67,7 +72,10 @@ if args.task == "render":
         )
 
         canvas.render_text(
-            canvas.create_brush(brush_kind),
+            canvas.create_brush(
+                brush_kind,
+                brush_size,
+            ),
             content[:lines] if lines != -1 else content,
             output_filename,
         )
