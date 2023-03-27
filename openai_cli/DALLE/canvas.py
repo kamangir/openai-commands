@@ -199,7 +199,7 @@ class Canvas(object):
             brush.move(self)
 
             if self.verbose:
-                self.save(file.add_postfix(filename, f"{index:05d}"))
+                self.save(filename)
 
         self.save(filename)
 
