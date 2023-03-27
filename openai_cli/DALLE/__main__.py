@@ -60,6 +60,7 @@ if args.task == "render":
         )
 
         canvas = Canvas(
+            source=args.source,
             content=content,
             dryrun=dryrun,
             verbose=verbose,

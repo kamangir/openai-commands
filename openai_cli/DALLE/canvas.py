@@ -26,11 +26,14 @@ class Canvas(object):
         debug_mode=False,
         dryrun=False,
         content=None,
+        source="",
     ):
         self.verbose = verbose
         self.debug_mode = debug_mode
         self.dryrun = dryrun
         self.is_jupyter = is_jupyter()
+        self.source = source
+        self.content = content
 
         if content is not None:
             shape = Canvas.shape(content)
@@ -61,13 +64,16 @@ class Canvas(object):
             )
         )
 
-    @staticmethod
-    def add_signature(image):
+    def add_signature(self, image):
         return Image.fromarray(
             add_signature(
                 np.array(image),
                 [" | ".join(object_signature())],
-                [" | ".join([f"{NAME}-{VERSION}"] + host_signature())],
+                (self.content[0] if len(self.content) >= 1 else [])
+                + ([self.source] if self.source else [])
+                + [
+                    " | ".join([f"{NAME}-{VERSION}"] + host_signature()),
+                ],
             )
         )
 

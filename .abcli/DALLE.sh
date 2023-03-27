@@ -4,25 +4,24 @@ function DALL-E() {
     local task=$(abcli_unpack_keyword $1 help)
 
     if [ $task == help ] ; then
-        local options="brush=tiling|randomwalk,~dryrun,lines=<5>,url,verbose"
+        local options="brush=tiling|randomwalk,~dryrun,lines=<5>,publish,url,verbose"
         abcli_show_usage "DALL-E render$ABCUL[$options]${ABCUL}input.txt|https://allpoetry.com/16-bit-Intel-8088-chip$ABCUL[output.png]" \
-            "render input.txt -> output.png."
+            "render input.txt|url -> output.png."
         return
     fi
 
     if [ "$task" == render ] ; then
+        local options=$2
+
         python3 -m openai_cli.DALLE \
             render \
-            --options "$2" \
+            --options "$options" \
             --source "$3" \
             --destination "$4" \
             "${@:5}"
 
-        abcli_tag set \
-            $abcli_object_name \
-            DALL-E,render
-
-        abcli_upload
+        aiart_create_html \
+            $(abcli_option_default "$options" generator DALL-E)
 
         return
     fi
