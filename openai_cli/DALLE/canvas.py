@@ -69,7 +69,7 @@ class Canvas(object):
             add_signature(
                 np.array(image),
                 [" | ".join(object_signature())],
-                (self.content[0] if len(self.content) >= 1 else [])
+                ([self.content[0]] if len(self.content) >= 1 else [])
                 + ([self.source] if self.source else [])
                 + [
                     " | ".join([f"{NAME}-{VERSION}"] + host_signature()),
