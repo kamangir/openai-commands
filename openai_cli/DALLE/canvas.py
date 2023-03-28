@@ -27,6 +27,8 @@ class Canvas(object):
         dryrun=False,
         content=None,
         source="",
+        brush_kind="tiling",
+        brush_size=256,
     ):
         self.verbose = verbose
         self.debug_mode = debug_mode
@@ -36,7 +38,11 @@ class Canvas(object):
         self.content = content
 
         if content is not None:
-            shape = Canvas.shape(content)
+            shape = Canvas.shape(
+                content,
+                brush_kind,
+                brush_size,
+            )
 
         self.height, self.width = shape
 
@@ -93,15 +99,17 @@ class Canvas(object):
 
     def create_brush(
         self,
-        kind="tiling",
+        brush_kind="tiling",
         brush_size=256,
     ):
-        if kind == "tiling":
+        if brush_kind == "tiling":
             return TilingBrush(self, brush_size, brush_size)
-        elif kind == "randomwalk":
+        elif brush_kind == "randomwalk":
             return RandomWalkBrush(self, brush_size, brush_size)
         else:
-            raise ValueError(f"-DALL-E: Canvas: create_brush: {kind}: kind not found.")
+            raise ValueError(
+                f"-DALL-E: Canvas: create_brush: {brush_kind}: kind not found."
+            )
 
     def paint(self, brush, prompt):
         import openai
@@ -228,6 +236,7 @@ class Canvas(object):
     def shape(
         content,
         brush_kind="tiling",
+        brush_size=256,
         margin=0.0,
     ):
         canvas = Canvas(
@@ -235,7 +244,10 @@ class Canvas(object):
             dryrun=True,
         )
 
-        brush = canvas.create_brush(brush_kind)
+        brush = canvas.create_brush(
+            brush_kind,
+            brush_size,
+        )
 
         content = [line for line in content if line]
 
@@ -265,7 +277,7 @@ class Canvas(object):
         )
 
         logger.info(
-            f"Canvas.shape: {len(content)} line(s) @ {brush_kind}: {height}x{width}"
+            f"Canvas.shape: {len(content)} line(s) @ {brush_kind} x {brush_size}: {height}x{width}"
         )
 
         return height, width
