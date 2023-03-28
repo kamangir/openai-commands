@@ -28,15 +28,14 @@ openai generate image \
 
 ## Text -> Mural
 
-"[16-bit Intel 8088 chip](https://allpoetry.com/16-bit-Intel-8088-chip)" by Charles Bukowski.
+"[The Laughing Heart](  https://allpoetry.com/poem/14326890-The-Laughing-Heart-by-Charles-Bukowski)" by Charles Bukowski.
 
 ```bash
 abcli select; \
 open .; \
 DALL-E render  \
-  ~dryrun,url,verbose \
-  https://allpoetry.com/16-bit-Intel-8088-chip
+  ~dryrun,publish,url,verbose \
+  https://allpoetry.com/poem/14326890-The-Laughing-Heart-by-Charles-Bukowski
 ```
 
-
-![image](./assets/8088.png)
+![image](./assets/DALL-E.png)
