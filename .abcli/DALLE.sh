@@ -23,7 +23,7 @@ function DALL-E() {
             --destination "$4" \
             "${@:5}"
 
-        aiart_create_html \
+        aiart_package \
             $(abcli_option_default "$options" generator DALL-E)
 
         return
