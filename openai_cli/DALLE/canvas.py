@@ -232,6 +232,17 @@ class Canvas(object):
 
         logger.info(f"Canvas -> {filename}")
 
+        file.save_json(
+            file.set_extension(filename, "json"),
+            {
+                "content": self.content,
+                "source": self.source,
+                "height": self.height,
+                "width": self.width,
+                "generator": self.__class__.__name__,
+            },
+        )
+
     @staticmethod
     def shape(
         content,
