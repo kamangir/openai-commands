@@ -239,7 +239,7 @@ class Canvas(object):
                 "source": self.source,
                 "height": self.height,
                 "width": self.width,
-                "generator": "DALL-E",
+                "generator": f"DALL-E-{VERSION}",
             },
         )
 
