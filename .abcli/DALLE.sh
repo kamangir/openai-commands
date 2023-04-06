@@ -8,7 +8,7 @@ function DALL-E() {
 
     if [ $task == help ] ; then
         local options="brush=tiling|randomwalk,brush_size=$DALL_E_BRUSH_SIZES,~dryrun,lines=<5>,publish,url,verbose"
-        abcli_show_usage "DALL-E render$ABCUL[$options]${ABCUL}input.txt|https://allpoetry.com/16-bit-Intel-8088-chip$ABCUL[output.png]" \
+        abcli_show_usage "DALL-E render$ABCUL[$options]${ABCUL}input.txt|https://allpoetry.com/16-bit-Intel-8088-chip$ABCUL[output.png]<args>" \
             "render input.txt|url -> output.png."
         return
     fi

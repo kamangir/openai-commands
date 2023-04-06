@@ -20,6 +20,16 @@ parser.add_argument(
     help="render",
 )
 parser.add_argument(
+    "--footer",
+    type=int,
+    default=0,
+)
+parser.add_argument(
+    "--header",
+    type=int,
+    default=0,
+)
+parser.add_argument(
     "--source",
     type=str,
 )
@@ -48,7 +58,11 @@ if args.task == "render":
     verbose = options.get("verbose", 0) == 1
 
     if is_url:
-        success, content = html.ingest_url(args.source)
+        success, content = html.ingest_url(
+            args.source,
+            args.header,
+            args.footer,
+        )
     else:
         success, content = file.load_text(args.source)
 
