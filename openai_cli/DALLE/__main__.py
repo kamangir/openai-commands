@@ -74,6 +74,8 @@ if args.task == "render":
             output_filename = objects.path_of("DALL-E.png")
 
     if success:
+        content = content[:lines] if lines != -1 else content
+
         logger.info(
             f"DALL-E: render: {args.source} -{len(content)} lines-> {output_filename}"
         )
@@ -92,7 +94,7 @@ if args.task == "render":
                 brush_kind,
                 brush_size,
             ),
-            content[:lines] if lines != -1 else content,
+            content,
             output_filename,
         )
 
