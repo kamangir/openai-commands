@@ -43,6 +43,7 @@ class ai_function(object):
         logger.info("func_ai.compute({})".format(inputs.__class__.__name__))
 
         outputs = self.function_handle(inputs)
+        logger.info("-> {}".format(outputs.__class__.__name__))
 
         if self.output_class_name:
             if outputs.__class__.__name__ != self.output_class_name:
@@ -57,7 +58,11 @@ class ai_function(object):
 
         return outputs
 
-    def generate(self):
+    def generate(
+        self,
+        retry: int = 5,
+        validation_input=None,
+    ):
         self.function_handle = None
 
         success, self.metadata = complete_prompt(
@@ -80,7 +85,24 @@ class ai_function(object):
                 self.function_handle = thing
                 break
 
-        return self.function_handle is not None
+        passed = self.function_handle is not None
+
+        if passed and validation_input is not None:
+            try:
+                validation_output = self.compute(validation_input)
+            except:
+                crash_report("compute test failed.")
+                passed = False
+
+        if passed:
+            return True
+
+        if retry <= 0:
+            logger.info("last retry, failed.")
+            return False
+
+        logger.info("retry #{}".format(retry))
+        return self.generate(retry - 1)
 
     def create_prompt(self) -> str:
         return "\n".join(
