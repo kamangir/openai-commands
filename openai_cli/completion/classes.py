@@ -101,7 +101,7 @@ class ai_function(object):
             logger.info("last retry, failed.")
             return False
 
-        logger.info("retry #{}".format(retry))
+        logger.info("{} more tries.".format(retry))
         return self.generate(retry - 1)
 
     def create_prompt(self) -> str:
@@ -110,6 +110,6 @@ class ai_function(object):
                 "Write a python function named {}".format(self.function_name),
                 "that inputs {}".format(" and\n".join(self.inputs)),
                 "and {}".format(" and\n".join(self.requirements)),
-                "and returns {}".format(" and\n".join(self.returns)),
+                "and returns {}.".format(" and\n".join(self.returns)),
             ]
         )
