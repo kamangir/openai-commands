@@ -13,6 +13,7 @@ openai.api_key = os.environ["OPENAI_API_KEY"] = cookie["openai_api_key"]
 def complete_prompt(
     prompt: str,
     max_tokens: int = 2000,
+    verbose: bool = False,
 ) -> Tuple[bool, Dict[str, Any]]:
     response = openai.Completion.create(
         model="text-davinci-003",
@@ -20,7 +21,8 @@ def complete_prompt(
         max_tokens=max_tokens,
     )
 
-    logger.info("response: {}".format(response))
+    if verbose:
+        logger.info("response: {}".format(response))
 
     if not response["choices"]:
         logger.info("openai-cli.complete(): no choice.")
