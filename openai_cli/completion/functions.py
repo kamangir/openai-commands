@@ -10,7 +10,7 @@ logger = logging.getLogger()
 openai.api_key = os.environ["OPENAI_API_KEY"] = cookie["openai_api_key"]
 
 
-def complete(
+def complete_prompt(
     prompt: str,
     max_tokens: int = 2000,
 ) -> Tuple[bool, Dict[str, Any]]:
