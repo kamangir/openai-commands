@@ -11,12 +11,8 @@ def test_ai_function():
         requirements=["returns 0 if the input is less than 10"],
     )
 
-    func = ai_function(
-        output_class_name="int",
-        verbose=True,
-    )
+    func = ai_function(output_class_name="int")
 
-    success = func.generate(prompt.create(func.function_name))[0]
-    assert success
+    assert func.generate(prompt.create(func.function_name))[0]
 
-    value = func.compute(11)
+    func.compute(11)

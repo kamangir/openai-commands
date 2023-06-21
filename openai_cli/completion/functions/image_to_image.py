@@ -1,5 +1,5 @@
 import os
-from typing import List
+from typing import List, Tuple, Dict, Any
 from abcli import file
 import matplotlib.pyplot as plt
 from openai_cli.completion.functions.generic import ai_function
@@ -24,12 +24,6 @@ class i2i_function(ai_function):
         )
 
         self.plot = plot
-        self.input_image = file.load_image(
-            os.path.join(
-                os.getenv("HOME", ""),
-                "git/blue-bracket/images/portal-34.jpg",
-            )
-        )[1]
 
     def compute(self, inputs):
         if self.function_handle is None:
@@ -38,11 +32,17 @@ class i2i_function(ai_function):
         logger.info(
             "{}.compute({})".format(
                 self.__class__.__name__,
-                string.pretty_shape_of_matrix(self.input_image),
+                string.pretty_shape_of_matrix(inputs),
             )
         )
 
         output_image = super().compute(inputs)
+
+        logger.info(
+            "->{}".format(
+                string.pretty_shape_of_matrix(output_image),
+            )
+        )
 
         if self.plot:
             _, axes = plt.subplots(1, 2, figsize=(10, 5))
@@ -62,9 +62,17 @@ class i2i_function(ai_function):
         self,
         *args,
         **kwargs,
-    ) -> bool:
+    ) -> Tuple[bool, Dict[str, Any]]:
+        filename = os.path.join(
+            os.getenv("HOME", ""),
+            "git/blue-bracket/images/portal-34.jpg",
+        )
+        success, image = file.load_image(filename)
+        if not success:
+            return False, {"error": f"{filename} not found."}
+
         return super().generate(
             *args,
-            validation_input=self.input_image,
+            validation_input=image,
             **kwargs,
         )
