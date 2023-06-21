@@ -104,11 +104,11 @@ class ai_function(object):
         if passed and validation_input is not None:
             try:
                 validation_output = self.compute(validation_input)
+
+                if validation_output is None:
+                    passed = False
             except:
                 crash_report("compute test failed.")
-                passed = False
-
-            if validation_output is None:
                 passed = False
 
         if passed:
