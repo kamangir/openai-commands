@@ -1,7 +1,7 @@
 from typing import List
 import random
 from typing import Dict, Any
-from openai_cli.completion.functions import complete_prompt
+from openai_cli.completion.api import complete_prompt
 import cv2
 import numpy as np
 from abcli.logging import crash_report
@@ -15,9 +15,9 @@ class ai_function(object):
     def __init__(
         self,
         inputs: List[str],
-        returns: List[str],
-        requirements: List[str],
         output_class_name: str,
+        requirements: List[str],
+        returns: List[str],
         verbose: bool = False,
     ):
         self.verbose = verbose
@@ -27,10 +27,18 @@ class ai_function(object):
         self.requirements = requirements
         self.output_class_name = output_class_name
 
-        self.function_name = "ai_function_{}".format(random.randint(10000000, 99999999))
+        self.function_name = "{}_{}".format(
+            self.__class__.__name__,
+            random.randint(10000000, 99999999),
+        )
 
         self.prompt = self.create_prompt()
-        logger.info("ai_function.prompt={}".format(self.prompt))
+        logger.info(
+            "{}.prompt={}".format(
+                self.__class__.__name__,
+                self.prompt,
+            )
+        )
 
         self.code: List[str] = []
         self.function_handle = None
@@ -40,7 +48,12 @@ class ai_function(object):
         if self.function_handle is None:
             return None
 
-        logger.info("func_ai.compute({})".format(inputs.__class__.__name__))
+        logger.info(
+            "{}.compute({})".format(
+                self.__class__.__name__,
+                inputs.__class__.__name__,
+            )
+        )
 
         outputs = self.function_handle(inputs)
         logger.info("-> {}".format(outputs.__class__.__name__))
@@ -48,7 +61,8 @@ class ai_function(object):
         if self.output_class_name:
             if outputs.__class__.__name__ != self.output_class_name:
                 logger.error(
-                    "ai_func.compute({}): {} != {}".format(
+                    "{}.compute({}): {} != {}".format(
+                        self.__class__.__name__,
                         inputs.__class__.__name__,
                         outputs.__class__.__name__,
                         self.output_class_name,
@@ -62,7 +76,7 @@ class ai_function(object):
         self,
         retry: int = 5,
         validation_input=None,
-    ):
+    ) -> bool:
         self.function_handle = None
 
         success, self.metadata = complete_prompt(
@@ -78,7 +92,7 @@ class ai_function(object):
         try:
             exec(self.code)
         except:
-            crash_report("ai_function.generate() failed.")
+            crash_report("{}.generate() failed.".format(self.__class__.__name__))
 
         for thing in locals().values():
             if hasattr(thing, "__name__") and thing.__name__ == self.function_name:
@@ -92,6 +106,9 @@ class ai_function(object):
                 validation_output = self.compute(validation_input)
             except:
                 crash_report("compute test failed.")
+                passed = False
+
+            if validation_output is None:
                 passed = False
 
         if passed:
