@@ -4,12 +4,14 @@ function openai() {
     local task=$(abcli_unpack_keyword $1 help)
 
     if [ $task == "help" ] ; then
+        openai_complete "$@"
+
         abcli_show_usage "openai dashboard" \
             "browse openai dashboard."
 
         openai_generate "$@"
 
-        abcli_show_usage "openai test" \
+        abcli_show_usage "openai pytest" \
             "test openai."
 
         openai_transform "$@"
@@ -28,7 +30,7 @@ function openai() {
         return
     fi
 
-    if [ "$task" == "test" ] ; then
+    if [ "$task" == "pytest" ] ; then
         pushd $abcli_path_git/openai/openai_cli/tests > /dev/null
         pytest
         popd > /dev/null

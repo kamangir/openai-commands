@@ -14,30 +14,15 @@ logger = logging.getLogger()
 class ai_function(object):
     def __init__(
         self,
-        inputs: List[str],
         output_class_name: str,
-        requirements: List[str],
-        returns: List[str],
         verbose: bool = False,
     ):
         self.verbose = verbose
-
-        self.inputs = inputs
-        self.returns = returns
-        self.requirements = requirements
         self.output_class_name = output_class_name
 
         self.function_name = "{}_{}".format(
             self.__class__.__name__,
             random.randint(10000000, 99999999),
-        )
-
-        self.prompt = self.create_prompt()
-        logger.info(
-            "{}.prompt={}".format(
-                self.__class__.__name__,
-                self.prompt,
-            )
         )
 
         self.code: List[str] = []
@@ -74,13 +59,14 @@ class ai_function(object):
 
     def generate(
         self,
+        prompt,
         retry: int = 5,
         validation_input=None,
     ) -> Tuple[bool, Dict[str, Any]]:
         self.function_handle = None
 
         success, self.code, metadata = complete_prompt(
-            self.prompt,
+            prompt,
             verbose=self.verbose,
         )
         if not success:
@@ -119,13 +105,3 @@ class ai_function(object):
 
         logger.info("{} more tries.".format(retry))
         return self.generate(retry - 1)
-
-    def create_prompt(self) -> str:
-        return "\n".join(
-            [
-                "Write a python function named {}".format(self.function_name),
-                "that inputs {}".format(" and\n".join(self.inputs)),
-                "and {}".format(" and\n".join(self.requirements)),
-                "and returns {}.".format(" and\n".join(self.returns)),
-            ]
-        )
