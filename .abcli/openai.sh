@@ -6,9 +6,14 @@ function openai() {
     if [ $task == "help" ] ; then
         abcli_show_usage "openai dashboard" \
             "browse openai dashboard."
-        openai_generate $@
-        openai_transform $@
-        DALL-E $@
+
+        openai_generate "$@"
+
+        abcli_show_usage "openai test" \
+            "test openai."
+
+        openai_transform "$@"
+        DALL-E "$@"
         return
     fi
 
@@ -20,6 +25,13 @@ function openai() {
 
     if [ "$task" == "dashboard" ] ; then
         abcli_browse_url https://beta.openai.com/account/usage
+        return
+    fi
+
+    if [ "$task" == "test" ] ; then
+        pushd $abcli_path_git/openai/openai_cli/tests > /dev/null
+        pytest
+        popd > /dev/null
         return
     fi
 
