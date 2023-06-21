@@ -3,7 +3,7 @@ from openai_cli.completion.functions.generic import ai_function
 from abcli import file
 
 
-def test_complete_prompt():
+def test_ai_function():
     func = ai_function(
         inputs=["a number"],
         returns=["that number plus 12"],
