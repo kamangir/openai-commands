@@ -86,7 +86,7 @@ class ai_function(object):
         if not success:
             return success
 
-        self.code = self.metadata["response"]["choices"][0]["text"]
+        self.code = self.metadata["text"]
         logger.info("code: {}".format(self.code))
 
         try:

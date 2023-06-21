@@ -33,6 +33,7 @@ def complete_prompt(
     metadata = {
         "response": response,
         "status": f'choice: {choice["finish_reason"]}',
+        "text": choice["text"],
     }
 
     logger.info(
