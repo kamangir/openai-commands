@@ -2,7 +2,7 @@ import os
 from typing import List
 from abcli import file
 import matplotlib.pyplot as plt
-from openai_cli.completion.functions.root import ai_function
+from openai_cli.completion.functions.generic import ai_function
 from abcli import string
 import abcli.logging
 import logging

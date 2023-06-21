@@ -1,6 +1,6 @@
 from typing import List
 import random
-from typing import Dict, Any
+from typing import Dict, Any, Tuple
 from openai_cli.completion.api import complete_prompt
 import cv2
 import numpy as np
@@ -76,17 +76,16 @@ class ai_function(object):
         self,
         retry: int = 5,
         validation_input=None,
-    ) -> bool:
+    ) -> Tuple[bool, Dict[str, Any]]:
         self.function_handle = None
 
-        success, self.metadata = complete_prompt(
+        success, self.code, metadata = complete_prompt(
             self.prompt,
             verbose=self.verbose,
         )
         if not success:
-            return success
+            return success, metadata
 
-        self.code = self.metadata["text"]
         logger.info("code: {}".format(self.code))
 
         try:
@@ -112,11 +111,11 @@ class ai_function(object):
                 passed = False
 
         if passed:
-            return True
+            return True, metadata
 
         if retry <= 0:
             logger.info("last retry, failed.")
-            return False
+            return False, metadata
 
         logger.info("{} more tries.".format(retry))
         return self.generate(retry - 1)
