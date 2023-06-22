@@ -2,6 +2,7 @@ import os
 import openai
 from abcli.modules.cookie import cookie
 from typing import Tuple, Any, Dict, List
+from abcli.modules.host import is_jupyter
 import abcli.logging
 import logging
 
@@ -13,7 +14,7 @@ openai.api_key = os.environ["OPENAI_API_KEY"] = cookie["openai_api_key"]
 def complete_prompt(
     prompt: str,
     max_tokens: int = 2000,
-    verbose: bool = False,
+    verbose=None,
 ) -> Tuple[bool, str, Dict[str, Any]]:
     response = openai.Completion.create(
         model="text-davinci-003",
@@ -21,7 +22,7 @@ def complete_prompt(
         max_tokens=max_tokens,
     )
 
-    if verbose:
+    if is_jupyter() if verbose is None else verbose:
         logger.info("response: {}".format(response))
 
     if not response["choices"]:

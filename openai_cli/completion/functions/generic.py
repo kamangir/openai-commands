@@ -3,6 +3,8 @@ import random
 from typing import Dict, Any, Tuple
 from openai_cli.completion.api import complete_prompt
 import cv2
+import skimage
+from abcli.modules.host import is_jupyter
 import numpy as np
 from abcli.logging import crash_report
 import abcli.logging
@@ -15,9 +17,9 @@ class ai_function(object):
     def __init__(
         self,
         output_class_name: str,
-        verbose: bool = False,
+        verbose=None,
     ):
-        self.verbose = verbose
+        self.verbose = is_jupyter() if verbose is None else verbose
         self.output_class_name = output_class_name
 
         self.function_name = "{}_{}".format(
@@ -28,6 +30,8 @@ class ai_function(object):
         self.code: List[str] = []
         self.function_handle = None
         self.metadata: Dict[str, Any] = {}
+
+        self.auto_save = False
 
     def compute(self, inputs):
         if self.function_handle is None:

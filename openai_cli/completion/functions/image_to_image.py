@@ -4,6 +4,7 @@ from abcli import file
 import matplotlib.pyplot as plt
 from openai_cli.completion.functions.generic import ai_function
 from abcli import string
+from abcli.modules.host import is_jupyter
 import abcli.logging
 import logging
 
@@ -14,7 +15,7 @@ class i2i_function(ai_function):
     def __init__(
         self,
         *args,
-        plot: bool = False,
+        plot=None,
         **kwargs,
     ):
         super().__init__(
@@ -23,7 +24,8 @@ class i2i_function(ai_function):
             **kwargs,
         )
 
-        self.plot = plot
+        self.auto_save = True
+        self.plot = is_jupyter() if plot is None else plot
 
     def compute(self, inputs):
         if self.function_handle is None:
