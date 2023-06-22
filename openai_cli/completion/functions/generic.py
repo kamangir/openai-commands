@@ -5,6 +5,8 @@ from openai_cli.completion.api import complete_prompt
 import cv2
 import skimage
 from abcli.modules.host import is_jupyter
+from abcli.modules import objects
+from abcli import file
 import numpy as np
 from abcli.logging import crash_report
 import abcli.logging
@@ -29,7 +31,6 @@ class ai_function(object):
 
         self.code: List[str] = []
         self.function_handle = None
-        self.metadata: Dict[str, Any] = {}
 
         self.auto_save = False
 
@@ -101,6 +102,8 @@ class ai_function(object):
                 passed = False
 
         if passed:
+            if self.auto_save:
+                self.save()
             return True, metadata
 
         if retry <= 0:
@@ -109,3 +112,22 @@ class ai_function(object):
 
         logger.info("{} more tries.".format(retry))
         return self.generate(retry - 1)
+
+    def save(self, filename=""):
+        if not filename:
+            filename = objects.path_of(f"{self.__class__.__name__}_code.json")
+
+        _, content = file.load_json(filename, civilized=True)
+
+        content[self.function_name] = self.to_json()
+
+        file.save_json(filename, content)
+
+        logger.info(f"-> {filename}")
+
+    def to_json(self):
+        return {
+            "code": self.code,
+            "function_name": self.function_name,
+            "output_class_name": self.output_class_name,
+        }
