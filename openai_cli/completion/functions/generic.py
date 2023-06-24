@@ -29,6 +29,7 @@ class ai_function(object):
             random.randint(10000000, 99999999),
         )
 
+        self.prompt: List[str] = []
         self.code: List[str] = []
         self.function_handle = None
 
@@ -68,10 +69,12 @@ class ai_function(object):
         retry: int = 5,
         validation_input=None,
     ) -> Tuple[bool, Dict[str, Any]]:
+        self.prompt = prompt
+
         self.function_handle = None
 
         success, self.code, metadata = complete_prompt(
-            prompt,
+            self.prompt,
             verbose=self.verbose,
         )
         if not success:
@@ -130,4 +133,5 @@ class ai_function(object):
             "code": self.code,
             "function_name": self.function_name,
             "output_class_name": self.output_class_name,
+            "prompt": self.prompt,
         }
