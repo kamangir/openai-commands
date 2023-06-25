@@ -19,13 +19,18 @@ class ai_function(object):
     def __init__(
         self,
         verbose=None,
+        function_name: str = "",
     ):
         self.language = "unknown"
         self.verbose = is_jupyter() if verbose is None else verbose
 
-        self.function_name = "{}_{}".format(
-            self.__class__.__name__,
-            random.randint(10000000, 99999999),
+        self.function_name = (
+            function_name
+            if function_name
+            else "{}_{}".format(
+                self.__class__.__name__,
+                random.randint(10000000, 99999999),
+            )
         )
 
         self.prompt: List[str] = []
