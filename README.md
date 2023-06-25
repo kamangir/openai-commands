@@ -23,9 +23,9 @@ openai complete "describe mathematics"
 
 also works,
 
-- [in a notebook](./notebooks/completion.ipynb)
-- for [python functions](./notebooks/completion_ai_function_py.ipynb), special case: [image to image functions](./notebooks/completion_i2i_function.ipynb)
-- [magic](./notebooks/two-dimensional.ipynb)
+- [in a notebook](./notebooks/completion.ipynb).
+- for [python functions](./notebooks/completion_ai_function_py.ipynb), special case: [image to image functions](./notebooks/completion_i2i_function.ipynb).
+- [magic](./notebooks/two-dimensional.ipynb) using [Vancouver-Watching](https://github.com/kamangir/Vancouver-Watching).
 
 ## Sentence -> Image
 
