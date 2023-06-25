@@ -2,7 +2,7 @@ import os
 from typing import List, Tuple, Dict, Any
 from abcli import file
 import matplotlib.pyplot as plt
-from openai_cli.completion.functions.generic import ai_function
+from openai_cli.completion.functions.python import ai_function_py
 from abcli import string
 from abcli.modules.host import is_jupyter
 import abcli.logging
@@ -11,7 +11,7 @@ import logging
 logger = logging.getLogger()
 
 
-class i2i_function(ai_function):
+class i2i_function(ai_function_py):
     def __init__(
         self,
         *args,
