@@ -13,6 +13,14 @@ openai help verbose
 
 ![image](./assets/marquee.png)
 
+## Completion
+
+```bash
+openai complete "describe mathematics"
+```
+
+> Mathematics is an abstract science that examines topics such as quantity, structure, space, change, and other topics in various ways. It involves the use of logic, algorithms, and formulas to solve problems. Mathematics can be used to study the natural world, to describe phenomena, and to make predictions about the future. It provides the foundation for the development of a wide range of disciplines in science, technology, engineering, economics, finance, and more.
+
 ## Sentence -> Image
 
 ```bash
@@ -28,7 +36,7 @@ openai generate image \
 
 ## Text -> Mural
 
-"[The Laughing Heart](  https://allpoetry.com/poem/14326890-The-Laughing-Heart-by-Charles-Bukowski)" by Charles Bukowski.
+"[The Laughing Heart](  https://allpoetry.com/poem/14326890-The-Laughing-Heart-by-Charles-Bukowski)" by Charles Bukowski, [more examples](http://kamangir.net/private/?object=2023-03-26-19-10-26-51814).
 
 ```bash
 abcli select; \
