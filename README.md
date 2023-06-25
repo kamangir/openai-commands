@@ -21,6 +21,13 @@ openai complete "describe mathematics"
 
 > Mathematics is an abstract science that examines topics such as quantity, structure, space, change, and other topics in various ways. It involves the use of logic, algorithms, and formulas to solve problems. Mathematics can be used to study the natural world, to describe phenomena, and to make predictions about the future. It provides the foundation for the development of a wide range of disciplines in science, technology, engineering, economics, finance, and more.
 
+also works for,
+
+- [general functions](./notebooks/completion_ai_function_py.ipynb)
+- [python functions](./notebooks/completion_ai_function_py.ipynb)
+- special case: [image to image functions](./notebooks/completion_i2i_function_py.ipynb)
+- [magic](./notebooks/two_dimensional.ipynb)
+
 ## Sentence -> Image
 
 ```bash
