@@ -21,11 +21,13 @@ class ai_function_py(ai_function):
         self,
         output_class_name: str = "",
         verbose=None,
+        validation_input=None,
     ):
         super().__init__(verbose=verbose)
 
         self.language = "python"
         self.output_class_name = output_class_name
+        self.validation_input = validation_input
 
         self.function_handle = None
 
@@ -61,7 +63,6 @@ class ai_function_py(ai_function):
         self,
         prompt,
         retry: int = 5,
-        validation_input=None,
     ) -> Tuple[bool, Dict[str, Any]]:
         success, metadata = super().generate(prompt)
         if not success:
@@ -81,9 +82,9 @@ class ai_function_py(ai_function):
 
         passed = self.function_handle is not None
 
-        if passed and validation_input is not None:
+        if passed and self.validation_input is not None:
             try:
-                validation_output = self.compute(validation_input)
+                validation_output = self.compute(self.validation_input)
 
                 if validation_output is None:
                     passed = False
@@ -101,11 +102,7 @@ class ai_function_py(ai_function):
             return False, metadata
 
         logger.info("{} more tries.".format(retry))
-        return self.generate(
-            prompt,
-            retry - 1,
-            validation_input,
-        )
+        return self.generate(prompt, retry - 1)
 
     def to_json(self):
         output = super().to_json()

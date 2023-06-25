@@ -27,6 +27,14 @@ class i2i_function(ai_function_py):
         self.auto_save = True
         self.plot = is_jupyter() if plot is None else plot
 
+        if self.validation_input is None:
+            _, self.validation_input = file.load_image(
+                os.path.join(
+                    os.getenv("HOME", ""),
+                    "git/blue-bracket/images/portal-34.jpg",
+                )
+            )
+
     def compute(self, inputs):
         if self.function_handle is None:
             return None
@@ -59,22 +67,3 @@ class i2i_function(ai_function_py):
             plt.show()
 
         return output_image
-
-    def generate(
-        self,
-        *args,
-        **kwargs,
-    ) -> Tuple[bool, Dict[str, Any]]:
-        filename = os.path.join(
-            os.getenv("HOME", ""),
-            "git/blue-bracket/images/portal-34.jpg",
-        )
-        success, image = file.load_image(filename)
-        if not success:
-            return False, {"error": f"{filename} not found."}
-
-        return super().generate(
-            *args,
-            validation_input=image,
-            **kwargs,
-        )
