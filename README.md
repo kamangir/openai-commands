@@ -23,9 +23,9 @@ openai complete "describe mathematics"
 
 also works for,
 
-- [general functions](./notebooks/completion_ai_function_py.ipynb)
+- [general functions](./notebooks/completion_ai_function.ipynb)
 - [python functions](./notebooks/completion_ai_function_py.ipynb)
-- special case: [image to image functions](./notebooks/completion_i2i_function_py.ipynb)
+- special case: [image to image functions](./notebooks/completion_i2i_function.ipynb)
 - [magic](./notebooks/two_dimensional.ipynb)
 
 ## Sentence -> Image
