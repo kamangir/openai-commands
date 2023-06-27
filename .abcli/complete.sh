@@ -1,11 +1,34 @@
 #! /usr/bin/env bash
 
+function openai_completion() {
+    openai_complete "$@"
+}
+
 function openai_complete() {
     local task=$(abcli_unpack_keyword "$1" help)
 
     if [ "$task" == help ] ; then
         abcli_show_usage "openai complete \"prompt\"$ABCUL[-]$ABCUL[--max_tokens <2000>]$ABCUL[--verbose 1]" \
             "complete prompt."
+
+        abcli_show_usage "openai completion describe <plugin-name>" \
+            "describe <plugin-name> for openai"
+        return
+    fi
+
+    if [ "$task" == "describe" ] ; then
+        local plugin_name=$(abcli_clarify_input $2 abcli)
+
+        export $abcli_show_usage_destination=$abcli_object_path/description.yaml
+
+        abcli_log "$plugin_name -> $abcli_show_usage_destination"
+
+        $plugin_name help
+
+        cat $abcli_show_usage_destination
+
+        unset $abcli_show_usage_destination
+
         return
     fi
 
