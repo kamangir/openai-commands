@@ -19,15 +19,19 @@ function openai_complete() {
     if [ "$task" == "describe" ] ; then
         local plugin_name=$(abcli_clarify_input $2 abcli)
 
-        export abcli_show_usage_destination=$abcli_object_path/$plugin_name-description.txt
+        export abcli_show_usage_destination=$abcli_object_path/$plugin_name-description.yaml
 
         abcli_log "$plugin_name -> $abcli_show_usage_destination"
 
         $plugin_name help
 
-        cat $abcli_show_usage_destination
+        python3 -m openai_cli.completion \
+            process_description \
+            --filename "$abcli_show_usage_destination" \
+            "${@:3}"
 
         unset abcli_show_usage_destination
+        cat $abcli_object_path/$plugin_name-description.txt
 
         return
     fi
