@@ -27,7 +27,7 @@ function openai_complete() {
 
         cat $abcli_show_usage_destination
 
-        unset $abcli_show_usage_destination
+        unset abcli_show_usage_destination
 
         return
     fi
