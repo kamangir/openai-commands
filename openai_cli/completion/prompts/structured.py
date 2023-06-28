@@ -42,5 +42,4 @@ class structured_prompt(object):
         while "  " in output:
             output = output.replace("  ", " ")
 
-        logger.info(output)
         return output

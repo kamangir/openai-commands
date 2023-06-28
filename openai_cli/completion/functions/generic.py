@@ -44,6 +44,8 @@ class ai_function(object):
     ) -> Tuple[bool, Dict[str, Any]]:
         self.prompt = prompt
 
+        logger.info("prompt: {}".format(prompt))
+
         success, self.code, metadata = complete_prompt(
             self.prompt,
             verbose=self.verbose,
