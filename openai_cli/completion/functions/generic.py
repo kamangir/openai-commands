@@ -18,8 +18,8 @@ logger = logging.getLogger()
 class ai_function(object):
     def __init__(
         self,
-        verbose=None,
         function_name: str = "",
+        verbose=None,
     ):
         self.language = "unknown"
         self.verbose = is_jupyter() if verbose is None else verbose
