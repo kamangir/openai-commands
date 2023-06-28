@@ -31,7 +31,8 @@ function openai_complete() {
             "${@:3}"
 
         unset abcli_show_usage_destination
-        cat $abcli_object_path/$plugin_name-description.txt
+
+        abcli_log_file $abcli_object_path/$plugin_name-description.txt
 
         return
     fi
