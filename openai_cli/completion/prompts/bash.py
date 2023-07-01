@@ -17,9 +17,11 @@ class bash_prompt(object):
         )
         assert success
 
-        return [
-            line.replace(function_name, function_short_name)
-            if function_short_name
-            else line
-            for line in instructions + [self.prompt]
-        ]
+        return "\n".join(
+            [
+                line.replace(function_name, function_short_name)
+                if function_short_name
+                else line
+                for line in instructions + [self.prompt]
+            ]
+        )
