@@ -25,3 +25,25 @@ class bash_prompt(object):
                 for line in instructions + [self.prompt]
             ]
         )
+
+    @staticmethod
+    def pre_process(filename):
+        success, content = file.load_yaml(filename)
+        return (
+            success
+            if not success
+            else file.save_text(
+                file.set_extension(filename, "txt"),
+                [
+                    "to {}, run {}.".format(
+                        thing[1][:-1] if thing[1].endswith(".") else thing[1],
+                        thing[0],
+                    )
+                    .replace("\\n", "")
+                    .replace("\\t", "")
+                    .replace("\\", "")
+                    for thing in content
+                ],
+                log=True,
+            )
+        )

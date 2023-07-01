@@ -1,6 +1,6 @@
 import argparse
 from openai_cli.completion import NAME
-from openai_cli.completion.functions.description import process_description
+from openai_cli.completion.prompts.bash import bash_prompt
 from openai_cli import VERSION
 from abcli import logging
 import logging
@@ -11,7 +11,7 @@ parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
 parser.add_argument(
     "task",
     type=str,
-    help="process_description",
+    help="pre_process_bash_description",
 )
 parser.add_argument(
     "--filename",
@@ -20,8 +20,8 @@ parser.add_argument(
 args = parser.parse_args()
 
 success = False
-if args.task == "process_description":
-    success = process_description(args.filename)
+if args.task == "pre_process_bash_description":
+    success = bash_prompt.pre_process(args.filename)
 else:
     logger.error(f"-{NAME}: {args.task}: command not found.")
 

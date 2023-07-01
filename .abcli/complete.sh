@@ -26,7 +26,7 @@ function openai_complete() {
         $plugin_name help
 
         python3 -m openai_cli.completion \
-            process_description \
+            pre_process_bash_description \
             --filename "$abcli_show_usage_destination" \
             "${@:3}"
 
