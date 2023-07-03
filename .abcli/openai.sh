@@ -32,7 +32,7 @@ function openai() {
 
     if [ "$task" == "pytest" ] ; then
         pushd $abcli_path_git/openai/openai_cli/tests > /dev/null
-        pytest
+        pytest "${@:2}"
         popd > /dev/null
         return
     fi
