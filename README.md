@@ -24,8 +24,8 @@ openai complete "describe mathematics"
 also works,
 
 - [in a notebook](./notebooks/completion.ipynb).
-- for [python functions](./notebooks/completion_ai_function_py.ipynb), special case: [image to image functions](./notebooks/completion_i2i_function.ipynb).
-- [bash scripts](./notebooks/completion_ai_function_bash.ipynb) using [Vancouver-Watching](https://github.com/kamangir/Vancouver-Watching).
+- to generate [python functions](./notebooks/completion_ai_function_py.ipynb), special case: [image to image functions](./notebooks/completion_i2i_function.ipynb).
+- to write [bash scripts](./notebooks/completion_ai_function_bash.ipynb), for example, using [Vancouver-Watching](https://github.com/kamangir/Vancouver-Watching).
 
 ![image](./assets/completion_i2i_function.png)
 
