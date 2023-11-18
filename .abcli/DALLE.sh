@@ -6,14 +6,14 @@ export DALL_E_BRUSH_SIZES="256|512|1024"
 function DALL-E() {
     local task=$(abcli_unpack_keyword $1 help)
 
-    if [ $task == help ] ; then
+    if [ $task == help ]; then
         local options="brush=tiling|randomwalk,brush_size=$DALL_E_BRUSH_SIZES,~dryrun,lines=<5>,publish,url,verbose"
         abcli_show_usage "DALL-E render$ABCUL[$options]${ABCUL}input.txt|https://allpoetry.com/16-bit-Intel-8088-chip$ABCUL[output.png]<args>" \
             "render input.txt|url -> output.png."
         return
     fi
 
-    if [ "$task" == render ] ; then
+    if [ "$task" == render ]; then
         local options=$2
 
         python3 -m openai_cli.DALLE \
@@ -23,8 +23,7 @@ function DALL-E() {
             --destination "$4" \
             "${@:5}"
 
-        aiart_publish \
-            $(abcli_option_default "$options" generator DALL-E)
+        aiart_publish generator=DALL-E,$options
 
         return
     fi
