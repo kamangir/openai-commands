@@ -27,6 +27,9 @@ function openai_conda() {
 
         pip3 install pymysql==0.10.1
 
+        # https://platform.openai.com/docs/quickstart?context=python
+        pip3 install --upgrade openai
+
         [[ "$do_validate" == 1 ]] && openai_conda validate
 
         return

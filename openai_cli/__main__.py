@@ -1,5 +1,5 @@
 import argparse
-from openai_cli import NAME, VERSION
+from openai_cli import NAME, VERSION, DESCRIPTION
 from abcli import logging
 import logging
 
@@ -19,6 +19,12 @@ parser.add_argument(
     "--max_token",
     type=int,
     default=2000,
+)
+parser.add_argument(
+    "--show_description",
+    type=bool,
+    default=0,
+    help="0|1",
 )
 parser.add_argument(
     "--verbose",
@@ -41,7 +47,14 @@ if args.task == "complete":
 elif args.task == "version":
     import openai
 
-    print(f"{NAME}-{VERSION}-{openai.version.VERSION}")
+    print(
+        "{}-{}-{}{}".format(
+            NAME,
+            VERSION,
+            openai.version.VERSION,
+            "\\n{}".format(DESCRIPTION) if args.show_description else "",
+        )
+    )
     success = True
 else:
     logger.error(f"-{NAME}: {args.task}: command not found.")

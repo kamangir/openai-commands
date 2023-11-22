@@ -8,10 +8,54 @@ Install [`awesome-bash-cli`](https://github.com/kamangir/awesome-bash-cli) (`abc
 
 ```bash
 abcli git clone openai install
-openai help verbose
 ```
 
-![image](./assets/marquee.png)
+```bash
+ > openai help
+🛠️ openai_cli-2.143.1-1.3.4
+🛠️ tools for the OpenAI API
+
+openai complete "prompt" \
+	[-] \
+	[--max_tokens <2000>] \
+	[--verbose 1]
+ . complete prompt.
+openai completion describe <plugin-name>
+ . describe <plugin-name> for openai
+openai conda create_env [validate,~recreate]
+ . create conda environment.
+openai conda validate
+ . validate conda environment.
+openai dashboard
+ . browse openai dashboard.
+openai generate image \
+	[app=<app-name>,~dryrun,height=<576>,~sign,~tag,width=<768>] \
+	[<image>] [<previous-image>] \
+	["<sentence>"] \
+	[-]
+ . <sentence> -[<previous-image>]-> <image>.png.
+openai generate video \
+	[app=<app-name>,~dryrun,frame_count=16,marker=PART,~publish,~render,resize_to=1280x1024,~sign,slice_by=words|sentences,~upload,url] \
+	<filename.txt|url> \
+	[-]
+ . <filename.txt>|url -> video.mp4
+openai generate validate \
+	[app=<app-name>,dryrun,what=all|image|video]
+ . validate openai.
+openai pytest
+ . test openai.
+openai transform \
+	[count=<1>,~dryrun,extension=jpg,~sign,~tag,~upload] \
+	[<object-name>] \
+	["<sentence>"] \
+	[-]
+ . <object-name> -<sentence>-> 2023-11-19-15-08-01-41901.
+DALL-E render \
+	[brush=tiling|randomwalk,brush_size=256|512|1024,~dryrun,lines=<5>,publish,url,verbose] \
+	input.txt|https://allpoetry.com/16-bit-Intel-8088-chip \
+	[output.png]<args>
+ . render input.txt|url -> output.png.
+```
 
 ## Completion
 
