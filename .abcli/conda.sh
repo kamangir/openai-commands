@@ -26,6 +26,10 @@ function openai_conda() {
         abcli_conda create_env name=$environment_name
 
         pip3 install pymysql==0.10.1
+        pip3 install pytest
+        pip3 install opencv-python
+        pip3 install scikit-image
+        pip3 install matplotlib
 
         # https://platform.openai.com/docs/quickstart?context=python
         pip3 install --upgrade openai

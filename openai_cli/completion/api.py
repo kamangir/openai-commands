@@ -1,5 +1,6 @@
 import os
 import openai
+from openai import OpenAI
 from abcli.modules.cookie import cookie
 from typing import Tuple, Any, Dict, List
 from abcli.modules.host import is_jupyter
@@ -8,35 +9,51 @@ import logging
 
 logger = logging.getLogger()
 
-openai.api_key = os.environ["OPENAI_API_KEY"] = cookie["openai_api_key"]
+api_key = os.environ["OPENAI_API_KEY"] = cookie["openai_api_key"]
 
 
+# https://github.com/openai/openai-python
+# https://github.com/openai/openai-python/discussions/742
 def complete_prompt(
     prompt: str,
     max_tokens: int = 2000,
     verbose=None,
 ) -> Tuple[bool, str, Dict[str, Any]]:
-    response = openai.Completion.create(
-        model="text-davinci-003",
-        prompt=prompt,
+    client = OpenAI(api_key=api_key)
+
+    response = client.chat.completions.create(
+        messages=[
+            {
+                "role": "user",
+                "content": prompt,
+            }
+        ],
+        model="gpt-3.5-turbo",
         max_tokens=max_tokens,
     )
 
     if is_jupyter() if verbose is None else verbose:
         logger.info("response: {}".format(response))
 
-    if not response["choices"]:
+    if not response.choices:
         logger.info("openai-cli.complete(): no choice.")
         return False, "", {"status": "no choice"}
 
-    choice = response["choices"][0]
+    if len(response.choices) > 1:
+        logger.info(
+            "{} choices, picked the first, and ignored the rest.".format(
+                len(response.choices)
+            )
+        )
+
+    choice = response.choices[0]
 
     metadata = {
         "response": response,
-        "status": f'choice: {choice["finish_reason"]}',
+        "status": f"choice: {choice.finish_reason}",
     }
 
     logger.info(
-        "openai-cli.complete(): finish_reason: {}.".format(choice["finish_reason"])
+        "openai-cli.complete(): finish_reason: {}.".format(choice.finish_reason)
     )
-    return choice["finish_reason"] == "stop", choice["text"], metadata
+    return choice.finish_reason == "stop", choice.message.content, metadata

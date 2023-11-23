@@ -40,9 +40,10 @@ function openai() {
     fi
 
     if [ "$task" == "pytest" ]; then
-        pushd $abcli_path_git/openai/openai_cli/tests >/dev/null
-        pytest "${@:2}"
-        popd >/dev/null
+        abcli_download object openai-completion-function-2d-v3
+
+        abcli_pytest plugin=openai,$2 \
+            "${@:3}"
         return
     fi
 
