@@ -5,7 +5,7 @@ function openai_vision() {
 
     if [ "$prompt" == "help" ]; then
         local options="auto|low|high,~download,dryrun,prefix=<prefix>,~upload"
-        local args="[--verbose 1]$ABCUL[--count <2>]$ABCUL[--extension <jpg>]"
+        local args="[--count <2>]$ABCUL[--extension <jpg>]$ABCUL[--verbose 1]"
         abcli_show_usage "openai vision \"prompt\"$ABCUL[$options]$ABCUL<.|object-name>$ABCUL$args" \
             "complete <prompt> given the image(s) in <object-name>."
         return
