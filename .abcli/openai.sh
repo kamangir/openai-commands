@@ -18,6 +18,7 @@ function openai() {
             "test openai."
 
         openai_transform "$@"
+        openai_vision "$@"
         DALL-E "$@"
         return
     fi

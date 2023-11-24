@@ -7,16 +7,16 @@ function openai_completion() {
 function openai_complete() {
     local task=$(abcli_unpack_keyword "$1" help)
 
-    if [ "$task" == help ] ; then
-        abcli_show_usage "openai complete \"prompt\"$ABCUL[-]$ABCUL[--max_tokens <2000>]$ABCUL[--verbose 1]" \
-            "complete prompt."
+    if [ "$task" == help ]; then
+        abcli_show_usage "openai complete \"<prompt>\"$ABCUL[-]$ABCUL[--max_tokens <2000>]$ABCUL[--verbose 1]" \
+            "complete <prompt>."
 
         abcli_show_usage "openai completion describe <plugin-name>" \
             "describe <plugin-name> for openai"
         return
     fi
 
-    if [ "$task" == "describe" ] ; then
+    if [ "$task" == "describe" ]; then
         local plugin_name=$(abcli_clarify_input $2 abcli)
 
         export abcli_show_usage_destination=$abcli_object_path/$plugin_name-description.yaml
