@@ -7,7 +7,7 @@ function openai_vision() {
         local options="auto|low|high,~download,dryrun,prefix=<prefix>,~upload"
         local args="[--verbose 1]$ABCUL[--count <2>]$ABCUL[--extension <jpg>]"
         abcli_show_usage "openai vision \"prompt\"$ABCUL[$options]$ABCUL<.|object-name>$ABCUL$args" \
-            "complete <prompt> given image(s)."
+            "complete <prompt> given the image(s) in <object-name>."
         return
     fi
 
