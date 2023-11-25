@@ -66,14 +66,20 @@ def complete_object(
         list_of_image_urls=list_of_image_urls,
         verbose=verbose,
     )
-    if not success:
-        return success
-    logger.info(f"🤖 {content}")
+    logger.info(
+        "🤖 {}: {}".format(
+            "success" if success else "failure",
+            content,
+        )
+    )
 
     filename = objects.path_of("openai-vision.json", object_name)
     _, past_metadata = file.load_json(filename, civilized=True)
     past_metadata[string.timestamp()] = metadata
-    return file.save_json(filename, past_metadata, log=True)
+    if not file.save_json(filename, past_metadata, log=True):
+        success = False
+
+    return success
 
 
 # https://platform.openai.com/docs/guides/vision/multiple-image-inputs
