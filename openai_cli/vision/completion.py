@@ -1,9 +1,10 @@
-from abcli.modules import objects
-from abcli.plugins import aws
 import os
-from tqdm import tqdm
-from typing import List
 from enum import Enum, auto
+from typing import List
+from tqdm import tqdm
+from openai import OpenAI
+from openai_cli.completion import api_key
+from abcli.modules import objects
 from abcli.options import Options
 from openai_cli.vision import NAME
 from abcli import logging
@@ -66,10 +67,12 @@ def complete_object(
     )
 
 
+# https://platform.openai.com/docs/guides/vision/multiple-image-inputs
 def complete(
     prompt: str,
     list_of_image_urls: List[str],
     detail: Detail = Detail.AUTO,
+    max_tokens: int = 300,
     verbose: bool = False,
 ):
     logger.info(
@@ -81,6 +84,55 @@ def complete(
         )
     )
 
-    print("wip")
+    client = OpenAI(api_key=api_key)
+    response = client.chat.completions.create(
+        model="gpt-4-vision-preview",
+        messages=[
+            {
+                "role": "user",
+                "content": [
+                    {
+                        "type": "text",
+                        "text": prompt,
+                    }
+                ]
+                + [
+                    {
+                        "type": "image_url",
+                        "image_url": {
+                            "url": image_urls,
+                        },
+                    }
+                    for image_urls in list_of_image_urls
+                ],
+            }
+        ],
+        max_tokens=max_tokens,
+    )
 
-    return False
+    if verbose:
+        logger.info("response: {}".format(response))
+
+    if not response.choices:
+        logger.info("openai-cli.vision.complete(): no choice.")
+        return False, "", {"status": "no choice"}
+
+    if len(response.choices) > 1:
+        logger.info(
+            "{} choices, picked the first, and ignored the rest.".format(
+                len(response.choices)
+            )
+        )
+
+    choice = response.choices[0]
+    logger.info(
+        "openai-cli.vision.complete(): finish_reason: {}.".format(choice.finish_reason)
+    )
+    return (
+        choice.finish_reason == "stop",
+        choice.message.content,
+        {
+            "response": response,
+            "finish_reason": choice.finish_reason,
+        },
+    )

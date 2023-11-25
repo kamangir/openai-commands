@@ -1,15 +1,12 @@
 import os
-import openai
+from openai_cli.completion import api_key
 from openai import OpenAI
-from abcli.modules.cookie import cookie
 from typing import Tuple, Any, Dict, List
 from abcli.modules.host import is_jupyter
 import abcli.logging
 import logging
 
 logger = logging.getLogger()
-
-api_key = os.environ["OPENAI_API_KEY"] = cookie["openai_api_key"]
 
 
 # https://github.com/openai/openai-python
