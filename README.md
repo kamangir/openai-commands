@@ -1,6 +1,8 @@
 # openai
 
-`openai` is a bash cli for [OpenAI API](https://beta.openai.com/docs/introduction) that supports [completion](#Completion), :fire
+`openai` is a bash cli for [OpenAI API](https://beta.openai.com/docs/introduction).
+
+🔷  [completion](#Completion) 🔷  [code generation](#code-generation) 🔷  [sentence -> image](#sentence---image) 🔷  [text -> mural](#text---mural) 🔷  [vision](#vision) 🔷 
 
 ## Install
 
@@ -12,14 +14,14 @@ abcli git clone openai install
 
 ```bash
  > openai help
-🛠️ openai_cli-2.143.1-1.3.4
+🛠️ openai_cli-2.168.1-1.3.4
 🛠️ tools for the OpenAI API
 
-openai complete "prompt" \
+openai complete "<prompt>" \
 	[-] \
 	[--max_tokens <2000>] \
 	[--verbose 1]
- . complete prompt.
+ . complete <prompt>.
 openai completion describe <plugin-name>
  . describe <plugin-name> for openai
 openai conda create_env [validate,~recreate]
@@ -49,7 +51,14 @@ openai transform \
 	[<object-name>] \
 	["<sentence>"] \
 	[-]
- . <object-name> -<sentence>-> 2023-11-19-15-08-01-41901.
+ . <object-name> -<sentence>-> vanwatch-process-dev-2023-11-11-v61.
+openai vision "prompt" \
+	[auto|low|high,dryrun,~upload] \
+	[Davie,~Bute,.jpg] \
+	<.|object-name> \
+	[--max_count <-1>] \
+	[--verbose 1]
+ . complete <prompt> given the image(s) in <object-name>.
 DALL-E render \
 	[brush=tiling|randomwalk,brush_size=256|512|1024,~dryrun,lines=<5>,publish,url,verbose] \
 	input.txt|https://allpoetry.com/16-bit-Intel-8088-chip \
@@ -97,3 +106,26 @@ DALL-E render  \
 ```
 
 ![image](./assets/DALL-E.png)
+
+## Vision
+
+Implements the [OpenAI vision API](https://platform.openai.com/docs/guides/vision).
+
+> GPT-4 with Vision ... `GPT-4V` or `gpt-4-vision-preview` in the API ... model ... take in images and answer questions about them
+... not stateful ... ([more](https://arash-kamangir.medium.com/%EF%B8%8F-openai-vision-1-fb3691bd095a))
+
+Example use on the images ingested from the traffic cameras in downtown Vancouver, using [Vancouver-Watching 🌈](https://github.com/kamangir/Vancouver-Watching),
+
+```bash
+openai vision \
+    "you are a police offier, what do you see in these images?" \
+    - Davie,Bute,.jpg \
+    $(vanwatch list area=vancouver,ingest,published \
+        --log 0 \
+        --count 1 \
+        --offset 0) \
+    --max_count 10 \
+    --verbose 1
+```
+
+🔥
