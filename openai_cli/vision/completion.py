@@ -80,4 +80,7 @@ def complete(
             len(list_of_image_urls),
         )
     )
+
+    print("wip")
+
     return False

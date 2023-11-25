@@ -1,5 +1,5 @@
 NAME = "openai_cli"
 
-VERSION = "2.165.1"
+VERSION = "2.166.1"
 
 DESCRIPTION = "🛠️ tools for the OpenAI API"
