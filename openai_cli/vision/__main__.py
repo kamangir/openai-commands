@@ -51,7 +51,7 @@ args = parser.parse_args()
 
 success = False
 if args.task == "complete":
-    success, _, _ = complete_object(
+    success = complete_object(
         detail=Detail[args.detail.upper()],
         max_count=args.max_count,
         object_name=args.object_name,

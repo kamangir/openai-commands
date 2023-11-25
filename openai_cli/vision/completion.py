@@ -4,6 +4,8 @@ from typing import List
 from tqdm import tqdm
 from openai import OpenAI
 from openai_cli.completion import api_key
+from abcli import file
+from abcli import string
 from abcli.modules import objects
 from abcli.options import Options
 from openai_cli.vision import NAME
@@ -59,12 +61,20 @@ def complete_object(
         )
     )
 
-    return complete(
+    success, content, metadata = complete(
         prompt=prompt,
         detail=detail,
         list_of_image_urls=list_of_image_urls,
         verbose=verbose,
     )
+    if not success:
+        return success
+    logger.info(f"🤖 {content}")
+
+    filename = objects.path_of("openai-vision.json", object_name)
+    _, past_metadata = file.load_json(filename, civilized=True)
+    past_metadata[string.timestamp()] = metadata
+    return file.save_json(filename, past_metadata, log=True)
 
 
 # https://platform.openai.com/docs/guides/vision/multiple-image-inputs
@@ -132,6 +142,8 @@ def complete(
         choice.finish_reason == "stop",
         choice.message.content,
         {
+            "prompt": prompt,
+            "list_of_image_urls": list_of_image_urls,
             "response": response,
             "finish_reason": choice.finish_reason,
         },
