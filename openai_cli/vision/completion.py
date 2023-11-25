@@ -150,7 +150,7 @@ def complete(
         "openai-cli.vision.complete(): finish_reason: {}.".format(choice.finish_reason)
     )
     return (
-        choice.finish_reason == "stop",
+        choice.finish_reason in [None, "stop"],
         choice.message.content,
         {
             "prompt": prompt,
