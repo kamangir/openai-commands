@@ -1,4 +1,5 @@
 import argparse
+from abcli.options import Options
 from openai_cli.vision import NAME
 from openai_cli.vision.completion import complete_object, Detail
 from openai_cli import VERSION
@@ -14,20 +15,10 @@ parser.add_argument(
     help="complete",
 )
 parser.add_argument(
-    "--count",
-    type=int,
-    default=2,
-)
-parser.add_argument(
     "--detail",
     type=str,
     default="auto",
     help="auto|low|high",
-)
-parser.add_argument(
-    "--extension",
-    type=str,
-    default="jpg",
 )
 parser.add_argument(
     "--object_name",
@@ -35,10 +26,15 @@ parser.add_argument(
     default="",
 )
 parser.add_argument(
-    "--prefix",
+    "--options",
     type=str,
     default="",
-    help="none == space",
+    help="Davie,~Bute,.jpg",
+)
+parser.add_argument(
+    "--max_count",
+    type=int,
+    default=5,
 )
 parser.add_argument(
     "--prompt",
@@ -56,11 +52,10 @@ args = parser.parse_args()
 success = False
 if args.task == "complete":
     success = complete_object(
-        count=args.count,
         detail=Detail[args.detail.upper()],
-        extension=args.extension,
+        max_count=args.max_count,
         object_name=args.object_name,
-        prefix="" if args.prefix == "void" else args.prefix,
+        options=Options(args.options),
         prompt=args.prompt,
         verbose=args.verbose,
     )

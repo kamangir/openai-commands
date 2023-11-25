@@ -1,5 +1,6 @@
 from typing import List
 from enum import Enum, auto
+from abcli.options import Options
 from openai_cli.vision import NAME
 from abcli import logging
 import logging
@@ -16,25 +17,23 @@ class Detail(Enum):
 def complete_object(
     prompt: str,
     object_name: str,
-    prefix: str,
-    count: int = 2,
-    extension: str = "jpg",
+    options: Options(),
+    max_count: int = 5,
     detail: Detail = Detail.AUTO,
     verbose: bool = False,
 ):
     logger.info(
-        '{}.complete_object: "{}" {}.{} @ {}: {}/{}'.format(
+        '{}.complete_object[{}]: "{}" @ {} < {} : {}'.format(
             NAME,
-            prompt,
-            count,
-            extension,
             detail,
+            prompt,
+            options.to_str(),
+            max_count,
             object_name,
-            prefix,
         )
     )
 
-    # find the images on the cloud
+    # find the images on the cloud that options + ~inference
     # aws s3 cp them to public
     list_of_image_urls = ["wip"]
 
@@ -53,11 +52,11 @@ def complete(
     verbose: bool = False,
 ):
     logger.info(
-        '{}.complete: "{}" {} @ {}'.format(
+        '{}.complete[{}]: "{}" @ {}'.format(
             NAME,
+            detail,
             prompt,
             len(list_of_image_urls),
-            detail,
         )
     )
     return False
