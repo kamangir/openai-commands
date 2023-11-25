@@ -1,6 +1,6 @@
 import argparse
 from openai_cli.vision import NAME
-from openai_cli.vision.completion import complete, Detail
+from openai_cli.vision.completion import complete_object, Detail
 from openai_cli import VERSION
 from abcli import logging
 import logging
@@ -16,7 +16,7 @@ parser.add_argument(
 parser.add_argument(
     "--count",
     type=int,
-    default=1,
+    default=2,
 )
 parser.add_argument(
     "--detail",
@@ -55,13 +55,13 @@ args = parser.parse_args()
 
 success = False
 if args.task == "complete":
-    success = complete(
-        prompt=args.prompt,
+    success = complete_object(
         count=args.count,
         detail=Detail[args.detail.upper()],
         extension=args.extension,
         object_name=args.object_name,
         prefix="" if args.prefix == "void" else args.prefix,
+        prompt=args.prompt,
         verbose=args.verbose,
     )
 else:
