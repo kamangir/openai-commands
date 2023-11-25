@@ -1,6 +1,6 @@
 # openai
 
-`openai` is a bash cli for [OpenAI API](https://beta.openai.com/docs/introduction).
+`openai` is a bash cli for [OpenAI API](https://beta.openai.com/docs/introduction) that supports [completion](#Completion), :fire
 
 ## Install
 
@@ -76,8 +76,7 @@ Example notebooks to [generate a python functions](./notebooks/completion_ai_fun
 ## Sentence -> Image
 
 ```bash
-abcli select; \
-open .; \
+@select - open; \
 openai generate image \
   ~dryrun,height=1024,width=1024 \
   carrot - \
@@ -91,8 +90,7 @@ openai generate image \
 "[The Laughing Heart](  https://allpoetry.com/poem/14326890-The-Laughing-Heart-by-Charles-Bukowski)" by Charles Bukowski, [more examples](http://kamangir.net/private/?object=2023-03-26-19-10-26-51814).
 
 ```bash
-abcli select; \
-open .; \
+@select - open; \
 DALL-E render  \
   ~dryrun,publish,url,verbose \
   https://allpoetry.com/poem/14326890-The-Laughing-Heart-by-Charles-Bukowski
