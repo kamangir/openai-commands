@@ -56,9 +56,8 @@ def complete_object(
         for image_name in tqdm(list_of_images)
     ]
     logger.info("{} image(s).".format(len(list_of_image_urls)))
-    if verbose:
-        for index, image_url in enumerate(list_of_image_urls):
-            logger.info(f"#{index} {image_url}")
+    for index, image_url in enumerate(list_of_image_urls):
+        logger.info(f"#{index+1} {image_url}")
 
     success, content, metadata = complete(
         prompt=prompt,
