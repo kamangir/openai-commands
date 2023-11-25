@@ -1,4 +1,5 @@
 import os
+import json
 from enum import Enum, auto
 from typing import List
 from tqdm import tqdm
@@ -54,12 +55,10 @@ def complete_object(
         f"{url_prefix}/{object_name}/{image_name}"
         for image_name in tqdm(list_of_images)
     ]
-    logger.info(
-        "{} images: {}".format(
-            len(list_of_image_urls),
-            ", ".join(list_of_image_urls),
-        )
-    )
+    logger.info("{} image(s).".format(len(list_of_image_urls)))
+    if verbose:
+        for index, image_url in enumerate(list_of_image_urls):
+            logger.info(f"#{index} {image_url}")
 
     success, content, metadata = complete(
         prompt=prompt,
@@ -121,7 +120,14 @@ def complete(
     )
 
     if verbose:
-        logger.info("response: {}".format(response))
+        logger.info(
+            "response: {}".format(
+                json.dumps(
+                    response.dict(),
+                    indent=4,
+                )
+            )
+        )
 
     if not response.choices:
         logger.info("openai-cli.vision.complete(): no choice.")
@@ -144,7 +150,7 @@ def complete(
         {
             "prompt": prompt,
             "list_of_image_urls": list_of_image_urls,
-            "response": response,
+            "response": response.dict(),
             "finish_reason": choice.finish_reason,
         },
     )
