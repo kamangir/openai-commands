@@ -1,3 +1,5 @@
+from abcli.modules import objects
+from tqdm import tqdm
 from typing import List
 from enum import Enum, auto
 from abcli.options import Options
@@ -33,7 +35,24 @@ def complete_object(
         )
     )
 
-    # find the images on the cloud that options + ~inference
+    options["inference"] = False
+    list_of_images = objects.list_of_files(object_name, cloud=True)
+    for keyword in options:
+        list_of_images = [
+            filename
+            for filename in list_of_images
+            if (keyword in filename if options[keyword] else keyword not in filename)
+        ]
+    logger.info(
+        "{} images: {}".format(
+            len(list_of_images),
+            ", ".join(list_of_images),
+        )
+    )
+
+    for image_name in tqdm(list_of_images):
+        ...
+
     # aws s3 cp them to public
     list_of_image_urls = ["wip"]
 
