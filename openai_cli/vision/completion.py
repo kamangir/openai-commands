@@ -1,4 +1,6 @@
 from abcli.modules import objects
+from abcli.plugins import aws
+import os
 from tqdm import tqdm
 from typing import List
 from enum import Enum, auto
@@ -43,18 +45,18 @@ def complete_object(
             for filename in list_of_images
             if (keyword in filename if options[keyword] else keyword not in filename)
         ]
+
+    url_prefix = os.getenv("abcli_publish_prefix", "")
+    list_of_image_urls = [
+        f"{url_prefix}/{object_name}/{image_name}"
+        for image_name in tqdm(list_of_images)
+    ]
     logger.info(
         "{} images: {}".format(
-            len(list_of_images),
-            ", ".join(list_of_images),
+            len(list_of_image_urls),
+            ", ".join(list_of_image_urls),
         )
     )
-
-    for image_name in tqdm(list_of_images):
-        ...
-
-    # aws s3 cp them to public
-    list_of_image_urls = ["wip"]
 
     return complete(
         prompt=prompt,
