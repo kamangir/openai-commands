@@ -1,6 +1,6 @@
-# openai
+# openai-cli
 
-`openai` is a bash cli for [OpenAI API](https://beta.openai.com/docs/introduction).
+`openai-cli` is a bash cli for the [OpenAI API](https://beta.openai.com/docs/introduction).
 
 🔷  [completion](#Completion) 🔷  [code generation](#code-generation) 🔷  [sentence -> image](#sentence---image) 🔷  [text -> mural](#text---mural) 🔷  [vision](#vision) 🔷 
 
