@@ -42,6 +42,7 @@ function openai() {
 
     if [ "$task" == "pytest" ]; then
         abcli_download object openai-completion-function-2d-v3
+        abcli_download object 2023-11-12-12-03-40-85851
 
         abcli_pytest plugin=openai,$2 \
             "${@:3}"
