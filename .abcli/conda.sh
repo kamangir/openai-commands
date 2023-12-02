@@ -33,6 +33,7 @@ function openai_conda() {
         pip3 install scikit-image
         pip3 install matplotlib
         pip3 install boto3
+        pip3 install bs4
 
         # https://platform.openai.com/docs/quickstart?context=python
         pip3 install --upgrade openai

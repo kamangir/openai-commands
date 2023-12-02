@@ -50,7 +50,14 @@ function openai() {
     fi
 
     if [ "$task" == "version" ]; then
-        abcli_log "🛠️ $(python3 -m openai_cli version --show_description 1)${@:2}"
+        local options=$2
+        local show_raw=$(abcli_option_int "$options" raw 0)
+
+        if [[ "$show_raw" == 1 ]]; then
+            python3 -m openai_cli version
+        else
+            abcli_log "🛠️ $(python3 -m openai_cli version --show_description 1)${@:2}"
+        fi
         return
     fi
 
