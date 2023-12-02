@@ -70,6 +70,8 @@ class Canvas(object):
             )
         )
 
+        self.crashed = False
+
     def add_signature(self, image):
         return Image.fromarray(
             add_signature(
@@ -157,6 +159,7 @@ class Canvas(object):
                 self.image.paste(image__, box)
             except:
                 crash_report(f"{NAME}: paint({prompt})")
+                self.crashed = True
 
         self.mask.paste(
             Image.new(
@@ -167,7 +170,7 @@ class Canvas(object):
             box,
         )
 
-        if self.is_jupyter and self.verbose:
+        if self.is_jupyter and self.verbose and not self.crashed:
             from IPython.display import display, clear_output
 
             clear_output(wait=True)
