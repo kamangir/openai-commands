@@ -2,7 +2,7 @@
 
 `openai-cli` is a bash cli for the [OpenAI API](https://beta.openai.com/docs/introduction).
 
-🔷  [completion](#Completion) 🔷  [code generation](#code-generation) 🔷  [sentence -> image](#sentence---image) 🔷  [text -> mural](#text---mural) 🔷  [vision](#vision) 🔷 
+🔷 [completion](#Completion) 🔷 [code generation](#code-generation) 🔷 [sentence -> image](#sentence---image) 🔷 [text -> mural](#text---mural) 🔷 [vision](#vision) 🔷
 
 ## Install
 
@@ -33,9 +33,9 @@ openai dashboard
 openai generate image \
 	[app=<app-name>,~dryrun,height=<576>,~sign,~tag,width=<768>] \
 	[<image>] [<previous-image>] \
-	["<sentence>"] \
+	["<prompt>"] \
 	[-]
- . <sentence> -[<previous-image>]-> <image>.png.
+ . <prompt> -[<previous-image>]-> <image>.png.
 openai generate video \
 	[app=<app-name>,~dryrun,frame_count=16,marker=PART,~publish,~render,resize_to=1280x1024,~sign,slice_by=words|sentences,~upload,url] \
 	<filename.txt|url> \
@@ -49,9 +49,9 @@ openai pytest
 openai transform \
 	[count=<1>,~dryrun,extension=jpg,~sign,~tag,~upload] \
 	[<object-name>] \
-	["<sentence>"] \
+	["<prompt>"] \
 	[-]
- . <object-name> -<sentence>-> vanwatch-process-dev-2023-11-11-v61.
+ . <object-name> -<prompt>-> vanwatch-process-dev-2023-11-11-v61.
 openai vision "prompt" \
 	[auto|low|high,dryrun,~upload] \
 	[Davie,~Bute,.jpg] \
@@ -96,7 +96,7 @@ openai generate image \
 
 ## Text -> Mural
 
-"[The Laughing Heart](  https://allpoetry.com/poem/14326890-The-Laughing-Heart-by-Charles-Bukowski)" by Charles Bukowski, [more examples](http://kamangir.net/private/?object=2023-03-26-19-10-26-51814).
+"[The Laughing Heart](https://allpoetry.com/poem/14326890-The-Laughing-Heart-by-Charles-Bukowski)" by Charles Bukowski, [more examples](http://kamangir.net/private/?object=2023-03-26-19-10-26-51814).
 
 ```bash
 @select - open; \
@@ -112,7 +112,7 @@ DALL-E render  \
 Implements the [OpenAI vision API](https://platform.openai.com/docs/guides/vision).
 
 > GPT-4 with Vision ... `GPT-4V` or `gpt-4-vision-preview` in the API ... model ... take in images and answer questions about them
-... not stateful ... ([more](https://arash-kamangir.medium.com/%EF%B8%8F-openai-vision-1-fb3691bd095a))
+> ... not stateful ... ([more](https://arash-kamangir.medium.com/%EF%B8%8F-openai-vision-1-fb3691bd095a))
 
 Example use on the images ingested from the traffic cameras in downtown Vancouver, using [Vancouver-Watching 🌈](https://github.com/kamangir/Vancouver-Watching),
 
@@ -138,7 +138,7 @@ vanwatch vision \
 ```
 
 | ![image](https://github.com/kamangir/assets/blob/main/vanwatch/2023-11-25-openai-vision/ButeNorthDavie.jpg?raw=true) | ![image](https://github.com/kamangir/assets/blob/main/vanwatch/2023-11-25-openai-vision/ButeSouthDavie.jpg?raw=true) | ![image](https://github.com/kamangir/assets/blob/main/vanwatch/2023-11-25-openai-vision/DavieEastBute.jpg?raw=true) | ![image](https://github.com/kamangir/assets/blob/main/vanwatch/2023-11-25-openai-vision/DavieWestBute.jpg?raw=true) |
-|---|---|---|---|
+| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 
 ![image](https://github.com/kamangir/assets/blob/main/vanwatch/2023-11-25-openai-vision/marquee.png?raw=true)
 
