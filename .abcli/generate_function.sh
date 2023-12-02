@@ -10,28 +10,28 @@ function openai_generate_function() {
 
     local prev_filename=$(abcli_clarify_input $3)
 
-    local sentence=$4
+    local prompt=$4
 
     local OPENAI_API_KEY=$(abcli_cookie read openai_api_key)
-    if [ -z "$OPENAI_API_KEY" ] ; then
+    if [ -z "$OPENAI_API_KEY" ]; then
         abcli_log_error "-openai: generate_function: OPENAI_API_KEY is missing, consider updating the cookie."
         return 1
     fi
 
-    abcli_log "openai: generate: image: \"$sentence\" -[$prev_filename.png ${@:5}]-> $filename.png"
+    abcli_log "openai: generate: image: \"$prompt\" -[$prev_filename.png ${@:5}]-> $filename.png"
 
-    if [ -z "$prev_filename" ] ; then
+    if [ -z "$prev_filename" ]; then
         # https://beta.openai.com/docs/api-reference/images/create
         local command_line="curl https://api.openai.com/v1/images/generations \
             -H 'Content-Type: application/json' \
             -H 'Authorization: Bearer $OPENAI_API_KEY' \
             -d '{
-            \"prompt\": \"$sentence\",
+            \"prompt\": \"$prompt\",
             \"n\": 1,
             \"size\": \"${height}x${width}\"
             }' > ./raw/$filename.json"
     else
-        if [ "$dryrun" == 0 ] ; then
+        if [ "$dryrun" == 0 ]; then
             python3 -m aiart.image \
                 convert_to_RGBA \
                 --source ./raw/$prev_filename.png \
@@ -43,14 +43,14 @@ function openai_generate_function() {
         local command_line="curl https://api.openai.com/v1/images/edits \
             -H 'Authorization: Bearer $OPENAI_API_KEY' \
             -F image='@./raw/$prev_filename-RGBA.png' \
-            -F prompt=\"$sentence\" \
+            -F prompt=\"$prompt\" \
             -F n=1 \
             -F size=\"${height}x${width}\" \
             > ./raw/$filename.json"
     fi
 
     abcli_log "⚙️  $command_line"
-    if [ "$dryrun" == 1 ] ; then
+    if [ "$dryrun" == 1 ]; then
         return
     fi
     eval "$command_line"
@@ -58,10 +58,12 @@ function openai_generate_function() {
     # https://stackoverflow.com/a/44656583/17619982
     # https://cameronnokes.com/blog/working-with-json-in-bash-using-jq/
     local image_url=$(jq -r '.data[0]["url"]' ./raw/$filename.json)
-    if [ "$image_url" == "null" ] ; then
+    if [ "$image_url" == "null" ]; then
         abcli_log_error "-openai: generate_function: failed: $(cat ./raw/$filename.json)"
         return 1
     fi
+
+    echo "$prompt" >./$filename.txt
 
     curl -o ./raw/$filename.png $image_url
 }
