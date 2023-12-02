@@ -36,7 +36,7 @@ def complete_prompt(
         logger.info("openai-cli.complete(): no choice.")
         return False, "", {"status": "no choice"}
 
-    if len(response.choices) > 1:
+    if len(response.choices) > 1 and verbose:
         logger.info(
             "{} choices, picked the first, and ignored the rest.".format(
                 len(response.choices)
@@ -50,7 +50,8 @@ def complete_prompt(
         "status": f"choice: {choice.finish_reason}",
     }
 
-    logger.info(
-        "openai-cli.complete(): finish_reason: {}.".format(choice.finish_reason)
-    )
+    if verbose:
+        logger.info(
+            "openai-cli.complete(): finish_reason: {}.".format(choice.finish_reason)
+        )
     return choice.finish_reason == "stop", choice.message.content, metadata
