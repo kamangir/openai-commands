@@ -25,6 +25,8 @@ function openai_conda() {
 
         abcli_conda create_env name=$environment_name
 
+        abcli_plugins install nbs
+
         pip3 install pymysql==0.10.1
         pip3 install pytest
         pip3 install opencv-python
