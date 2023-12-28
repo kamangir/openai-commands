@@ -4,8 +4,6 @@ function openai() {
     local task=$(abcli_unpack_keyword $1 help)
 
     if [ $task == "help" ]; then
-        openai version \\n
-
         openai_complete "$@"
         openai_conda "$@"
 
@@ -50,14 +48,7 @@ function openai() {
     fi
 
     if [ "$task" == "version" ]; then
-        local options=$2
-        local show_raw=$(abcli_option_int "$options" raw 0)
-
-        if [[ "$show_raw" == 1 ]]; then
-            python3 -m openai_cli version
-        else
-            abcli_log "🛠️ $(python3 -m openai_cli version --show_description 1)${@:2}"
-        fi
+        python3 -m openai_cli version "${@:2}"
         return
     fi
 
