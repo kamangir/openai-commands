@@ -19,7 +19,7 @@ function openai_vision() {
     local object_name=$(abcli_clarify_object "$4" .)
 
     [[ "$do_upload" == 1 ]] &&
-        abcli_upload object $object_name
+        abcli_upload - $object_name
 
     abcli_eval dryrun=$do_dryrun \
         python3 -m openai_cli.vision \
@@ -31,5 +31,5 @@ function openai_vision() {
         "${@:5}"
 
     [[ "$do_upload" == 1 ]] &&
-        abcli_upload object $object_name
+        abcli_upload - $object_name
 }
