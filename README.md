@@ -14,9 +14,6 @@ abcli git clone openai install
 
 ```bash
  > openai help
-🛠️ openai_cli-2.179.1-1.3.4
-🛠️ tools for the OpenAI API
-
 openai complete "<prompt>" \
 	[-] \
 	[--max_tokens <2000>] \
@@ -31,18 +28,18 @@ openai conda validate
 openai dashboard
  . browse openai dashboard.
 openai generate image \
-	[app=<app-name>,~dryrun,height=<576>,~sign,~tag,width=<768>] \
+	[~dryrun,height=<576>,~sign,~tag,width=<768>] \
 	[<image>] [<previous-image>] \
 	["<prompt>"] \
 	[-]
  . <prompt> -[<previous-image>]-> <image>.png.
 openai generate video \
-	[app=<app-name>,~dryrun,frame_count=16,marker=PART,~publish,~render,resize_to=1280x1024,~sign,slice_by=words|sentences,~upload,url] \
+	[~dryrun,frame_count=16,marker=PART,~publish,~render,resize_to=1280x1024,~sign,slice_by=words|sentences,~upload,url] \
 	<filename.txt|url> \
 	[-]
  . <filename.txt>|url -> video.mp4
 openai generate validate \
-	[app=<app-name>,dryrun,what=all|image|video]
+	[dryrun,what=all|image|video]
  . validate openai.
 openai pytest
  . test openai.
@@ -51,11 +48,11 @@ openai transform \
 	[<object-name>] \
 	["<prompt>"] \
 	[-]
- . <object-name> -<prompt>-> vanwatch-process-dev-2023-11-11-v61.
+ . <object-name> -<prompt>-> 2023-12-27-18-08-30-90155.
 openai vision "prompt" \
 	[auto|low|high,dryrun,~upload] \
-	[Davie,~Bute,.jpg] \
-	<.|object-name> \
+	Davie,Bute,.jpg \
+	[.|<object-name>] \
 	[--max_count <-1>] \
 	[--verbose 1]
  . complete <prompt> given the image(s) in <object-name>.
