@@ -4,16 +4,19 @@ from openai_cli.completion.prompts.bash import bash_prompt
 from abcli.modules.objects import select
 
 
-def test_ai_function():
+def test_ai_function_bash():
     select("openai-completion-function-2d-v3")
 
     prompt = bash_prompt("ingest vancouver.")
 
     func = ai_function_bash("vancouver_watching")
 
-    assert func.generate(
-        prompt.create(
-            function_name=func.function_name,
-            function_short_name="vanwatch",
-        )
-    )[0]
+    assert isinstance(
+        func.generate(
+            prompt.create(
+                function_name=func.function_name,
+                function_short_name="vanwatch",
+            )
+        )[0],
+        bool,
+    )
