@@ -4,7 +4,7 @@ from enum import Enum, auto
 from typing import List
 from tqdm import tqdm
 from openai import OpenAI
-from openai_cli.completion import api_key
+from openai_cli import api_key
 from abcli import file
 from abcli import string
 from abcli.modules import objects

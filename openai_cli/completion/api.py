@@ -1,5 +1,5 @@
 import os
-from openai_cli.completion import api_key
+from openai_cli import api_key
 from openai import OpenAI
 from typing import Tuple, Any, Dict, List
 from abcli.modules.host import is_jupyter

@@ -39,10 +39,14 @@ function openai() {
     fi
 
     if [ "$task" == "pytest" ]; then
-        abcli_download - openai-completion-function-2d-v3
-        abcli_download - 2023-11-12-12-03-40-85851
+        local options=$2
 
-        abcli_pytest plugin=openai,$2 \
+        if [ $(abcli_option_int "$options" help 0) == 0 ]; then
+            abcli_download - openai-completion-function-2d-v3
+            abcli_download - 2023-11-12-12-03-40-85851
+        fi
+
+        abcli_pytest plugin=openai,$options \
             "${@:3}"
         return
     fi
