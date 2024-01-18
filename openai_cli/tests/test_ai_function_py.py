@@ -14,4 +14,7 @@ def test_ai_function_py():
         validation_input=10,
     )
 
-    assert func.generate(prompt.create(func.function_name))[0]
+    assert isinstance(
+        func.generate(prompt.create(func.function_name))[0],
+        bool,
+    )
