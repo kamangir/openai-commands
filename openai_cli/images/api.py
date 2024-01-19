@@ -23,7 +23,7 @@ class OpenAIImageGenerator(object):
         filename: str = "",
     ) -> Tuple[bool, Any]:
         logger.info(
-            "{}.generate({})".format(
+            "{}.generate: {}".format(
                 self.__class__.__name__,
                 prompt,
             )
