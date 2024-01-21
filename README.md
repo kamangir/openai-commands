@@ -2,7 +2,7 @@
 
 `openai-cli` is a bash cli for the [OpenAI API](https://beta.openai.com/docs/introduction).
 
-🔷 [completion](#Completion) 🔷 [code generation](#code-generation) 🔷 [sentence -> image](#sentence---image) 🔷 [text -> mural](#text---mural) 🔷 [vision](#vision) 🔷
+🔷 [completion](#Completion) 🔷 [code generation](#code-generation) 🔷 [sentence -> image](#sentence---image) 🔷 [text -> mural](#text---mural) 🔷 [vision](#vision) 🔷 [images](#images) 🔷
 
 ## Install
 
@@ -140,3 +140,18 @@ vanwatch vision \
 ![image](https://github.com/kamangir/assets/blob/main/vanwatch/2023-11-25-openai-vision/marquee.png?raw=true)
 
 > The images show street scenes captured by surveillance cameras at night, and each bears a timestamp and the text "CITY OF VANCOUVER" indicating they're from Vancouver. In the first image, you see a yellow traffic light indicating caution and part of a crosswalk painted in rainbow colors, likely symbolizing support for the LGBTQ+ community. In the second image, there's a view of a city street with pedestrians crossing, some wearing reflective vests, and the storefronts illuminated with bright lights. The third image shows a different angle of a similar street scene with the same vibrant crosswalk and vehicles' headlights creating streaks of light due to the camera exposure. Finally, in the fourth image, there's a view of parked cars and a clearly visible police vehicle, suggesting the presence of law enforcement nearby. The wet pavement suggests it may have rained, and the reflections imply the street is well-lit at night.
+
+## images
+
+Implements the [OpenAI Image Generation API](https://platform.openai.com/docs/guides/images/usage?context=python).
+
+Notebook implementation [`./notebooks/images.ipynb`](./notebooks/images.ipynb),
+
+```bash
+@select - open; \
+openai images generate - \
+	"a person flying through the streets of Vancouver." \
+	. --verbose 1
+```
+
+![image](https://github.com/kamangir/assets/blob/main/openai/2024-01-20-19-00-28-67378.png?raw=true)
