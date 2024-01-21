@@ -85,8 +85,7 @@ class OpenAIImageGenerator(object):
         # https://community.openai.com/t/api-image-generation-in-dall-e-3-changes-my-original-prompt-without-my-permission/476355
         prompt = " ".join(
             [
-                "I NEED to test how the tool works with extremely simple prompts.",
-                "DO NOT add any detail, just use this prompt AS-IS and do not revise it:",
+                "THIS IS A RAW EXECUTION. ABSOLUTELY DO NOT REVISE THIS PROMPT:",
                 prompt,
             ]
         )
