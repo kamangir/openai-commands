@@ -76,6 +76,7 @@ class OpenAIImageGenerator(object):
                     " | ".join(
                         [
                             f"{NAME}-{VERSION}",
+                            self.model,
                             string.pretty_shape_of_matrix(image),
                         ]
                     ),
