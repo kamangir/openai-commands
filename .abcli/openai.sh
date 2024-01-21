@@ -11,6 +11,7 @@ function openai() {
             "browse openai dashboard."
 
         openai_generate "$@"
+        openai_images "$@"
 
         abcli_show_usage "openai pytest" \
             "test openai."
