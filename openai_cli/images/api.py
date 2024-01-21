@@ -58,7 +58,7 @@ class OpenAIImageGenerator(object):
                 image,
                 [
                     " | ".join(host.signature()),
-                    " | ".join(objects.signature(filename)),
+                    " | ".join(objects.signature(file.name(filename))),
                 ],
                 [
                     prompt,
