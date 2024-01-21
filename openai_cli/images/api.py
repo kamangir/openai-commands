@@ -18,10 +18,20 @@ logger = logging.getLogger()
 
 
 class OpenAIImageGenerator(object):
-    def __init__(self, verbose: bool = False):
+    def __init__(
+        self,
+        model="dall-e-3",
+        verbose: bool = False,
+    ):
         self.client = OpenAI(api_key=cookie["openai_api_key"])
         self.verbose = verbose
-        logger.info(self.__class__.__name__)
+        self.model = model
+        logger.info(
+            "{}[{}]".format(
+                self.__class__.__name__,
+                self.model,
+            )
+        )
 
     def generate(
         self,
@@ -39,7 +49,7 @@ class OpenAIImageGenerator(object):
         augmented_prompt = self.augment_prompt(prompt)
 
         response = self.client.images.generate(
-            model="dall-e-3",
+            model=self.model,
             prompt=augmented_prompt,
             size="1024x1024",
             quality="standard",
@@ -62,7 +72,7 @@ class OpenAIImageGenerator(object):
                 ],
                 [
                     prompt,
-                    response.data[0].revised_prompt,
+                    str(response.data[0].revised_prompt),
                     " | ".join(
                         [
                             f"{NAME}-{VERSION}",
