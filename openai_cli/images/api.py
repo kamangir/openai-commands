@@ -7,14 +7,11 @@ from abcli import string
 from abcli.modules import objects
 from openai_cli.images import NAME
 from openai_cli import VERSION
-from abcli.modules.cookie import cookie
+from abcli import env
 from abcli.modules.host import is_jupyter
 from IPython.display import Image, display
 from abcli.plugins import graphics
-import abcli.logging
-import logging
-
-logger = logging.getLogger()
+from abcli.logging import logger
 
 
 class OpenAIImageGenerator(object):
@@ -23,7 +20,7 @@ class OpenAIImageGenerator(object):
         model="dall-e-3",
         verbose: bool = False,
     ):
-        self.client = OpenAI(api_key=cookie["openai_api_key"])
+        self.client = OpenAI(api_key=env.OPENAI_API_KEY)
         self.verbose = verbose
         self.model = model
         logger.info(

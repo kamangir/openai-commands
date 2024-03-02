@@ -4,16 +4,13 @@ from enum import Enum, auto
 from typing import List
 from tqdm import tqdm
 from openai import OpenAI
-from openai_cli import api_key
+from abcli import env
 from abcli import file
 from abcli import string
 from abcli.modules import objects
 from abcli.options import Options
 from openai_cli.vision import NAME
-from abcli import logging
-import logging
-
-logger = logging.getLogger(__name__)
+from abcli.logging import logger
 
 
 class Detail(Enum):
@@ -98,7 +95,7 @@ def complete(
         )
     )
 
-    client = OpenAI(api_key=api_key)
+    client = OpenAI(api_key=env.OPENAI_API_KEY)
     response = client.chat.completions.create(
         model="gpt-4-vision-preview",
         messages=[

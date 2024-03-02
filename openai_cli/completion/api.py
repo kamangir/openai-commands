@@ -1,12 +1,8 @@
-import os
-from openai_cli import api_key
+from abcli import env
 from openai import OpenAI
 from typing import Tuple, Any, Dict, List
 from abcli.modules.host import is_jupyter
-import abcli.logging
-import logging
-
-logger = logging.getLogger()
+from abcli.logging import logger
 
 
 # https://github.com/openai/openai-python
@@ -16,7 +12,7 @@ def complete_prompt(
     max_tokens: int = 2000,
     verbose=None,
 ) -> Tuple[bool, str, Dict[str, Any]]:
-    client = OpenAI(api_key=api_key)
+    client = OpenAI(api_key=env.OPENAI_API_KEY)
 
     response = client.chat.completions.create(
         messages=[

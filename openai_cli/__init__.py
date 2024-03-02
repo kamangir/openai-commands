@@ -1,11 +1,5 @@
-import os
-from abcli.modules.cookie import cookie
-
 NAME = "openai_cli"
 
-VERSION = "2.229.1"
+VERSION = "2.230.1"
 
 DESCRIPTION = "🛠️ tools for the OpenAI API"
-
-
-api_key = os.environ["OPENAI_API_KEY"] = cookie["openai_api_key"]
