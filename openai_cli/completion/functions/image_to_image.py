@@ -1,6 +1,6 @@
 import os
 from typing import List, Tuple, Dict, Any
-from abcli import file
+from abcli import env, file
 import matplotlib.pyplot as plt
 from openai_cli.completion.functions.python import ai_function_py
 from abcli import string
@@ -30,7 +30,7 @@ class i2i_function(ai_function_py):
         if self.validation_input is None:
             _, self.validation_input = file.load_image(
                 os.path.join(
-                    os.getenv("HOME", ""),
+                    env.abcli_path_home,
                     "git/blue-bracket/images/portal-34.jpg",
                 )
             )

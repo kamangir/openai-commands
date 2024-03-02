@@ -47,7 +47,7 @@ def complete_object(
             if (keyword in filename if options[keyword] else keyword not in filename)
         ]
 
-    url_prefix = os.getenv("abcli_publish_prefix", "")
+    url_prefix = env.abcli_publish_prefix
     list_of_image_urls = [
         f"{url_prefix}/{object_name}/{image_name}"
         for image_name in tqdm(list_of_images)
