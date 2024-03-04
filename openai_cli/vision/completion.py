@@ -10,7 +10,7 @@ from abcli import string
 from abcli.modules import objects
 from abcli.options import Options
 from openai_cli.vision import NAME
-from abcli.logging import logger
+from openai_cli.logger import logger
 
 
 class Detail(Enum):

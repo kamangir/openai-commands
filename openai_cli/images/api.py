@@ -11,7 +11,7 @@ from abcli import env
 from abcli.modules.host import is_jupyter
 from IPython.display import Image, display
 from abcli.plugins import graphics
-from abcli.logging import logger
+from openai_cli.logger import logger
 
 
 class OpenAIImageGenerator(object):

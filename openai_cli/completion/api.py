@@ -1,8 +1,8 @@
-from abcli import env
-from openai import OpenAI
 from typing import Tuple, Any, Dict, List
+from openai import OpenAI
+from abcli import env
 from abcli.modules.host import is_jupyter
-from abcli.logging import logger
+from openai_cli.logger import logger
 
 
 # https://github.com/openai/openai-python
