@@ -13,8 +13,10 @@ function openai() {
         openai_generate "$@"
         openai_images "$@"
 
-        abcli_show_usage "openai pytest" \
-            "test openai."
+        local task
+        for task in pylint pytest test; do
+            openai $task "$@"
+        done
 
         openai_transform "$@"
         openai_vision "$@"
@@ -39,15 +41,16 @@ function openai() {
         return
     fi
 
-    if [ "$task" == "pytest" ]; then
+    if [[ "|pylint|pytest|test|" == *"|$task|"* ]]; then
         local options=$2
 
-        if [ $(abcli_option_int "$options" help 0) == 0 ]; then
+        if [[ $(abcli_option_int "$options" help 0) == 0 ]] &&
+            [[ "$task" != "pylint" ]]; then
             abcli_download - openai-completion-function-2d-v3
             abcli_download - 2023-11-12-12-03-40-85851
         fi
 
-        abcli_pytest plugin=openai,$options \
+        abcli_${task} plugin=openai,$options \
             "${@:3}"
         return
     fi
@@ -59,3 +62,6 @@ function openai() {
 
     abcli_log_error "-openai: $task: command not found."
 }
+
+abcli_source_path \
+    $abcli_path_git/openai/.abcli/tests
