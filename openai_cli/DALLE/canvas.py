@@ -1,21 +1,17 @@
 from io import BytesIO
 from PIL import Image
-from enum import Enum
 from tqdm import tqdm
 import requests
 import numpy as np
-from openai_cli.DALLE.brush import RandomWalkBrush, TilingBrush
-from openai_cli import NAME, VERSION
 from abcli.modules.objects import signature as object_signature
 from abcli.modules.host import signature as host_signature
 from abcli.modules.host import is_jupyter
 from abcli.plugins.graphics import add_signature
 from abcli import file
-import abcli.logging
-from abcli.logging import crash_report
-import logging
-
-logger = logging.getLogger()
+from openai_cli import NAME, VERSION
+from openai_cli.DALLE.brush import RandomWalkBrush, TilingBrush
+from openai_cli.logger import logger
+from abcli.logger import crash_report
 
 
 class Canvas(object):

@@ -1,11 +1,7 @@
 import random
 import numpy as np
 import math
-
-import abcli.logging
-import logging
-
-logger = logging.getLogger()
+from openai_cli.logger import logger
 
 
 class Brush(object):

@@ -1,14 +1,10 @@
 import os
-from typing import List, Tuple, Dict, Any
-from abcli import env, file
 import matplotlib.pyplot as plt
-from openai_cli.completion.functions.python import ai_function_py
+from abcli import env, file
 from abcli import string
 from abcli.modules.host import is_jupyter
-import abcli.logging
-import logging
-
-logger = logging.getLogger()
+from openai_cli.completion.functions.python import ai_function_py
+from openai_cli.logger import logger
 
 
 class i2i_function(ai_function_py):

@@ -1,11 +1,9 @@
 import argparse
+from openai_cli import VERSION
 from openai_cli.completion import NAME
 from openai_cli.completion.prompts.bash import bash_prompt
-from openai_cli import VERSION
-from abcli import logging
-import logging
+from openai_cli.logger import logger
 
-logger = logging.getLogger(__name__)
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
 parser.add_argument(

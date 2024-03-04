@@ -1,8 +1,5 @@
 from typing import List
-import abcli.logging
-import logging
-
-logger = logging.getLogger()
+from openai_cli.logger import logger
 
 
 class structured_prompt(object):

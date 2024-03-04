@@ -1,17 +1,14 @@
 import argparse
 import os
-from tqdm import tqdm
-from aiart import html
 from abcli import file
 from abcli.options import Options
 from abcli.modules import objects
+from aiart import html
+from openai_cli import VERSION
 from openai_cli.DALLE import NAME
 from openai_cli.DALLE.canvas import Canvas
-from openai_cli import VERSION
-from abcli import logging
-import logging
+from openai_cli.logger import logger
 
-logger = logging.getLogger(__name__)
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
 parser.add_argument(

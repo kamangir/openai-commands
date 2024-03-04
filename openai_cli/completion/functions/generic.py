@@ -1,18 +1,11 @@
 from typing import List
 import random
 from typing import Dict, Any, Tuple
-from openai_cli.completion.api import complete_prompt
-import cv2
-import skimage
+from abcli import file
 from abcli.modules.host import is_jupyter
 from abcli.modules import objects
-from abcli import file
-import numpy as np
-from abcli.logging import crash_report
-import abcli.logging
-import logging
-
-logger = logging.getLogger()
+from openai_cli.completion.api import complete_prompt
+from openai_cli.logger import logger
 
 
 class ai_function(object):

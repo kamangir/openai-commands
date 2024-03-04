@@ -1,3 +1,4 @@
 from abcli.logger import logging
+from openai_cli import ICON
 
-logger = logging.getLogger("openai ")
+logger = logging.getLogger(f"{ICON} ")
