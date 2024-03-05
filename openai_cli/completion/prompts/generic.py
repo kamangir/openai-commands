@@ -1,7 +1,7 @@
 from typing import List
 
 
-class ai_prompt(object):
+class ai_prompt:
     def __init__(self, objective: List[str]):
         self.objective = objective
 

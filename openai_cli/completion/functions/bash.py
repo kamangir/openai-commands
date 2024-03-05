@@ -6,9 +6,3 @@ class ai_function_bash(ai_function):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.language = "bash"
-
-    def generate(
-        self,
-        prompt,
-    ) -> Tuple[bool, Dict[str, Any]]:
-        return super().generate(prompt)

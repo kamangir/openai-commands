@@ -4,7 +4,7 @@ import math
 from openai_cli.logger import logger
 
 
-class Brush(object):
+class Brush:
     def __init__(
         self,
         canvas,

@@ -8,7 +8,7 @@ from openai_cli.completion.api import complete_prompt
 from openai_cli.logger import logger
 
 
-class ai_function(object):
+class ai_function:
     def __init__(
         self,
         function_name: str = "",

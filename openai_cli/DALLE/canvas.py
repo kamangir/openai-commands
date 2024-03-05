@@ -14,7 +14,7 @@ from openai_cli.logger import logger
 from abcli.logger import crash_report
 
 
-class Canvas(object):
+class Canvas:
     def __init__(
         self,
         shape=(2048, 4096),
@@ -102,12 +102,13 @@ class Canvas(object):
     ):
         if brush_kind == "tiling":
             return TilingBrush(self, brush_size, brush_size)
-        elif brush_kind == "randomwalk":
+
+        if brush_kind == "randomwalk":
             return RandomWalkBrush(self, brush_size, brush_size)
-        else:
-            raise ValueError(
-                f"-DALL-E: Canvas: create_brush: {brush_kind}: kind not found."
-            )
+
+        raise ValueError(
+            f"-DALL-E: Canvas: create_brush: {brush_kind}: kind not found."
+        )
 
     def paint(self, brush, prompt):
         import openai

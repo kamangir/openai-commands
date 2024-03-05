@@ -2,7 +2,7 @@ from typing import List
 from openai_cli.logger import logger
 
 
-class structured_prompt(object):
+class structured_prompt:
     def __init__(
         self,
         inputs: List[str],

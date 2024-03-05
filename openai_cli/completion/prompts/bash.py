@@ -2,7 +2,7 @@ from abcli import file
 from abcli.modules import objects
 
 
-class bash_prompt(object):
+class bash_prompt:
     def __init__(self, prompt: str):
         self.prompt = prompt
 
@@ -19,9 +19,11 @@ class bash_prompt(object):
 
         return "\n".join(
             [
-                line.replace(function_name, function_short_name)
-                if function_short_name
-                else line
+                (
+                    line.replace(function_name, function_short_name)
+                    if function_short_name
+                    else line
+                )
                 for line in instructions + [self.prompt]
             ]
         )

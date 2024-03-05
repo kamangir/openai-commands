@@ -14,7 +14,7 @@ from abcli.plugins import graphics
 from openai_cli.logger import logger
 
 
-class OpenAIImageGenerator(object):
+class OpenAIImageGenerator:
     def __init__(
         self,
         model="dall-e-3",
