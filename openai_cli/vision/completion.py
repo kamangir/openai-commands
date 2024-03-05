@@ -22,7 +22,7 @@ class Detail(Enum):
 def complete_object(
     prompt: str,
     object_name: str,
-    options: Options(),
+    options: Options,
     max_count: int = 5,
     detail: Detail = Detail.AUTO,
     verbose: bool = False,
