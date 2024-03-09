@@ -1,10 +1,13 @@
 git+https://github.com/kamangir/awesome-bash-cli.git@current#egg=abcli
 beautifulsoup4
 boto3
+bs4
 folium
 geojson
 geopandas
 matplotlib
+# https://platform.openai.com/docs/quickstart?context=python
+openai
 opencv-python
 pymysql==0.10.1
 pyyaml
@@ -12,4 +15,5 @@ pylint
 pytest
 python-dotenv[cli]
 requests
+scikit-image
 tqdm
