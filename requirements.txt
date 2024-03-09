@@ -1,4 +1,5 @@
 git+https://github.com/kamangir/awesome-bash-cli.git@current#egg=abcli
+IPython
 beautifulsoup4
 boto3
 bs4
