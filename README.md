@@ -2,7 +2,7 @@
 
 `openai-cli` is a bash cli for the [OpenAI API](https://beta.openai.com/docs/introduction).
 
-🔷 [completion](#Completion) 🔷 [code generation](#code-generation) 🔷 [sentence -> image](#sentence---image) 🔷 [text -> mural](#text---mural) 🔷 [vision](#vision) 🔷 [images](#images) 🔷
+🔷 [completion](#Completion) 🔷 [code generation](#code-generation) 🔷 [sentence -> image](#sentence---image) 🔷 [text -> mural](#text---mural) 🔷 [vision](#vision) 🔷 [images](#images) 🔷 [gpt](#gpt) 🔷
 
 ## Install
 
@@ -21,10 +21,8 @@ openai complete "<prompt>" \
  . complete <prompt>.
 openai completion describe <plugin-name>
  . describe <plugin-name> for openai
-openai conda create_env [validate,~recreate]
+openai conda create_env [~recreate]
  . create conda environment.
-openai conda validate
- . validate conda environment.
 openai dashboard
  . browse openai dashboard.
 openai generate image \
@@ -41,14 +39,32 @@ openai generate video \
 openai generate validate \
 	[dryrun,what=all|image|video]
  . validate openai.
-openai pytest
+openai images generate \
+	[dryrun,filename=<filename.png>,~upload] \
+	"<prompt+prompt+prompt>" \
+	[.|<object-name>] \
+	[--verbose 1]
+ . generate an image for <prompt> in <object-name>.
+openai pylint -  \
+	[<args>]
+ . pylint openai.
+openai pytest \
+	[dryrun,list,~log,plugin=<plugin-name>,show_warning] \
+	[filename.py|filename.py::test]
+ . pytest openai.
+openai test \
+	list
+ . list openai tests.
+openai test \
+	what=all|<test-name>,dryrun \
+	dryrun
  . test openai.
 openai transform \
 	[count=<1>,~dryrun,extension=jpg,~sign,~tag,~upload] \
 	[<object-name>] \
 	["<prompt>"] \
 	[-]
- . <object-name> -<prompt>-> 2023-12-27-18-08-30-90155.
+ . <object-name> -<prompt>-> 2024-03-22-18-28-27-25758.
 openai vision "prompt" \
 	[auto|low|high,dryrun,~upload] \
 	Davie,Bute,.jpg \
@@ -155,3 +171,19 @@ openai images generate - \
 ```
 
 ![image](https://github.com/kamangir/assets/blob/main/openai/2024-01-20-19-00-28-67378.png?raw=true)
+
+## gpt
+
+co-authored with ChapGPT.
+
+```bash
+gpt
+```
+
+```bash
+ > gpt help
+gpt [dryrun,~upload] \
+	[-|<object-name>] \
+	<args>
+ . chat with gpt.
+```

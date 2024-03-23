@@ -42,15 +42,7 @@ function openai() {
     fi
 
     if [[ "|pylint|pytest|test|" == *"|$task|"* ]]; then
-        local options=$2
-
-        if [[ $(abcli_option_int "$options" help 0) == 0 ]] &&
-            [[ "$task" != "pylint" ]]; then
-            abcli_download - openai-completion-function-2d-v3
-            abcli_download - 2023-11-12-12-03-40-85851
-        fi
-
-        abcli_${task} plugin=openai,$options \
+        abcli_${task} plugin=openai,$2 \
             "${@:3}"
         return
     fi
