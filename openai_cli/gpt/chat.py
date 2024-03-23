@@ -9,15 +9,15 @@ committed in its original form and then modified by Arash Abadpour - arash.abadp
 """
 
 import os
-from typing import List
+from typing import List, Any
 import argparse
 from openai import OpenAI
 from abcli import file, path
-from openai_cli import NAME, VERSION
+from openai_cli import VERSION
 from openai_cli.env import OPENAI_API_KEY
+from openai_cli.gpt import NAME
 from openai_cli.logger import logger
 
-NAME = f"{NAME}.gpt"
 FULL_NAME = f"{NAME}-{VERSION}"
 
 client = OpenAI(api_key=OPENAI_API_KEY)
@@ -28,6 +28,7 @@ def chat_with_openai(
     script_mode: bool = False,
     script: List[str] = [],
 ) -> bool:
+    logger.info(FULL_NAME)
 
     conversation = []
     logger.info("ChatGPT: Hello! How can I assist you today?")
@@ -90,14 +91,10 @@ def chat_with_openai(
     )
 
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(NAME, description=FULL_NAME)
-    parser.add_argument(
-        "--object_path",
-        type=str,
-        default="",
-    )
-    args = parser.parse_args()
+def list_models(log: bool = False) -> List[Any]:
+    list_of_models = client.models.list().data
 
-    logger.info(FULL_NAME)
-    chat_with_openai(args.object_path)
+    if log:
+        logger.info(f"{len(list_of_models)} model(s)")
+        for index, model in enumerate(list_of_models):
+            logger.info(f" #{index}: {model}")

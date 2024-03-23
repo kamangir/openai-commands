@@ -8,9 +8,24 @@ function openai_gpt() {
         abcli_show_usage "gpt [$options]$ABCUL[-|<object-name>]$ABCUL<args>" \
             "chat with gpt."
 
+        openai_gpt list "$@"
+
         if [ "$(abcli_keyword_is $2 verbose)" == true ]; then
             python3 -m openai_cli.gpt --help
         fi
+        return
+    fi
+
+    if [ $(abcli_option_int "$options" list 0) == 1 ]; then
+        local options=$2
+        if [ $(abcli_option_int "$options" help 0) == 1 ]; then
+            abcli_show_usage "gpt list [-]$ABCUL[--log 1]" \
+                "list models."
+            return
+        fi
+
+        python3 -m openai_cli.gpt list_models \
+            "${@:3}"
         return
     fi
 
@@ -25,6 +40,7 @@ function openai_gpt() {
 
     abcli_eval dryrun=$do_dryrun \
         python3 -m openai_cli.gpt \
+        chat_with_openai \
         --object_path $object_path \
         "${@:3}"
 
