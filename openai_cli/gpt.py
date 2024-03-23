@@ -17,7 +17,8 @@ from openai_cli import NAME, VERSION
 from openai_cli.env import OPENAI_API_KEY
 from openai_cli.logger import logger
 
-FULL_NAME = f"{NAME}.gpt-{VERSION}"
+NAME = f"{NAME}.gpt"
+FULL_NAME = f"{NAME}-{VERSION}"
 
 client = OpenAI(api_key=OPENAI_API_KEY)
 
