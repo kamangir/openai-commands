@@ -8,20 +8,19 @@ Python package installed and an OpenAI API key set before running this script.
 
 import openai
 from openai_cli.env import OPENAI_API_KEY
+from openai_cli.logger import logger
 
 
 def chat_with_openai():
     openai.api_key = OPENAI_API_KEY
 
-    # Start a conversation
     conversation = []
-    print("ChatGPT: Hello! How can I assist you today?")
+    logger.info("ChatGPT: Hello! How can I assist you today?")
 
     while True:
-        user_input = input("You: ")
+        user_input = input("> ")
         conversation.append(user_input)
 
-        # Call the OpenAI API
         response = openai.ChatCompletion.create(
             model="gpt-4.0-turbo",
             messages=[{"role": "user", "content": user_input}],
@@ -29,7 +28,7 @@ def chat_with_openai():
         )
 
         answer = response["choices"][0]["message"]["content"].strip()
-        print(f"ChatGPT: {answer}")
+        logger.info(f"ChatGPT: {answer}")
 
         conversation.append(answer)
 
