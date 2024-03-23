@@ -1,7 +1,7 @@
 import os
 from abcli import file
 from abcli.modules import objects
-from openai_cli.gpt import chat_with_openai
+from openai_cli.gpt.chat import chat_with_openai
 
 
 def test_chat_with_openai():
