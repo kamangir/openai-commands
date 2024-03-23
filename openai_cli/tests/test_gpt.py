@@ -1,7 +1,7 @@
 import os
 from abcli import file
 from abcli.modules import objects
-from openai_cli.gpt.chat import chat_with_openai
+from openai_cli.gpt.chat import chat_with_openai, list_models
 
 
 def test_chat_with_openai():
@@ -17,3 +17,7 @@ def test_chat_with_openai():
     assert file.exist(
         os.path.join(object_path, f"{object_name}.yaml"),
     )
+
+
+def test_list_models():
+    assert list_models()
