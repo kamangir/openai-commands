@@ -6,13 +6,15 @@ responses are displayed in the terminal, facilitating a conversational interface
 Python package installed and an OpenAI API key set before running this script.
 """
 
-import openai
+from openai import OpenAI
+
 from openai_cli.env import OPENAI_API_KEY
 from openai_cli.logger import logger
 
+client = OpenAI(api_key=OPENAI_API_KEY)
+
 
 def chat_with_openai():
-    openai.api_key = OPENAI_API_KEY
 
     conversation = []
     logger.info("ChatGPT: Hello! How can I assist you today?")
@@ -21,13 +23,13 @@ def chat_with_openai():
         user_input = input("> ")
         conversation.append(user_input)
 
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model="gpt-4.0-turbo",
             messages=[{"role": "user", "content": user_input}],
             max_tokens=150,
         )
 
-        answer = response["choices"][0]["message"]["content"].strip()
+        answer = response.choices[0].message.content.strip()
         logger.info(f"ChatGPT: {answer}")
 
         conversation.append(answer)
