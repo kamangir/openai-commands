@@ -8,6 +8,7 @@ Python package installed and an OpenAI API key set before running this script.
 
 from openai import OpenAI
 
+from openai_cli import NAME, VERSION
 from openai_cli.env import OPENAI_API_KEY
 from openai_cli.logger import logger
 
@@ -20,7 +21,17 @@ def chat_with_openai():
     logger.info("ChatGPT: Hello! How can I assist you today?")
 
     while True:
-        user_input = input("> ")
+        user_input = input("(?:help) > ")
+        if user_input in ["?", "help"]:
+            logger.info("exit: exit.")
+            logger.info("version: show version.")
+            continue
+        if user_input == "version":
+            logger.info(f"gpt.{NAME}-{VERSION}")
+            continue
+        if user_input == "exit":
+            break
+
         conversation.append(user_input)
 
         response = client.chat.completions.create(
@@ -36,4 +47,5 @@ def chat_with_openai():
 
 
 if __name__ == "__main__":
+    logger.info(f"gpt.{NAME}-{VERSION}")
     chat_with_openai()
