@@ -98,3 +98,5 @@ def list_models(log: bool = False) -> List[Any]:
         logger.info(f"{len(list_of_models)} model(s)")
         for index, model in enumerate(list_of_models):
             logger.info(f" #{index}: {model}")
+
+    return list_of_models
