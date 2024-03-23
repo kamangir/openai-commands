@@ -1,16 +1,16 @@
 import json
 from openai import OpenAI
-from abcli import file
 from typing import Tuple, Any
-from abcli.modules import host
-from abcli import string
-from abcli.modules import objects
-from openai_cli.images import NAME
-from openai_cli import VERSION
-from abcli import env
-from abcli.modules.host import is_jupyter
 from IPython.display import Image, display
+from abcli import file
+from abcli import string
+from abcli.modules import host
+from abcli.modules import objects
+from abcli.modules.host import is_jupyter
 from abcli.plugins import graphics
+from openai_cli import VERSION
+from openai_cli import env
+from openai_cli.images import NAME
 from openai_cli.logger import logger
 
 

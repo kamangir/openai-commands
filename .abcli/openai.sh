@@ -65,3 +65,8 @@ function openai() {
 
 abcli_source_path \
     $abcli_path_git/openai/.abcli/tests
+
+abcli_env dot load \
+    plugin=openai
+abcli_env dot load \
+    filename=config.env,plugin=openai

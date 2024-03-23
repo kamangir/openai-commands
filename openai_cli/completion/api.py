@@ -1,7 +1,7 @@
 from typing import Tuple, Any, Dict, List
 from openai import OpenAI
-from abcli import env
 from abcli.modules.host import is_jupyter
+from openai_cli import env
 from openai_cli.logger import logger
 
 

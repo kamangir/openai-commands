@@ -1,14 +1,13 @@
-import os
 import json
 from enum import Enum, auto
 from typing import List
 from tqdm import tqdm
 from openai import OpenAI
-from abcli import env
 from abcli import file
 from abcli import string
 from abcli.modules import objects
 from abcli.options import Options
+from openai_cli import env
 from openai_cli.vision import NAME
 from openai_cli.logger import logger
 
