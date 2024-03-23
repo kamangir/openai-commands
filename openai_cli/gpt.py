@@ -24,7 +24,7 @@ def chat_with_openai():
         conversation.append(user_input)
 
         response = client.chat.completions.create(
-            model="gpt-4.0-turbo",
+            model="gpt-3.5-turbo",
             messages=[{"role": "user", "content": user_input}],
             max_tokens=150,
         )
