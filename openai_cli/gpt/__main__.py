@@ -28,7 +28,7 @@ if args.task == "chat_with_openai":
     success = chat_with_openai(args.object_path)
 elif args.task == "list_models":
     success = True
-    list_models(log=True)
+    list_models(log=bool(args.log))
 else:
     logger.error(f"-{NAME}: {args.task}: command not found.")
 
