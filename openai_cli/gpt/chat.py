@@ -27,12 +27,18 @@ def chat_with_openai(
     object_path: str = "",
     script_mode: bool = False,
     script: List[str] = [],
+    model_name: str = "gpt-3.5-turbo",
 ) -> bool:
-    logger.info(FULL_NAME)
-
-    conversation = []
+    logger.info(
+        "{} @ {}{}".format(
+            FULL_NAME,
+            model_name,
+            f": 📜 {len(script)} line(s)." if script_mode else "",
+        )
+    )
     logger.info("ChatGPT: Hello! How can I assist you today?")
 
+    conversation = []
     index = -1
     while True:
         index += 1
@@ -63,7 +69,7 @@ def chat_with_openai(
             break
 
         response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model=model_name,
             messages=[{"role": "user", "content": user_input}],
             max_tokens=150,
         )

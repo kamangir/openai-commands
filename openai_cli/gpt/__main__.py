@@ -16,6 +16,12 @@ parser.add_argument(
     default="",
 )
 parser.add_argument(
+    "--model_name",
+    type=str,
+    default="gpt-3.5-turbo",
+    help='"gpt list_models".',
+)
+parser.add_argument(
     "--log",
     type=int,
     default=1,
@@ -25,7 +31,10 @@ args = parser.parse_args()
 
 success = False
 if args.task == "chat_with_openai":
-    success = chat_with_openai(args.object_path)
+    success = chat_with_openai(
+        object_path=args.object_path,
+        model_name=args.model_name,
+    )
 elif args.task == "list_models":
     success = True
     list_models(log=bool(args.log))

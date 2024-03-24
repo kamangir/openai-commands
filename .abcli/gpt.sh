@@ -5,7 +5,8 @@ function openai_gpt() {
 
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then
         local options="dryrun,~upload"
-        abcli_show_usage "gpt [$options]$ABCUL[-|<object-name>]$ABCUL<args>" \
+        local args="[--model_name gpt-4-turbo-preview]"
+        abcli_show_usage "gpt [$options]$ABCUL[-|<object-name>]$ABCUL$args" \
             "chat with gpt."
 
         openai_gpt list_models "$@"
