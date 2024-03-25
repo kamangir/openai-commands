@@ -184,6 +184,9 @@ gpt
  > gpt help
 gpt [dryrun,~upload] \
 	[-|<object-name>] \
-	<args>
+	[--model_name gpt-4-turbo-preview]
  . chat with gpt.
+gpt list_models [-] \
+	[--log 0]
+ . list models.
 ```
