@@ -13,70 +13,7 @@ abcli git clone openai install
 ```
 
 ```bash
- > openai help
-openai complete "<prompt>" \
-	[-] \
-	[--max_tokens <2000>] \
-	[--verbose 1]
- . complete <prompt>.
-openai completion describe <plugin-name>
- . describe <plugin-name> for openai
-openai conda create_env [~recreate]
- . create conda environment.
-openai dashboard
- . browse openai dashboard.
-openai generate image \
-	[~dryrun,height=<576>,~sign,~tag,width=<768>] \
-	[<image>] [<previous-image>] \
-	["<prompt>"] \
-	[-]
- . <prompt> -[<previous-image>]-> <image>.png.
-openai generate video \
-	[~dryrun,frame_count=16,marker=PART,~publish,~render,resize_to=1280x1024,~sign,slice_by=words|sentences,~upload,url] \
-	<filename.txt|url> \
-	[-]
- . <filename.txt>|url -> video.mp4
-openai generate validate \
-	[dryrun,what=all|image|video]
- . validate openai.
-openai images generate \
-	[dryrun,filename=<filename.png>,~upload] \
-	"<prompt+prompt+prompt>" \
-	[.|<object-name>] \
-	[--verbose 1]
- . generate an image for <prompt> in <object-name>.
-openai pylint -  \
-	[<args>]
- . pylint openai.
-openai pytest \
-	[dryrun,list,~log,plugin=<plugin-name>,show_warning] \
-	[filename.py|filename.py::test]
- . pytest openai.
-openai test \
-	list
- . list openai tests.
-openai test \
-	what=all|<test-name>,dryrun \
-	dryrun
- . test openai.
-openai transform \
-	[count=<1>,~dryrun,extension=jpg,~sign,~tag,~upload] \
-	[<object-name>] \
-	["<prompt>"] \
-	[-]
- . <object-name> -<prompt>-> 2024-03-22-18-28-27-25758.
-openai vision "prompt" \
-	[auto|low|high,dryrun,~upload] \
-	Davie,Bute,.jpg \
-	[.|<object-name>] \
-	[--max_count <-1>] \
-	[--verbose 1]
- . complete <prompt> given the image(s) in <object-name>.
-DALL-E render \
-	[brush=tiling|randomwalk,brush_size=256|512|1024,~dryrun,lines=<5>,publish,url,verbose] \
-	input.txt|https://allpoetry.com/16-bit-Intel-8088-chip \
-	[output.png]<args>
- . render input.txt|url -> output.png.
+...
 ```
 
 ## Completion
