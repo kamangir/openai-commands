@@ -11,7 +11,7 @@ from openai_cli.completion.prompts.bash import bash_prompt
         "object_name",
     ],
     [
-        [env.OPENAI_FUNCTION_BASH_TEST_OBJECT],
+        [env.OPENAI_CLI_FUNCTION_BASH_TEST_OBJECT],
     ],
 )
 def test_ai_function_bash(object_name):
