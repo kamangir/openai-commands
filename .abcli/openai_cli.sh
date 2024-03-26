@@ -55,7 +55,7 @@ function openai_cli() {
 }
 
 abcli_source_path \
-    $abcli_path_git/openai_cli/.abcli/tests
+    $abcli_path_git/openai-cli/.abcli/tests
 
 abcli_env dot load \
     plugin=openai_cli
