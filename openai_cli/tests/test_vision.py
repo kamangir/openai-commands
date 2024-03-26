@@ -11,7 +11,7 @@ from openai_cli.vision.completion import complete_object
         "object_name",
     ],
     [
-        [env.OPENAI_VISION_TEST_OBJECT],
+        [env.OPENAI_CLI_VISION_TEST_OBJECT],
     ],
 )
 def test_vision_complete(object_name):

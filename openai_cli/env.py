@@ -8,5 +8,11 @@ load_dotenv(os.path.join(parent_dir, "config.env"))
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 
-OPENAI_VISION_TEST_OBJECT = os.getenv("OPENAI_VISION_TEST_OBJECT", "")
-OPENAI_FUNCTION_BASH_TEST_OBJECT = os.getenv("OPENAI_FUNCTION_BASH_TEST_OBJECT", "")
+OPENAI_CLI_VISION_TEST_OBJECT = os.getenv(
+    "OPENAI_CLI_VISION_TEST_OBJECT",
+    "",
+)
+OPENAI_CLI_FUNCTION_BASH_TEST_OBJECT = os.getenv(
+    "OPENAI_CLI_FUNCTION_BASH_TEST_OBJECT",
+    "",
+)

@@ -1,10 +1,10 @@
 #! /usr/bin/env bash
 
-function openai_conda() {
+function openai_cli_conda() {
     local task=$(abcli_unpack_keyword $1 help)
 
     if [ "$task" == "help" ]; then
-        abcli_show_usage "openai conda create_env [~recreate]" \
+        abcli_show_usage "openai_cli conda create_env [~recreate]" \
             "create conda environment."
         return
     fi
@@ -13,7 +13,7 @@ function openai_conda() {
         local options=$2
         local do_recreate=$(abcli_option_int "$options" recreate 1)
 
-        local environment_name=openai
+        local environment_name=openai_cli
 
         if [[ "$do_recreate" == 0 ]] && [[ $(abcli_conda exists $environment_name) == 1 ]]; then
             abcli_eval - conda activate $environment_name
@@ -30,5 +30,5 @@ function openai_conda() {
         return
     fi
 
-    abcli_log_error "-openai: conda: $task: command not found."
+    abcli_log_error "-openai_cli: conda: $task: command not found."
 }

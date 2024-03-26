@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function openai_gpt() {
+function openai_cli_gpt() {
     local options=$1
 
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then
@@ -9,7 +9,7 @@ function openai_gpt() {
         abcli_show_usage "gpt [$options]$ABCUL[-|<object-name>]$ABCUL$args" \
             "chat with gpt."
 
-        openai_gpt list_models "$@"
+        openai_cli_gpt list_models "$@"
 
         if [ "$(abcli_keyword_is $2 verbose)" == true ]; then
             python3 -m openai_cli.gpt --help
@@ -21,7 +21,7 @@ function openai_gpt() {
         local options=$2
         if [ $(abcli_option_int "$options" help 0) == 1 ]; then
             abcli_show_usage "gpt list_models [-]$ABCUL[--log 0]" \
-                "list models."
+                "list gpt models."
             return
         fi
 

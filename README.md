@@ -9,80 +9,17 @@
 Install [`awesome-bash-cli`](https://github.com/kamangir/awesome-bash-cli) (`abcli`), then,
 
 ```bash
-abcli git clone openai install
+abcli git clone openai_cli install
 ```
 
 ```bash
- > openai help
-openai complete "<prompt>" \
-	[-] \
-	[--max_tokens <2000>] \
-	[--verbose 1]
- . complete <prompt>.
-openai completion describe <plugin-name>
- . describe <plugin-name> for openai
-openai conda create_env [~recreate]
- . create conda environment.
-openai dashboard
- . browse openai dashboard.
-openai generate image \
-	[~dryrun,height=<576>,~sign,~tag,width=<768>] \
-	[<image>] [<previous-image>] \
-	["<prompt>"] \
-	[-]
- . <prompt> -[<previous-image>]-> <image>.png.
-openai generate video \
-	[~dryrun,frame_count=16,marker=PART,~publish,~render,resize_to=1280x1024,~sign,slice_by=words|sentences,~upload,url] \
-	<filename.txt|url> \
-	[-]
- . <filename.txt>|url -> video.mp4
-openai generate validate \
-	[dryrun,what=all|image|video]
- . validate openai.
-openai images generate \
-	[dryrun,filename=<filename.png>,~upload] \
-	"<prompt+prompt+prompt>" \
-	[.|<object-name>] \
-	[--verbose 1]
- . generate an image for <prompt> in <object-name>.
-openai pylint -  \
-	[<args>]
- . pylint openai.
-openai pytest \
-	[dryrun,list,~log,plugin=<plugin-name>,show_warning] \
-	[filename.py|filename.py::test]
- . pytest openai.
-openai test \
-	list
- . list openai tests.
-openai test \
-	what=all|<test-name>,dryrun \
-	dryrun
- . test openai.
-openai transform \
-	[count=<1>,~dryrun,extension=jpg,~sign,~tag,~upload] \
-	[<object-name>] \
-	["<prompt>"] \
-	[-]
- . <object-name> -<prompt>-> 2024-03-22-18-28-27-25758.
-openai vision "prompt" \
-	[auto|low|high,dryrun,~upload] \
-	Davie,Bute,.jpg \
-	[.|<object-name>] \
-	[--max_count <-1>] \
-	[--verbose 1]
- . complete <prompt> given the image(s) in <object-name>.
-DALL-E render \
-	[brush=tiling|randomwalk,brush_size=256|512|1024,~dryrun,lines=<5>,publish,url,verbose] \
-	input.txt|https://allpoetry.com/16-bit-Intel-8088-chip \
-	[output.png]<args>
- . render input.txt|url -> output.png.
+...
 ```
 
 ## Completion
 
 ```bash
-openai complete "describe mathematics"
+openai_cli complete "describe mathematics"
 ```
 
 > Mathematics is an abstract science that examines topics such as quantity, structure, space, change, and other topics in various ways. It involves the use of logic, algorithms, and formulas to solve problems. Mathematics can be used to study the natural world, to describe phenomena, and to make predictions about the future. It provides the foundation for the development of a wide range of disciplines in science, technology, engineering, economics, finance, and more.
@@ -99,7 +36,7 @@ Example notebooks to [generate a python functions](./notebooks/completion_ai_fun
 
 ```bash
 @select - open; \
-openai generate image \
+openai_cli generate image \
   ~dryrun,height=1024,width=1024 \
   carrot - \
   "an orange carrot walking on Mars."
@@ -130,7 +67,7 @@ Implements the [OpenAI vision API](https://platform.openai.com/docs/guides/visio
 Example use on the images ingested from the traffic cameras in downtown Vancouver, using [Vancouver-Watching 🌈](https://github.com/kamangir/Vancouver-Watching),
 
 ```bash
-openai vision \
+openai_cli vision \
     "list some of the things that you see in these images." \
     - Davie,Bute,.jpg \
     $(vanwatch list area=vancouver,ingest,published \
@@ -165,12 +102,12 @@ Notebook implementation [`./notebooks/images.ipynb`](./notebooks/images.ipynb),
 
 ```bash
 @select - open; \
-openai images generate - \
+openai_cli images generate - \
 	"a person flying through the streets of Vancouver." \
 	. --verbose 1
 ```
 
-![image](https://github.com/kamangir/assets/blob/main/openai/2024-01-20-19-00-28-67378.png?raw=true)
+![image](https://github.com/kamangir/assets/blob/main/openai_cli/2024-01-20-19-00-28-67378.png?raw=true)
 
 ## gpt
 
