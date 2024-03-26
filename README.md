@@ -9,7 +9,7 @@
 Install [`awesome-bash-cli`](https://github.com/kamangir/awesome-bash-cli) (`abcli`), then,
 
 ```bash
-abcli git clone openai install
+abcli git clone openai_cli install
 ```
 
 ```bash
@@ -19,7 +19,7 @@ abcli git clone openai install
 ## Completion
 
 ```bash
-openai complete "describe mathematics"
+openai_cli complete "describe mathematics"
 ```
 
 > Mathematics is an abstract science that examines topics such as quantity, structure, space, change, and other topics in various ways. It involves the use of logic, algorithms, and formulas to solve problems. Mathematics can be used to study the natural world, to describe phenomena, and to make predictions about the future. It provides the foundation for the development of a wide range of disciplines in science, technology, engineering, economics, finance, and more.
@@ -36,7 +36,7 @@ Example notebooks to [generate a python functions](./notebooks/completion_ai_fun
 
 ```bash
 @select - open; \
-openai generate image \
+openai_cli generate image \
   ~dryrun,height=1024,width=1024 \
   carrot - \
   "an orange carrot walking on Mars."
@@ -67,7 +67,7 @@ Implements the [OpenAI vision API](https://platform.openai.com/docs/guides/visio
 Example use on the images ingested from the traffic cameras in downtown Vancouver, using [Vancouver-Watching 🌈](https://github.com/kamangir/Vancouver-Watching),
 
 ```bash
-openai vision \
+openai_cli vision \
     "list some of the things that you see in these images." \
     - Davie,Bute,.jpg \
     $(vanwatch list area=vancouver,ingest,published \
@@ -102,12 +102,12 @@ Notebook implementation [`./notebooks/images.ipynb`](./notebooks/images.ipynb),
 
 ```bash
 @select - open; \
-openai images generate - \
+openai_cli images generate - \
 	"a person flying through the streets of Vancouver." \
 	. --verbose 1
 ```
 
-![image](https://github.com/kamangir/assets/blob/main/openai/2024-01-20-19-00-28-67378.png?raw=true)
+![image](https://github.com/kamangir/assets/blob/main/openai_cli/2024-01-20-19-00-28-67378.png?raw=true)
 
 ## gpt
 
