@@ -4,7 +4,7 @@ function openai_cli_conda() {
     local task=$(abcli_unpack_keyword $1 help)
 
     if [ "$task" == "help" ]; then
-        abcli_show_usage "openai_cli conda create_env [~recreate]" \
+        abcli_show_usage "@openai conda create_env [~recreate]" \
             "create conda environment."
         return
     fi

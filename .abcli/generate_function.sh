@@ -17,7 +17,7 @@ function openai_cli_generate_function() {
         return 1
     fi
 
-    abcli_log "openai_cli: generate: image: \"$prompt\" -[$prev_filename.png ${@:5}]-> $filename.png"
+    abcli_log "@openai: generate: image: \"$prompt\" -[$prev_filename.png ${@:5}]-> $filename.png"
 
     if [ -z "$prev_filename" ]; then
         # https://beta.openai.com/docs/api-reference/images/create

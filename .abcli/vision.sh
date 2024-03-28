@@ -7,7 +7,7 @@ function openai_cli_vision() {
 
     if [ "$prompt" == "help" ]; then
         local args="[--max_count <-1>]$ABCUL[--verbose 1]"
-        abcli_show_usage "openai_cli vision \"prompt\"$ABCUL[$openai_cli_vision_options]${ABCUL}Davie,Bute,.jpg$ABCUL[.|<object-name>]$ABCUL$args" \
+        abcli_show_usage "@openai vision \"prompt\"$ABCUL[$openai_cli_vision_options]${ABCUL}Davie,Bute,.jpg$ABCUL[.|<object-name>]$ABCUL$args" \
             "complete <prompt> given the image(s) in <object-name>."
         return
     fi

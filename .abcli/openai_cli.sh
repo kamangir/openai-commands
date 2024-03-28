@@ -7,7 +7,7 @@ function openai_cli() {
         openai_cli_complete "$@"
         openai_cli_conda "$@"
 
-        abcli_show_usage "openai_cli dashboard" \
+        abcli_show_usage "@openai dashboard" \
             "browse OpenAI dashboard."
 
         openai_cli_generate "$@"

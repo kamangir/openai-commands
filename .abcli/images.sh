@@ -7,7 +7,7 @@ function openai_cli_images() {
 
     if [ "$task" == "help" ]; then
         local args="[--verbose 1]"
-        abcli_show_usage "openai_cli images generate$ABCUL[$openai_cli_images_options]$ABCUL\"<prompt+prompt+prompt>\"$ABCUL[.|<object-name>]$ABCUL$args" \
+        abcli_show_usage "@openai images generate$ABCUL[$openai_cli_images_options]$ABCUL\"<prompt+prompt+prompt>\"$ABCUL[.|<object-name>]$ABCUL$args" \
             "generate an image for <prompt> in <object-name>."
         return
     fi
