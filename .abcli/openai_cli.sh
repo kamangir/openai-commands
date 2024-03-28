@@ -15,7 +15,7 @@ function openai_cli() {
 
         local task
         for task in pylint pytest test; do
-            openai_cli_images $task "$@"
+            openai_cli $task "$@"
         done
 
         openai_cli_transform "$@"
