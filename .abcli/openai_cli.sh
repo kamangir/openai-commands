@@ -11,6 +11,7 @@ function openai_cli() {
             "browse OpenAI dashboard."
 
         openai_cli_generate "$@"
+        openai_cli_gpt "$@"
         openai_cli_images "$@"
 
         local task
@@ -20,6 +21,7 @@ function openai_cli() {
 
         openai_cli_transform "$@"
         openai_cli_vision "$@"
+        openai_cli_VisuaLyze "$@"
         DALL-E "$@"
         return
     fi
