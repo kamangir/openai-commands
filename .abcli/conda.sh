@@ -22,7 +22,10 @@ function openai_cli_conda() {
 
         abcli_conda create_env name=$environment_name
 
+        pushd $abcli_path_git/openai-cli >/dev/null
         pip3 install -r requirements.txt
+        popd >/dev/null
+
         pip3 uninstall -y abcli
 
         pushd $abcli_path_git/awesome-bash-cli >/dev/null
