@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from openai_cli import ICON
 from openai_cli.VisuaLyze import NAME, VERSION
 from openai_cli import env
@@ -13,6 +13,18 @@ def index():
         title=f"{NAME}.{VERSION}",
         h1=f"{ICON} {NAME}.{VERSION}",
         text="wip 🚧",
+    )
+
+
+@app.route("/process", methods=["POST"])
+def process():
+    description = request.form["description"]
+
+    # TODO: process description
+
+    return render_template(
+        "index.html",
+        text=f"processed: {description}",
     )
 
 
