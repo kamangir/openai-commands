@@ -1,13 +1,11 @@
 #! /usr/bin/env bash
 
-export VISUALYZE_URL=http://127.0.0.1:5000/
-
 function VisuaLyze() {
     openai_cli_VisuaLyze "$@"
 }
 
 function openai_cli_VisuaLyze() {
-    local task=$1
+    local task=$(abcli_unpack_keyword $1 run)
 
     if [[ "$task" == help ]]; then
         openai_cli_VisuaLyze browse "$@"
@@ -25,7 +23,7 @@ function openai_cli_VisuaLyze() {
             return
         fi
 
-        abcli_browse_url $VISUALYZE_URL
+        abcli_browse_url http://127.0.0.1:$VISUALYZE_PORT/
         return
     fi
 
@@ -40,13 +38,17 @@ function openai_cli_VisuaLyze() {
         local do_browse=$(abcli_option "$options" browse 1)
 
         [[ "$do_browse" == 1 ]] &&
-            abcli_browse_url $VISUALYZE_URL
+            abcli_browse_url http://127.0.0.1:$VISUALYZE_PORT/
 
         export FLASK_APP=VisuaLyze.py
 
+        # https://stackoverflow.com/a/72797062/17619982
         abcli_eval \
             path=$abcli_path_git/openai-cli/openai_cli/VisuaLyze/flask/,$options \
-            flask run
+            flask \
+            --app VisuaLyze \
+            run \
+            --port $VISUALYZE_PORT
         return
     fi
 
