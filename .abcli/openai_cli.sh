@@ -13,9 +13,10 @@ function openai_cli() {
         openai_cli_generate "$@"
         openai_cli_images "$@"
 
-        openai_cli_pylint "$@"
-        openai_cli_pytest "$@"
-        openai_cli_test "$@"
+        local task
+        for task in pylint pytest test; do
+            openai_cli_images $task "$@"
+        done
 
         openai_cli_transform "$@"
         openai_cli_vision "$@"

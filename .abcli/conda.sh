@@ -22,10 +22,15 @@ function openai_cli_conda() {
 
         abcli_conda create_env name=$environment_name
 
+        pip3 install -r requirements.txt
+        pip3 uninstall -y abcli nbs aiart
+
+        pushd $abcli_path_git/awesome-bash-cli >/dev/null
+        pip3 install -e .
+        popd >/dev/null
+
         abcli_plugins install nbs
         abcli_plugins install aiart
-
-        pip3 install -r requirements.txt
 
         return
     fi

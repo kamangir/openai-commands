@@ -3,6 +3,7 @@ IPython
 beautifulsoup4
 boto3
 bs4
+Flask
 folium
 geojson
 geopandas
