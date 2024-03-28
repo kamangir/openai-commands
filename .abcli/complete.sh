@@ -8,10 +8,10 @@ function openai_cli_complete() {
     local task=$(abcli_unpack_keyword "$1" help)
 
     if [ "$task" == help ]; then
-        abcli_show_usage "openai_cli complete \"<prompt>\"$ABCUL[-]$ABCUL[--max_tokens <2000>]$ABCUL[--verbose 1]" \
+        abcli_show_usage "@openai complete \"<prompt>\"$ABCUL[-]$ABCUL[--max_tokens <2000>]$ABCUL[--verbose 1]" \
             "complete <prompt>."
 
-        abcli_show_usage "openai_cli completion describe <plugin-name>" \
+        abcli_show_usage "@openai completion describe <plugin-name>" \
             "describe <plugin-name> for openai_cli"
         return
     fi

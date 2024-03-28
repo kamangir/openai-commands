@@ -4,8 +4,7 @@ from abcli import file
 from abcli.options import Options
 from abcli.modules import objects
 from aiart import html
-from openai_cli import VERSION
-from openai_cli.DALLE import NAME
+from openai_cli.DALLE import NAME, VERSION
 from openai_cli.DALLE.canvas import Canvas
 from openai_cli.logger import logger
 

@@ -1,1 +1,3 @@
-NAME = "openai_cli.completion"
+from openai_cli import NAME, VERSION
+
+NAME = f"{NAME}.completion"

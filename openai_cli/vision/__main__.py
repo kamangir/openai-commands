@@ -1,7 +1,6 @@
 import argparse
 from abcli.options import Options
-from openai_cli import VERSION
-from openai_cli.vision import NAME
+from openai_cli.vision import NAME, VERSION
 from openai_cli.vision.completion import complete_object, Detail
 from openai_cli.logger import logger
 

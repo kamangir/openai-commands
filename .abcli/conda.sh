@@ -4,7 +4,7 @@ function openai_cli_conda() {
     local task=$(abcli_unpack_keyword $1 help)
 
     if [ "$task" == "help" ]; then
-        abcli_show_usage "openai_cli conda create_env [~recreate]" \
+        abcli_show_usage "@openai conda create_env [~recreate]" \
             "create conda environment."
         return
     fi
@@ -22,10 +22,18 @@ function openai_cli_conda() {
 
         abcli_conda create_env name=$environment_name
 
+        pushd $abcli_path_git/openai-cli >/dev/null
+        pip3 install -r requirements.txt
+        popd >/dev/null
+
+        pip3 uninstall -y abcli
+
+        pushd $abcli_path_git/awesome-bash-cli >/dev/null
+        pip3 install -e .
+        popd >/dev/null
+
         abcli_plugins install nbs
         abcli_plugins install aiart
-
-        pip3 install -r requirements.txt
 
         return
     fi

@@ -7,18 +7,21 @@ function openai_cli() {
         openai_cli_complete "$@"
         openai_cli_conda "$@"
 
-        abcli_show_usage "openai_cli dashboard" \
+        abcli_show_usage "@openai dashboard" \
             "browse OpenAI dashboard."
 
         openai_cli_generate "$@"
+        openai_cli_gpt "$@"
         openai_cli_images "$@"
 
-        openai_cli_pylint "$@"
-        openai_cli_pytest "$@"
-        openai_cli_test "$@"
+        local task
+        for task in pylint pytest test; do
+            openai_cli $task "$@"
+        done
 
         openai_cli_transform "$@"
         openai_cli_vision "$@"
+        openai_cli_VisuaLyze "$@"
         DALL-E "$@"
         return
     fi

@@ -1,3 +1,3 @@
 from openai_cli import NAME, VERSION
 
-NAME = f"{NAME}.vision"
+NAME = f"{NAME}.VisuaLyze"
