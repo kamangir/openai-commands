@@ -4,4 +4,4 @@ ICON = "🛠️"
 
 DESCRIPTION = f"{ICON} tools for the OpenAI API"
 
-VERSION = "2.288.1"
+VERSION = "2.289.1"

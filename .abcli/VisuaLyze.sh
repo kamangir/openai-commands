@@ -31,11 +31,16 @@ function openai_cli_VisuaLyze() {
 
     if [[ "$task" == run ]]; then
         if [ $(abcli_option_int "$options" help 0) == 1 ]; then
-            local options="dryrun"
+            local options="~browse,dryrun"
             abcli_show_usage "VisuaLyze run$ABCUL[$options]$ABCUL[-|<object-name>]" \
                 "run VisuaLyze."
             return
         fi
+
+        local do_browse=$(abcli_option "$options" browse 1)
+
+        [[ "$do_browse" == 1 ]] &&
+            abcli_browse_url $VISUALYZE_URL
 
         export FLASK_APP=VisuaLyze.py
 
