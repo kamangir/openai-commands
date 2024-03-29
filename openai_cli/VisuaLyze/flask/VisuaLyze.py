@@ -4,14 +4,15 @@ from abcli.string.functions import pretty_date
 from openai_cli import ICON
 from openai_cli.VisuaLyze import NAME, VERSION
 from openai_cli import env
+from openai_cli.logger import logger
 
 app = Flask(__name__)
-
-process_log: List[str] = []
 
 
 @app.route("/")
 def index():
+    logger.info("root")
+
     return render_template(
         "index.html",
         title=f"{NAME}.{VERSION}",
@@ -27,25 +28,25 @@ def process():
     description = request.form["description"]
     data = request.form["data"]
 
-    global process_log
-
     # TODO: process description
 
-    process_log += [
-        "{} - {} - {}".format(
-            pretty_date(),
-            data,
-            description,
-        )
-    ]
+    message = "{} - {}: {}".format(
+        pretty_date(),
+        description,
+        data,
+    )
+    logger.info(message)
 
     return render_template(
         "index.html",
+        title=f"{NAME}.{VERSION}",
+        h1=f"{ICON} {NAME}.{VERSION}",
         description=description,
         data=data,
-        text="\n<hr />".join(process_log),
+        text=message,
     )
 
 
 if __name__ == "__main__":
+    logger.info(f"{NAME}.{VERSION} is running.")
     app.run(debug=True, port=env.VISUALYZE_PORT)

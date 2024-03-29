@@ -40,8 +40,6 @@ function openai_cli_VisuaLyze() {
         [[ "$do_browse" == 1 ]] &&
             abcli_browse_url http://127.0.0.1:$VISUALYZE_PORT/
 
-        export FLASK_APP=VisuaLyze.py
-
         # https://stackoverflow.com/a/72797062/17619982
         abcli_eval \
             path=$abcli_path_git/openai-cli/openai_cli/VisuaLyze/flask/,$options \
