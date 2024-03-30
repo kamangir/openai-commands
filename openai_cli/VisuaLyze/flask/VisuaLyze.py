@@ -17,7 +17,7 @@ def index():
     success, description = file.load_text(
         os.path.join(
             abcli_path_git,
-            "openai-cli/assets/VisuaLyze/descriptions.txt",
+            "openai-cli/assets/VisuaLyze/description.txt",
         ),
         log=True,
     )
@@ -26,7 +26,7 @@ def index():
         "index.html",
         title=f"{NAME}.{VERSION}",
         h1=f"{ICON} {NAME}.{VERSION}",
-        description=description,
+        description="\n".join(description),
         log="" if success else "⚠️ description not found.",
     )
 
