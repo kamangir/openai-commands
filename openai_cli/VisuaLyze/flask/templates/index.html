@@ -14,14 +14,20 @@
       <a href="./" title="Home">{{ h1 }}</a>
     </h1>
     <form action="/VisuaLyze" method="post" enctype="multipart/form-data">
-      <label for="prompt"><h2>prompt</h2></label>
-      <textarea id="prompt" name="prompt" rows="2" cols="50">
+      <div style="display: flex">
+        <div style="margin-right: 20px">
+          <label for="prompt"><h2>Prompt</h2></label>
+          <textarea id="prompt" name="prompt" rows="8" cols="50">
 {{ prompt }}</textarea
-      >
-      <label for="description"><h2>description</h2></label>
-      <textarea id="description" name="description" rows="8" cols="50">
+          >
+        </div>
+        <div>
+          <label for="description"><h2>Description</h2></label>
+          <textarea id="description" name="description" rows="8" cols="50">
 {{ description }}</textarea
-      >
+          >
+        </div>
+      </div>
 
       <div style="display: flex; align-items: center; margin-top: 10px">
         <label for="object_name" style="margin-right: 10px"
