@@ -61,9 +61,10 @@
     </form>
     <br />
 
+    <div style="margin-top: 20px">{{ dataframe_html | safe }}</div>
+
     <hr />
     {{ status }}
-    <div style="margin-top: 20px">{{ dataframe_html | safe }}</div>
 
     <hr />
     last update: {{ timestamp }} |

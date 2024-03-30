@@ -33,7 +33,7 @@ class VisuaLyzeOrder:
         self.data_filename: str = data_filename
         self.df = pd.DataFrame()
 
-        self.source_code = List[str]
+        self.source_code: List[str] = []
 
         self.valid: bool = True
 
@@ -136,11 +136,11 @@ class VisuaLyzeOrder:
             description="\n".join(self.description),
             data_filename=self.data_filename,
             object_name=self.object_name,
-            status="{}{}".format(
-                self.one_liner(),
-                f", {status}" if status else "",
-            ),
             timestamp=string.pretty_date(),
             github_url="https://github.com/kamangir/openai-cli/tree/main/openai_cli/VisuaLyze",
             dataframe_html=self.df.head().to_html(),
+            status="{}{}".format(
+                "\n".join(self.source_code),
+                f", {status}" if status else "",
+            ),
         )

@@ -104,7 +104,7 @@ def interact_with_openai(
     prompt: str,
     object_path: str = "",
     model_name: str = env.OPENAI_GPT_DEFAULT_MODEL,
-) -> Tuple[bool, str]:
+) -> Tuple[bool, List[str]]:
     success, conversation = chat_with_openai(
         object_path=object_path,
         script_mode=True,
@@ -115,7 +115,7 @@ def interact_with_openai(
     if not conversation:
         return False, ""
 
-    return success, conversation[0].get("answer", "")
+    return success, conversation[0].get("answer", "").split("\n")
 
 
 def list_models(log: bool = False) -> List[Any]:
