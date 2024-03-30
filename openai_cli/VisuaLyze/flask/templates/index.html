@@ -10,7 +10,10 @@
     />
   </head>
   <body>
-    <h1><a href="./" title="Home">{{ h1 }}</a></h1>
+    <h1>
+      <a href="./" title="Home">{{ h1 }}</a> |
+      <a href="{{ github_url }}" title="{{ github_url }}">source</a>
+    </h1>
     <form action="/VisuaLyze" method="post" enctype="multipart/form-data">
       <label for="prompt"><h2>prompt</h2></label>
       <textarea id="prompt" name="prompt" rows="2" cols="50">

@@ -121,4 +121,5 @@ class VisuaLyzeOrder:
                 f", {status}" if status else "",
             ),
             timestamp=string.pretty_date(),
+            github_url="https://github.com/kamangir/openai-cli/tree/main/openai_cli/VisuaLyze",
         )
