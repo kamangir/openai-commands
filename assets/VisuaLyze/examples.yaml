@@ -1,7 +1,7 @@
 - name: onlinefoods
   title: Online Food DatasetDemographics & Locations in Online Food Ordering
   source: https://www.kaggle.com/datasets/sudarshan24byte/online-food-dataset
-  prompt: The dataset described next is loaded from a csv file into a python pandas dataframe named df. write a python function that inputs df and generates a graph that describes one aspect of df.
+  prompt: The dataset described next is loaded from a csv file into a python pandas dataframe named df. write a python function named process_df that inputs df and generates a graph that describes one aspect of df. return a clean python file that process_df can be imported from.
   object_name: OPENAI_CLI_VISUALIZE_EXAMPLES_v1
   data: onlinefoods.csv
   description: onlinefoods.txt
