@@ -23,7 +23,8 @@ def process():
     order = VisuaLyzeOrder(
         prompt=request.form["prompt"],
         description=request.form["description"],
-        data=request.form["fileInput"],
+        data_filename=request.form["data_filename"],
+        object_name=request.form["object_name"],
     )
 
     order.load_data()

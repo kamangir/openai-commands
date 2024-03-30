@@ -96,7 +96,7 @@ class VisuaLyzeOrder:
 
     def one_liner(self):
         return "{} {}: {} {}: {}/{} [{}]".format(
-            "valid" if self.valid else "⚠️ invalid",
+            "📜 valid" if self.valid else "⚠️ invalid",
             self.__class__.__name__,
             self.prompt,
             " ".join(self.description),
@@ -108,7 +108,7 @@ class VisuaLyzeOrder:
             ),
         )
 
-    def render(self, log: str = ""):
+    def render(self, status: str = ""):
         return render_template(
             "index.html",
             title=f"{NAME}.{VERSION}",
@@ -119,6 +119,6 @@ class VisuaLyzeOrder:
             object_name=self.object_name,
             status="{}{}".format(
                 self.one_liner(),
-                f", {log}" if log else "",
+                f", {status}" if status else "",
             ),
         )
