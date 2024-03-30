@@ -122,4 +122,5 @@ class VisuaLyzeOrder:
             ),
             timestamp=string.pretty_date(),
             github_url="https://github.com/kamangir/openai-cli/tree/main/openai_cli/VisuaLyze",
+            dataframe_html=self.df.to_html(),
         )

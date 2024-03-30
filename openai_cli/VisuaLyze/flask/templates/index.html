@@ -54,8 +54,11 @@
       </div>
     </form>
     <br />
+
     <hr />
     {{ status }}
+    <div style="margin-top: 20px">{{ dataframe_html | safe }}</div>
+
     <hr />
     last update: {{ timestamp }} |
     <a href="{{ github_url }}" title="{{ github_url }}">github</a>
