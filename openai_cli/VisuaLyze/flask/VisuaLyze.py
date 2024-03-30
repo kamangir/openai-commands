@@ -1,7 +1,10 @@
-from typing import List
+import os
 from flask import Flask, render_template, request
+from abcli import file
 from abcli.string.functions import pretty_date
+from abcli.env import abcli_path_git
 from openai_cli import ICON
+from abcli import env
 from openai_cli.VisuaLyze import NAME, VERSION
 from openai_cli import env
 from openai_cli.logger import logger
@@ -11,39 +14,37 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    logger.info("root")
-
-    return render_template(
-        "index.html",
-        title=f"{NAME}.{VERSION}",
-        h1=f"{ICON} {NAME}.{VERSION}",
-        description="visualize this data.",
-        data="🚧",
-        text="",
+    success, description = file.load_text(
+        os.path.join(
+            abcli_path_git,
+            "openai-cli/assets/VisuaLyze/descriptions.txt",
+        ),
+        log=True,
     )
-
-
-@app.route("/process", methods=["POST"])
-def process():
-    description = request.form["description"]
-    data = request.form["data"]
-
-    # TODO: process description
-
-    message = "{} - {}: {}".format(
-        pretty_date(),
-        description,
-        data,
-    )
-    logger.info(message)
 
     return render_template(
         "index.html",
         title=f"{NAME}.{VERSION}",
         h1=f"{ICON} {NAME}.{VERSION}",
         description=description,
-        data=data,
-        text=message,
+        log="" if success else "⚠️ description not found.",
+    )
+
+
+@app.route("/VisuaLyze", methods=["POST"])
+def process():
+    description = request.form["description"]
+
+    logger.info(f"VisuaLyzing {description}...")
+
+    # TODO
+
+    return render_template(
+        "index.html",
+        title=f"{NAME}.{VERSION}",
+        h1=f"{ICON} {NAME}.{VERSION}",
+        description=description,
+        log=f"{pretty_date()}: {description}",
     )
 
 

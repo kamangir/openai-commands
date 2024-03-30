@@ -10,18 +10,17 @@
     />
   </head>
   <body>
-    <h1><a href="./">🟦</a> {{ h1 }}</h1>
-    <form action="/process" method="post">
+    <h1><a href="./" title="Home">{{ h1 }}</a></h1>
+    <form action="/VisuaLyze" method="post">
       <label for="description">description:</label><br />
-      <textarea id="description" name="description" rows="1" cols="50">
+      <textarea id="description" name="description" rows="8" cols="50">
 {{ description }}</textarea
       >
-      <textarea id="data" name="data" rows="8" cols="50">{{ data }}</textarea>
       <br />
-      <input type="submit" value="Process" />
+      <input type="submit" value="VisuaLyze" />
     </form>
     <br />
     <hr />
-    {{ text }}
+    {{ log }}
   </body>
 </html>

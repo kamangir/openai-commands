@@ -2,7 +2,7 @@
 
 `openai-cli` is a bash cli for the [OpenAI API](https://beta.openai.com/docs/introduction).
 
-🔷 [completion](#Completion) 🔷 [code generation](#code-generation) 🔷 [sentence -> image](#sentence---image) 🔷 [text -> mural](#text---mural) 🔷 [vision](#vision) 🔷 [images](#images) 🔷 [gpt](#gpt) 🔷
+🔷 [completion](#Completion) 🔷 [code generation](#code-generation) 🔷 [sentence -> image](#sentence---image) 🔷 [text -> mural](#text---mural) 🔷 [vision](#vision) 🔷 [images](#images) 🔷 [gpt](#gpt) 🔷 [VisuaLyze](#VisuaLyze) 🔷
 
 ## Install
 
@@ -127,3 +127,7 @@ gpt list_models [-] \
 	[--log 0]
  . list models.
 ```
+
+## VisuaLyze
+
+> How about calling it "VisuaLyze"? This name combines "visualize" and "analyze," reflecting the tool's capability to generate custom data visualizations and analyze user input through AI - OpenAI, [more](./openai_cli/VisuaLyze/)
