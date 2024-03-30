@@ -41,14 +41,18 @@
           id="data_filename"
           name="data_filename"
           value="{{ data_filename }}"
+          style="margin-right: 20px"
+        />
+
+        <input
+          type="submit"
+          value="VisuaLyze"
+          style="margin-left: 20px; padding: 0 10px; height: fit-content"
         />
       </div>
-
-      <br />
-      <input type="submit" value="VisuaLyze" />
     </form>
     <br />
     <hr />
-    {{ status }}
+    {{ status }} @ {{ timestamp }}.
   </body>
 </html>

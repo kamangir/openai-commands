@@ -3,6 +3,7 @@ import pandas as pd
 from typing import List
 from flask import render_template
 from abcli import file
+from abcli import string
 from abcli.modules.objects import path_of
 from openai_cli import ICON
 from openai_cli.env import OPENAI_CLI_VISUALIZE_EXAMPLES_OBJECT
@@ -95,17 +96,15 @@ class VisuaLyzeOrder:
         return not load or self.load_data(log=log)
 
     def one_liner(self):
-        return "{} {}: {} {}: {}/{} [{}]".format(
+        return "{} {}: {} {}: {}/{} - {} row(s) of {}".format(
             "📜 valid" if self.valid else "⚠️ invalid",
             self.__class__.__name__,
             self.prompt,
             " ".join(self.description),
             self.object_name,
             self.data_filename,
-            "{} row(s) of {}".format(
-                len(self.df),
-                ", ".join(self.df.columns),
-            ),
+            len(self.df),
+            ", ".join(self.df.columns),
         )
 
     def render(self, status: str = ""):
@@ -121,4 +120,5 @@ class VisuaLyzeOrder:
                 self.one_liner(),
                 f", {status}" if status else "",
             ),
+            timestamp=string.pretty_date(),
         )

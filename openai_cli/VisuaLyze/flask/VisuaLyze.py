@@ -22,7 +22,7 @@ def index():
 def process():
     order = VisuaLyzeOrder(
         prompt=request.form["prompt"],
-        description=request.form["description"],
+        description=request.form["description"].split("\n"),
         data_filename=request.form["data_filename"],
         object_name=request.form["object_name"],
     )
