@@ -11,8 +11,7 @@
   </head>
   <body>
     <h1>
-      <a href="./" title="Home">{{ h1 }}</a> |
-      <a href="{{ github_url }}" title="{{ github_url }}">source</a>
+      <a href="./" title="Home">{{ h1 }}</a>
     </h1>
     <form action="/VisuaLyze" method="post" enctype="multipart/form-data">
       <label for="prompt"><h2>prompt</h2></label>
@@ -56,6 +55,9 @@
     </form>
     <br />
     <hr />
-    {{ status }} @ {{ timestamp }}.
+    {{ status }}
+    <hr />
+    last update: {{ timestamp }} |
+    <a href="{{ github_url }}" title="{{ github_url }}">github</a>
   </body>
 </html>
