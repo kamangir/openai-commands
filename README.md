@@ -1,6 +1,6 @@
-# openai-cli
+# 🛠️ openai-cli (`@openai`)
 
-`openai-cli` is a bash cli for the [OpenAI API](https://beta.openai.com/docs/introduction).
+`@openai` is a bash cli for the [OpenAI API](https://beta.openai.com/docs/introduction).
 
 🔷 [completion](#Completion) 🔷 [code generation](#code-generation) 🔷 [sentence -> image](#sentence---image) 🔷 [text -> mural](#text---mural) 🔷 [vision](#vision) 🔷 [images](#images) 🔷 [gpt](#gpt) 🔷 [VisuaLyze](#VisuaLyze) 🔷
 
@@ -19,7 +19,7 @@ abcli git clone openai_cli install
 ## Completion
 
 ```bash
-openai_cli complete "describe mathematics"
+@openai complete "describe mathematics"
 ```
 
 > Mathematics is an abstract science that examines topics such as quantity, structure, space, change, and other topics in various ways. It involves the use of logic, algorithms, and formulas to solve problems. Mathematics can be used to study the natural world, to describe phenomena, and to make predictions about the future. It provides the foundation for the development of a wide range of disciplines in science, technology, engineering, economics, finance, and more.
@@ -36,7 +36,7 @@ Example notebooks to [generate a python functions](./notebooks/completion_ai_fun
 
 ```bash
 @select - open; \
-openai_cli generate image \
+@openai generate image \
   ~dryrun,height=1024,width=1024 \
   carrot - \
   "an orange carrot walking on Mars."
@@ -67,7 +67,7 @@ Implements the [OpenAI vision API](https://platform.openai.com/docs/guides/visio
 Example use on the images ingested from the traffic cameras in downtown Vancouver, using [Vancouver-Watching 🌈](https://github.com/kamangir/Vancouver-Watching),
 
 ```bash
-openai_cli vision \
+@openai vision \
     "list some of the things that you see in these images." \
     - Davie,Bute,.jpg \
     $(vanwatch list area=vancouver,ingest,published \
@@ -102,7 +102,7 @@ Notebook implementation [`./notebooks/images.ipynb`](./notebooks/images.ipynb),
 
 ```bash
 @select - open; \
-openai_cli images generate - \
+@openai images generate - \
 	"a person flying through the streets of Vancouver." \
 	. --verbose 1
 ```
@@ -131,3 +131,9 @@ gpt list_models [-] \
 ## VisuaLyze
 
 > How about calling it "VisuaLyze"? This name combines "visualize" and "analyze," reflecting the tool's capability to generate custom data visualizations and analyze user input through AI - OpenAI, [more](./openai_cli/VisuaLyze/)
+
+```bash
+VisuaLyze run
+```
+
+:fire

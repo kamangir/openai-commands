@@ -1,4 +1,3 @@
-The dataset described next is loaded from a csv file into a python pandas dataframe named df. write a python function that inputs df and generates a graph that describes one aspect of df.
 Online Food Order Dataset
 
 Description:

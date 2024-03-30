@@ -1,0 +1,10 @@
+{
+    "cSpell.words": [
+        "onlinefoods"
+    ],
+    "python.testing.pytestArgs": [
+        "openai_cli"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
+}

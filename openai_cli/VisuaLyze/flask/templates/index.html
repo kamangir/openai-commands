@@ -11,7 +11,7 @@
   </head>
   <body>
     <h1><a href="./" title="Home">{{ h1 }}</a></h1>
-    <form action="/VisuaLyze" method="post">
+    <form action="/VisuaLyze" method="post" enctype="multipart/form-data">
       <label for="prompt"><h2>prompt</h2></label>
       <textarea id="prompt" name="prompt" rows="2" cols="50">
 {{ prompt }}</textarea
@@ -20,6 +20,9 @@
       <textarea id="description" name="description" rows="8" cols="50">
 {{ description }}</textarea
       >
+      <label for="fileInput"><h2>filename</h2></label>
+      <input type="file" id="fileInput" name="fileInput" />
+      <small>{{ filename }}</small>
       <br />
       <input type="submit" value="VisuaLyze" />
     </form>
