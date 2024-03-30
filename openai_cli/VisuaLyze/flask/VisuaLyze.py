@@ -1,13 +1,9 @@
-import os
-from flask import Flask, render_template, request
-from abcli import file
-from abcli.string.functions import pretty_date
-from openai_cli import ICON
+from flask import Flask, request
 from abcli import env
-from openai_cli.VisuaLyze import NAME, VERSION
-from openai_cli.VisuaLyze.order import VisuaLyzeOrder
 from openai_cli import env
 from openai_cli.logger import logger
+from openai_cli.VisuaLyze import NAME, VERSION
+from openai_cli.VisuaLyze.order import VisuaLyzeOrder
 
 app = Flask(__name__)
 
@@ -28,6 +24,8 @@ def process():
     )
 
     order.load_data()
+
+    order.complete()
 
     return order.render()
 

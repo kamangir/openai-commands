@@ -20,3 +20,5 @@ def test_VisuaLyze_order(order_name: str):
     assert order.data_filename
     assert len(order.df)
     assert order.valid
+
+    assert order.complete()

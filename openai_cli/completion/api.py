@@ -21,7 +21,7 @@ def complete_prompt(
                 "content": prompt,
             }
         ],
-        model="gpt-3.5-turbo",
+        model=env.OPENAI_GPT_DEFAULT_MODEL,
         max_tokens=max_tokens,
     )
 

@@ -9,26 +9,25 @@ committed in its original form and then modified by Arash Abadpour - arash.abadp
 """
 
 import os
-from typing import List, Any
-import argparse
+from typing import List, Any, Tuple, Dict
 from openai import OpenAI
 from abcli import file, path
 from openai_cli import VERSION
-from openai_cli.env import OPENAI_API_KEY
+from openai_cli import env
 from openai_cli.gpt import NAME
 from openai_cli.logger import logger
 
 FULL_NAME = f"{NAME}-{VERSION}"
 
-client = OpenAI(api_key=OPENAI_API_KEY)
+client = OpenAI(api_key=env.OPENAI_API_KEY)
 
 
 def chat_with_openai(
     object_path: str = "",
     script_mode: bool = False,
     script: List[str] = [],
-    model_name: str = "gpt-3.5-turbo",
-) -> bool:
+    model_name: str = env.OPENAI_GPT_DEFAULT_MODEL,
+) -> Tuple[bool, List[Any]]:
     logger.info(
         "{} @ {}{}".format(
             FULL_NAME,
@@ -38,7 +37,7 @@ def chat_with_openai(
     )
     logger.info("ChatGPT: Hello! How can I assist you today?")
 
-    conversation = []
+    conversation: List[Any] = []
     index = -1
     while True:
         index += 1
@@ -84,30 +83,39 @@ def chat_with_openai(
             }
         )
 
-    return not (object_path) or file.save_yaml(
-        os.path.join(
-            object_path,
-            f"{path.name(object_path)}.yaml",
+    return (
+        not (object_path)
+        or file.save_yaml(
+            os.path.join(
+                object_path,
+                f"{path.name(object_path)}.yaml",
+            ),
+            {
+                "conversation": conversation,
+                "created-by": FULL_NAME,
+                "script_mode": script_mode,
+            },
         ),
-        {
-            "conversation": conversation,
-            "created-by": FULL_NAME,
-            "script_mode": script_mode,
-        },
+        conversation,
     )
 
 
 def interact_with_openai(
     prompt: str,
     object_path: str = "",
-    model_name: str = "gpt-3.5-turbo",
-) -> bool:
-    return chat_with_openai(
+    model_name: str = env.OPENAI_GPT_DEFAULT_MODEL,
+) -> Tuple[bool, str]:
+    success, conversation = chat_with_openai(
         object_path=object_path,
         script_mode=True,
         script=[prompt],
         model_name=model_name,
     )
+
+    if not conversation:
+        return False, ""
+
+    return success, conversation[0].get("answer", "")
 
 
 def list_models(log: bool = False) -> List[Any]:

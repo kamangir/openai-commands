@@ -4,9 +4,10 @@ from typing import List
 from flask import render_template
 from abcli import file
 from abcli import string
-from abcli.modules.objects import path_of
+from abcli.modules.objects import path_of, object_path
 from openai_cli import ICON
-from openai_cli.env import OPENAI_CLI_VISUALIZE_EXAMPLES_OBJECT
+from openai_cli import env
+from openai_cli.gpt.chat import interact_with_openai
 from openai_cli.VisuaLyze import NAME, VERSION
 from openai_cli.logger import logger
 
@@ -22,7 +23,7 @@ class VisuaLyzeOrder:
         prompt: str = "",
         description: List[str] = [],
         data_filename: str = "",
-        object_name: str = OPENAI_CLI_VISUALIZE_EXAMPLES_OBJECT,
+        object_name: str = env.OPENAI_CLI_VISUALIZE_EXAMPLES_OBJECT,
         load: bool = True,
         log: bool = True,
     ):
@@ -31,6 +32,8 @@ class VisuaLyzeOrder:
         self.object_name: str = object_name
         self.data_filename: str = data_filename
         self.df = pd.DataFrame()
+
+        self.source_code = List[str]
 
         self.valid: bool = True
 
@@ -46,6 +49,23 @@ class VisuaLyzeOrder:
 
         if log:
             logger.info(self.one_liner())
+
+    def complete(
+        self,
+        model_name: str = env.OPENAI_GPT_DEFAULT_MODEL,
+    ) -> bool:
+        success, self.source_code = interact_with_openai(
+            prompt=self.full_prompt,
+            object_path=object_path(object_name=self.object_name),
+            model_name=model_name,
+        )
+        if not success:
+            self.valid = False
+        return success
+
+    @property
+    def full_prompt(self):
+        return f"{self.prompt}. {self.description}"
 
     def load_data(
         self,

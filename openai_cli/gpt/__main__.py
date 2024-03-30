@@ -1,5 +1,6 @@
 import argparse
 from openai_cli import VERSION
+from openai_cli import env
 from openai_cli.gpt import NAME
 from openai_cli.gpt.chat import chat_with_openai, list_models
 from openai_cli.logger import logger
@@ -18,7 +19,7 @@ parser.add_argument(
 parser.add_argument(
     "--model_name",
     type=str,
-    default="gpt-3.5-turbo",
+    default=env.OPENAI_GPT_DEFAULT_MODEL,
     help='"gpt list_models".',
 )
 parser.add_argument(
@@ -31,7 +32,7 @@ args = parser.parse_args()
 
 success = False
 if args.task == "chat_with_openai":
-    success = chat_with_openai(
+    success, _ = chat_with_openai(
         object_path=args.object_path,
         model_name=args.model_name,
     )

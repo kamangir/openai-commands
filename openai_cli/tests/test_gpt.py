@@ -1,5 +1,6 @@
 import os
 import pytest
+from typing import List
 from abcli import file
 from abcli.modules import objects
 from openai_cli.gpt.chat import chat_with_openai, interact_with_openai, list_models
@@ -9,11 +10,15 @@ def test_chat_with_openai():
     object_name = objects.unique_object()
     object_path = objects.object_path(object_name=object_name)
 
-    assert chat_with_openai(
+    script: List[str] = ["help", "version", "describe mathematics"]
+
+    success, conversation = chat_with_openai(
         object_path=object_path,
         script_mode=True,
-        script=["help", "version", "describe mathematics"],
+        script=script,
     )
+    assert success
+    assert len(conversation) == 1
 
     assert file.exist(
         os.path.join(object_path, f"{object_name}.yaml"),
@@ -32,10 +37,12 @@ def test_interact_with_openai(prompt: str):
     object_name = objects.unique_object()
     object_path = objects.object_path(object_name=object_name)
 
-    assert interact_with_openai(
+    success, answer = interact_with_openai(
         prompt=prompt,
         object_path=object_path,
     )
+    assert success
+    assert answer
 
     assert file.exist(
         os.path.join(object_path, f"{object_name}.yaml"),
