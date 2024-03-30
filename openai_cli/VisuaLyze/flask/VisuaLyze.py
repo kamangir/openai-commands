@@ -24,7 +24,6 @@ def process():
         prompt=request.form["prompt"],
         description=request.form["description"],
         data=request.form["fileInput"],
-        log=True,
     )
 
     order.load_data()

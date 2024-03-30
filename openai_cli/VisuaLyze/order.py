@@ -3,6 +3,7 @@ import pandas as pd
 from typing import List
 from flask import render_template
 from abcli import file
+from abcli.modules.objects import path_of
 from openai_cli import ICON
 from openai_cli.VisuaLyze import NAME, VERSION
 from openai_cli.logger import logger
@@ -19,8 +20,8 @@ class VisuaLyzeOrder:
         description: str = "",
         data: str = "",
         name: str = "",
-        load: bool = False,
-        log: bool = False,
+        load: bool = True,
+        log: bool = True,
     ):
         self.prompt: str = prompt
         self.description: List[str] = description.split(",")
@@ -29,21 +30,27 @@ class VisuaLyzeOrder:
 
         self.valid: bool = True
 
-        if name and not self.load_example(name=name, load=load):
+        if name and not self.load_example(
+            name=name,
+            load=load,
+            log=log,
+        ):
             self.valid = False
 
-        if load and not self.load_data():
+        if load and not self.load_data(log=log):
             self.valid = False
 
         if log:
             self.log()
 
-    @staticmethod
-    def example_filename(filename: str) -> str:
-        return os.path.abspath(os.path.join(examples_path, filename))
-
-    def load_data(self) -> bool:
-        success, self.df = file.load_dataframe(self.data_filename, log=True)
+    def load_data(
+        self,
+        log: bool = True,
+    ) -> bool:
+        success, self.df = file.load_dataframe(
+            self.data_filename,
+            log=log,
+        )
         if not success:
             self.valid = False
         return success
@@ -51,7 +58,8 @@ class VisuaLyzeOrder:
     def load_example(
         self,
         name: str = "onlinefoods",
-        load: bool = False,
+        load: bool = True,
+        log: bool = True,
     ) -> bool:
         success, examples = file.load_yaml(os.path.join(examples_path, "examples.yaml"))
         if not success:
@@ -63,16 +71,37 @@ class VisuaLyzeOrder:
             self.prompt = example["prompt"]
 
             success, self.description = file.load_text(
-                self.example_filename(example["description"])
+                path_of(
+                    filename=example["description"],
+                    object_name=example["object_name"],
+                ),
+                log=log,
             )
             assert success
 
-            self.data_filename = self.example_filename(example["data"])
+            self.data_filename = path_of(
+                filename=example["data"],
+                object_name=example["object_name"],
+            )
         except Exception as e:
             logger.error(f"failed to load example {name}: {e}.")
             return False
 
-        return not load or self.load_data()
+        return not load or self.load_data(log=log)
+
+    def log(self):
+        logger.info(
+            "{} {} {}: {} [{}]".format(
+                "valid" if self.valid else "invalid",
+                self.prompt,
+                " ".join(self.description),
+                self.data_filename,
+                "{} row(s) of {}".format(
+                    len(self.df),
+                    ", ".join(self.df.columns),
+                ),
+            )
+        )
 
     def render(self, log: str = ""):
         return render_template(
