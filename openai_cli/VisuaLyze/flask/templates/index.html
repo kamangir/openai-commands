@@ -20,11 +20,35 @@
       <textarea id="description" name="description" rows="8" cols="50">
 {{ description }}</textarea
       >
+
+      <div style="display: flex; align-items: center; margin-top: 10px">
+        <label for="object_name" style="margin-right: 10px"
+          ><h2>object name</h2></label
+        >
+        <input
+          type="text"
+          id="object_name"
+          name="object_name"
+          value="{{ object_name }}"
+          style="margin-right: 20px"
+        />
+
+        <label for="data_filename" style="margin-right: 10px"
+          ><h2>data filename</h2></label
+        >
+        <input
+          type="text"
+          id="data_filename"
+          name="data_filename"
+          value="{{ data_filename }}"
+        />
+      </div>
+
       <br />
       <input type="submit" value="VisuaLyze" />
     </form>
     <br />
     <hr />
-    {{ log }}
+    {{ status }}
   </body>
 </html>

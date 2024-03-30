@@ -44,14 +44,17 @@ class VisuaLyzeOrder:
             self.valid = False
 
         if log:
-            self.log()
+            logger.info(self.one_liner())
 
     def load_data(
         self,
         log: bool = True,
     ) -> bool:
         success, self.df = file.load_dataframe(
-            self.data_filename,
+            path_of(
+                filename=self.data_filename,
+                object_name=self.object_name,
+            ),
             log=log,
         )
         if not success:
@@ -82,28 +85,27 @@ class VisuaLyzeOrder:
             )
             assert success
 
-            self.data_filename = path_of(
-                filename=example["data"],
-                object_name=example["object_name"],
-            )
+            self.object_name = example["object_name"]
+            self.data_filename = example["data"]
+
         except Exception as e:
             logger.error(f"failed to load example {name}: {e}.")
             return False
 
         return not load or self.load_data(log=log)
 
-    def log(self):
-        logger.info(
-            "{} {} {}: {} [{}]".format(
-                "valid" if self.valid else "invalid",
-                self.prompt,
-                " ".join(self.description),
-                self.data_filename,
-                "{} row(s) of {}".format(
-                    len(self.df),
-                    ", ".join(self.df.columns),
-                ),
-            )
+    def one_liner(self):
+        return "{} {}: {} {}: {}/{} [{}]".format(
+            "valid" if self.valid else "⚠️ invalid",
+            self.__class__.__name__,
+            self.prompt,
+            " ".join(self.description),
+            self.object_name,
+            self.data_filename,
+            "{} row(s) of {}".format(
+                len(self.df),
+                ", ".join(self.df.columns),
+            ),
         )
 
     def render(self, log: str = ""):
@@ -113,9 +115,10 @@ class VisuaLyzeOrder:
             h1=f"{ICON} {NAME}.{VERSION}",
             prompt=self.prompt,
             description="\n".join(self.description),
-            log=(
-                log
-                if self.valid
-                else "⚠️ invalid order{}".format(f", {log}" if log else "")
+            data_filename=self.data_filename,
+            object_name=self.object_name,
+            status="{}{}".format(
+                self.one_liner(),
+                f", {log}" if log else "",
             ),
         )
