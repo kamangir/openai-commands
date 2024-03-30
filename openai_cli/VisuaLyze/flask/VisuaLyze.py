@@ -26,16 +26,18 @@ def index():
         "index.html",
         title=f"{NAME}.{VERSION}",
         h1=f"{ICON} {NAME}.{VERSION}",
-        description="\n".join(description),
+        prompt=description[0] if success else "",
+        description="\n".join(description[1:]) if success else "",
         log="" if success else "⚠️ description not found.",
     )
 
 
 @app.route("/VisuaLyze", methods=["POST"])
 def process():
+    prompt = request.form["prompt"]
     description = request.form["description"]
 
-    logger.info(f"VisuaLyzing {description}...")
+    logger.info(f"VisuaLyzing {prompt} for {description}...")
 
     # TODO
 
@@ -43,8 +45,9 @@ def process():
         "index.html",
         title=f"{NAME}.{VERSION}",
         h1=f"{ICON} {NAME}.{VERSION}",
+        prompt=prompt,
         description=description,
-        log=f"{pretty_date()}: {description}",
+        log=f"{pretty_date()}: {prompt} for {description}",
     )
 
 
