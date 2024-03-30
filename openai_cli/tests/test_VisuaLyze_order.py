@@ -13,7 +13,7 @@ from openai_cli.env import OPENAI_CLI_VISUALIZE_EXAMPLES_OBJECT
 def test_VisuaLyze_order(order_name: str):
     assert download_object(OPENAI_CLI_VISUALIZE_EXAMPLES_OBJECT)
 
-    order = VisuaLyzeOrder(name=order_name)
+    order = VisuaLyzeOrder(example_name=order_name)
 
     assert order.prompt
     assert order.description

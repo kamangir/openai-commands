@@ -5,6 +5,7 @@ from flask import render_template
 from abcli import file
 from abcli.modules.objects import path_of
 from openai_cli import ICON
+from openai_cli.env import OPENAI_CLI_VISUALIZE_EXAMPLES_OBJECT
 from openai_cli.VisuaLyze import NAME, VERSION
 from openai_cli.logger import logger
 
@@ -16,23 +17,25 @@ examples_path = os.path.abspath(
 class VisuaLyzeOrder:
     def __init__(
         self,
+        example_name: str = "",
         prompt: str = "",
-        description: str = "",
-        data: str = "",
-        name: str = "",
+        description: List[str] = [],
+        data_filename: str = "",
+        object_name: str = OPENAI_CLI_VISUALIZE_EXAMPLES_OBJECT,
         load: bool = True,
         log: bool = True,
     ):
         self.prompt: str = prompt
-        self.description: List[str] = description.split(",")
-        self.data_filename: str = data
+        self.description: List[str] = description
+        self.object_name: str = object_name
+        self.data_filename: str = data_filename
         self.df = pd.DataFrame()
 
         self.valid: bool = True
 
-        if name and not self.load_example(
-            name=name,
-            load=load,
+        if example_name and not self.load_example(
+            name=example_name,
+            load=False,
             log=log,
         ):
             self.valid = False
@@ -110,7 +113,6 @@ class VisuaLyzeOrder:
             h1=f"{ICON} {NAME}.{VERSION}",
             prompt=self.prompt,
             description="\n".join(self.description),
-            filename=self.data_filename,
             log=(
                 log
                 if self.valid

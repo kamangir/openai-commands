@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    order = VisuaLyzeOrder(name="onlinefoods")
+    order = VisuaLyzeOrder(example_name="onlinefoods")
     return order.render()
 
 
