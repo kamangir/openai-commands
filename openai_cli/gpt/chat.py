@@ -97,6 +97,19 @@ def chat_with_openai(
     )
 
 
+def interact_with_openai(
+    prompt: str,
+    object_path: str = "",
+    model_name: str = "gpt-3.5-turbo",
+) -> bool:
+    return chat_with_openai(
+        object_path=object_path,
+        script_mode=True,
+        script=[prompt],
+        model_name=model_name,
+    )
+
+
 def list_models(log: bool = False) -> List[Any]:
     list_of_models = client.models.list().data
 
