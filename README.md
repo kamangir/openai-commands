@@ -137,3 +137,21 @@ VisuaLyze run
 ```
 
 <img width="989" alt="image" src="https://github.com/kamangir/openai-cli/assets/1007567/95bf0fdc-6127-45f7-a916-8476d0917428">
+
+sample output for [`onlinefoods`](./assets/VisuaLyze/onlinefoods/).
+
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+
+def VisuaLyze(df: pd.DataFrame()):
+    # Generate a matplotlib visualization of one aspect of the dataset
+
+    # For example, let's say we want to visualize the distribution of ages in the dataset
+    plt.figure(figsize=(10,6))
+    df['Age'].hist(bins=20, color='skyblue', edgecolor='black')
+    plt.title('Distribution of Ages in the Online Food Order Dataset')
+    plt.xlabel('Age')
+    plt.ylabel('Frequency')
+    plt.show()
+```

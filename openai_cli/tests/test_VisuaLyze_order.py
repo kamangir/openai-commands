@@ -1,19 +1,19 @@
 import pytest
-from abcli.plugins.testing import download_object
+from openai_cli import env
 from openai_cli.VisuaLyze.order import VisuaLyzeOrder
-from openai_cli.env import OPENAI_CLI_VISUALIZE_EXAMPLES_OBJECT
 
 
 @pytest.mark.parametrize(
-    ["order_name"],
+    ["example_name", "model_name"],
     [
-        ["onlinefoods"],
+        ["onlinefoods", env.OPENAI_GPT_DEFAULT_MODEL],
     ],
 )
-def test_VisuaLyze_order(order_name: str):
-    assert download_object(OPENAI_CLI_VISUALIZE_EXAMPLES_OBJECT)
-
-    order = VisuaLyzeOrder(example_name=order_name)
+def test_VisuaLyze_order(
+    example_name: str,
+    model_name: str,
+):
+    order = VisuaLyzeOrder(example_name=example_name)
 
     assert order.prompt
     assert order.description
@@ -21,4 +21,7 @@ def test_VisuaLyze_order(order_name: str):
     assert len(order.df)
     assert order.valid
 
-    assert order.complete()
+    assert order.complete(model_name=model_name)
+
+    assert order.valid
+    assert order.source_code

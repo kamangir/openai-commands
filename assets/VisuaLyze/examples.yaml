@@ -1,9 +1,3 @@
 - name: onlinefoods
   title: Online Food DatasetDemographics & Locations in Online Food Ordering
   source: https://www.kaggle.com/datasets/sudarshan24byte/online-food-dataset
-  prompt: >
-    df contains the dataset that is described next. generate a python function with the signature 
-    'def VisuaLyze(df: pd.DataFrame())' that generates a matplotlib visualization of one aspect of df.
-  object_name: OPENAI_CLI_VISUALIZE_EXAMPLES_v1
-  data: onlinefoods.csv
-  description: onlinefoods.txt

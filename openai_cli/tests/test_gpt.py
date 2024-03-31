@@ -13,7 +13,7 @@ def test_chat_with_openai():
     script: List[str] = ["help", "version", "describe mathematics"]
 
     success, conversation = chat_with_openai(
-        object_path=object_path,
+        output_path=object_path,
         script_mode=True,
         script=script,
     )
@@ -39,7 +39,7 @@ def test_interact_with_openai(prompt: str):
 
     success, answer = interact_with_openai(
         prompt=prompt,
-        object_path=object_path,
+        output_path=object_path,
     )
     assert success
     assert answer

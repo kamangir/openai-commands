@@ -4,7 +4,6 @@ from typing import List
 from flask import render_template
 from abcli import file
 from abcli import string
-from abcli.modules.objects import path_of, object_path
 from openai_cli import ICON
 from openai_cli import env
 from openai_cli.gpt.chat import interact_with_openai
@@ -20,16 +19,16 @@ class VisuaLyzeOrder:
     def __init__(
         self,
         example_name: str = "",
-        prompt: str = "",
+        prompt: List[str] = [],
         description: List[str] = [],
         data_filename: str = "",
-        object_name: str = env.OPENAI_CLI_VISUALIZE_EXAMPLES_OBJECT,
-        load: bool = True,
+        load_data: bool = True,
+        complete: bool = False,
         log: bool = True,
+        model_name: str = env.OPENAI_GPT_DEFAULT_MODEL,
     ):
-        self.prompt: str = prompt
+        self.prompt: List[str] = prompt
         self.description: List[str] = description
-        self.object_name: str = object_name
         self.data_filename: str = data_filename
         self.df = pd.DataFrame()
 
@@ -37,15 +36,21 @@ class VisuaLyzeOrder:
 
         self.valid: bool = True
 
-        if example_name and not self.load_example(
-            name=example_name,
-            load=False,
-            log=log,
-        ):
-            self.valid = False
+        if example_name:
+            if not self.load_example(
+                name=example_name,
+                load_data=False,
+                log=log,
+            ):
+                self.valid = False
 
-        if load and not self.load_data(log=log):
-            self.valid = False
+        if load_data and self.valid:
+            if not self.load_data(log=log):
+                self.valid = False
+
+        if complete and self.valid:
+            if not self.complete(model_name=model_name):
+                self.valid = False
 
         if log:
             logger.info(self.one_liner())
@@ -53,10 +58,11 @@ class VisuaLyzeOrder:
     def complete(
         self,
         model_name: str = env.OPENAI_GPT_DEFAULT_MODEL,
+        output_path: str = "",
     ) -> bool:
         success, self.source_code = interact_with_openai(
             prompt=self.full_prompt,
-            object_path=object_path(object_name=self.object_name),
+            output_path=output_path,
             model_name=model_name,
         )
         if not success:
@@ -72,10 +78,7 @@ class VisuaLyzeOrder:
         log: bool = True,
     ) -> bool:
         success, self.df = file.load_dataframe(
-            path_of(
-                filename=self.data_filename,
-                object_name=self.object_name,
-            ),
+            filename=self.data_filename,
             log=log,
         )
         if not success:
@@ -85,46 +88,48 @@ class VisuaLyzeOrder:
     def load_example(
         self,
         name: str = "onlinefoods",
-        load: bool = True,
+        load_data: bool = True,
         log: bool = True,
     ) -> bool:
         success, examples = file.load_yaml(os.path.join(examples_path, "examples.yaml"))
         if not success:
             return success
 
+        path = os.path.join(examples_path, name)
+
         try:
             example = [example for example in examples if example["name"] == name][0]
 
-            self.prompt = example["prompt"]
-
-            success, self.description = file.load_text(
-                path_of(
-                    filename=example["description"],
-                    object_name=example["object_name"],
-                ),
+            success, self.prompt = file.load_text(
+                os.path.join(path, "prompt.txt"),
                 log=log,
             )
             assert success
 
-            self.object_name = example["object_name"]
-            self.data_filename = example["data"]
+            success, self.description = file.load_text(
+                os.path.join(path, "description.txt"),
+                log=log,
+            )
+            assert success
+
+            self.data_filename = os.path.join(path, "data.csv")
 
         except Exception as e:
             logger.error(f"failed to load example {name}: {e}.")
             return False
 
-        return not load or self.load_data(log=log)
+        return self.load_data(log=log) if load_data else True
 
     def one_liner(self):
-        return "{} {}: {} {}: {}/{} - {} row(s) of {}".format(
+        return "{} {}: {} {}: {} - {} row(s) of {}: {}".format(
             "📜 valid" if self.valid else "⚠️ invalid",
             self.__class__.__name__,
-            self.prompt,
+            " ".join(self.prompt),
             " ".join(self.description),
-            self.object_name,
             self.data_filename,
             len(self.df),
             ", ".join(self.df.columns),
+            " ".join(self.source_code),
         )
 
     def render(self, status: str = ""):
@@ -132,10 +137,9 @@ class VisuaLyzeOrder:
             "index.html",
             title=f"{NAME}.{VERSION}",
             h1=f"{ICON} {NAME}.{VERSION}",
-            prompt=self.prompt,
+            prompt="\n".join(self.prompt),
             description="\n".join(self.description),
             data_filename=self.data_filename,
-            object_name=self.object_name,
             timestamp=string.pretty_date(),
             github_url="https://github.com/kamangir/openai-cli/tree/main/openai_cli/VisuaLyze",
             dataframe_html=self.df.head().to_html(),

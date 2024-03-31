@@ -17,15 +17,11 @@ def index():
 @app.route("/VisuaLyze", methods=["POST"])
 def process():
     order = VisuaLyzeOrder(
-        prompt=request.form["prompt"],
+        prompt=request.form["prompt"].split("\n"),
         description=request.form["description"].split("\n"),
         data_filename=request.form["data_filename"],
-        object_name=request.form["object_name"],
+        complete=True,
     )
-
-    order.load_data()
-
-    order.complete()
 
     return order.render()
 

@@ -23,7 +23,7 @@ client = OpenAI(api_key=env.OPENAI_API_KEY)
 
 
 def chat_with_openai(
-    object_path: str = "",
+    output_path: str = "",
     script_mode: bool = False,
     script: List[str] = [],
     model_name: str = env.OPENAI_GPT_DEFAULT_MODEL,
@@ -84,11 +84,11 @@ def chat_with_openai(
         )
 
     return (
-        not (object_path)
+        not (output_path)
         or file.save_yaml(
             os.path.join(
-                object_path,
-                f"{path.name(object_path)}.yaml",
+                output_path,
+                f"{path.name(output_path)}.yaml",
             ),
             {
                 "conversation": conversation,
@@ -102,11 +102,11 @@ def chat_with_openai(
 
 def interact_with_openai(
     prompt: str,
-    object_path: str = "",
+    output_path: str = "",
     model_name: str = env.OPENAI_GPT_DEFAULT_MODEL,
 ) -> Tuple[bool, List[str]]:
     success, conversation = chat_with_openai(
-        object_path=object_path,
+        output_path=output_path,
         script_mode=True,
         script=[prompt],
         model_name=model_name,
