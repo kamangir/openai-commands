@@ -144,7 +144,11 @@ class VisuaLyzeOrder:
             github_url="https://github.com/kamangir/openai-cli/tree/main/openai_cli/VisuaLyze",
             dataframe_html=self.df.head().to_html(),
             status="{}{}".format(
-                "\n".join(self.source_code),
+                (
+                    "<pre><code>{}</code></pre>".format("\n".join(self.source_code))
+                    if self.source_code
+                    else ""
+                ),
                 f", {status}" if status else "",
             ),
         )

@@ -33,7 +33,7 @@ args = parser.parse_args()
 success = False
 if args.task == "chat_with_openai":
     success, _ = chat_with_openai(
-        object_path=args.object_path,
+        output_path=args.object_path,
         model_name=args.model_name,
     )
 elif args.task == "list_models":
