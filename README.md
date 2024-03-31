@@ -136,7 +136,7 @@ gpt list_models [-] \
 VisuaLyze run
 ```
 
-<img width="989" alt="image" src="https://github.com/kamangir/openai-cli/assets/1007567/95bf0fdc-6127-45f7-a916-8476d0917428">
+![image](https://github.com/kamangir/openai-cli/assets/1007567/7c0ed5f7-6941-451c-a17e-504c6adab23f)
 
 sample output for [`onlinefoods`](./assets/VisuaLyze/onlinefoods/).
 
