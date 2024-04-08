@@ -51,4 +51,5 @@ function openai_cli_VisuaLyze() {
     fi
 
     abcli_log_error "-@openai: VisuaLyze: $task: command not found."
+    return 1
 }

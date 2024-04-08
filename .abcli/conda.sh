@@ -39,4 +39,5 @@ function openai_cli_conda() {
     fi
 
     abcli_log_error "-openai_cli: conda: $task: command not found."
+    return 1
 }

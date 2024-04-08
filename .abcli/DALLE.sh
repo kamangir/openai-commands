@@ -29,4 +29,5 @@ function DALL-E() {
     fi
 
     abcli_log_error "-DALLE: $task: command not found."
+    return 1
 }

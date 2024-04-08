@@ -55,6 +55,7 @@ function openai_cli() {
     fi
 
     abcli_log_error "-openai_cli: $task: command not found."
+    return 1
 }
 
 abcli_source_path \
