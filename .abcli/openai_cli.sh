@@ -64,4 +64,4 @@ abcli_source_path \
 abcli_env dot load \
     plugin=openai_cli
 abcli_env dot load \
-    filename=config.env,plugin=openai_cli
+    filename=openai_cli/config.env,plugin=openai_cli
