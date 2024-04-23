@@ -5,7 +5,6 @@ function openai_cli() {
 
     if [ $task == "help" ]; then
         openai_cli_complete "$@"
-        openai_cli_conda "$@"
 
         abcli_show_usage "@openai dashboard" \
             "browse OpenAI dashboard."
