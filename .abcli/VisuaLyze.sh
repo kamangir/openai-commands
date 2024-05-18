@@ -23,7 +23,7 @@ function openai_cli_VisuaLyze() {
             return
         fi
 
-        abcli_browse_url http://127.0.0.1:$VISUALYZE_PORT/
+        abcli_browse http://127.0.0.1:$VISUALYZE_PORT/
         return
     fi
 
@@ -38,7 +38,7 @@ function openai_cli_VisuaLyze() {
         local do_browse=$(abcli_option "$options" browse 1)
 
         [[ "$do_browse" == 1 ]] &&
-            abcli_browse_url http://127.0.0.1:$VISUALYZE_PORT/
+            abcli_browse http://127.0.0.1:$VISUALYZE_PORT/
 
         # https://stackoverflow.com/a/72797062/17619982
         abcli_eval \

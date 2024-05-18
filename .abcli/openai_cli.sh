@@ -32,7 +32,7 @@ function openai_cli() {
     fi
 
     if [ "$task" == "dashboard" ]; then
-        abcli_browse_url https://beta.openai.com/account/usage
+        abcli_browse https://beta.openai.com/account/usage
         return
     fi
 
