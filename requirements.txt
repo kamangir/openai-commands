@@ -1,4 +1,6 @@
+blueness
 abcli
+articraft
 IPython
 beautifulsoup4
 boto3
