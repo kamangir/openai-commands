@@ -4,4 +4,4 @@ ICON = "🛠️"
 
 DESCRIPTION = f"{ICON} a command interface to the OpenAI API"
 
-VERSION = "3.6.1"
+VERSION = "3.7.1"
