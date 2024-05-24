@@ -22,7 +22,7 @@ function openai_cli_images() {
     local object_name=$(abcli_clarify_object "$4" .)
 
     abcli_eval dryrun=$do_dryrun \
-        python3 -m openai_cli.images \
+        python3 -m openai_commands.images \
         $task \
         --filename $filename \
         --options "$options" \

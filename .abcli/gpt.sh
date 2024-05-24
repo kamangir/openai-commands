@@ -12,7 +12,7 @@ function openai_cli_gpt() {
         openai_cli_gpt list_models "$@"
 
         if [ "$(abcli_keyword_is $2 verbose)" == true ]; then
-            python3 -m openai_cli.gpt --help
+            python3 -m openai_commands.gpt --help
         fi
         return
     fi
@@ -25,7 +25,7 @@ function openai_cli_gpt() {
             return
         fi
 
-        python3 -m openai_cli.gpt list_models \
+        python3 -m openai_commands.gpt list_models \
             "${@:3}"
         return
     fi
@@ -40,7 +40,7 @@ function openai_cli_gpt() {
     abcli_tag set $object_name gpt_chat
 
     abcli_eval dryrun=$do_dryrun \
-        python3 -m openai_cli.gpt \
+        python3 -m openai_commands.gpt \
         chat_with_openai \
         --object_path $object_path \
         "${@:3}"

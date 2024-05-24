@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function openai_cli() {
+function openai_commands() {
     local task=$(abcli_unpack_keyword $1 help)
 
     if [ $task == "help" ]; then
@@ -25,7 +25,7 @@ function openai_cli() {
     fi
 
     abcli_generic_task \
-        plugin=openai_cli,task=$task \
+        plugin=openai_commands,task=$task \
         "${@:2}"
 }
 
@@ -33,6 +33,6 @@ abcli_source_path \
     $abcli_path_git/openai-cli/.abcli/tests
 
 abcli_env dot load \
-    plugin=openai_cli
+    plugin=openai_commands
 abcli_env dot load \
-    filename=openai_cli/config.env,plugin=openai_cli
+    filename=openai_commands/config.env,plugin=openai_commands

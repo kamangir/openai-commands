@@ -1,4 +1,4 @@
-from openai_cli import NAME, VERSION, DESCRIPTION
+from openai_commands import NAME, VERSION, DESCRIPTION
 from blueness.pypi import setup
 
 setup(

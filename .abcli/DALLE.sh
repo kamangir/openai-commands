@@ -16,7 +16,7 @@ function DALL-E() {
     if [ "$task" == render ]; then
         local options=$2
 
-        python3 -m openai_cli.DALLE \
+        python3 -m openai_commands.DALLE \
             render \
             --options "$options" \
             --source "$3" \

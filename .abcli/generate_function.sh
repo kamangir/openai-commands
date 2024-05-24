@@ -13,7 +13,7 @@ function openai_cli_generate_function() {
     local prompt=$4
 
     if [ -z "$OPENAI_API_KEY" ]; then
-        abcli_log_error "-openai_cli: generate_function: OPENAI_API_KEY is missing."
+        abcli_log_error "-openai_commands: generate_function: OPENAI_API_KEY is missing."
         return 1
     fi
 
@@ -58,7 +58,7 @@ function openai_cli_generate_function() {
     # https://cameronnokes.com/blog/working-with-json-in-bash-using-jq/
     local image_url=$(jq -r '.data[0]["url"]' ./raw/$filename.json)
     if [ "$image_url" == "null" ]; then
-        abcli_log_error "-openai_cli: generate_function: failed: $(cat ./raw/$filename.json)"
+        abcli_log_error "-openai_commands: generate_function: failed: $(cat ./raw/$filename.json)"
         return 1
     fi
 

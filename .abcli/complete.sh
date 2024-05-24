@@ -12,7 +12,7 @@ function openai_cli_complete() {
             "complete <prompt>."
 
         abcli_show_usage "@openai completion describe <plugin-name>" \
-            "describe <plugin-name> for openai_cli"
+            "describe <plugin-name> for @openai"
         return
     fi
 
@@ -25,7 +25,7 @@ function openai_cli_complete() {
 
         $plugin_name help
 
-        python3 -m openai_cli.completion \
+        python3 -m openai_commands.completion \
             pre_process_bash_description \
             --filename "$abcli_show_usage_destination" \
             "${@:3}"
@@ -39,7 +39,7 @@ function openai_cli_complete() {
 
     local options=$2
 
-    python3 -m openai_cli \
+    python3 -m openai_commands \
         complete \
         --prompt "$1" \
         "${@:3}"

@@ -22,7 +22,7 @@ function openai_cli_vision() {
         abcli_upload - $object_name
 
     abcli_eval dryrun=$do_dryrun \
-        python3 -m openai_cli.vision \
+        python3 -m openai_commands.vision \
         complete \
         --detail $(abcli_option_choice "$options" auto,low,high auto) \
         --object_name $object_name \

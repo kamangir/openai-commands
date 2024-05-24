@@ -42,7 +42,7 @@ function openai_cli_VisuaLyze() {
 
         # https://stackoverflow.com/a/72797062/17619982
         abcli_eval \
-            path=$abcli_path_git/openai-cli/openai_cli/VisuaLyze/flask/,$options \
+            path=$abcli_path_git/openai-cli/openai_commands/VisuaLyze/flask/,$options \
             flask \
             --app VisuaLyze \
             run \
