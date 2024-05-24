@@ -1,15 +1,15 @@
 #! /usr/bin/env bash
 
 function VisuaLyze() {
-    openai_cli_VisuaLyze "$@"
+    openai_commands_VisuaLyze "$@"
 }
 
-function openai_cli_VisuaLyze() {
+function openai_commands_VisuaLyze() {
     local task=$(abcli_unpack_keyword $1 run)
 
     if [[ "$task" == help ]]; then
-        openai_cli_VisuaLyze browse "$@"
-        openai_cli_VisuaLyze run "$@"
+        openai_commands_VisuaLyze browse "$@"
+        openai_commands_VisuaLyze run "$@"
         return
     fi
 

@@ -2,6 +2,7 @@ from typing import Tuple, Any, Dict, List
 from openai import OpenAI
 from abcli.modules.host import is_jupyter
 from openai_commands import env
+from openai_commands.completion import NAME
 from openai_commands.logger import logger
 
 
@@ -29,7 +30,7 @@ def complete_prompt(
         logger.info("response: {}".format(response))
 
     if not response.choices:
-        logger.info("openai-cli.complete(): no choice.")
+        logger.info(f"{NAME}.complete(): no choice.")
         return False, "", {"status": "no choice"}
 
     if len(response.choices) > 1 and verbose:
@@ -47,7 +48,5 @@ def complete_prompt(
     }
 
     if verbose:
-        logger.info(
-            "openai-cli.complete(): finish_reason: {}.".format(choice.finish_reason)
-        )
+        logger.info(f"{NAME}.complete(): finish_reason: {choice.finish_reason}.")
     return choice.finish_reason == "stop", choice.message.content, metadata

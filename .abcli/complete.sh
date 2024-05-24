@@ -1,10 +1,10 @@
 #! /usr/bin/env bash
 
-function openai_cli_completion() {
-    openai_cli_complete "$@"
+function openai_commands_completion() {
+    openai_commands_complete "$@"
 }
 
-function openai_cli_complete() {
+function openai_commands_complete() {
     local task=$(abcli_unpack_keyword "$1" help)
 
     if [ "$task" == help ]; then

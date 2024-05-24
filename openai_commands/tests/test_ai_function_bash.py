@@ -1,9 +1,9 @@
 import pytest
 from abcli.modules.objects import select
 from abcli.plugins.testing import download_object
-from openai_cli import env
-from openai_cli.completion.functions.bash import ai_function_bash
-from openai_cli.completion.prompts.bash import bash_prompt
+from openai_commands import env
+from openai_commands.completion.functions.bash import ai_function_bash
+from openai_commands.completion.prompts.bash import bash_prompt
 
 
 @pytest.mark.parametrize(
@@ -11,7 +11,7 @@ from openai_cli.completion.prompts.bash import bash_prompt
         "object_name",
     ],
     [
-        [env.OPENAI_CLI_FUNCTION_BASH_TEST_OBJECT],
+        [env.OPENAI_COMMANDS_FUNCTION_BASH_TEST_OBJECT],
     ],
 )
 def test_ai_function_bash(object_name):

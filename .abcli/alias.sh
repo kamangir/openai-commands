@@ -2,4 +2,4 @@
 
 alias @openai=openai_commands
 
-alias gpt=openai_cli_gpt
+alias gpt=openai_commands_gpt

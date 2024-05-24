@@ -132,7 +132,7 @@ def complete(
         )
 
     if not response.choices:
-        logger.info("openai-cli.vision.complete(): no choice.")
+        logger.info(f"{NAME}.vision.complete(): no choice.")
         return False, "", {"status": "no choice"}
 
     if len(response.choices) > 1:

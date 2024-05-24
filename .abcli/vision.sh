@@ -1,13 +1,13 @@
 #! /usr/bin/env bash
 
-export openai_cli_vision_options="auto|low|high,dryrun,~upload"
+export openai_commands_vision_options="auto|low|high,dryrun,~upload"
 
-function openai_cli_vision() {
+function openai_commands_vision() {
     local prompt=$1
 
     if [ "$prompt" == "help" ]; then
         local args="[--max_count <-1>]$ABCUL[--verbose 1]"
-        abcli_show_usage "@openai vision \"prompt\"$ABCUL[$openai_cli_vision_options]${ABCUL}Davie,Bute,.jpg$ABCUL[.|<object-name>]$ABCUL$args" \
+        abcli_show_usage "@openai vision \"prompt\"$ABCUL[$openai_commands_vision_options]${ABCUL}Davie,Bute,.jpg$ABCUL[.|<object-name>]$ABCUL$args" \
             "complete <prompt> given the image(s) in <object-name>."
         return
     fi

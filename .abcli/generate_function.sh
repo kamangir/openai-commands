@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function openai_cli_generate_function() {
+function openai_commands_generate_function() {
     local options=$1
     local dryrun=$(abcli_option_int "$options" dryrun 1)
     local height=$(abcli_option "$options" height 1024)

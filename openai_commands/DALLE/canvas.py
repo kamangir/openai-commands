@@ -111,7 +111,9 @@ class Canvas:
         )
 
     def paint(self, brush, prompt):
-        import openai
+        from openai import OpenAI
+        
+        client = OpenAI()
 
         box = (
             brush.cursor[0] - brush.width // 2,  # left,
@@ -133,15 +135,13 @@ class Canvas:
 
         if not self.dryrun:
             try:
-                response = openai.Image.create_edit(
-                    image=image_byte_array,
-                    mask=mask_byte_array,
-                    prompt=prompt,
-                    n=1,
-                    size=f"{brush.width}x{brush.height}",
-                )
+                response = client.images.generate(image=image_byte_array,
+                mask=mask_byte_array,
+                prompt=prompt,
+                n=1,
+                size=f"{brush.width}x{brush.height}")
 
-                image_url = response["data"][0]["url"]
+                image_url = response.data[0].url
                 if self.verbose:
                     logger.info(f"Canvas.paint: received {image_url}")
 
