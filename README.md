@@ -12,10 +12,6 @@ Install [`awesome-bash-cli`](https://github.com/kamangir/awesome-bash-cli) (`abc
 abcli git clone openai-commands install
 ```
 
-```bash
-...
-```
-
 ## Completion
 
 ```bash
