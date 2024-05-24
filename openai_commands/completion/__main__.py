@@ -1,7 +1,7 @@
 import argparse
-from openai_cli.completion import NAME, VERSION
-from openai_cli.completion.prompts.bash import bash_prompt
-from openai_cli.logger import logger
+from openai_commands.completion import NAME, VERSION
+from openai_commands.completion.prompts.bash import bash_prompt
+from openai_commands.logger import logger
 
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")

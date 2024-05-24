@@ -1,9 +1,9 @@
 from flask import Flask, request
 from abcli import env
-from openai_cli import env
-from openai_cli.logger import logger
-from openai_cli.VisuaLyze import NAME, VERSION
-from openai_cli.VisuaLyze.order import VisuaLyzeOrder
+from openai_commands import env
+from openai_commands.logger import logger
+from openai_commands.VisuaLyze import NAME, VERSION
+from openai_commands.VisuaLyze.order import VisuaLyzeOrder
 
 app = Flask(__name__)
 

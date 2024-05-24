@@ -4,8 +4,8 @@ from typing import Dict, Any, Tuple
 from abcli import file
 from abcli.modules.host import is_jupyter
 from abcli.modules import objects
-from openai_cli.completion.api import complete_prompt
-from openai_cli.logger import logger
+from openai_commands.completion.api import complete_prompt
+from openai_commands.logger import logger
 
 
 class ai_function:

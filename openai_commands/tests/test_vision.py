@@ -1,8 +1,8 @@
 import pytest
 from abcli.options import Options
 from abcli.plugins.testing import download_object
-from openai_cli import env
-from openai_cli.vision.completion import complete_object
+from openai_commands import env
+from openai_commands.vision.completion import complete_object
 
 
 @pytest.mark.skip(reason="fails.")

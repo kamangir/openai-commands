@@ -3,9 +3,9 @@ from tqdm import tqdm
 from abcli import string
 from abcli.modules import objects
 from abcli import file
-from openai_cli.images import NAME, VERSION
-from openai_cli.images.api import OpenAIImageGenerator
-from openai_cli.logger import logger
+from openai_commands.images import NAME, VERSION
+from openai_commands.images.api import OpenAIImageGenerator
+from openai_commands.logger import logger
 
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")

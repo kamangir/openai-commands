@@ -1,6 +1,6 @@
 import argparse
-from openai_cli import NAME, VERSION, DESCRIPTION
-from openai_cli.logger import logger
+from openai_commands import NAME, VERSION, DESCRIPTION
+from openai_commands.logger import logger
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
 parser.add_argument(
@@ -33,7 +33,7 @@ args = parser.parse_args()
 
 success = False
 if args.task == "complete":
-    from openai_cli.completion.api import complete_prompt
+    from openai_commands.completion.api import complete_prompt
 
     success, text, _ = complete_prompt(
         args.prompt,

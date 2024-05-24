@@ -1,7 +1,7 @@
 import random
 import numpy as np
 import math
-from openai_cli.logger import logger
+from openai_commands.logger import logger
 
 
 class Brush:

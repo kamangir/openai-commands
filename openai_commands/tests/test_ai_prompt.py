@@ -1,4 +1,4 @@
-from openai_cli.completion.prompts.generic import ai_prompt
+from openai_commands.completion.prompts.generic import ai_prompt
 
 
 def test_ai_prompt():

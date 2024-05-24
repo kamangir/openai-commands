@@ -30,7 +30,7 @@ function openai_commands() {
 }
 
 abcli_source_path \
-    $abcli_path_git/openai-cli/.abcli/tests
+    $abcli_path_git/openai-commands/.abcli/tests
 
 abcli_env dot load \
     plugin=openai_commands

@@ -1,5 +1,5 @@
 from typing import List
-from openai_cli.logger import logger
+from openai_commands.logger import logger
 
 
 class structured_prompt:

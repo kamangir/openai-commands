@@ -12,10 +12,10 @@ import os
 from typing import List, Any, Tuple, Dict
 from openai import OpenAI
 from abcli import file, path
-from openai_cli import VERSION
-from openai_cli import env
-from openai_cli.gpt import NAME
-from openai_cli.logger import logger
+from openai_commands import VERSION
+from openai_commands import env
+from openai_commands.gpt import NAME
+from openai_commands.logger import logger
 
 FULL_NAME = f"{NAME}-{VERSION}"
 

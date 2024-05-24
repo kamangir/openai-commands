@@ -1,5 +1,5 @@
 import pytest
-from openai_cli.images.api import OpenAIImageGenerator
+from openai_commands.images.api import OpenAIImageGenerator
 from abcli import string
 from abcli.modules import objects
 

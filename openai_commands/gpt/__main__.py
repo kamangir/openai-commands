@@ -1,9 +1,9 @@
 import argparse
-from openai_cli import VERSION
-from openai_cli import env
-from openai_cli.gpt import NAME
-from openai_cli.gpt.chat import chat_with_openai, list_models
-from openai_cli.logger import logger
+from openai_commands import VERSION
+from openai_commands import env
+from openai_commands.gpt import NAME
+from openai_commands.gpt.chat import chat_with_openai, list_models
+from openai_commands.logger import logger
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
 parser.add_argument(

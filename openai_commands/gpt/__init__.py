@@ -1,3 +1,3 @@
-from openai_cli import NAME
+from openai_commands import NAME
 
 NAME = f"{NAME}.gpt"

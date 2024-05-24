@@ -1,5 +1,5 @@
-from openai_cli.completion.functions.python import ai_function_py
-from openai_cli.completion.prompts.structured import structured_prompt
+from openai_commands.completion.functions.python import ai_function_py
+from openai_commands.completion.prompts.structured import structured_prompt
 
 
 def test_ai_function_py():

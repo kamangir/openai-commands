@@ -3,7 +3,7 @@ import pytest
 from typing import List
 from abcli import file
 from abcli.modules import objects
-from openai_cli.gpt.chat import chat_with_openai, interact_with_openai, list_models
+from openai_commands.gpt.chat import chat_with_openai, interact_with_openai, list_models
 
 
 def test_chat_with_openai():

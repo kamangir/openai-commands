@@ -1,5 +1,5 @@
-from openai_cli.completion.functions.generic import ai_function
-from openai_cli.completion.prompts.generic import ai_prompt
+from openai_commands.completion.functions.generic import ai_function
+from openai_commands.completion.prompts.generic import ai_prompt
 
 
 def test_ai_function():

@@ -1,6 +1,6 @@
-# 🛠️ openai-cli (`@openai`)
+# 🛠️ openai-commands (`@openai`)
 
-`@openai` is a bash cli for the [OpenAI API](https://beta.openai.com/docs/introduction).
+`@openai` is a bash interface to the [OpenAI API](https://beta.openai.com/docs/introduction).
 
 🔷 [completion](#Completion) 🔷 [code generation](#code-generation) 🔷 [sentence -> image](#sentence---image) 🔷 [text -> mural](#text---mural) 🔷 [vision](#vision) 🔷 [images](#images) 🔷 [gpt](#gpt) 🔷 [VisuaLyze](#VisuaLyze) 🔷
 
@@ -9,7 +9,7 @@
 Install [`awesome-bash-cli`](https://github.com/kamangir/awesome-bash-cli) (`abcli`), then,
 
 ```bash
-abcli git clone openai_cli install
+abcli git clone openai-commands install
 ```
 
 ```bash
@@ -107,7 +107,7 @@ Notebook implementation [`./notebooks/images.ipynb`](./notebooks/images.ipynb),
 	. --verbose 1
 ```
 
-![image](https://github.com/kamangir/assets/blob/main/openai_cli/2024-01-20-19-00-28-67378.png?raw=true)
+![image](https://github.com/kamangir/assets/blob/main/openai_commands/2024-01-20-19-00-28-67378.png?raw=true)
 
 ## gpt
 
@@ -130,13 +130,13 @@ gpt list_models [-] \
 
 ## VisuaLyze
 
-> How about calling it "VisuaLyze"? This name combines "visualize" and "analyze," reflecting the tool's capability to generate custom data visualizations and analyze user input through AI - OpenAI, [more](./openai_cli/VisuaLyze/)
+> How about calling it "VisuaLyze"? This name combines "visualize" and "analyze," reflecting the tool's capability to generate custom data visualizations and analyze user input through AI - OpenAI, [more](./openai_commands/VisuaLyze/)
 
 ```bash
 VisuaLyze run
 ```
 
-![image](https://github.com/kamangir/openai-cli/assets/1007567/7c0ed5f7-6941-451c-a17e-504c6adab23f)
+![image](https://github.com/kamangir/openai-commands/assets/1007567/7c0ed5f7-6941-451c-a17e-504c6adab23f)
 
 sample output for [`onlinefoods`](./assets/VisuaLyze/onlinefoods/).
 

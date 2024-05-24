@@ -3,7 +3,7 @@ from blueness.pypi import setup
 
 setup(
     filename=__file__,
-    repo_name="openai-cli",
+    repo_name="openai-commands",
     name=NAME,
     version=VERSION,
     description=DESCRIPTION,

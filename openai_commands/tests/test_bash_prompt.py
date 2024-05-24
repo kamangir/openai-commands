@@ -1,5 +1,5 @@
 import pytest
-from openai_cli.completion.prompts.bash import bash_prompt
+from openai_commands.completion.prompts.bash import bash_prompt
 from abcli.modules import objects
 
 

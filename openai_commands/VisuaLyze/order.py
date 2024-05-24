@@ -4,11 +4,11 @@ from typing import List
 from flask import render_template
 from abcli import file
 from abcli import string
-from openai_cli import ICON
-from openai_cli import env
-from openai_cli.gpt.chat import interact_with_openai
-from openai_cli.VisuaLyze import NAME, VERSION
-from openai_cli.logger import logger
+from openai_commands import ICON
+from openai_commands import env
+from openai_commands.gpt.chat import interact_with_openai
+from openai_commands.VisuaLyze import NAME, VERSION
+from openai_commands.logger import logger
 
 examples_path = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "../../assets/VisuaLyze")
@@ -141,7 +141,7 @@ class VisuaLyzeOrder:
             description="\n".join(self.description),
             data_filename=self.data_filename,
             timestamp=string.pretty_date(),
-            github_url="https://github.com/kamangir/openai-cli/tree/main/openai_cli/VisuaLyze",
+            github_url="https://github.com/kamangir/openai-commands/tree/main/openai_commands/VisuaLyze",
             dataframe_html=self.df.head().to_html(),
             status="{}{}".format(
                 (

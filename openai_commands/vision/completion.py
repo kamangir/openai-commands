@@ -8,9 +8,9 @@ from abcli import file
 from abcli import string
 from abcli.modules import objects
 from abcli.options import Options
-from openai_cli import env
-from openai_cli.vision import NAME
-from openai_cli.logger import logger
+from openai_commands import env
+from openai_commands.vision import NAME
+from openai_commands.logger import logger
 
 
 class Detail(Enum):
@@ -143,9 +143,8 @@ def complete(
         )
 
     choice = response.choices[0]
-    logger.info(
-        "openai-cli.vision.complete(): finish_reason: {}.".format(choice.finish_reason)
-    )
+    logger.info(f"{NAME}.complete(): finish_reason: {choice.finish_reason}.")
+
     return (
         choice.finish_reason in [None, "stop"],
         choice.message.content,

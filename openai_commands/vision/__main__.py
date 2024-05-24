@@ -1,8 +1,8 @@
 import argparse
 from abcli.options import Options
-from openai_cli.vision import NAME, VERSION
-from openai_cli.vision.completion import complete_object, Detail
-from openai_cli.logger import logger
+from openai_commands.vision import NAME, VERSION
+from openai_commands.vision.completion import complete_object, Detail
+from openai_commands.logger import logger
 
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")

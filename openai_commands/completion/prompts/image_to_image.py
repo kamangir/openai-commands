@@ -1,5 +1,5 @@
 from typing import List
-from openai_cli.completion.prompts.structured import structured_prompt
+from openai_commands.completion.prompts.structured import structured_prompt
 
 
 class i2i_prompt(structured_prompt):

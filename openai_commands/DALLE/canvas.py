@@ -8,9 +8,9 @@ from abcli.modules.host import signature as host_signature
 from abcli.modules.host import is_jupyter
 from abcli.plugins.graphics import add_signature
 from abcli import file
-from openai_cli import NAME, VERSION
-from openai_cli.DALLE.brush import RandomWalkBrush, TilingBrush
-from openai_cli.logger import logger
+from openai_commands import NAME, VERSION
+from openai_commands.DALLE.brush import RandomWalkBrush, TilingBrush
+from openai_commands.logger import logger
 from abcli.logger import crash_report
 
 

@@ -1,6 +1,6 @@
 import pytest
-from openai_cli import env
-from openai_cli.VisuaLyze.order import VisuaLyzeOrder
+from openai_commands import env
+from openai_commands.VisuaLyze.order import VisuaLyzeOrder
 
 
 @pytest.mark.parametrize(

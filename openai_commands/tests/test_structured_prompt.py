@@ -1,5 +1,5 @@
 import os.path
-from openai_cli.completion.prompts.structured import structured_prompt
+from openai_commands.completion.prompts.structured import structured_prompt
 from abcli import file
 
 

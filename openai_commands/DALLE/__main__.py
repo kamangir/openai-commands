@@ -4,9 +4,9 @@ from abcli import file
 from abcli.options import Options
 from abcli.modules import objects
 from articraft import html
-from openai_cli.DALLE import NAME, VERSION
-from openai_cli.DALLE.canvas import Canvas
-from openai_cli.logger import logger
+from openai_commands.DALLE import NAME, VERSION
+from openai_commands.DALLE.canvas import Canvas
+from openai_commands.logger import logger
 
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")

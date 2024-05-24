@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 from abcli import env, file
 from abcli import string
 from abcli.modules.host import is_jupyter
-from openai_cli.completion.functions.python import ai_function_py
-from openai_cli.logger import logger
+from openai_commands.completion.functions.python import ai_function_py
+from openai_commands.logger import logger
 
 
 class i2i_function(ai_function_py):

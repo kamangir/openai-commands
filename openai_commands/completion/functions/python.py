@@ -1,7 +1,7 @@
 from typing import Dict, Any, Tuple
 from abcli.logger import crash_report
-from openai_cli.completion.functions.generic import ai_function
-from openai_cli.logger import logger
+from openai_commands.completion.functions.generic import ai_function
+from openai_commands.logger import logger
 
 
 class ai_function_py(ai_function):

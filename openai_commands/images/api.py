@@ -8,10 +8,10 @@ from abcli.modules import host
 from abcli.modules import objects
 from abcli.modules.host import is_jupyter
 from abcli.plugins import graphics
-from openai_cli import VERSION
-from openai_cli import env
-from openai_cli.images import NAME
-from openai_cli.logger import logger
+from openai_commands import VERSION
+from openai_commands import env
+from openai_commands.images import NAME
+from openai_commands.logger import logger
 
 
 class OpenAIImageGenerator:

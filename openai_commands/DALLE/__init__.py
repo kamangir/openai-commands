@@ -1,4 +1,3 @@
-from openai_cli import NAME, VERSION
+from openai_commands import NAME, VERSION
 
 NAME = f"{NAME}.DALLE"
-
