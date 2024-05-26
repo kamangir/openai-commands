@@ -24,7 +24,7 @@ also works [in a notebook](./notebooks/completion.ipynb).
 
 ## Code Generation
 
-Example notebooks to [generate a python functions](./notebooks/completion_ai_function_py.ipynb), special case for [image to image python functions](./notebooks/completion_i2i_function.ipynb), and to [write a bash script](./notebooks/completion_ai_function_bash.ipynb) to use a script, for example, [Vancouver-Watching](https://github.com/kamangir/Vancouver-Watching).
+Example notebooks to [generate a python functions](./notebooks/completion_ai_function_py.ipynb), special case for [image to image python functions](./notebooks/completion_i2i_function.ipynb), and to [write a bash script](./notebooks/completion_ai_function_bash.ipynb) to use a script, for example, [vancouver-watching](https://github.com/kamangir/vancouver-watching).
 
 ![image](./assets/completion_i2i_function.png)
 
@@ -60,7 +60,7 @@ Implements the [OpenAI vision API](https://platform.openai.com/docs/guides/visio
 > GPT-4 with Vision ... `GPT-4V` or `gpt-4-vision-preview` in the API ... model ... take in images and answer questions about them
 > ... not stateful ... ([more](https://arash-kamangir.medium.com/%EF%B8%8F-openai-vision-1-fb3691bd095a))
 
-Example use on the images ingested from the traffic cameras in downtown Vancouver, using [Vancouver-Watching 🌈](https://github.com/kamangir/Vancouver-Watching),
+Example use on the images ingested from the traffic cameras in downtown Vancouver, using [vancouver-watching 🌈](https://github.com/kamangir/vancouver-watching),
 
 ```bash
 @openai vision \
