@@ -29,8 +29,7 @@ function openai_commands() {
         "${@:2}"
 }
 
-abcli_source_path \
-    $abcli_path_git/openai-commands/.abcli/tests
+abcli_source_path - caller,suffix=/tests
 
 abcli_env dot load \
     plugin=openai_commands

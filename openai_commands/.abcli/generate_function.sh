@@ -31,7 +31,7 @@ function openai_commands_generate_function() {
             }' > ./raw/$filename.json"
     else
         if [ "$dryrun" == 0 ]; then
-            python3 -m aiart.image \
+            python3 -m articraft.image \
                 convert_to_RGBA \
                 --source ./raw/$prev_filename.png \
                 --destination ./raw/$prev_filename-RGBA.png \
