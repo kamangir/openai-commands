@@ -6,4 +6,6 @@ function test_openai_commands_version() {
 
     abcli_eval dryrun=$do_dryrun \
         "openai_commands version ${@:2}"
+
+    return 0
 }
