@@ -26,7 +26,7 @@ class i2i_function(ai_function_py):
         if self.validation_input is None:
             _, self.validation_input = file.load_image(
                 os.path.join(
-                    env.abcli_path_home,
+                    env.HOME,
                     "git/blue-bracket/images/portal-34.jpg",
                 )
             )
