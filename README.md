@@ -4,15 +4,11 @@
 
 🔷 [completion](#Completion) 🔷 [code generation](#code-generation) 🔷 [sentence -> image](#sentence---image) 🔷 [text -> mural](#text---mural) 🔷 [vision](#vision) 🔷 [images](#images) 🔷 [gpt](#gpt) 🔷 [VisuaLyze](#VisuaLyze) 🔷
 
-## Install
-
-Install [`awesome-bash-cli`](https://github.com/kamangir/awesome-bash-cli) (`abcli`), then,
-
 ```bash
-abcli git clone openai-commands install
+pip install openai-commands
 ```
 
-## Completion
+## completion
 
 ```bash
 @openai complete "describe mathematics"
@@ -22,13 +18,13 @@ abcli git clone openai-commands install
 
 also works [in a notebook](./notebooks/completion.ipynb).
 
-## Code Generation
+## code generation
 
 Example notebooks to [generate a python functions](./notebooks/completion_ai_function_py.ipynb), special case for [image to image python functions](./notebooks/completion_i2i_function.ipynb), and to [write a bash script](./notebooks/completion_ai_function_bash.ipynb) to use a script, for example, [vancouver-watching](https://github.com/kamangir/vancouver-watching).
 
 ![image](./assets/completion_i2i_function.png)
 
-## Sentence -> Image
+## sentence -> image
 
 ```bash
 @select - open; \
@@ -40,7 +36,7 @@ Example notebooks to [generate a python functions](./notebooks/completion_ai_fun
 
 ![image](./assets/carrot.png)
 
-## Text -> Mural
+## text -> mural
 
 "[The Laughing Heart](https://allpoetry.com/poem/14326890-The-Laughing-Heart-by-Charles-Bukowski)" by Charles Bukowski, [more examples](http://kamangir.net/private/?object=2023-03-26-19-10-26-51814).
 
@@ -53,7 +49,7 @@ DALL-E render  \
 
 ![image](./assets/DALL-E.png)
 
-## Vision
+## vision
 
 Implements the [OpenAI vision API](https://platform.openai.com/docs/guides/vision).
 
@@ -110,10 +106,6 @@ Notebook implementation [`./notebooks/images.ipynb`](./notebooks/images.ipynb),
 co-authored with ChapGPT.
 
 ```bash
-gpt
-```
-
-```bash
  > gpt help
 gpt [dryrun,~upload] \
 	[-|<object-name>] \
@@ -151,3 +143,7 @@ def VisuaLyze(df: pd.DataFrame()):
     plt.ylabel('Frequency')
     plt.show()
 ```
+
+---
+
+[![PyPI version](https://img.shields.io/pypi/v/openai-commands.svg)](https://pypi.org/project/openai-commands/)
