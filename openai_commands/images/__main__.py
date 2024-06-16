@@ -6,6 +6,7 @@ from abcli import file
 from openai_commands.images import NAME, VERSION
 from openai_commands.images.api import OpenAIImageGenerator
 from openai_commands.logger import logger
+from blueness.argparse.generic import ending
 
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
@@ -61,7 +62,6 @@ if args.task == "generate":
         )[0]:
             success = False
 else:
-    logger.error(f"-{NAME}: {args.task}: command not found.")
+    success = None
 
-if not success:
-    logger.error(f"-{NAME}: {args.task}: failed.")
+ending(logger, NAME, args.task, success)

@@ -2,6 +2,7 @@ import argparse
 from openai_commands.completion import NAME, VERSION
 from openai_commands.completion.prompts.bash import bash_prompt
 from openai_commands.logger import logger
+from blueness.argparse.generic import ending
 
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
@@ -20,7 +21,6 @@ success = False
 if args.task == "pre_process_bash_description":
     success = bash_prompt.pre_process(args.filename)
 else:
-    logger.error(f"-{NAME}: {args.task}: command not found.")
+    success = None
 
-if not success:
-    logger.error(f"-{NAME}: {args.task}: failed.")
+ending(logger, NAME, args.task, success)

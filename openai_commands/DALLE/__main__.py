@@ -7,6 +7,7 @@ from articraft import html
 from openai_commands.DALLE import NAME, VERSION
 from openai_commands.DALLE.canvas import Canvas
 from openai_commands.logger import logger
+from blueness.argparse.generic import ending
 
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
@@ -95,7 +96,6 @@ if args.task == "render":
         )
 
 else:
-    logger.error(f"-{NAME}: {args.task}: command not found.")
+    success = None
 
-if not success:
-    logger.error(f"-{NAME}: {args.task}: failed.")
+ending(logger, NAME, args.task, success)

@@ -3,6 +3,7 @@ from abcli.options import Options
 from openai_commands.vision import NAME, VERSION
 from openai_commands.vision.completion import complete_object, Detail
 from openai_commands.logger import logger
+from blueness.argparse.generic import ending
 
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
@@ -57,7 +58,6 @@ if args.task == "complete":
         verbose=args.verbose,
     )
 else:
-    logger.error(f"-{NAME}: {args.task}: command not found.")
+    success = None
 
-if not success:
-    logger.error(f"-{NAME}: {args.task}: failed.")
+ending(logger, NAME, args.task, success)

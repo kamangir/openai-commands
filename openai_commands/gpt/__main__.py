@@ -4,6 +4,7 @@ from openai_commands import env
 from openai_commands.gpt import NAME
 from openai_commands.gpt.chat import chat_with_openai, list_models
 from openai_commands.logger import logger
+from blueness.argparse.generic import ending
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
 parser.add_argument(
@@ -40,7 +41,6 @@ elif args.task == "list_models":
     success = True
     list_models(log=bool(args.log))
 else:
-    logger.error(f"-{NAME}: {args.task}: command not found.")
+    success = None
 
-if not success:
-    logger.error(f"-{NAME}: {args.task}: failed.")
+ending(logger, NAME, args.task, success)
