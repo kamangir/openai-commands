@@ -3,7 +3,7 @@ from abcli.options import Options
 from openai_commands.vision import NAME, VERSION
 from openai_commands.vision.completion import complete_object, Detail
 from openai_commands.logger import logger
-from blueness.argparse.generic import ending
+from blueness.argparse.generic import sys_exit
 
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
@@ -60,4 +60,4 @@ if args.task == "complete":
 else:
     success = None
 
-ending(logger, NAME, args.task, success)
+sys_exit(logger, NAME, args.task, success)

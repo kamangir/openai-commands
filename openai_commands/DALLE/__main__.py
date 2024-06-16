@@ -7,7 +7,7 @@ from articraft import html
 from openai_commands.DALLE import NAME, VERSION
 from openai_commands.DALLE.canvas import Canvas
 from openai_commands.logger import logger
-from blueness.argparse.generic import ending
+from blueness.argparse.generic import sys_exit
 
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
@@ -98,4 +98,4 @@ if args.task == "render":
 else:
     success = None
 
-ending(logger, NAME, args.task, success)
+sys_exit(logger, NAME, args.task, success)

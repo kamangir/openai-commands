@@ -2,7 +2,7 @@ import argparse
 from openai_commands.completion import NAME, VERSION
 from openai_commands.completion.prompts.bash import bash_prompt
 from openai_commands.logger import logger
-from blueness.argparse.generic import ending
+from blueness.argparse.generic import sys_exit
 
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
@@ -23,4 +23,4 @@ if args.task == "pre_process_bash_description":
 else:
     success = None
 
-ending(logger, NAME, args.task, success)
+sys_exit(logger, NAME, args.task, success)

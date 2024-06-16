@@ -6,7 +6,7 @@ from abcli import file
 from openai_commands.images import NAME, VERSION
 from openai_commands.images.api import OpenAIImageGenerator
 from openai_commands.logger import logger
-from blueness.argparse.generic import ending
+from blueness.argparse.generic import sys_exit
 
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
@@ -64,4 +64,4 @@ if args.task == "generate":
 else:
     success = None
 
-ending(logger, NAME, args.task, success)
+sys_exit(logger, NAME, args.task, success)

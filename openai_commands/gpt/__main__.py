@@ -4,7 +4,7 @@ from openai_commands import env
 from openai_commands.gpt import NAME
 from openai_commands.gpt.chat import chat_with_openai, list_models
 from openai_commands.logger import logger
-from blueness.argparse.generic import ending
+from blueness.argparse.generic import sys_exit
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
 parser.add_argument(
@@ -43,4 +43,4 @@ elif args.task == "list_models":
 else:
     success = None
 
-ending(logger, NAME, args.task, success)
+sys_exit(logger, NAME, args.task, success)
