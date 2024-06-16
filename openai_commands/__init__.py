@@ -4,6 +4,8 @@ ICON = "🛠️"
 
 DESCRIPTION = f"{ICON} a command interface to the OpenAI API."
 
-VERSION = "3.24.1"
+VERSION = "3.25.1"
 
 REPO_NAME = "openai-commands"
+
+MARQUEE = "https://github.com/kamangir/openai-commands/raw/main/assets/carrot.png"
