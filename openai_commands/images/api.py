@@ -2,16 +2,19 @@ import json
 from openai import OpenAI
 from typing import Tuple, Any
 from IPython.display import Image, display
+from blueness import module
 from abcli import file
 from abcli import string
 from abcli.modules import host
 from abcli.modules import objects
 from abcli.modules.host import is_jupyter
 from abcli.plugins import graphics
-from openai_commands import VERSION
+from openai_commands import NAME, VERSION
 from openai_commands import env
-from openai_commands.images import NAME
 from openai_commands.logger import logger
+
+
+NAME = module.name(__file__, NAME)
 
 
 class OpenAIImageGenerator:

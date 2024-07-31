@@ -1,13 +1,16 @@
 import argparse
 import os
+from blueness import module
 from abcli import file
-from abcli.options import Options
+from blue_options.options import Options
 from abcli.modules import objects
 from articraft import html
-from openai_commands.DALLE import NAME, VERSION
+from openai_commands import NAME, VERSION
 from openai_commands.DALLE.canvas import Canvas
 from openai_commands.logger import logger
 from blueness.argparse.generic import sys_exit
+
+NAME = module.name(__file__, NAME)
 
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")

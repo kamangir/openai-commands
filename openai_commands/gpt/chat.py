@@ -9,13 +9,15 @@ committed in its original form and then modified by Arash Abadpour - arash.abadp
 """
 
 import os
-from typing import List, Any, Tuple, Dict
+from typing import List, Any, Tuple
+from blueness import module
 from openai import OpenAI
 from abcli import file, path
-from openai_commands import VERSION
+from openai_commands import NAME, VERSION
 from openai_commands import env
-from openai_commands.gpt import NAME
 from openai_commands.logger import logger
+
+NAME = module.name(__file__, NAME)
 
 FULL_NAME = f"{NAME}-{VERSION}"
 

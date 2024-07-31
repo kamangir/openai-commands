@@ -2,13 +2,15 @@ import os
 import pandas as pd
 from typing import List
 from flask import render_template
+from blueness import module
 from abcli import file
 from abcli import string
-from openai_commands import ICON
+from openai_commands import ICON, NAME, VERSION
 from openai_commands import env
 from openai_commands.gpt.chat import interact_with_openai
-from openai_commands.VisuaLyze import NAME, VERSION
 from openai_commands.logger import logger
+
+NAME = module.name(__file__, NAME)
 
 examples_path = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "../../assets/VisuaLyze")

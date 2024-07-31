@@ -1,5 +1,5 @@
 import pytest
-from abcli.options import Options
+from blue_options.options import Options
 from abcli.plugins.testing import download_object
 from openai_commands import env
 from openai_commands.vision.completion import complete_object

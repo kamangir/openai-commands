@@ -4,6 +4,8 @@ function openai_commands() {
     local task=$(abcli_unpack_keyword $1 help)
 
     if [ $task == "help" ]; then
+        literature_review "$@"
+
         openai_commands_complete "$@"
 
         abcli_show_usage "@openai dashboard" \
@@ -30,6 +32,8 @@ function openai_commands() {
 }
 
 abcli_source_path - caller,suffix=/tests
+
+abcli_log $(openai_commands version --show_icon 1)
 
 abcli_env dot load \
     plugin=openai_commands

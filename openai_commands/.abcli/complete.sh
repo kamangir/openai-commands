@@ -39,7 +39,7 @@ function openai_commands_complete() {
 
     local options=$2
 
-    python3 -m openai_commands \
+    python3 -m openai_commands.completion \
         complete \
         --prompt "$1" \
         "${@:3}"

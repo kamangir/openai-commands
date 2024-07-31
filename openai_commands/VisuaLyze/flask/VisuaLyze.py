@@ -1,9 +1,12 @@
 from flask import Flask, request
+from blueness import module
 from abcli import env
 from openai_commands import env
+from openai_commands import NAME, VERSION
 from openai_commands.logger import logger
-from openai_commands.VisuaLyze import NAME, VERSION
 from openai_commands.VisuaLyze.order import VisuaLyzeOrder
+
+NAME = module.name(__file__, NAME)
 
 app = Flask(__name__)
 
