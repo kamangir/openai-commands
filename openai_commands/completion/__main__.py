@@ -1,8 +1,11 @@
 import argparse
-from openai_commands.completion import NAME, VERSION
+from blueness import module
+from openai_commands import NAME, VERSION
 from openai_commands.completion.prompts.bash import bash_prompt
 from openai_commands.logger import logger
 from blueness.argparse.generic import sys_exit
+
+NAME = module.name(__file__, NAME)
 
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")

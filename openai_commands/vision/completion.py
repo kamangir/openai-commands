@@ -2,15 +2,18 @@ import json
 from enum import Enum, auto
 from typing import List
 from tqdm import tqdm
+from blueness import module
 from openai import OpenAI
 from abcli import env as abcli_env
 from abcli import file
 from abcli import string
 from abcli.modules import objects
-from abcli.options import Options
+from blue_options.options import Options
 from openai_commands import env
-from openai_commands.vision import NAME
+from openai_commands import NAME
 from openai_commands.logger import logger
+
+NAME = module.name(__file__, NAME)
 
 
 class Detail(Enum):

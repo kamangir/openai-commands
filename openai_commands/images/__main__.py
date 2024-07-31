@@ -1,12 +1,15 @@
 import argparse
+from blueness import module
 from tqdm import tqdm
 from abcli import string
 from abcli.modules import objects
 from abcli import file
-from openai_commands.images import NAME, VERSION
+from openai_commands import NAME, VERSION
 from openai_commands.images.api import OpenAIImageGenerator
 from openai_commands.logger import logger
 from blueness.argparse.generic import sys_exit
+
+NAME = module.name(__file__, NAME)
 
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")

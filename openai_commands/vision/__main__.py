@@ -1,9 +1,12 @@
 import argparse
-from abcli.options import Options
-from openai_commands.vision import NAME, VERSION
+from blueness import module
+from blue_options.options import Options
+from openai_commands import NAME, VERSION
 from openai_commands.vision.completion import complete_object, Detail
 from openai_commands.logger import logger
 from blueness.argparse.generic import sys_exit
+
+NAME = module.name(__file__, NAME)
 
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")

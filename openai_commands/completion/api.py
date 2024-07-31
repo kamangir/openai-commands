@@ -1,9 +1,12 @@
-from typing import Tuple, Any, Dict, List
+from typing import Tuple, Any, Dict
 from openai import OpenAI
+from blueness import module
 from abcli.modules.host import is_jupyter
 from openai_commands import env
-from openai_commands.completion import NAME
+from openai_commands import NAME
 from openai_commands.logger import logger
+
+NAME = module.name(__file__, NAME)
 
 
 # https://github.com/openai/openai-python
