@@ -8,7 +8,7 @@
   "an orange carrot walking on Mars."
 ```
 
-![image](./assets/carrot.png)
+![image](../../assets/carrot.png)
 
 # 🛠️ text -> mural
 
@@ -21,13 +21,13 @@ DALL-E render  \
   https://allpoetry.com/poem/14326890-The-Laughing-Heart-by-Charles-Bukowski
 ```
 
-![image](./assets/DALL-E.png)
+![image](../../assets/DALL-E.png)
 
 # 🛠️ images
 
 Implements the [OpenAI Image Generation API](https://platform.openai.com/docs/guides/images/usage?context=python).
 
-Notebook implementation [`./notebooks/images.ipynb`](./notebooks/images.ipynb),
+Notebook implementation [`./notebooks/images.ipynb`](../../notebooks/images.ipynb),
 
 ```bash
 @select - open; \
