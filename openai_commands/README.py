@@ -14,17 +14,17 @@ default_thumbnail = (
 )
 
 features = {
-    "completion": {
-        "description": "prompt completion",
+    "prompt completion": {
+        "description": "basic prompt completion.",
         "icon": ICON,
         "thumbnail": default_thumbnail,
-        "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/completion",
+        "url": "https://github.com/kamangir/openai-commands/tree/refactor-2024-07-30/openai_commands/completion#%EF%B8%8F-prompt-completion",
     },
     "code generation": {
         "description": "example notebooks to [generate a python functions](./notebooks/completion_ai_function_py.ipynb), special case for [image to image python functions](./notebooks/completion_i2i_function.ipynb), and to [write a bash script](./notebooks/completion_ai_function_bash.ipynb) to use a script, for example, [vancouver-watching](https://github.com/kamangir/vancouver-watching).",
         "icon": ICON,
-        "thumbnail": default_thumbnail,
-        "url": "https://github.com/kamangir/openai-commands/blob/main/assets/completion_i2i_function.png?raw=true",
+        "thumbnail": "https://github.com/kamangir/openai-commands/blob/main/assets/completion_i2i_function.png?raw=true",
+        "url": "https://github.com/kamangir/openai-commands/tree/refactor-2024-07-30/openai_commands/completion#%EF%B8%8F-code-generation",
     },
     "VisuaLyze": {
         "description": 'How about calling it "VisuaLyze"? This name combines "visualize" and "analyze," reflecting the tool\'s capability to generate custom data visualizations and analyze user input through AI - OpenAI',
