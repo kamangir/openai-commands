@@ -6,7 +6,7 @@ function literature_review() {
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then
         options="dryrun,~download,~upload"
         local args="[--count <-1>]$ABCUL[--filename <filename.csv>]$ABCUL[--questions <questions.yaml>]"
-        abcli_show_usage "literature_review$ABCUL[$options]$ABCUL[.|<object-name>]$ABCUL[<args>]" \
+        abcli_show_usage "literature_review$ABCUL[$options]$ABCUL[.|<object-name>]$ABCUL$args" \
             "run literature review on <object-name>."
         return
     fi
