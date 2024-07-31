@@ -1,3 +1,8 @@
+| | | |
+|-|-|-|
+| sentence -> image | text -> mural | images |
+| ![image](../../assets/carrot.png) |  ![image](../../assets/DALL-E.png) | ![image](https://github.com/kamangir/assets/blob/main/openai_commands/2024-01-20-19-00-28-67378.png?raw=true) |
+
 # 🛠️ sentence -> image
 
 ```bash
@@ -8,7 +13,6 @@
   "an orange carrot walking on Mars."
 ```
 
-![image](../../assets/carrot.png)
 
 # 🛠️ text -> mural
 
@@ -21,13 +25,11 @@ DALL-E render  \
   https://allpoetry.com/poem/14326890-The-Laughing-Heart-by-Charles-Bukowski
 ```
 
-![image](../../assets/DALL-E.png)
-
 # 🛠️ images
 
 Implements the [OpenAI Image Generation API](https://platform.openai.com/docs/guides/images/usage?context=python).
 
-Notebook implementation [`./notebooks/images.ipynb`](../../notebooks/images.ipynb),
+Notebook implementation [`./notebooks/images.ipynb`](../../notebooks/images_generate.ipynb),
 
 ```bash
 @select - open; \
@@ -35,6 +37,3 @@ Notebook implementation [`./notebooks/images.ipynb`](../../notebooks/images.ipyn
 	"a person flying through the streets of Vancouver." \
 	. --verbose 1
 ```
-
-![image](https://github.com/kamangir/assets/blob/main/openai_commands/2024-01-20-19-00-28-67378.png?raw=true)
-
