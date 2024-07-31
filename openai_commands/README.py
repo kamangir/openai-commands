@@ -30,7 +30,7 @@ features = {
         "description": 'How about calling it "VisuaLyze"? This name combines "visualize" and "analyze," reflecting the tool\'s capability to generate custom data visualizations and analyze user input through AI - OpenAI',
         "icon": ICON,
         "thumbnail": "https://github.com/kamangir/openai-commands/assets/1007567/7c0ed5f7-6941-451c-a17e-504c6adab23f",
-        "url": "",
+        "url": "https://github.com/kamangir/openai-commands/tree/refactor-2024-07-30/openai_commands/VisuaLyze",
     },
     "gpt": {
         "description": "co-authored with ChapGPT.",
