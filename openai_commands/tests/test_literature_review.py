@@ -31,6 +31,6 @@ def test_literature_review(
     assert review_literature(
         object_name=object_name,
         filename=filename,
-        questions_filename=questions,
+        questions_filename=questions_filename,
         count=count,
     )
