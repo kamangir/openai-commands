@@ -22,7 +22,7 @@ function literature_review() {
 
     abcli_log "literature_review: $object_name ..."
 
-    abcli_eval dryrun dryrun=$do_dryrun \
+    abcli_eval dryrun=$do_dryrun \
         python3 -m openai_commands.literature_review \
         --object_name $object_name \
         "${@:3}"
