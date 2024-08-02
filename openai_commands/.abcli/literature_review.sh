@@ -13,7 +13,7 @@ function literature_review() {
 
     local do_dryrun=$(abcli_option_int "$options" dryrun 0)
     local do_download=$(abcli_option_int "$options" download $(abcli_not $do_dryrun))
-    local do_upload=$(abcli_option_int "$options" uploa $(abcli_not $do_dryrun))
+    local do_upload=$(abcli_option_int "$options" upload $(abcli_not $do_dryrun))
 
     local object_name=$(abcli_clarify_object $2 .)
 
