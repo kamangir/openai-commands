@@ -5,7 +5,12 @@ from openai_commands.literature_review.functions import review_literature
 
 
 @pytest.mark.parametrize(
-    ["object_name", "filename", "questions", "count"],
+    [
+        "object_name",
+        "filename",
+        "questions_filename",
+        "count",
+    ],
     [
         [
             env.LITERATURE_REVIEW_OBJECT,
@@ -18,7 +23,7 @@ from openai_commands.literature_review.functions import review_literature
 def test_literature_review(
     object_name: str,
     filename: str,
-    questions: str,
+    questions_filename: str,
     count: int,
 ):
     assert download_object(object_name)
@@ -26,6 +31,6 @@ def test_literature_review(
     assert review_literature(
         object_name=object_name,
         filename=filename,
-        questions=questions,
+        questions_filename=questions,
         count=count,
     )

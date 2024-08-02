@@ -35,7 +35,7 @@ args = parser.parse_args()
 success = review_literature(
     object_name=args.object_name,
     filename=args.filename,
-    questions=args.questions,
+    questions_filename=args.questions,
     count=args.count,
 )
 
