@@ -23,6 +23,13 @@ literature_review - AMR-v1 \
 	--choices choices1.yaml
 ```
 
+```yaml
+antimicrobial: if it talks about antimicrobial treatment for cholera.
+susceptibility: if it has information regarding antibiotic-reistance or susceptibility to cholerae strains.
+otherwise: not relevant 
+```
+
+
 ![image](https://github.com/kamangir/assets/blob/main/openai_commands/literature-review/log.png?raw=true)
 
 🔗 [AMR-v1.tar.gz](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v1.tar.gz)
