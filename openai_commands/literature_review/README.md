@@ -12,8 +12,9 @@ literature review using [OpenAI API](../completion/).
 	[--count <-1>] \
 	[--filename <filename.csv>] \
 	[--overwrite 1] \
-	[--suffix <suffix>]
- . <object-name>: literature review @ choices.
+	[--suffix <suffix>] \
+	[--verbose 1]
+ . <object-name>/<filename.csv> -literature-review-@-choices-> <filename-suffix.csv>.
 ```
 
 ## example run
