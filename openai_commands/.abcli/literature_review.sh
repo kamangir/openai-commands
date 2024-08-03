@@ -6,7 +6,7 @@ function literature_review() {
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then
         options="dryrun,~download,~upload"
         local args="[--count <-1>]$ABCUL[--filename <filename.csv>]$ABCUL[--choices <choices.yaml>]"
-        abcli_show_usage "literature_review$ABCUL[$options]$ABCUL[.|<object-name>]$ABCUL$args" \
+        abcli_show_usage "literature_review$ABCUL[$options]$ABCUL[$LITERATURE_REVIEW_OBJECT|<object-name>]$ABCUL$args" \
             "<object-name> -choices-> literature review."
         return
     fi
@@ -15,7 +15,7 @@ function literature_review() {
     local do_download=$(abcli_option_int "$options" download $(abcli_not $do_dryrun))
     local do_upload=$(abcli_option_int "$options" upload $(abcli_not $do_dryrun))
 
-    local object_name=$(abcli_clarify_object $2 .)
+    local object_name=$(abcli_clarify_object $2 $LITERATURE_REVIEW_OBJECT)
 
     [[ "$do_download" == 1 ]] &&
         abcli_download - $object_name
