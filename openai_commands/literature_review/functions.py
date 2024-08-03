@@ -118,12 +118,13 @@ def review_literature(
         objects.path_of(
             file.add_postfix(
                 filename,
-                "screening-results-{}".format(
+                "{}-{}".format(
+                    file.name(choices_filename),
                     string.pretty_date(
                         date=None,
                         as_filename=True,
                         unique=True,
-                    )
+                    ),
                 ),
             ),
             object_name,
