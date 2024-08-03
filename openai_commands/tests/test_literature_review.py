@@ -1,4 +1,6 @@
 import pytest
+from abcli import file
+from abcli.modules import objects
 from abcli.plugins.testing import download_object
 from openai_commands import env
 from openai_commands.literature_review.functions import (
@@ -28,11 +30,15 @@ def test_generate_prompt(
 ):
     assert download_object(object_name)
 
-    assert generate_prompt(
-        object_name=object_name,
-        filename=filename,
-        choices_filename=choices_filename,
+    success, choices = file.load_yaml(
+        objects.path_of(
+            choices_filename,
+            object_name,
+        )
     )
+    assert success
+
+    assert generate_prompt(choices)
 
 
 @pytest.mark.parametrize(
