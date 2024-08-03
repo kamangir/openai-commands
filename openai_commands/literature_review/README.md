@@ -17,7 +17,8 @@ literature_review \
 ## example run
 
 ```bash
-literature_review - AMR-v1 \
+literature_review - \
+	$LITERATURE_REVIEW_OBJECT \
 	--count 5 \
 	--filename review_463333_screen_csv_20240730130035.csv \
 	--choices choices1.yaml
@@ -26,17 +27,42 @@ literature_review - AMR-v1 \
 `choices1.yaml`:
 
 ```yaml
-antimicrobial: if it talks about antimicrobial treatment for cholera.
-susceptibility: if it has information regarding antibiotic-reistance or susceptibility to cholerae strains.
-otherwise: not relevant 
+description: read this abstract of a scentific paper
+choices:
+  antimicrobial: if it talks about antimicrobial treatment for cholera.
+  susceptibility: if it has information regarding antibiotic-reistance or susceptibility to cholerae strains.
+  otherwise: not relevant
 ```
-
 
 ![image](https://github.com/kamangir/assets/blob/main/openai_commands/literature-review/log.png?raw=true)
 
 🔗 [AMR-v1.tar.gz](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v1.tar.gz)
 
 📜 [literature_review.ipynb](../../notebooks/literature_review/literature_review.ipynb)
+
+## other choices
+
+`choices-study-type.yaml`:
+
+```yaml
+description: select from these studies theose that assess the clinical efficacy of cholera treatments and/or examine the antibiotic resistance in Vibrio cholerae strains in clinical samples
+choices:
+  clinical trials: if it talks about clinical trials.
+  prospective observational studies: if it talks about prospective observational studies with comparators like Standard care, placebo, or other antibiotics.
+  cross sectional: if it talk about cross-sectional studies.
+  surveillance studies: if it talks about surveillance.
+```
+
+`choices-screening-result.yaml`:
+
+```yaml
+description: select from these studies theose that assess the clinical efficacy of cholera treatments and/or examine the antibiotic resistance in Vibrio cholerae strains in clinical samples
+choices:
+  antibiotic treatment: if it talks about the intervention with any of these antibiotic treatments, tetracycline* or doxycycline* or azithromycin or erythromycin or clarithromycin, roxithromycin or ciprofloxacin or nalidixic acid or chloramphenicol or furazolidone or norfloxacin or cotrimoxazole or trimethoprim or sulfamethoxazole or sulphamethoxazole, assessing clinical efficacy (benefits) of different antimicrobial treatments.
+  outcome: if it mentioned any of the following outcomes, mortality, duration of illness (diarrhea), total stool volume, total days of hospitalization, total amount of intravenous fluid needed, fecal excretion of the bacteria.
+  susceptibility: if it talks about antibiotic susceptibility in bacterial culture, or less commonly genomic data, antibiotic* or antimicrob* or (antimicrobial resistance) or susceptible or susceptibility, antibiotic susceptibility testing and prevalence of antibiotic-resistant or resistance pattern in clinical samples.
+  no full-text review: if it talks about non-human studies, environmental samples, water sources, traditional medicines, natural, leaf, leaves, peptides, or extracts.
+```
 
 ---
 
