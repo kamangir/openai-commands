@@ -104,7 +104,12 @@ def review_literature(
     counter = 0
     for idx in tqdm(df.index):
         assessment = df.loc[idx, suffix]
-        if not overwrite and not pd.isna(assessment) and assessment != "":
+        if (
+            not overwrite
+            and not pd.isna(assessment)
+            and assessment != ""
+            and not assessment.startswith("failure")
+        ):
             logger.info(f"✅ {assessment}")
             continue
 
