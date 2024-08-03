@@ -1,21 +1,52 @@
 import pytest
 from abcli.plugins.testing import download_object
 from openai_commands import env
-from openai_commands.literature_review.functions import review_literature
+from openai_commands.literature_review.functions import (
+    generate_prompt,
+    review_literature,
+)
 
 
 @pytest.mark.parametrize(
     [
         "object_name",
         "filename",
-        "questions_filename",
+        "choices_filename",
+    ],
+    [
+        [
+            env.LITERATURE_REVIEW_OBJECT,
+            env.LITERATURE_REVIEW_TEST_FILENAME,
+            env.LITERATURE_REVIEW_TEST_CHOICES,
+        ],
+    ],
+)
+def test_generate_prompt(
+    object_name: str,
+    filename: str,
+    choices_filename: str,
+):
+    assert download_object(object_name)
+
+    assert generate_prompt(
+        object_name=object_name,
+        filename=filename,
+        choices_filename=choices_filename,
+    )
+
+
+@pytest.mark.parametrize(
+    [
+        "object_name",
+        "filename",
+        "choices_filename",
         "count",
     ],
     [
         [
             env.LITERATURE_REVIEW_OBJECT,
             env.LITERATURE_REVIEW_TEST_FILENAME,
-            env.LITERATURE_REVIEW_TEST_QUESTIONS,
+            env.LITERATURE_REVIEW_TEST_CHOICES,
             2,
         ],
     ],
@@ -23,7 +54,7 @@ from openai_commands.literature_review.functions import review_literature
 def test_literature_review(
     object_name: str,
     filename: str,
-    questions_filename: str,
+    choices_filename: str,
     count: int,
 ):
     assert download_object(object_name)
@@ -31,6 +62,6 @@ def test_literature_review(
     assert review_literature(
         object_name=object_name,
         filename=filename,
-        questions_filename=questions_filename,
+        choices_filename=choices_filename,
         count=count,
     )

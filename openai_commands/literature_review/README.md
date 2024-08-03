@@ -10,7 +10,7 @@ literature_review \
 	[.|<object-name>] \
 	[--count <-1>] \
 	[--filename <filename.csv>] \
-	[--questions <questions.yaml>]
+	[--choices <choices.yaml>]
  . run literature review on <object-name>.
 ```
 
@@ -20,12 +20,14 @@ literature_review \
 literature_review - AMR-v1 \
 	--count 5 \
 	--filename review_463333_screen_csv_20240730130035.csv \
-	--questions questions1.yaml
+	--choices choices1.yaml
 ```
 
-🔥
+![image](https://github.com/kamangir/assets/blob/main/openai_commands/literature-review/log.png?raw=true)
 
-📜 notebooks: [literature_review.ipynb](../../notebooks/literature_review/literature_review.ipynb)
+🔗 [AMR-v1.tar.gz](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v1.tar.gz)
+
+📜 [literature_review.ipynb](../../notebooks/literature_review/literature_review.ipynb)
 
 ---
 

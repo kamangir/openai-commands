@@ -1,3 +1,5 @@
+from typing import Dict
+import re
 from blueness import module
 from abcli import file
 from abcli import string
@@ -12,9 +14,11 @@ NAME = module.name(__file__, NAME)
 
 def assess_abstract(
     abstract: str,
+    prompt: str,
     log: bool = True,
 ) -> str:
-    prompt = generate_prompt(abstract)
+    prompt = clean_prompt(f"{prompt} {abstract}")
+
     success, assessment, _ = complete_prompt(prompt)
     assert success
 
@@ -24,39 +28,69 @@ def assess_abstract(
     return assessment
 
 
-def generate_prompt(abstract: str) -> str:
-    prompt = f"""
-        read this abstract of a scentific paper and return "antimicrobial" if it talks about antimicrobial 
-        treatment for cholera. return "susceptibility" if it has information regarding antibiotic-reistance
-        or susceptibility to cholerae strains. otherwise, return "not relevant". 
+def clean_prompt(prompt):
+    return re.sub("\s+", " ", prompt.strip())
 
-        {abstract}
-        """
 
-    prompt = prompt.replace("\n", " ")
-    while "  " in prompt:
-        prompt = prompt.replace("  ", " ")
+def generate_prompt(choices: Dict[str, str]) -> str:
+    logger.info(
+        "{} choice(s): {}".format(
+            len(choices),
+            choices,
+        )
+    )
 
+    prompt = (
+        'read this abstract of a scentific paper and {} otherwise, return "{}"'.format(
+            " ".join(
+                [
+                    f'return "{choice}" {description}'
+                    for choice, description in choices.items()
+                    if choice != "otherwise"
+                ]
+            ),
+            choices.get("otherwise", "not relevant"),
+        )
+    )
+
+    prompt = clean_prompt(prompt)
+
+    logger.info(f"prompt: {prompt}")
     return prompt
 
 
 def review_literature(
     object_name: str,
     filename: str,
-    questions_filename: str,
+    choices_filename: str,
     count: int,
 ) -> bool:
     logger.info(
         "{}.review_literature({}): {} -{}> {}".format(
             NAME,
             object_name,
-            questions_filename,
+            choices_filename,
             "" if count == -1 else f"{count}-",
             filename,
         )
     )
 
-    success, df = file.load_dataframe(objects.path_of(filename, object_name), log=True)
+    success, choices = file.load_yaml(
+        objects.path_of(
+            choices_filename,
+            object_name,
+        )
+    )
+    if not success:
+        return success
+
+    success, df = file.load_dataframe(
+        objects.path_of(
+            filename,
+            object_name,
+        ),
+        log=True,
+    )
     if not success:
         return success
 
@@ -64,7 +98,15 @@ def review_literature(
         df = df.head(count)
     logger.info("processing {:,} item(s)...".format(len(df)))
 
-    df["Screening Results"] = df["Abstract"].apply(assess_abstract)
+    prompt = generate_prompt(choices)
+
+    df["Screening Results"] = df["Abstract"].apply(
+        lambda abstract: assess_abstract(
+            abstract=abstract,
+            prompt=prompt,
+            log=True,
+        )
+    )
 
     return file.save_csv(
         objects.path_of(

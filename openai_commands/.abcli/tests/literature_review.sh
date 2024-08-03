@@ -7,5 +7,5 @@ function test_openai_commands_literature_review() {
         $LITERATURE_REVIEW_OBJECT \
         --count 2 \
         --filename $LITERATURE_REVIEW_TEST_FILENAME \
-        --question $LITERATURE_REVIEW_TEST_QUESTIONS
+        --choices $LITERATURE_REVIEW_TEST_CHOICES
 }

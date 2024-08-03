@@ -19,10 +19,10 @@ parser.add_argument(
     help="<review.csv>",
 )
 parser.add_argument(
-    "--questions",
+    "--choices",
     type=str,
-    default="questions.yaml",
-    help="<questions.yaml>",
+    default="choices.yaml",
+    help="<choices.yaml>",
 )
 parser.add_argument(
     "--count",
@@ -35,7 +35,7 @@ args = parser.parse_args()
 success = review_literature(
     object_name=args.object_name,
     filename=args.filename,
-    questions_filename=args.questions,
+    choices_filename=args.choices,
     count=args.count,
 )
 
