@@ -47,7 +47,7 @@ def generate_prompt(instructions: Dict[str, Dict]) -> str:
         )
     )
 
-    prompt = '{} and {} otherwise, return "{}".'.format(
+    prompt = '{} and {} otherwise, return "{}" followed by reason in less than five words.'.format(
         description,
         " ".join(
             [
