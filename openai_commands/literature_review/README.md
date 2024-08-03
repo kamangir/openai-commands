@@ -23,6 +23,8 @@ literature_review - AMR-v1 \
 	--choices choices1.yaml
 ```
 
+`choices1.yaml`:
+
 ```yaml
 antimicrobial: if it talks about antimicrobial treatment for cholera.
 susceptibility: if it has information regarding antibiotic-reistance or susceptibility to cholerae strains.
