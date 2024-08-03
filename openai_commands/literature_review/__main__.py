@@ -9,8 +9,16 @@ NAME = module.name(__file__, NAME)
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
 parser.add_argument(
-    "--object_name",
+    "--choices",
     type=str,
+    default="choices.yaml",
+    help="<choices.yaml>",
+)
+parser.add_argument(
+    "--count",
+    type=int,
+    default=10,
+    help="-1: all",
 )
 parser.add_argument(
     "--filename",
@@ -19,24 +27,37 @@ parser.add_argument(
     help="<review.csv>",
 )
 parser.add_argument(
-    "--questions",
+    "--object_name",
     type=str,
-    default="questions.yaml",
-    help="<questions.yaml>",
 )
 parser.add_argument(
-    "--count",
+    "--overwrite",
     type=int,
-    default=10,
-    help="-1: all",
+    default=0,
+    help="0|1",
+)
+parser.add_argument(
+    "--suffix",
+    type=str,
+    default="",
+    help="<suffix>",
+)
+parser.add_argument(
+    "--verbose",
+    type=bool,
+    default=0,
+    help="0|1",
 )
 args = parser.parse_args()
 
 success = review_literature(
     object_name=args.object_name,
     filename=args.filename,
-    questions=args.questions,
+    choices_filename=args.choices,
     count=args.count,
+    suffix=args.suffix,
+    overwrite=args.overwrite == 1,
+    verbose=args.verbose == 1,
 )
 
 sys_exit(logger, NAME, "-", success)

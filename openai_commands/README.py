@@ -50,6 +50,12 @@ features = {
         "thumbnail": "https://github.com/kamangir/openai-commands/blob/main/assets/DALL-E.png?raw=true",
         "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/images",
     },
+    "literature review": {
+        "description": "literature review using OpenAI API.",
+        "icon": ICON,
+        "thumbnail": "https://github.com/kamangir/assets/blob/main/openai_commands/literature-review/marquee.png?raw=true",
+        "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/literature_review",
+    },
     "template": {
         "description": "",
         "icon": ICON,
