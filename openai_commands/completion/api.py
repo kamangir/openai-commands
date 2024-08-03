@@ -1,3 +1,4 @@
+import uuid
 from typing import Tuple, Any, Dict
 from openai import OpenAI
 from blueness import module
@@ -15,8 +16,12 @@ def complete_prompt(
     prompt: str,
     max_tokens: int = 2000,
     verbose=None,
+    session_id: str = "",
 ) -> Tuple[bool, str, Dict[str, Any]]:
     client = OpenAI(api_key=env.OPENAI_API_KEY)
+
+    if not session_id:
+        session_id = str(uuid.uuid4())
 
     try:
         response = client.chat.completions.create(
@@ -28,6 +33,7 @@ def complete_prompt(
             ],
             model=env.OPENAI_GPT_DEFAULT_MODEL,
             max_tokens=max_tokens,
+            session_id=session_id,
         )
     except Exception as e:
         logger.info(
