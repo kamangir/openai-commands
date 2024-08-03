@@ -115,9 +115,10 @@ def review_literature(
 
         abstract = df.loc[idx, "Abstract"]
 
-        prompt = clean_prompt(f"{prompt} {abstract}")
-
-        success, assessment, _ = complete_prompt(prompt, verbose=verbose)
+        success, assessment, _ = complete_prompt(
+            clean_prompt(f"{prompt} {abstract}"),
+            verbose=verbose,
+        )
         if not success:
             assessment = f"failure: {assessment}"
 

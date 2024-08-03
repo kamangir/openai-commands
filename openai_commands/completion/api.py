@@ -31,9 +31,10 @@ def complete_prompt(
         )
     except Exception as e:
         logger.info(
-            "{}.complete_prompt failed: {}".format(
+            "{}.complete_prompt failed: {}, prompt length: {}".format(
                 NAME,
                 str(e),
+                len(prompt),
             )
         )
         return False, str(e), {"exception": str(e)}
