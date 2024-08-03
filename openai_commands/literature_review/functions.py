@@ -7,41 +7,10 @@ from abcli.modules import objects
 from openai_commands import NAME
 from openai_commands.completion.api import complete_prompt
 from openai_commands.logger import logger
+from tqdm import tqdm
 
 
 NAME = module.name(__file__, NAME)
-
-
-def assess_abstract(
-    row: pd.Series,
-    prompt: str,
-    suffix: str,
-    overwrite: bool,
-    log: bool = True,
-) -> str:
-    assessment = row[suffix]
-    if not any(
-        [
-            overwrite,
-            pd.isna(assessment),
-            assessment == "",
-        ]
-    ):
-        if log:
-            logger.info(f'{suffix}: "{assessment}"')
-    else:
-        abstract = row["Abstract"]
-
-        prompt = clean_prompt(f"{prompt} {abstract}")
-
-        success, assessment, _ = complete_prompt(prompt, verbose=log)
-        if not success:
-            assessment = f"failure: {assessment}"
-
-        if log:
-            logger.info(f'{suffix}: "{assessment}" | {abstract}')
-
-    return assessment
 
 
 def clean_prompt(prompt):
@@ -88,7 +57,7 @@ def review_literature(
     count: int,
     suffix: str = "",
     overwrite: bool = False,
-    verbose: bool = True,
+    verbose: bool = False,
 ) -> bool:
     if not suffix:
         suffix = file.name(choices_filename)
@@ -99,7 +68,7 @@ def review_literature(
             object_name,
             filename,
             choices_filename,
-            "" if count == -1 else f"{count} X-",
+            "" if count == -1 else f"{count}X-",
             "" if not overwrite else "overwrite-",
             suffix,
         )
@@ -126,26 +95,46 @@ def review_literature(
     if not success:
         return success
 
-    if count != -1:
-        df = df.head(count)
-    logger.info("processing {:,} item(s)...".format(len(df)))
-
     prompt = generate_prompt(instructions)
 
     if suffix not in df.columns:
         df[suffix] = pd.NA
         logger.info("added column: {}".format(suffix))
 
-    df[suffix] = df.apply(
-        lambda row: assess_abstract(
-            row=row,
-            prompt=prompt,
-            suffix=suffix,
-            overwrite=overwrite,
-            log=verbose,
-        ),
-        axis=1,
-    )
+    counter = 0
+    for idx in tqdm(df.index):
+        assessment = df.loc[idx, suffix]
+        if not overwrite and not pd.isna(assessment) and assessment != "":
+            logger.info(f"✅ {assessment}")
+            continue
+
+        abstract = df.loc[idx, "Abstract"]
+
+        prompt = clean_prompt(f"{prompt} {abstract}")
+
+        success, assessment, _ = complete_prompt(prompt, verbose=verbose)
+        if not success:
+            assessment = f"failure: {assessment}"
+
+        logger.info(
+            " | ".join(
+                [assessment]
+                + (
+                    [abstract]
+                    if verbose
+                    else [
+                        "{} ... ".format(abstract[:100]),
+                    ]
+                )
+            )
+        )
+
+        df.loc[idx, suffix] = assessment
+
+        counter += 1
+        if count != -1 and counter >= count:
+            break
+    logger.info(f"processed {counter:,} item(s)")
 
     return file.save_csv(
         output_filename,
