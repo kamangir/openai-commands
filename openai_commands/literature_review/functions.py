@@ -63,7 +63,7 @@ def review_literature(
         suffix = file.name(choices_filename)
 
     logger.info(
-        "{}.review_literature: {}/{} -{}-{}> {}".format(
+        "{}.review_literature: {}/{} -{}-{}{}> {}".format(
             NAME,
             object_name,
             filename,
