@@ -32,25 +32,31 @@ def clean_prompt(prompt):
     return re.sub("\s+", " ", prompt.strip())
 
 
-def generate_prompt(choices: Dict[str, str]) -> str:
+def generate_prompt(instructions: Dict[str, Dict]) -> str:
+    choices = instructions.get("choices", {})
+    description = instructions.get(
+        "description",
+        "read this abstract of a scentific paper",
+    )
+
     logger.info(
-        "{} choice(s): {}".format(
+        "{} @ {} choice(s): {}".format(
+            description,
             len(choices),
             choices,
         )
     )
 
-    prompt = (
-        'read this abstract of a scentific paper and {} otherwise, return "{}"'.format(
-            " ".join(
-                [
-                    f'return "{choice}" {description}'
-                    for choice, description in choices.items()
-                    if choice != "otherwise"
-                ]
-            ),
-            choices.get("otherwise", "not relevant"),
-        )
+    prompt = '{} and {} otherwise, return "{}".'.format(
+        description,
+        " ".join(
+            [
+                f'return "{choice}" {description}'
+                for choice, description in choices.items()
+                if choice != "otherwise"
+            ]
+        ),
+        choices.get("otherwise", "not relevant"),
     )
 
     prompt = clean_prompt(prompt)
@@ -75,7 +81,7 @@ def review_literature(
         )
     )
 
-    success, choices = file.load_yaml(
+    success, instructions = file.load_yaml(
         objects.path_of(
             choices_filename,
             object_name,
@@ -98,7 +104,7 @@ def review_literature(
         df = df.head(count)
     logger.info("processing {:,} item(s)...".format(len(df)))
 
-    prompt = generate_prompt(choices)
+    prompt = generate_prompt(instructions)
 
     df["Screening Results"] = df["Abstract"].apply(
         lambda abstract: assess_abstract(

@@ -12,25 +12,22 @@ from openai_commands.literature_review.functions import (
 @pytest.mark.parametrize(
     [
         "object_name",
-        "filename",
         "choices_filename",
     ],
     [
         [
             env.LITERATURE_REVIEW_OBJECT,
-            env.LITERATURE_REVIEW_TEST_FILENAME,
             env.LITERATURE_REVIEW_TEST_CHOICES,
         ],
     ],
 )
 def test_generate_prompt(
     object_name: str,
-    filename: str,
     choices_filename: str,
 ):
     assert download_object(object_name)
 
-    success, choices = file.load_yaml(
+    success, instructions = file.load_yaml(
         objects.path_of(
             choices_filename,
             object_name,
@@ -38,7 +35,7 @@ def test_generate_prompt(
     )
     assert success
 
-    assert generate_prompt(choices)
+    assert generate_prompt(instructions)
 
 
 @pytest.mark.parametrize(
