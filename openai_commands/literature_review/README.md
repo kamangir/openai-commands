@@ -21,9 +21,9 @@ literature review using [OpenAI API](../completion/).
 ```bash
 @litrev - \
 	$LITERATURE_REVIEW_OBJECT \
+	--choices choices1.yaml \
 	--count 5 \
-	--filename review_463333_screen_csv_20240730130035.csv \
-	--choices choices1.yaml
+	--filename review_463333_screen_csv_20240730130035.csv
 ```
 
 `choices1.yaml`:
