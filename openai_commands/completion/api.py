@@ -18,16 +18,25 @@ def complete_prompt(
 ) -> Tuple[bool, str, Dict[str, Any]]:
     client = OpenAI(api_key=env.OPENAI_API_KEY)
 
-    response = client.chat.completions.create(
-        messages=[
-            {
-                "role": "user",
-                "content": prompt,
-            }
-        ],
-        model=env.OPENAI_GPT_DEFAULT_MODEL,
-        max_tokens=max_tokens,
-    )
+    try:
+        response = client.chat.completions.create(
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt,
+                }
+            ],
+            model=env.OPENAI_GPT_DEFAULT_MODEL,
+            max_tokens=max_tokens,
+        )
+    except Exception as e:
+        logger.info(
+            "{}.complete_prompt failed: {}".format(
+                NAME,
+                str(e),
+            )
+        )
+        return False, str(e), {"exception": str(e)}
 
     if is_jupyter() if verbose is None else verbose:
         logger.info("response: {}".format(response))
