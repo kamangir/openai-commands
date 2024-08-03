@@ -26,10 +26,10 @@ function literature_review() {
         python3 -m openai_commands.literature_review \
         --object_name $object_name \
         "${@:3}"
-    [[ $? -ne 0 ]] && return 1
+    local status="$?"
 
     [[ "$do_upload" == 1 ]] &&
         abcli_upload - $object_name
 
-    return 0
+    return $status
 }
