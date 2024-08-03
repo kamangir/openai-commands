@@ -1,8 +1,8 @@
 from typing import Dict
 import re
+import pandas as pd
 from blueness import module
 from abcli import file
-from abcli import string
 from abcli.modules import objects
 from openai_commands import NAME
 from openai_commands.completion.api import complete_prompt
@@ -13,17 +13,33 @@ NAME = module.name(__file__, NAME)
 
 
 def assess_abstract(
-    abstract: str,
+    row: pd.Series,
     prompt: str,
+    suffix: str,
+    overwrite: bool,
     log: bool = True,
 ) -> str:
-    prompt = clean_prompt(f"{prompt} {abstract}")
+    assessment = row[suffix]
+    if not any(
+        [
+            overwrite,
+            pd.isna(assessment),
+            assessment == "",
+        ]
+    ):
+        if log:
+            logger.info(f'{suffix}: "{assessment}"')
+    else:
+        abstract = row["Abstract"]
 
-    success, assessment, _ = complete_prompt(prompt)
-    assert success
+        prompt = clean_prompt(f"{prompt} {abstract}")
 
-    if log:
-        logger.info(f"{assessment}: {abstract}")
+        success, assessment, _ = complete_prompt(prompt, verbose=log)
+        if not success:
+            assessment = f"failure: {assessment}"
+
+        if log:
+            logger.info(f'{suffix}: "{assessment}" | {abstract}')
 
     return assessment
 
@@ -70,33 +86,43 @@ def review_literature(
     filename: str,
     choices_filename: str,
     count: int,
+    suffix: str = "",
+    overwrite: bool = False,
+    verbose: bool = True,
 ) -> bool:
+    if not suffix:
+        suffix = file.name(choices_filename)
+
     logger.info(
-        "{}.review_literature({}): {} -{}> {}".format(
+        "{}.review_literature: {}/{} -{}-{}> {}".format(
             NAME,
             object_name,
-            choices_filename,
-            "" if count == -1 else f"{count}-",
             filename,
+            choices_filename,
+            "" if count == -1 else f"{count} X-",
+            "" if not overwrite else "overwrite-",
+            suffix,
         )
     )
 
     success, instructions = file.load_yaml(
-        objects.path_of(
-            choices_filename,
-            object_name,
-        )
+        objects.path_of(choices_filename, object_name)
     )
     if not success:
         return success
 
-    success, df = file.load_dataframe(
-        objects.path_of(
-            filename,
-            object_name,
-        ),
-        log=True,
+    output_filename = objects.path_of(
+        file.add_postfix(filename, suffix),
+        object_name,
     )
+    input_filename = objects.path_of(filename, object_name)
+    if not overwrite and file.exist(output_filename):
+        logger.info(
+            "continuing from a previous run: {} ...".format(file.name(output_filename))
+        )
+        input_filename = output_filename
+
+    success, df = file.load_dataframe(input_filename, log=True)
     if not success:
         return success
 
@@ -106,29 +132,23 @@ def review_literature(
 
     prompt = generate_prompt(instructions)
 
-    df["Screening Results"] = df["Abstract"].apply(
-        lambda abstract: assess_abstract(
-            abstract=abstract,
+    if suffix not in df.columns:
+        df[suffix] = pd.NA
+        logger.info("added column: {}".format(suffix))
+
+    df[suffix] = df.apply(
+        lambda row: assess_abstract(
+            row=row,
             prompt=prompt,
-            log=True,
-        )
+            suffix=suffix,
+            overwrite=overwrite,
+            log=verbose,
+        ),
+        axis=1,
     )
 
     return file.save_csv(
-        objects.path_of(
-            file.add_postfix(
-                filename,
-                "{}-{}".format(
-                    file.name(choices_filename),
-                    string.pretty_date(
-                        date=None,
-                        as_filename=True,
-                        unique=True,
-                    ),
-                ),
-            ),
-            object_name,
-        ),
+        output_filename,
         df,
         log=True,
     )

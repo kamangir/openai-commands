@@ -1,23 +1,25 @@
 
-# 🛠️ literature review
+# 🛠️ literature review (`@litrev`)
 
 literature review using [OpenAI API](../completion/).
 
 ```bash
- > literature_review help
-literature_review \
+ > @litrev help
+@litrev \
 	[dryrun,~download,~upload] \
-	[.|<object-name>] \
+	[AMR-v5|<object-name>] \
+	[--choices <choices.yaml>] \
 	[--count <-1>] \
 	[--filename <filename.csv>] \
-	[--choices <choices.yaml>]
- . run literature review on <object-name>.
+	[--overwrite 1] \
+	[--suffix <suffix>]
+ . <object-name>: literature review @ choices.
 ```
 
 ## example run
 
 ```bash
-literature_review - \
+@litrev - \
 	$LITERATURE_REVIEW_OBJECT \
 	--count 5 \
 	--filename review_463333_screen_csv_20240730130035.csv \
@@ -40,9 +42,9 @@ choices:
 
 📜 [literature_review.ipynb](../../notebooks/literature_review/literature_review.ipynb)
 
-## other choices
+## for study type
 
-`choices-study-type.yaml`:
+`choices-study-type.yaml`
 
 ```yaml
 description: select from these studies theose that assess the clinical efficacy of cholera treatments and/or examine the antibiotic resistance in Vibrio cholerae strains in clinical samples
@@ -53,7 +55,9 @@ choices:
   surveillance studies: if it talks about surveillance.
 ```
 
-`choices-screening-result.yaml`:
+## for screening results
+
+`choices-screening-result.yaml`
 
 ```yaml
 description: select from these studies theose that assess the clinical efficacy of cholera treatments and/or examine the antibiotic resistance in Vibrio cholerae strains in clinical samples

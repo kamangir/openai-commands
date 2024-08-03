@@ -5,9 +5,9 @@ function literature_review() {
 
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then
         options="dryrun,~download,~upload"
-        local args="[--count <-1>]$ABCUL[--filename <filename.csv>]$ABCUL[--choices <choices.yaml>]"
-        abcli_show_usage "literature_review$ABCUL[$options]$ABCUL[$LITERATURE_REVIEW_OBJECT|<object-name>]$ABCUL$args" \
-            "<object-name> -choices-> literature review."
+        local args="[--choices <choices.yaml>]$ABCUL[--count <-1>]$ABCUL[--filename <filename.csv>]$ABCUL[--overwrite 1]$ABCUL[--suffix <suffix>]"
+        abcli_show_usage "@litrev$ABCUL[$options]$ABCUL[$LITERATURE_REVIEW_OBJECT|<object-name>]$ABCUL$args" \
+            "<object-name>: literature review @ choices."
         return
     fi
 
@@ -20,7 +20,7 @@ function literature_review() {
     [[ "$do_download" == 1 ]] &&
         abcli_download - $object_name
 
-    abcli_log "literature_review: $object_name ..."
+    abcli_log "literature review: $object_name ..."
 
     abcli_eval dryrun=$do_dryrun \
         python3 -m openai_commands.literature_review \
