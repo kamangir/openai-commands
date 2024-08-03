@@ -1,6 +1,6 @@
-import pandas as pd
 from blueness import module
-from abcli.file import add_postfix
+from abcli import file
+from abcli import string
 from abcli.modules import objects
 from openai_commands import NAME
 from openai_commands.completion.api import complete_prompt
@@ -56,18 +56,30 @@ def review_literature(
         )
     )
 
-    df = pd.read_csv(objects.path_of(filename, object_name))
+    success, df = file.load_dataframe(objects.path_of(filename, object_name), log=True)
+    if not success:
+        return success
 
     if count != -1:
         df = df.head(count)
-
-    logger.info("loaded {:,} item(s).".format(len(df)))
+    logger.info("processing {:,} item(s)...".format(len(df)))
 
     df["Screening Results"] = df["Abstract"].apply(assess_abstract)
 
-    df.to_csv(
-        objects.path_of(add_postfix(filename, "screening-results"), object_name),
-        index=False,
+    return file.save_csv(
+        objects.path_of(
+            file.add_postfix(
+                filename,
+                "screening-results-{}".format(
+                    string.pretty_date(
+                        date=None,
+                        as_filename=True,
+                        unique=True,
+                    )
+                ),
+            ),
+            object_name,
+        ),
+        df,
+        log=True,
     )
-
-    return True
