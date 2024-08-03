@@ -113,7 +113,7 @@ def review_literature(
             logger.info(f"✅ {assessment}")
             continue
 
-        abstract = df.loc[idx, "Abstract"]
+        abstract = str(df.loc[idx, "Abstract"])
 
         success, assessment, _ = complete_prompt(
             clean_prompt(f"{prompt} {abstract}"),
