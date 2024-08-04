@@ -27,7 +27,11 @@ parser.add_argument(
     help="<review.csv>",
 )
 parser.add_argument(
-    "--object_name",
+    "--input_object_name",
+    type=str,
+)
+parser.add_argument(
+    "--output_object_name",
     type=str,
 )
 parser.add_argument(
@@ -51,7 +55,8 @@ parser.add_argument(
 args = parser.parse_args()
 
 success = review_literature(
-    object_name=args.object_name,
+    input_object_name=args.input_object_name,
+    output_object_name=args.output_object_name,
     filename=args.filename,
     choices_filename=args.choices,
     count=args.count,

@@ -6,25 +6,22 @@ literature review using [OpenAI API](../completion/).
 ```bash
  > @litrev help
 @litrev \
-	[dryrun,~download,~upload] \
-	[AMR-v5|<object-name>] \
-	[--choices <choices.yaml>] \
+	[choices=<choices>,dryrun,~download,publish,suffix=<suffix>,~upload] \
+	[AMR-v6|<object-name>] \
 	[--count <-1>] \
-	[--filename <filename.csv>] \
+	[--filename <filename>] \
 	[--overwrite 1] \
-	[--suffix <suffix>] \
 	[--verbose 1]
- . <object-name>/<filename.csv> -literature-review-@-choices-> <filename-suffix.csv>.
+ . <object-name>/<filename>.csv -literature-review-@-<choices.yaml>-> <object-name>-<suffix>/<filename>-<choices>.csv.
 ```
 
-## example run
+## test run
 
 ```bash
-@litrev - \
+@litrev choices=choices1,publish \
 	$LITERATURE_REVIEW_OBJECT \
-	--choices choices1.yaml \
 	--count 5 \
-	--filename review_463333_screen_csv_20240730130035.csv
+	--filename review_463333_screen_csv_20240730130035
 ```
 
 `choices1.yaml`:
@@ -39,13 +36,36 @@ choices:
 
 ![image](https://github.com/kamangir/assets/blob/main/openai_commands/literature-review/log.png?raw=true)
 
-🔗 [AMR-v1.tar.gz](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v1.tar.gz)
+🔗 [AMR-v6-choices1.tar.gz](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v6-choices1.tar.gz)
 
 📜 [literature_review.ipynb](../../notebooks/literature_review/literature_review.ipynb)
 
-## for study type
+## run at scale
 
-`choices-study-type.yaml`
+review of 3745 studies for study type and screening results,
+
+```bash
+runme() {
+  local list_of_choices="$@"
+
+  local object_name=$LITERATURE_REVIEW_OBJECT
+
+  local suffix=$(@timestamp)
+
+  local choices
+  for choices in $list_of_choices; do
+    @batch eval name=litrev-$object_name-$choices-$suffix \
+      literature_review choices=$choices,publish \
+      $object_name \
+	  --count -1 \
+      --filename review_463333_screen_csv_20240803103615
+  done
+}
+
+runme choices-study-type choices-screening-result
+```
+
+`choices-study-type.yaml`:
 
 ```yaml
 description: select from these studies theose that assess the clinical efficacy of cholera treatments and/or examine the antibiotic resistance in Vibrio cholerae strains in clinical samples
@@ -56,9 +76,9 @@ choices:
   surveillance studies: if it talks about surveillance.
 ```
 
-## for screening results
+[AMR-v6-choices-study-type.tar.gz](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v6-choices-study-type.tar.gz)
 
-`choices-screening-result.yaml`
+`choices-screening-result.yaml`:
 
 ```yaml
 description: select from these studies theose that assess the clinical efficacy of cholera treatments and/or examine the antibiotic resistance in Vibrio cholerae strains in clinical samples
@@ -68,6 +88,8 @@ choices:
   susceptibility: if it talks about antibiotic susceptibility in bacterial culture, or less commonly genomic data, antibiotic* or antimicrob* or (antimicrobial resistance) or susceptible or susceptibility, antibiotic susceptibility testing and prevalence of antibiotic-resistant or resistance pattern in clinical samples.
   no full-text review: if it talks about non-human studies, environmental samples, water sources, traditional medicines, natural, leaf, leaves, peptides, or extracts.
 ```
+
+[AMR-v6-choices-screening-result.tar.gz](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v6-choices-screening-result.tar.gz)
 
 ---
 
