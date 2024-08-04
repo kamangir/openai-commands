@@ -40,7 +40,7 @@ def test_generate_prompt(
 
 @pytest.mark.parametrize(
     [
-        "object_name",
+        "input_object_name",
         "filename",
         "choices_filename",
         "count",
@@ -55,15 +55,18 @@ def test_generate_prompt(
     ],
 )
 def test_literature_review(
-    object_name: str,
+    input_object_name: str,
     filename: str,
     choices_filename: str,
     count: int,
 ):
-    assert download_object(object_name)
+    output_object_name = objects.unique_object("test")
+
+    assert download_object(input_object_name)
 
     assert review_literature(
-        object_name=object_name,
+        input_object_name=input_object_name,
+        output_object_name=output_object_name,
         filename=filename,
         choices_filename=choices_filename,
         count=count,

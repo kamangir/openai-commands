@@ -51,7 +51,8 @@ def generate_prompt(instructions: Dict[str, Dict]) -> str:
 
 
 def review_literature(
-    object_name: str,
+    input_object_name: str,
+    output_object_name: str,
     filename: str,
     choices_filename: str,
     count: int,
@@ -63,28 +64,30 @@ def review_literature(
         suffix = file.name(choices_filename)
 
     logger.info(
-        "{}.review_literature: {}/{} -{}-{}{}> {}".format(
+        "{}.review_literature: {}/{} -{}-{}{}> {}[{}]".format(
             NAME,
-            object_name,
+            input_object_name,
             filename,
             choices_filename,
             "" if count == -1 else f"{count}X-",
             "" if not overwrite else "overwrite-",
+            output_object_name,
             suffix,
         )
     )
 
     success, instructions = file.load_yaml(
-        objects.path_of(choices_filename, object_name)
+        objects.path_of(choices_filename, input_object_name)
     )
     if not success:
         return success
 
     output_filename = objects.path_of(
         file.add_postfix(filename, suffix),
-        object_name,
+        output_object_name,
+        create=True,
     )
-    input_filename = objects.path_of(filename, object_name)
+    input_filename = objects.path_of(filename, input_object_name)
     if not overwrite and file.exist(output_filename):
         logger.info(
             "continuing from a previous run: {} ...".format(file.name(output_filename))
