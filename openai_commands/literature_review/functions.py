@@ -14,7 +14,7 @@ NAME = module.name(__file__, NAME)
 
 
 def clean_prompt(prompt):
-    return re.sub("\s+", " ", prompt.strip())
+    return re.sub(r"\s+", " ", prompt.strip())
 
 
 def generate_prompt(instructions: Dict[str, Dict]) -> str:
