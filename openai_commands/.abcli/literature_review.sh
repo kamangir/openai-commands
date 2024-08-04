@@ -11,8 +11,8 @@ function literature_review() {
         return
     fi
 
-    local choices=$(abcli_option_int "$options" choices choices1)
-    local suffix=$(abcli_option_int "$options" suffix $choices)
+    local choices=$(abcli_option "$options" choices choices1)
+    local suffix=$(abcli_option "$options" suffix $choices)
     local do_dryrun=$(abcli_option_int "$options" dryrun 0)
     local do_download=$(abcli_option_int "$options" download $(abcli_not $do_dryrun))
     local do_upload=$(abcli_option_int "$options" upload $(abcli_not $do_dryrun))
