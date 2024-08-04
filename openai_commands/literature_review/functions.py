@@ -64,7 +64,7 @@ def review_literature(
         suffix = file.name(choices_filename)
 
     logger.info(
-        "{}.review_literature: {}/{} -{}-{}{}> {}[{}]".format(
+        "{}.review_literature: {}/{}.csv -{}-{}{}> {}/{}-{}.csv[{}]".format(
             NAME,
             input_object_name,
             filename,
@@ -72,6 +72,8 @@ def review_literature(
             "" if count == -1 else f"{count}X-",
             "" if not overwrite else "overwrite-",
             output_object_name,
+            filename,
+            suffix,
             suffix,
         )
     )
@@ -83,11 +85,14 @@ def review_literature(
         return success
 
     output_filename = objects.path_of(
-        file.add_postfix(filename, suffix),
+        f"{filename}-{suffix}.csv",
         output_object_name,
         create=True,
     )
-    input_filename = objects.path_of(filename, input_object_name)
+    input_filename = objects.path_of(
+        f"{filename}.csv",
+        input_object_name,
+    )
     if not overwrite and file.exist(output_filename):
         logger.info(
             "continuing from a previous run: {} ...".format(file.name(output_filename))

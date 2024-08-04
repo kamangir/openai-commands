@@ -4,16 +4,17 @@ function literature_review() {
     local options=$1
 
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then
-        options="choices=<choices>$EOP,dryrun,~download,suffix=<suffix>,~upload$EOPE"
-        local args="[--count <-1>]$ABCUL[--filename <filename.csv>]$ABCUL[--overwrite 1]$ABCUL[--verbose 1]"
+        options="choices=<choices>$EOP,dryrun,~download,publish,suffix=<suffix>,~upload$EOPE"
+        local args="[--count <-1>]$ABCUL[--filename <filename>]$ABCUL[--overwrite 1]$ABCUL[--verbose 1]"
         abcli_show_usage "@litrev$ABCUL[$options]$ABCUL[$LITERATURE_REVIEW_OBJECT|<object-name>]$ABCUL$args" \
-            "<object-name>/<filename.csv> - literature review @ <choices.yaml> -> <object-name-suffix>/<filename.csv>."
+            "<object-name>/<filename>.csv -literature-review-@-<choices.yaml>-> <object-name>-<suffix>/<filename>-<choices>.csv."
         return
     fi
 
     local choices=$(abcli_option "$options" choices choices1)
     local suffix=$(abcli_option "$options" suffix $choices)
     local do_dryrun=$(abcli_option_int "$options" dryrun 0)
+    local do_publish=$(abcli_option_int "$options" publish 0)
     local do_download=$(abcli_option_int "$options" download $(abcli_not $do_dryrun))
     local do_upload=$(abcli_option_int "$options" upload $(abcli_not $do_dryrun))
 
@@ -37,6 +38,9 @@ function literature_review() {
 
     [[ "$do_upload" == 1 ]] &&
         abcli_upload - $output_object_name
+
+    [[ "$do_publish" == 1 ]] &&
+        abcli_publish tar $output_object_name
 
     return $status
 }

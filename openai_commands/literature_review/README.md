@@ -6,25 +6,22 @@ literature review using [OpenAI API](../completion/).
 ```bash
  > @litrev help
 @litrev \
-	[dryrun,~download,~upload] \
-	[AMR-v5|<object-name>] \
-	[--choices <choices.yaml>] \
+	[choices=<choices>,dryrun,~download,publish,suffix=<suffix>,~upload] \
+	[AMR-v6|<object-name>] \
 	[--count <-1>] \
-	[--filename <filename.csv>] \
+	[--filename <filename>] \
 	[--overwrite 1] \
-	[--suffix <suffix>] \
 	[--verbose 1]
- . <object-name>/<filename.csv> -literature-review-@-choices-> <filename-suffix.csv>.
+ . <object-name>/<filename>.csv -literature-review-@-<choices.yaml>-> <object-name>-<suffix>/<filename>-<choices>.csv.
 ```
 
 ## example run
 
 ```bash
-@litrev - \
+@litrev choices=choices1,publish \
 	$LITERATURE_REVIEW_OBJECT \
-	--choices choices1.yaml \
 	--count 5 \
-	--filename review_463333_screen_csv_20240730130035.csv
+	--filename review_463333_screen_csv_20240730130035
 ```
 
 `choices1.yaml`:
@@ -39,7 +36,7 @@ choices:
 
 ![image](https://github.com/kamangir/assets/blob/main/openai_commands/literature-review/log.png?raw=true)
 
-🔗 [AMR-v1.tar.gz](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v1.tar.gz)
+🔗 [AMR-v6-choices1.tar.gz](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v6-choices1.tar.gz)
 
 📜 [literature_review.ipynb](../../notebooks/literature_review/literature_review.ipynb)
 
