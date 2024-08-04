@@ -42,7 +42,7 @@ choices:
 
 ## run at scale
 
-review of 3745 studies for study type and screening results on [AWS Batch](https://aws.amazon.com/batch/),
+review of 3745 studies for study type and screening results on [AWS Batch](https://aws.amazon.com/batch/), cost: $4.03.
 
 ```bash
 runme() {
