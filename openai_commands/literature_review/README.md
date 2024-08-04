@@ -53,6 +53,8 @@ choices:
   surveillance studies: if it talks about surveillance.
 ```
 
+[AMR-v6-choices-study-type.tar.gz](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v6-choices-study-type.tar.gz)
+
 ## for screening results
 
 `choices-screening-result.yaml`
@@ -65,6 +67,8 @@ choices:
   susceptibility: if it talks about antibiotic susceptibility in bacterial culture, or less commonly genomic data, antibiotic* or antimicrob* or (antimicrobial resistance) or susceptible or susceptibility, antibiotic susceptibility testing and prevalence of antibiotic-resistant or resistance pattern in clinical samples.
   no full-text review: if it talks about non-human studies, environmental samples, water sources, traditional medicines, natural, leaf, leaves, peptides, or extracts.
 ```
+
+[AMR-v6-choices-screening-result.tar.gz](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v6-choices-screening-result.tar.gz)
 
 ---
 
