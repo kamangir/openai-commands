@@ -17,7 +17,7 @@ from openai_commands.literature_review.functions import (
     [
         [
             env.LITERATURE_REVIEW_OBJECT,
-            "{}.yaml".format(env.LITERATURE_REVIEW_TEST_CHOICES",
+            "{}.yaml".format(env.LITERATURE_REVIEW_TEST_CHOICES),
         ],
     ],
 )
@@ -49,7 +49,7 @@ def test_generate_prompt(
         [
             env.LITERATURE_REVIEW_OBJECT,
             env.LITERATURE_REVIEW_TEST_FILENAME,
-            "{}.yaml".format(env.LITERATURE_REVIEW_TEST_CHOICES",
+            "{}.yaml".format(env.LITERATURE_REVIEW_TEST_CHOICES),
             2,
         ],
     ],
