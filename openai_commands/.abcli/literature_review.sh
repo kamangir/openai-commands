@@ -1,50 +1,43 @@
 #! /usr/bin/env bash
 
+export LITERATURE_REVIEW_BASE_OPTIONS="$EOP,dryrun,~download,publish,suffix=<suffix>,~upload$EOPE"
+export LITERATURE_REVIEW_ARGS="[--count <-1>]$ABCUL[--filename <filename>]$ABCUL[--overwrite 1]$ABCUL[--verbose 1]"
+
 function literature_review() {
     local options=$1
 
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then
-        local base_options="$EOP,dryrun,~download,publish,suffix=<suffix>,~upload$EOPE"
-        local args="[--count <-1>]$ABCUL[--filename <filename>]$ABCUL[--overwrite 1]$ABCUL[--verbose 1]"
-
-        options="question=<question>$base_options"
+        local args=$LITERATURE_REVIEW_ARGS
+        options="question=<question>$LITERATURE_REVIEW_BASE_OPTIONS"
         abcli_show_usage "@litrev$ABCUL[$options]$ABCUL[$LITERATURE_REVIEW_OBJECT|<object-name>]$ABCUL$args" \
             "ask a multiple-choice question about a list of studies.${ABCUL2}input: <object-name>/<filename>.csv, column: Abstract.${ABCUL2}question: <question.yaml>.${ABCUL2}output: <object-name>-<suffix>/<filename>-<suffix>.csv, column: <suffix>.${ABCUL2}<suffix> defaults to <question>."
 
-        options="multiple,question=<question1+question2>,to=$NBS_RUNNERS_LIST$base_options"
-        abcli_show_usage "@litrev$ABCUL[$options]$ABCUL[$LITERATURE_REVIEW_OBJECT|<object-name>]$ABCUL$args" \
-            "ask multiple multiple-choice questions about a list of studies.${ABCUL2}input: <object-name>/<filename>.csv, column: Abstract.${ABCUL2}questions: <question1.yaml>, <question2.yaml>,... .${ABCUL2}output: <object-name>-<suffix>/<filename>-<suffix>.csv, columns: <question1>, <question2>, ... .${ABCUL2}<suffix> defaults to <question1-question2>."
+        literature_review_multiple "$@"
         return
     fi
 
-    local question=$(abcli_option "$options" question question1)
-    local suffix=$(echo $question | tr + -)
-    suffix=$(abcli_option "$options" suffix $suffix)
+    if [ $(abcli_option_int "$options" multiple 0) == 1 ]; then
+        literature_review_multiple "$@"
+        return
+    fi
+
+    local question=$(abcli_option "$options" question)
+    if [ -z "$question" ]; then
+        abcli_error "-literature review: question not found."
+        return 1
+    fi
+
+    local suffix=$(abcli_option "$options" suffix)
+    if [ -z "$suffix" ]; then
+        suffix=$question
+    else
+        suffix=$question-$suffix
+    fi
+
     local do_dryrun=$(abcli_option_int "$options" dryrun 0)
     local do_publish=$(abcli_option_int "$options" publish 0)
     local do_download=$(abcli_option_int "$options" download $(abcli_not $do_dryrun))
     local do_upload=$(abcli_option_int "$options" upload $(abcli_not $do_dryrun))
-    local multiple_questions=$(abcli_option_has "$options" multiple 0)
-
-    if [[ "$multiple_questions" == 1 ]]; then
-        abcli_log_list "$multiple_questions" \
-            --before "" \
-            --delim + \
-            --after "question(s)"
-
-        local runner_type=$(abcli_option "$options" to generic)
-
-        local object_name=literature_review-$suffix-$(abcli_string_timestamp)
-
-        # generate a workflow in $object_name
-        abcli_log "🪄"
-
-        workflow submit \
-            ~download,dryrun=$do_dryrun,to=$runner_type \
-            $object_name
-
-        return
-    fi
 
     local input_object_name=$(abcli_clarify_object $2 $LITERATURE_REVIEW_OBJECT)
     local output_object_name=$input_object_name-$suffix
@@ -72,3 +65,5 @@ function literature_review() {
 
     return $status
 }
+
+abcli_source_path - caller,suffix=/literature_review
