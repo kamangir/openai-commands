@@ -12,24 +12,24 @@ from openai_commands.literature_review.functions import (
 @pytest.mark.parametrize(
     [
         "object_name",
-        "choices_filename",
+        "question_filename",
     ],
     [
         [
             env.LITERATURE_REVIEW_OBJECT,
-            "{}.yaml".format(env.LITERATURE_REVIEW_TEST_CHOICES),
+            "{}.yaml".format(env.LITERATURE_REVIEW_TEST_QUESTION),
         ],
     ],
 )
 def test_generate_prompt(
     object_name: str,
-    choices_filename: str,
+    question_filename: str,
 ):
     assert download_object(object_name)
 
     success, instructions = file.load_yaml(
         objects.path_of(
-            choices_filename,
+            question_filename,
             object_name,
         )
     )
@@ -42,14 +42,20 @@ def test_generate_prompt(
     [
         "input_object_name",
         "filename",
-        "choices_filename",
+        "question_filename",
         "count",
     ],
     [
         [
             env.LITERATURE_REVIEW_OBJECT,
             env.LITERATURE_REVIEW_TEST_FILENAME,
-            "{}.yaml".format(env.LITERATURE_REVIEW_TEST_CHOICES),
+            "{}.yaml".format(env.LITERATURE_REVIEW_TEST_QUESTION),
+            2,
+        ],
+        [
+            env.LITERATURE_REVIEW_OBJECT,
+            "{}.csv".format(env.LITERATURE_REVIEW_TEST_FILENAME),
+            "{}.yaml".format(env.LITERATURE_REVIEW_TEST_QUESTION),
             2,
         ],
     ],
@@ -57,7 +63,7 @@ def test_generate_prompt(
 def test_literature_review(
     input_object_name: str,
     filename: str,
-    choices_filename: str,
+    question_filename: str,
     count: int,
 ):
     output_object_name = objects.unique_object("test")
@@ -68,6 +74,6 @@ def test_literature_review(
         input_object_name=input_object_name,
         output_object_name=output_object_name,
         filename=filename,
-        choices_filename=choices_filename,
+        question_filename=question_filename,
         count=count,
     )

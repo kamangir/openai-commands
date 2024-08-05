@@ -9,10 +9,10 @@ NAME = module.name(__file__, NAME)
 
 parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
 parser.add_argument(
-    "--choices",
+    "--question_filename",
     type=str,
-    default="choices.yaml",
-    help="<choices.yaml>",
+    default="question1.yaml",
+    help="<question.yaml>",
 )
 parser.add_argument(
     "--count",
@@ -23,8 +23,8 @@ parser.add_argument(
 parser.add_argument(
     "--filename",
     type=str,
-    default="review.csv",
-    help="<review.csv>",
+    default="review",
+    help="<review> refers to <review.csv>",
 )
 parser.add_argument(
     "--input_object_name",
@@ -58,7 +58,7 @@ success = review_literature(
     input_object_name=args.input_object_name,
     output_object_name=args.output_object_name,
     filename=args.filename,
-    choices_filename=args.choices,
+    question_filename=args.question_filename,
     count=args.count,
     suffix=args.suffix,
     overwrite=args.overwrite == 1,

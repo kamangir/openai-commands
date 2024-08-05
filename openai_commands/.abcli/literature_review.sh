@@ -4,15 +4,15 @@ function literature_review() {
     local options=$1
 
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then
-        options="choices=<choices>$EOP,dryrun,~download,publish,suffix=<suffix>,~upload$EOPE"
+        options="question=<question>$EOP,dryrun,~download,publish,suffix=<suffix>,~upload$EOPE"
         local args="[--count <-1>]$ABCUL[--filename <filename>]$ABCUL[--overwrite 1]$ABCUL[--verbose 1]"
         abcli_show_usage "@litrev$ABCUL[$options]$ABCUL[$LITERATURE_REVIEW_OBJECT|<object-name>]$ABCUL$args" \
-            "<object-name>/<filename>.csv -literature-review-@-<choices.yaml>-> <object-name>-<suffix>/<filename>-<choices>.csv."
+            "<object-name>/<filename>.csv -literature-review-@-<question.yaml>-> <object-name>-<suffix>/<filename>-<question>.csv."
         return
     fi
 
-    local choices=$(abcli_option "$options" choices choices1)
-    local suffix=$(abcli_option "$options" suffix $choices)
+    local question=$(abcli_option "$options" question question1)
+    local suffix=$(abcli_option "$options" suffix $question)
     local do_dryrun=$(abcli_option_int "$options" dryrun 0)
     local do_publish=$(abcli_option_int "$options" publish 0)
     local do_download=$(abcli_option_int "$options" download $(abcli_not $do_dryrun))
@@ -25,11 +25,11 @@ function literature_review() {
         abcli_download - $output_object_name
     fi
 
-    abcli_log "literature review: $input_object_name -$choices-> $output_object_name ..."
+    abcli_log "literature review: $input_object_name -$question-> $output_object_name ..."
 
     abcli_eval dryrun=$do_dryrun \
         python3 -m openai_commands.literature_review \
-        --choices $choices.yaml \
+        --question_filename $question.yaml \
         --input_object_name $input_object_name \
         --output_object_name $output_object_name \
         --suffix $suffix \
