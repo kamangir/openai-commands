@@ -23,8 +23,8 @@ parser.add_argument(
 parser.add_argument(
     "--filename",
     type=str,
-    default="review",
-    help="<review> refers to <review.csv>",
+    default="",
+    help="<review.csv>",
 )
 parser.add_argument(
     "--input_object_name",
