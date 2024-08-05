@@ -32,16 +32,19 @@ def generate_prompt(question: Dict[str, Dict]) -> str:
         )
     )
 
-    prompt = '{} and {} otherwise, return "{}" followed by reason in less than five words.'.format(
+    prompt = """
+    {} and return the correct choice from the following list followed with "because" and 
+    then describe the reason for this choice in less than ten words. choices: {}
+    """.format(
         description,
         " ".join(
             [
-                f'return "{choice}" {description}'
+                f'"{choice}" {description}'
                 for choice, description in choices.items()
                 if choice != "otherwise"
             ]
+            + ['"not relevant" if none of the above choices is correct."']
         ),
-        choices.get("otherwise", "not relevant"),
     )
 
     prompt = clean_prompt(prompt)
