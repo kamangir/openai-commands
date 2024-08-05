@@ -32,7 +32,17 @@ function literature_review() {
             --delim + \
             --after "question(s)"
 
+        local runner_type=$(abcli_option "$options" to generic)
+
+        local object_name=literature_review-$suffix-$(abcli_string_timestamp)
+
+        # generate a workflow in $object_name
         abcli_log "🪄"
+
+        workflow submit \
+            ~download,dryrun=$do_dryrun,to=$runner_type \
+            $object_name
+
         return
     fi
 
