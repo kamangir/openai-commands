@@ -49,6 +49,7 @@ function literature_review() {
 
     abcli_eval dryrun=$do_dryrun \
         python3 -m openai_commands.literature_review \
+        review \
         --question_filename $question.yaml \
         --input_object_name $input_object_name \
         --output_object_name $output_object_name \

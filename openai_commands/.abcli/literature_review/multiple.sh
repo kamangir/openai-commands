@@ -28,22 +28,25 @@ function literature_review_multiple() {
         --delim + \
         --after "question(s)"
 
-    local suffix=$(abcli_option "$options" suffix)
-    local list_of_questions_safe=$(echo "$list_of_questions" | tr + -)
-    if [ -z "$suffix" ]; then
-        suffix=$list_of_questions_safe
-    else
-        suffix=$list_of_questions_safe-$suffix
-    fi
+    local suffix=$(abcli_option "$options" suffix -)
 
-    local runner_type=$(abcli_option "$options" to generic)
+    local job_name=literature_review-$suffix-$(abcli_string_timestamp)
 
-    local object_name=literature_review-$suffix-$(abcli_string_timestamp)
+    local object_name=$(abcli_clarify_object $4 $LITERATURE_REVIEW_OBJECT)
 
-    # generate a workflow in $object_name
-    abcli_log "🪄"
+    local args=$(echo "${@:5}" | $abcli_base64)
+
+    abcli_eval dryrun=$do_dryrun \
+        python3 -m openai_commands.literature_review \
+        generate_multiple_review_workflow \
+        --job_name $job_name \
+        --object_name $object_name \
+        --options "$review_options" \
+        --do_publish $do_publish \
+        --suffix $suffix \
+        $args
 
     workflow submit \
-        ~download,dryrun=$do_dryrun,to=$runner_type \
-        $object_name
+        ~download,$workflow_options \
+        $job_name
 }
