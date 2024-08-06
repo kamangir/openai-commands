@@ -7,7 +7,7 @@ function literature_review_multiple() {
 
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then
         local args=$LITERATURE_REVIEW_ARGS
-        options="publish,questions=<question1+question2>$EOP,suffix=<suffix>,dryrun$EOPE"
+        options="${EOP}dryrun,${EOPE}publish,questions=<question1+question2>$EOP,suffix=<suffix>$EOPE"
         workflow_options="${EOP}dryrun,${EOPE}to=$NBS_RUNNERS_LIST"
         review_options="${EOP}dryrun,${EOPE}publish"
         abcli_show_usage "@litrev multiple$ABCUL[$options]$ABCUL[$workflow_options]$ABCUL[$review_options]$ABCUL[$LITERATURE_REVIEW_OBJECT|<object-name>]$ABCUL$args" \
@@ -15,15 +15,26 @@ function literature_review_multiple() {
         return
     fi
 
-    local question=$(abcli_option "$options" question)
-    if [ -z "$question" ]; then
+    local do_dryrun=$(abcli_option_int "$options" dryrun 0)
+    local do_publish=$(abcli_option_int "$options" publish 0)
+
+    local list_of_questions=$(abcli_option "$options" questions)
+    if [ -z "$list_of_questions" ]; then
         abcli_log_error "-literature review: question not found."
         return 1
     fi
-    abcli_log_list "$question" \
+    abcli_log_list "$list_of_questions" \
         --before "" \
         --delim + \
         --after "question(s)"
+
+    local suffix=$(abcli_option "$options" suffix)
+    local list_of_questions_safe=$(echo "$list_of_questions" | tr + -)
+    if [ -z "$suffix" ]; then
+        suffix=$list_of_questions_safe
+    else
+        suffix=$list_of_questions_safe-$suffix
+    fi
 
     local runner_type=$(abcli_option "$options" to generic)
 
