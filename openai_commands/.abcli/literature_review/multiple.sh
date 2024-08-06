@@ -45,6 +45,7 @@ function literature_review_multiple() {
         --do_publish $do_publish \
         --suffix $suffix \
         $args
+    [[ $? -ne 0 ]] && return 1
 
     workflow submit \
         ~download,$workflow_options \
