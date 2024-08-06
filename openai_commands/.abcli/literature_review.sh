@@ -1,6 +1,5 @@
 #! /usr/bin/env bash
 
-export LITERATURE_REVIEW_BASE_OPTIONS="$EOP,dryrun,~download,publish,suffix=<suffix>,~upload$EOPE"
 export LITERATURE_REVIEW_ARGS="[--count <-1>]$ABCUL[--filename <filename>]$ABCUL[--overwrite 1]$ABCUL[--verbose 1]"
 
 function literature_review() {
@@ -8,16 +7,16 @@ function literature_review() {
 
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then
         local args=$LITERATURE_REVIEW_ARGS
-        options="question=<question>$LITERATURE_REVIEW_BASE_OPTIONS"
+        options="${EOP}dryrun,~download,${EOPE}publish,question=<question>$EOP,suffix=<suffix>,~upload$EOPE"
         abcli_show_usage "@litrev$ABCUL[$options]$ABCUL[$LITERATURE_REVIEW_OBJECT|<object-name>]$ABCUL$args" \
-            "ask a multiple-choice question about a list of studies.${ABCUL2}input: <object-name>/<filename>.csv, column: Abstract.${ABCUL2}question: <question.yaml>.${ABCUL2}output: <object-name>-<suffix>/<filename>-<suffix>.csv, column: <suffix>.${ABCUL2}<suffix> defaults to <question>."
+            "ask a multiple-choice question about the list of studies in <object-name>.${ABCUL2}input: <object-name>/<filename>.csv, column: Abstract.${ABCUL2}question: <question.yaml>.${ABCUL2}output: <object-name>-<suffix>/<filename>-<suffix>.csv, column: <suffix>.${ABCUL2}<suffix> defaults to <question>."
 
         literature_review_multiple "$@"
         return
     fi
 
     if [ $(abcli_option_int "$options" multiple 0) == 1 ]; then
-        literature_review_multiple "$@"
+        literature_review_multiple "${@:2}"
         return
     fi
 
