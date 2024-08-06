@@ -41,7 +41,7 @@ function literature_review_multiple() {
         generate_multiple_review_workflow \
         --job_name $job_name \
         --object_name $object_name \
-        --options "$review_options" \
+        --review_options "$review_options" \
         --do_publish $do_publish \
         --suffix $suffix \
         $args
