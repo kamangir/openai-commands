@@ -30,7 +30,7 @@ function literature_review_multiple() {
 
     local suffix=$(abcli_option "$options" suffix -)
 
-    local job_name=literature_review-$suffix-$(abcli_string_timestamp)
+    local job_name=literature_review-$(abcli_string_timestamp)
 
     local object_name=$(abcli_clarify_object $4 $LITERATURE_REVIEW_OBJECT)
 
