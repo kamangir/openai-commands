@@ -1,4 +1,5 @@
 from blueness import module
+from notebooks_and_scripts.workflow.generic import Workflow
 from openai_commands import NAME
 from openai_commands.logger import logger
 
@@ -28,6 +29,8 @@ def generate_workflow(
         )
     )
 
+    workflow = Workflow(job_name)
+
     logger.info("🪄")
 
-    return True
+    return workflow.save()
