@@ -60,11 +60,13 @@ def generate_workflow(
             f"dryrun={do_dryrun},publish={do_publish}",
         ]
         + [f"{object_name}-{question}{suffix}" for question in list_of_questions]
-        + "{}-{}{}".format(
-            object_name,
-            "-".join(list_of_questions),
-            suffix,
-        )
+        + [
+            "{}-{}{}".format(
+                object_name,
+                "-".join(list_of_questions),
+                suffix,
+            )
+        ]
     )
 
     return workflow.save()
