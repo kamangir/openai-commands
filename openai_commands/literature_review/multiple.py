@@ -53,7 +53,7 @@ def generate_workflow(
 
         workflow.G.add_edge("combination", question)
 
-    workflow.G.nodes[question]["command_line"] = " ".join(
+    workflow.G.nodes["combination"]["command_line"] = " ".join(
         [
             "literature_review",
             "combine",
