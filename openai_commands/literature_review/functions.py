@@ -57,15 +57,11 @@ def review_literature(
     input_object_name: str,
     output_object_name: str,
     filename: str,
-    question_filename: str,
+    question: str,
     count: int,
-    suffix: str = "",
     overwrite: bool = False,
     verbose: bool = False,
 ) -> bool:
-    if not suffix:
-        suffix = file.name(question_filename)
-
     if filename.endswith(".csv"):
         filename = filename.split(".csv")[0]
 
@@ -74,24 +70,24 @@ def review_literature(
             NAME,
             input_object_name,
             filename,
-            question_filename,
+            question,
             "" if count == -1 else f"{count}X-",
             "" if not overwrite else "overwrite-",
             output_object_name,
             filename,
-            suffix,
-            suffix,
+            question,
+            question,
         )
     )
 
-    success, question = file.load_yaml(
-        objects.path_of(question_filename, input_object_name)
+    success, question_dict = file.load_yaml(
+        objects.path_of(f"{question}.yaml", input_object_name)
     )
     if not success:
         return success
 
     output_filename = objects.path_of(
-        f"{filename}-{suffix}.csv",
+        f"{filename}.csv",
         output_object_name,
         create=True,
     )
@@ -109,15 +105,15 @@ def review_literature(
     if not success:
         return success
 
-    prompt = generate_prompt(question)
+    prompt = generate_prompt(question_dict)
 
-    if suffix not in df.columns:
-        df[suffix] = pd.NA
-        logger.info("added column: {}".format(suffix))
+    if question not in df.columns:
+        df[question] = pd.NA
+        logger.info("added column: {}".format(question))
 
     counter = 0
     for idx in tqdm(df.index):
-        assessment = df.loc[idx, suffix]
+        assessment = df.loc[idx, question]
         if (
             not overwrite
             and not pd.isna(assessment)
@@ -149,7 +145,7 @@ def review_literature(
             )
         )
 
-        df.loc[idx, suffix] = assessment
+        df.loc[idx, question] = assessment
 
         counter += 1
         if count != -1 and counter >= count:

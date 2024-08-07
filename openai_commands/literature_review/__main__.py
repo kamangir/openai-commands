@@ -23,10 +23,10 @@ parser.add_argument(
     type=str,
 )
 parser.add_argument(
-    "--question_filename",
+    "--question",
     type=str,
-    default="question1.yaml",
-    help="<question.yaml>",
+    default="question1",
+    help="<question>",
 )
 parser.add_argument(
     "--count",
@@ -53,6 +53,12 @@ parser.add_argument(
 parser.add_argument(
     "--job_name",
     type=str,
+)
+parser.add_argument(
+    "--list_of_questions",
+    type=str,
+    default="",
+    help="question1+question2+...",
 )
 parser.add_argument(
     "--object_name",
@@ -86,17 +92,25 @@ parser.add_argument(
     default=0,
     help="0|1",
 )
+parser.add_argument(
+    "--do_dryrun",
+    type=bool,
+    default=0,
+    help="0|1",
+)
 args = parser.parse_args()
 
 success = False
 if args.task == "generate_multiple_review_workflow":
     success = generate_multiple_review_workflow(
         job_name=args.job_name,
+        list_of_questions=args.list_of_questions.split("+"),
         object_name=args.object_name,
-        options=args.review_options,
+        review_options=args.review_options,
         do_publish=args.do_publish == 1,
         suffix=args.suffix,
         args=base64.b64decode(args.args).decode("utf-8"),
+        do_dryrun=args.do_dryrun == 1,
     )
 elif args.task == "review":
     success = review_literature(
@@ -105,8 +119,7 @@ elif args.task == "review":
         input_object_name=args.input_object_name,
         output_object_name=args.output_object_name,
         overwrite=args.overwrite == 1,
-        question_filename=args.question_filename,
-        suffix=args.suffix,
+        question=args.question,
         verbose=args.verbose == 1,
     )
 else:

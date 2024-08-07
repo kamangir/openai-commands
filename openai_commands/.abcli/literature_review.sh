@@ -9,7 +9,7 @@ function literature_review() {
         local args=$LITERATURE_REVIEW_ARGS
         options="${EOP}dryrun,~download,${EOPE}publish,question=<question>$EOP,suffix=<suffix>,~upload$EOPE"
         abcli_show_usage "@litrev$ABCUL[$options]$ABCUL[$LITERATURE_REVIEW_OBJECT|<object-name>]$ABCUL$args" \
-            "ask a multiple-choice question about the list of studies in <object-name>.${ABCUL2}input: <object-name>/<filename>.csv, column: Abstract.${ABCUL2}question: <question.yaml>.${ABCUL2}output: <object-name>-<suffix>/<filename>-<suffix>.csv, column: <suffix>.${ABCUL2}<suffix> defaults to <question>."
+            "ask a multiple-choice question about the list of studies in <object-name>.${ABCUL2}input: <object-name>/<filename>.csv, column: Abstract.${ABCUL2}question: <object-name>/<question>.yaml.${ABCUL2}output: <object-name>-<question><suffix>/<filename>.csv, column: <question>."
 
         literature_review_multiple "$@"
         return
@@ -26,20 +26,14 @@ function literature_review() {
         return 1
     fi
 
-    local suffix=$(abcli_option "$options" suffix)
-    if [ -z "$suffix" ]; then
-        suffix=$question
-    else
-        suffix=$question-$suffix
-    fi
-
     local do_dryrun=$(abcli_option_int "$options" dryrun 0)
     local do_publish=$(abcli_option_int "$options" publish 0)
     local do_download=$(abcli_option_int "$options" download $(abcli_not $do_dryrun))
     local do_upload=$(abcli_option_int "$options" upload $(abcli_not $do_dryrun))
+    local suffix=$(abcli_option "$options" suffix)
 
     local input_object_name=$(abcli_clarify_object $2 $LITERATURE_REVIEW_OBJECT)
-    local output_object_name=$input_object_name-$suffix
+    local output_object_name=$input_object_name-$question-$suffix
     if [[ "$do_download" == 1 ]]; then
         abcli_download - $input_object_name
         abcli_download - $output_object_name
@@ -50,10 +44,9 @@ function literature_review() {
     abcli_eval dryrun=$do_dryrun \
         python3 -m openai_commands.literature_review \
         review \
-        --question_filename $question.yaml \
         --input_object_name $input_object_name \
         --output_object_name $output_object_name \
-        --suffix $suffix \
+        --question $question \
         "${@:3}"
     local status="$?"
 

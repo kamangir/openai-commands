@@ -7,11 +7,11 @@ function literature_review_multiple() {
 
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then
         local args=$LITERATURE_REVIEW_ARGS
-        options="${EOP}dryrun,${EOPE}publish,questions=<question1+question2>$EOP,suffix=<suffix>$EOPE"
+        options="${EOP}dryrun,${EOPE}publish,questions=<question1+question2+...>$EOP,suffix=<suffix>$EOPE"
         workflow_options="${EOP}dryrun,${EOPE}to=$NBS_RUNNERS_LIST"
         review_options="${EOP}dryrun,${EOPE}publish"
         abcli_show_usage "@litrev multiple$ABCUL[$options]$ABCUL[$workflow_options]$ABCUL[$review_options]$ABCUL[$LITERATURE_REVIEW_OBJECT|<object-name>]$ABCUL$args" \
-            "ask multiple multiple-choice questions about the list of studies in <object-name>.${ABCUL2}input: <object-name>/<filename>.csv, column: Abstract.${ABCUL2}questions: <question1.yaml>, <question2.yaml>,... .${ABCUL2}output: <object-name>-<suffix>/<filename>-<suffix>.csv, columns: <question1>, <question2>, ... .${ABCUL2}<suffix> defaults to <question1-question2>."
+            "ask multiple multiple-choice questions about the list of studies in <object-name>.${ABCUL2}input: <object-name>/<filename>.csv, column: Abstract.${ABCUL2}questions: <object-name>/<question1>.yaml, <question2>.yaml, ... .${ABCUL2}output: <object-name>-<question1>-<question-2>-<...><suffix>/<filename>.csv, columns: <question1>, <question2>, ... ."
         return
     fi
 
@@ -36,10 +36,14 @@ function literature_review_multiple() {
 
     local args=$(echo "${@:5}" | $abcli_base64)
 
+    local do_dryrun_review=$(abcli_option_int "$review_options" dryrun 0)
+
     abcli_eval dryrun=$do_dryrun \
         python3 -m openai_commands.literature_review \
         generate_multiple_review_workflow \
+        --do_dryrun $do_dryrun_review \
         --job_name $job_name \
+        --list_of_questions $list_of_questions \
         --object_name $object_name \
         --review_options "$review_options" \
         --do_publish $do_publish \
