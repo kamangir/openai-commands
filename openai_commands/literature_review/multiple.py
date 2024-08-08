@@ -57,7 +57,10 @@ def generate_workflow(
         [
             "literature_review",
             "combine",
-            f"dryrun={do_dryrun},publish={do_publish}",
+            "dryrun={},publish={}".format(
+                int(do_dryrun),
+                int(do_publish),
+            ),
         ]
         + [f"{object_name}-{question}{suffix}" for question in list_of_questions]
         + [

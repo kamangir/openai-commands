@@ -109,7 +109,7 @@ if args.task == "generate_multiple_review_workflow":
         review_options=args.review_options,
         do_publish=args.do_publish == 1,
         suffix=args.suffix,
-        args=base64.b64decode(args.args).decode("utf-8"),
+        args=base64.b64decode(args.args).decode("utf-8").replace("\n", ""),
         do_dryrun=args.do_dryrun == 1,
     )
 elif args.task == "review":
