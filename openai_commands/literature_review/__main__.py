@@ -2,6 +2,7 @@ import argparse
 import base64
 from blueness import module
 from openai_commands import NAME, VERSION
+from openai_commands.literature_review.combination import combine
 from openai_commands.literature_review.functions import review_literature
 from openai_commands.literature_review.multiple import (
     generate_workflow as generate_multiple_review_workflow,
@@ -16,7 +17,7 @@ parser.add_argument(
     "task",
     type=str,
     default="",
-    help="generate_multiple_review_workflow|review",
+    help="combine|generate_multiple_review_workflow|review",
 )
 parser.add_argument(
     "--args",
@@ -101,7 +102,13 @@ parser.add_argument(
 args = parser.parse_args()
 
 success = False
-if args.task == "generate_multiple_review_workflow":
+if args.task == "combine":
+    success = combine(
+        args.object_name_1,
+        args.object_name_2,
+        args.object_name,
+    )
+elif args.task == "generate_multiple_review_workflow":
     success = generate_multiple_review_workflow(
         job_name=args.job_name,
         list_of_questions=args.list_of_questions.split("+"),

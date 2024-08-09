@@ -11,18 +11,22 @@ function literature_review() {
         abcli_show_usage "@litrev$ABCUL[$options]$ABCUL[$LITERATURE_REVIEW_OBJECT|<object-name>]$ABCUL$args" \
             "ask a multiple-choice question about the list of studies in <object-name>.${ABCUL2}input: <object-name>/<filename>.csv, column: Abstract.${ABCUL2}question: <object-name>/<question>.yaml.${ABCUL2}output: <object-name>-<question><suffix>/<filename>.csv, column: <question>."
 
+        literature_review_combine "$@"
         literature_review_multiple "$@"
         return
     fi
 
-    if [ $(abcli_option_int "$options" multiple 0) == 1 ]; then
-        literature_review_multiple "${@:2}"
-        return
-    fi
+    local task
+    for task in combine multiple; do
+        if [ $(abcli_option_int "$options" $task 0) == 1 ]; then
+            literature_review_$task "${@:2}"
+            return
+        fi
+    done
 
     local question=$(abcli_option "$options" question)
     if [ -z "$question" ]; then
-        abcli_error "-literature review: question not found."
+        abcli_log_error "-literature review: question not found."
         return 1
     fi
 
