@@ -24,6 +24,8 @@ function literature_review_combine() {
 
     local object_name=$(abcli_clarify_object $4 .)
 
+    abcli_log "combining $object_name_1 + $object_name_2 -> $object_name"
+
     abcli_eval dryrun=$do_dryrun \
         python3 -m openai_commands.literature_review \
         combine \
