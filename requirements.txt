@@ -10,6 +10,7 @@ folium
 geojson
 geopandas
 matplotlib
+notebooks_and_scripts
 # https://platform.openai.com/docs/quickstart?context=python
 openai
 opencv-python
