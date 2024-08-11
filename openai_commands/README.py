@@ -16,29 +16,29 @@ features = {
         "thumbnail": "https://github.com/kamangir/assets/blob/main/openai_commands/literature-review/marquee.png?raw=true",
         "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/literature_review",
     },
-    "code generation": {
-        "description": "example notebooks to [generate python functions](./notebooks/completion_ai_function_py.ipynb), special case for [image to image python functions](./notebooks/completion_i2i_function.ipynb), and to [write a bash script](./notebooks/completion_ai_function_bash.ipynb) to use a script, for example, [vancouver-watching](https://github.com/kamangir/vancouver-watching).",
-        "icon": ICON,
-        "thumbnail": "https://github.com/kamangir/openai-commands/blob/main/assets/completion_i2i_function.png?raw=true",
-        "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/completion#%EF%B8%8F-code-generation",
-    },
     "OpenAI Vision API": {
         "description": "implements the [OpenAI vision API](https://platform.openai.com/docs/guides/vision).",
         "icon": ICON,
         "thumbnail": "https://raw.githubusercontent.com/kamangir/assets/main/vanwatch/2023-11-25-openai-vision/ButeNorthDavie.jpg",
         "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/vision",
     },
-    "VisuaLyze": {
-        "description": 'How about calling it "VisuaLyze"? This name combines "visualize" and "analyze," reflecting the tool\'s capability to generate custom data visualizations and analyze user input through AI - OpenAI',
+    "code generation": {
+        "description": "example notebooks to [generate python functions](./notebooks/completion_ai_function_py.ipynb), special case for [image to image python functions](./notebooks/completion_i2i_function.ipynb), and to [write a bash script](./notebooks/completion_ai_function_bash.ipynb) to use a script, for example, [vancouver-watching](https://github.com/kamangir/vancouver-watching).",
         "icon": ICON,
-        "thumbnail": "https://github.com/kamangir/openai-commands/assets/1007567/7c0ed5f7-6941-451c-a17e-504c6adab23f",
-        "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/VisuaLyze",
+        "thumbnail": "https://github.com/kamangir/openai-commands/blob/main/assets/completion_i2i_function.png?raw=true",
+        "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/completion#%EF%B8%8F-code-generation",
     },
     "gpt": {
         "description": "co-authored with ChapGPT.",
         "icon": ICON,
         "thumbnail": default_thumbnail,
         "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/gpt",
+    },
+    "VisuaLyze": {
+        "description": 'How about calling it "VisuaLyze"? This name combines "visualize" and "analyze," reflecting the tool\'s capability to generate custom data visualizations and analyze user input through AI - OpenAI',
+        "icon": ICON,
+        "thumbnail": "https://github.com/kamangir/openai-commands/assets/1007567/7c0ed5f7-6941-451c-a17e-504c6adab23f",
+        "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/VisuaLyze",
     },
     "prompt completion": {
         "description": "basic prompt completion.",
