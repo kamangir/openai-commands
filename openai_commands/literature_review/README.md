@@ -6,13 +6,35 @@ literature review using [OpenAI API](../completion/).
 ```bash
  > @litrev help
 @litrev \
-	[question=<question>,dryrun,~download,publish,suffix=<suffix>,~upload] \
-	[AMR-vx|<object-name>] \
+	[dryrun,~download,publish,question=<question>,suffix=<suffix>,~upload] \
+	[AMR-v7|<object-name>] \
 	[--count <-1>] \
 	[--filename <filename>] \
 	[--overwrite 1] \
 	[--verbose 1]
- . <object-name>/<filename>.csv -literature-review-@-<question.yaml>-> <object-name>-<suffix>/<filename>-<question>.csv.
+ . ask a multiple-choice question about the list of studies in <object-name>.
+   input: <object-name>/<filename>.csv, column: Abstract.
+   question: <object-name>/<question>.yaml.
+   output: <object-name>-<suffix>-<question>/<filename>.csv, column: <question>.
+@litrev combine \
+	[~download,dryrun,publish,~upload] \
+	[...|<object-name-1>] \
+	[..|<object-name-2>] \
+	[.|<object-name>]
+ . <object-name-1> + <object-name-2> -> <object-name>.
+@litrev multiple \
+	[dryrun,publish,questions=<question1+question2+...>,suffix=<suffix>] \
+	[dryrun,to=aws_batch|generic|local] \
+	[dryrun,publish] \
+	[AMR-v7|<object-name>] \
+	[--count <-1>] \
+	[--filename <filename>] \
+	[--overwrite 1] \
+	[--verbose 1]
+ . ask multiple multiple-choice questions about the list of studies in <object-name>.
+   input: <object-name>/<filename>.csv, column: Abstract.
+   questions: <object-name>/<question1>.yaml, <question2>.yaml, ... .
+   output: <object-name>-<suffix>-<question1>-<question-2>-<...>/<filename>.csv, columns: <question1>, <question2>, ... .
 ```
 
 - [test run](./docs/test.md)
@@ -22,11 +44,11 @@ literature review using [OpenAI API](../completion/).
 |   |   |
 | --- | --- |
 | [aws_batch](https://github.com/kamangir/notebooks-and-scripts/tree/main/notebooks_and_scripts/workflow/runners/aws_batch.py) | [local](https://github.com/kamangir/notebooks-and-scripts/tree/main/notebooks_and_scripts/workflow/runners/local.py) |
-| [![image](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v7-test-litrev-multiple-aws_batch-study-type-screening-result/workflow.gif?raw=true&random=bn2bEVsHAbCb9TUn)](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v7-test-litrev-multiple-aws_batch-study-type-screening-result/workflow.gif?raw=true&random=bn2bEVsHAbCb9TUn) | [![image](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v7-test-litrev-multiple-local-study-type-screening-result/workflow.gif?raw=true&random=ngWv2nxjBIBIiKSo)](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v7-test-litrev-multiple-local-study-type-screening-result/workflow.gif?raw=true&random=ngWv2nxjBIBIiKSo) |
+| [![image](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v7-test-litrev-multiple-aws_batch-study-type-screening-result/workflow.gif?raw=true&random=8ZiNo94RphaM3UvW)](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v7-test-litrev-multiple-aws_batch-study-type-screening-result/workflow.gif?raw=true&random=8ZiNo94RphaM3UvW) | [![image](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v7-test-litrev-multiple-local-study-type-screening-result/workflow.gif?raw=true&random=OTiJCxwcj6oywW93)](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v7-test-litrev-multiple-local-study-type-screening-result/workflow.gif?raw=true&random=OTiJCxwcj6oywW93) |
 
 ---
 
 notes: [1](https://arash-kamangir.medium.com/%EF%B8%8F-open-ai-experiments-146-6d3390da78c3), [2](https://arash-kamangir.medium.com/%EF%B8%8F-open-ai-experiments-145-dc241e47d9e1)
 
 ---
-built by [`abcli-9.192.1-current`](https://github.com/kamangir/awesome-bash-cli), based on [`openai_commands-3.123.1`](https://github.com/kamangir/openai-commands).
+built by [`abcli-9.192.1-current`](https://github.com/kamangir/awesome-bash-cli), based on [`openai_commands-3.124.1`](https://github.com/kamangir/openai-commands).

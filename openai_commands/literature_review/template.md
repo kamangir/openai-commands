@@ -6,13 +6,35 @@ literature review using [OpenAI API](../completion/).
 ```bash
  > @litrev help
 @litrev \
-	[question=<question>,dryrun,~download,publish,suffix=<suffix>,~upload] \
-	[AMR-vx|<object-name>] \
+	[dryrun,~download,publish,question=<question>,suffix=<suffix>,~upload] \
+	[AMR-v7|<object-name>] \
 	[--count <-1>] \
 	[--filename <filename>] \
 	[--overwrite 1] \
 	[--verbose 1]
- . <object-name>/<filename>.csv -literature-review-@-<question.yaml>-> <object-name>-<suffix>/<filename>-<question>.csv.
+ . ask a multiple-choice question about the list of studies in <object-name>.
+   input: <object-name>/<filename>.csv, column: Abstract.
+   question: <object-name>/<question>.yaml.
+   output: <object-name>-<suffix>-<question>/<filename>.csv, column: <question>.
+@litrev combine \
+	[~download,dryrun,publish,~upload] \
+	[...|<object-name-1>] \
+	[..|<object-name-2>] \
+	[.|<object-name>]
+ . <object-name-1> + <object-name-2> -> <object-name>.
+@litrev multiple \
+	[dryrun,publish,questions=<question1+question2+...>,suffix=<suffix>] \
+	[dryrun,to=aws_batch|generic|local] \
+	[dryrun,publish] \
+	[AMR-v7|<object-name>] \
+	[--count <-1>] \
+	[--filename <filename>] \
+	[--overwrite 1] \
+	[--verbose 1]
+ . ask multiple multiple-choice questions about the list of studies in <object-name>.
+   input: <object-name>/<filename>.csv, column: Abstract.
+   questions: <object-name>/<question1>.yaml, <question2>.yaml, ... .
+   output: <object-name>-<suffix>-<question1>-<question-2>-<...>/<filename>.csv, columns: <question1>, <question2>, ... .
 ```
 
 - [test run](./docs/test.md)
