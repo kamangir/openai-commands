@@ -1,7 +1,7 @@
 
 # 🛠️ literature review (`@litrev`)
 
-literature review at scale on [AWS Batch](https://aws.amazon.com/batch/) through the [OpenAI API](../../completion/).
+literature review at scale on [AWS Batch](https://aws.amazon.com/batch/) through the [OpenAI API](../completion/).
 
 
 ```bash
