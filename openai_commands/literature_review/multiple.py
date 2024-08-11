@@ -44,11 +44,13 @@ def generate_workflow(
         workflow.G.add_node(question)
         workflow.G.nodes[question]["command_line"] = " ".join(
             [
+                "workflow monitor",
+                f"node={question}",
+                workflow.job_name,
                 "literature_review",
-                "question={},suffix={},workflow={},{}".format(
+                "question={},suffix={},{}".format(
                     question,
                     suffix,
-                    f"{object_name}-{suffix}",
                     review_options,
                 ),
                 object_name,
@@ -58,24 +60,22 @@ def generate_workflow(
 
         workflow.G.add_edge("combination", question)
 
+    output_object_name = "-".join([object_name, suffix] + list_of_questions)
+
     workflow.G.nodes["combination"]["command_line"] = " ".join(
         [
+            "workflow monitor",
+            f"node={question},publish_as={output_object_name}",
+            workflow.job_name,
             "literature_review",
             "combine",
-            "dryrun={},publish={},workflow={}".format(
+            "dryrun={},publish={}".format(
                 int(do_dryrun),
                 int(do_publish),
-                f"{object_name}-{suffix}",
             ),
         ]
-        + [f"{object_name}-{suffix}-{question}" for question in list_of_questions]
-        + [
-            "{}-{}-{}".format(
-                object_name,
-                suffix,
-                "-".join(list_of_questions),
-            )
-        ]
+        + ["-".join([object_name, suffix, question]) for question in list_of_questions]
+        + [output_object_name]
     )
 
     return workflow.save()
