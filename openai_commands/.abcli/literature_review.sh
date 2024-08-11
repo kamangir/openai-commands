@@ -9,7 +9,7 @@ function literature_review() {
         local args=$LITERATURE_REVIEW_ARGS
         options="${EOP}dryrun,~download,${EOPE}publish,question=<question>$EOP,suffix=<suffix>,~upload$EOPE"
         abcli_show_usage "@litrev$ABCUL[$options]$ABCUL[$LITERATURE_REVIEW_OBJECT|<object-name>]$ABCUL$args" \
-            "ask a multiple-choice question about the list of studies in <object-name>.${ABCUL2}input: <object-name>/<filename>.csv, column: Abstract.${ABCUL2}question: <object-name>/<question>.yaml.${ABCUL2}output: <object-name>-<question><suffix>/<filename>.csv, column: <question>."
+            "ask a multiple-choice question about the list of studies in <object-name>.${ABCUL2}input: <object-name>/<filename>.csv, column: Abstract.${ABCUL2}question: <object-name>/<question>.yaml.${ABCUL2}output: <object-name>-<suffix>-<question>/<filename>.csv, column: <question>."
 
         literature_review_combine "$@"
         literature_review_multiple "$@"

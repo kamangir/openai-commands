@@ -11,7 +11,7 @@ function literature_review_multiple() {
         workflow_options="${EOP}dryrun,${EOPE}to=$NBS_RUNNERS_LIST"
         review_options="${EOP}dryrun,${EOPE}publish"
         abcli_show_usage "@litrev multiple$ABCUL[$options]$ABCUL[$workflow_options]$ABCUL[$review_options]$ABCUL[$LITERATURE_REVIEW_OBJECT|<object-name>]$ABCUL$args" \
-            "ask multiple multiple-choice questions about the list of studies in <object-name>.${ABCUL2}input: <object-name>/<filename>.csv, column: Abstract.${ABCUL2}questions: <object-name>/<question1>.yaml, <question2>.yaml, ... .${ABCUL2}output: <object-name>-<question1>-<question-2>-<...><suffix>/<filename>.csv, columns: <question1>, <question2>, ... ."
+            "ask multiple multiple-choice questions about the list of studies in <object-name>.${ABCUL2}input: <object-name>/<filename>.csv, column: Abstract.${ABCUL2}questions: <object-name>/<question1>.yaml, <question2>.yaml, ... .${ABCUL2}output: <object-name>-<suffix>-<question1>-<question-2>-<...>/<filename>.csv, columns: <question1>, <question2>, ... ."
         return
     fi
 

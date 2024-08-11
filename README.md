@@ -24,4 +24,4 @@ pip install openai-commands
 To use on [AWS SageMaker](https://aws.amazon.com/sagemaker/) replace `<plugin-name>` with the name of the plugin and follow [these instructions](https://github.com/kamangir/notebooks-and-scripts/blob/main/SageMaker.md).
 
 ---
-built by [`abcli-9.192.1-current`](https://github.com/kamangir/awesome-bash-cli), based on [`openai_commands-3.118.1`](https://github.com/kamangir/openai-commands).
+built by [`abcli-9.192.1-current`](https://github.com/kamangir/awesome-bash-cli), based on [`openai_commands-3.119.1`](https://github.com/kamangir/openai-commands).
