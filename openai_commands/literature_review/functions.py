@@ -17,9 +17,9 @@ def clean_prompt(prompt):
     return re.sub(r"\s+", " ", prompt.strip())
 
 
-def generate_prompt(instructions: Dict[str, Dict]) -> str:
-    choices = instructions.get("choices", {})
-    description = instructions.get(
+def generate_prompt(question: Dict[str, Dict]) -> str:
+    choices = question.get("choices", {})
+    description = question.get(
         "description",
         "read this abstract of a scentific paper",
     )
@@ -32,16 +32,19 @@ def generate_prompt(instructions: Dict[str, Dict]) -> str:
         )
     )
 
-    prompt = '{} and {} otherwise, return "{}" followed by reason in less than five words.'.format(
+    prompt = """
+    {} and return the correct choice from the following list followed with "because" and 
+    then describe the reason for this choice in less than ten words. choices: {}
+    """.format(
         description,
         " ".join(
             [
-                f'return "{choice}" {description}'
+                f'"{choice}" {description}'
                 for choice, description in choices.items()
                 if choice != "otherwise"
             ]
+            + ['"not relevant" if none of the above choices is correct."']
         ),
-        choices.get("otherwise", "not relevant"),
     )
 
     prompt = clean_prompt(prompt)
@@ -54,38 +57,37 @@ def review_literature(
     input_object_name: str,
     output_object_name: str,
     filename: str,
-    choices_filename: str,
+    question: str,
     count: int,
-    suffix: str = "",
     overwrite: bool = False,
     verbose: bool = False,
 ) -> bool:
-    if not suffix:
-        suffix = file.name(choices_filename)
+    if filename.endswith(".csv"):
+        filename = filename.split(".csv")[0]
 
     logger.info(
         "{}.review_literature: {}/{}.csv -{}-{}{}> {}/{}-{}.csv[{}]".format(
             NAME,
             input_object_name,
             filename,
-            choices_filename,
+            question,
             "" if count == -1 else f"{count}X-",
             "" if not overwrite else "overwrite-",
             output_object_name,
             filename,
-            suffix,
-            suffix,
+            question,
+            question,
         )
     )
 
-    success, instructions = file.load_yaml(
-        objects.path_of(choices_filename, input_object_name)
+    success, question_dict = file.load_yaml(
+        objects.path_of(f"{question}.yaml", input_object_name)
     )
     if not success:
         return success
 
     output_filename = objects.path_of(
-        f"{filename}-{suffix}.csv",
+        f"{filename}.csv",
         output_object_name,
         create=True,
     )
@@ -103,15 +105,15 @@ def review_literature(
     if not success:
         return success
 
-    prompt = generate_prompt(instructions)
+    prompt = generate_prompt(question_dict)
 
-    if suffix not in df.columns:
-        df[suffix] = pd.NA
-        logger.info("added column: {}".format(suffix))
+    if question not in df.columns:
+        df[question] = pd.NA
+        logger.info("added column: {}".format(question))
 
     counter = 0
     for idx in tqdm(df.index):
-        assessment = df.loc[idx, suffix]
+        assessment = df.loc[idx, question]
         if (
             not overwrite
             and not pd.isna(assessment)
@@ -143,7 +145,7 @@ def review_literature(
             )
         )
 
-        df.loc[idx, suffix] = assessment
+        df.loc[idx, question] = assessment
 
         counter += 1
         if count != -1 and counter >= count:

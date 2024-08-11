@@ -14,4 +14,4 @@ def test_openai_commands_env():
     assert env.OPENAI_GPT_DEFAULT_MODEL
     assert env.LITERATURE_REVIEW_OBJECT
     assert env.LITERATURE_REVIEW_TEST_FILENAME
-    assert env.LITERATURE_REVIEW_TEST_CHOICES
+    assert env.LITERATURE_REVIEW_TEST_QUESTION
