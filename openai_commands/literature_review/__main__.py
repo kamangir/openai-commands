@@ -66,6 +66,14 @@ parser.add_argument(
     type=str,
 )
 parser.add_argument(
+    "--object_name_1",
+    type=str,
+)
+parser.add_argument(
+    "--object_name_2",
+    type=str,
+)
+parser.add_argument(
     "--output_object_name",
     type=str,
 )
@@ -95,7 +103,7 @@ parser.add_argument(
 )
 parser.add_argument(
     "--do_dryrun",
-    type=bool,
+    type=int,
     default=0,
     help="0|1",
 )

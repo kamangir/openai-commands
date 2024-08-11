@@ -28,7 +28,7 @@ function literature_review_multiple() {
         --delim + \
         --after "question(s)"
 
-    local suffix=$(abcli_option "$options" suffix -)
+    local suffix=$(abcli_option "$options" suffix $(abcli_string_timestamp_short))
 
     local job_name=literature_review-$(abcli_string_timestamp)
 
@@ -37,6 +37,8 @@ function literature_review_multiple() {
     local args=$(echo "${@:5}" | $abcli_base64)
 
     local do_dryrun_review=$(abcli_option_int "$review_options" dryrun 0)
+
+    abcli_log "multiple literature review, job: $job_name -$list_of_questions-> suffix: $suffix ..."
 
     abcli_eval dryrun=$do_dryrun \
         python3 -m openai_commands.literature_review \

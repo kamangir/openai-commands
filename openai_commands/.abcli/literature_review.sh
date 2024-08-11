@@ -34,10 +34,10 @@ function literature_review() {
     local do_publish=$(abcli_option_int "$options" publish 0)
     local do_download=$(abcli_option_int "$options" download $(abcli_not $do_dryrun))
     local do_upload=$(abcli_option_int "$options" upload $(abcli_not $do_dryrun))
-    local suffix=$(abcli_option "$options" suffix)
+    local suffix=$(abcli_option "$options" suffix $(abcli_string_timestamp_short))
 
     local input_object_name=$(abcli_clarify_object $2 $LITERATURE_REVIEW_OBJECT)
-    local output_object_name=$input_object_name-$question-$suffix
+    local output_object_name=$input_object_name-$suffix-$question
     if [[ "$do_download" == 1 ]]; then
         abcli_download - $input_object_name
         abcli_download - $output_object_name

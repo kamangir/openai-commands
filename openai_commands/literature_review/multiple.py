@@ -45,7 +45,12 @@ def generate_workflow(
         workflow.G.nodes[question]["command_line"] = " ".join(
             [
                 "literature_review",
-                f"{review_options},question={question},suffix={suffix}",
+                "question={},suffix={},workflow={},{}".format(
+                    question,
+                    suffix,
+                    f"{object_name}-{suffix}",
+                    review_options,
+                ),
                 object_name,
                 args,
             ]
@@ -57,17 +62,18 @@ def generate_workflow(
         [
             "literature_review",
             "combine",
-            "dryrun={},publish={}".format(
+            "dryrun={},publish={},workflow={}".format(
                 int(do_dryrun),
                 int(do_publish),
+                f"{object_name}-{suffix}",
             ),
         ]
-        + [f"{object_name}-{question}{suffix}" for question in list_of_questions]
+        + [f"{object_name}-{suffix}-{question}" for question in list_of_questions]
         + [
-            "{}-{}{}".format(
+            "{}-{}-{}".format(
                 object_name,
-                "-".join(list_of_questions),
                 suffix,
+                "-".join(list_of_questions),
             )
         ]
     )

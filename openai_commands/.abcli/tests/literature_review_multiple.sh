@@ -5,9 +5,10 @@ function test_openai_commands_literature_review_multiple() {
 
     literature_review multiple \
         questions=study-type+screening-result,$options \
-        to=local \
+        to=local,$2 \
         - \
         $LITERATURE_REVIEW_OBJECT \
         --count 2 \
-        --filename review_463333_screen_csv_20240730130035
+        --filename review_463333_screen_csv_20240730130035 \
+        "${@:3}"
 }
