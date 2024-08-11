@@ -45,11 +45,11 @@ literature review at scale on [AWS Batch](https://aws.amazon.com/batch/) through
 |   |   |
 | --- | --- |
 | [aws_batch](https://github.com/kamangir/notebooks-and-scripts/tree/main/notebooks_and_scripts/workflow/runners/aws_batch.py) | [local](https://github.com/kamangir/notebooks-and-scripts/tree/main/notebooks_and_scripts/workflow/runners/local.py) |
-| [![image](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v7-test-litrev-multiple-aws_batch-study-type-screening-result/workflow.gif?raw=true&random=9kGJiaIOLHEcNX6Y)](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v7-test-litrev-multiple-aws_batch-study-type-screening-result/workflow.gif?raw=true&random=9kGJiaIOLHEcNX6Y) | [![image](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v7-test-litrev-multiple-local-study-type-screening-result/workflow.gif?raw=true&random=fhAHCq9LGjZjvEwM)](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v7-test-litrev-multiple-local-study-type-screening-result/workflow.gif?raw=true&random=fhAHCq9LGjZjvEwM) |
+| [![image](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v7-test-litrev-multiple-aws_batch-study-type-screening-result/workflow.gif?raw=true&random=8xBLITTAswUBaBpy)](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v7-test-litrev-multiple-aws_batch-study-type-screening-result/workflow.gif?raw=true&random=8xBLITTAswUBaBpy) | [![image](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v7-test-litrev-multiple-local-study-type-screening-result/workflow.gif?raw=true&random=USGdKpk64SCDJLAT)](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v7-test-litrev-multiple-local-study-type-screening-result/workflow.gif?raw=true&random=USGdKpk64SCDJLAT) |
 
 ---
 
 notes: [1](https://arash-kamangir.medium.com/%EF%B8%8F-open-ai-experiments-146-6d3390da78c3), [2](https://arash-kamangir.medium.com/%EF%B8%8F-open-ai-experiments-145-dc241e47d9e1)
 
 ---
-built by [`abcli-9.192.1-current`](https://github.com/kamangir/awesome-bash-cli), based on [`openai_commands-3.127.1`](https://github.com/kamangir/openai-commands).
+built by [`abcli-9.192.1-current`](https://github.com/kamangir/awesome-bash-cli), based on [`openai_commands-3.128.1`](https://github.com/kamangir/openai-commands).

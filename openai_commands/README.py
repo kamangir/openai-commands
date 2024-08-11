@@ -10,17 +10,23 @@ default_thumbnail = (
 )
 
 features = {
-    "prompt completion": {
-        "description": "basic prompt completion.",
+    "literature review": {
+        "description": "literature review using OpenAI API.",
         "icon": ICON,
-        "thumbnail": default_thumbnail,
-        "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/completion#%EF%B8%8F-prompt-completion",
+        "thumbnail": "https://github.com/kamangir/assets/blob/main/openai_commands/literature-review/marquee.png?raw=true",
+        "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/literature_review",
     },
     "code generation": {
         "description": "example notebooks to [generate python functions](./notebooks/completion_ai_function_py.ipynb), special case for [image to image python functions](./notebooks/completion_i2i_function.ipynb), and to [write a bash script](./notebooks/completion_ai_function_bash.ipynb) to use a script, for example, [vancouver-watching](https://github.com/kamangir/vancouver-watching).",
         "icon": ICON,
         "thumbnail": "https://github.com/kamangir/openai-commands/blob/main/assets/completion_i2i_function.png?raw=true",
         "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/completion#%EF%B8%8F-code-generation",
+    },
+    "OpenAI Vision API": {
+        "description": "implements the [OpenAI vision API](https://platform.openai.com/docs/guides/vision).",
+        "icon": ICON,
+        "thumbnail": "https://raw.githubusercontent.com/kamangir/assets/main/vanwatch/2023-11-25-openai-vision/ButeNorthDavie.jpg",
+        "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/vision",
     },
     "VisuaLyze": {
         "description": 'How about calling it "VisuaLyze"? This name combines "visualize" and "analyze," reflecting the tool\'s capability to generate custom data visualizations and analyze user input through AI - OpenAI',
@@ -34,23 +40,17 @@ features = {
         "thumbnail": default_thumbnail,
         "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/gpt",
     },
-    "OpenAI Vision API": {
-        "description": "implements the [OpenAI vision API](https://platform.openai.com/docs/guides/vision).",
+    "prompt completion": {
+        "description": "basic prompt completion.",
         "icon": ICON,
-        "thumbnail": "https://raw.githubusercontent.com/kamangir/assets/main/vanwatch/2023-11-25-openai-vision/ButeNorthDavie.jpg",
-        "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/vision",
+        "thumbnail": default_thumbnail,
+        "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/completion#%EF%B8%8F-prompt-completion",
     },
     "image generation": {
         "description": "sentence -> image, text -> mural, images",
         "icon": ICON,
         "thumbnail": "https://github.com/kamangir/openai-commands/blob/main/assets/DALL-E.png?raw=true",
         "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/images",
-    },
-    "literature review": {
-        "description": "literature review using OpenAI API.",
-        "icon": ICON,
-        "thumbnail": "https://github.com/kamangir/assets/blob/main/openai_commands/literature-review/marquee.png?raw=true",
-        "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/literature_review",
     },
     "template": {
         "description": "",
