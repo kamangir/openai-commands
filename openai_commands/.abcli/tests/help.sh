@@ -27,8 +27,8 @@ function test_openai_commands_help() {
         "openai_commands transform" \
         "openai_commands vision" \
         \
-        "gpt" \
-        "gpt list_models" \
+        "openai_commands_gpt" \
+        "openai_commands_gpt list_models" \
         \
         "VisuaLyze" \
         "VisuaLyze browse" \
