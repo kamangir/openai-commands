@@ -1,6 +1,6 @@
 # 🛠️ openai-commands (`@openai`)
 
-`@openai` is a bash interface to the [OpenAI API](https://beta.openai.com/docs/introduction).
+`@openai` is a command interface to the [OpenAI API](https://beta.openai.com/docs/introduction).
 
 ```bash
 pip install openai-commands
@@ -24,4 +24,4 @@ pip install openai-commands
 To use on [AWS SageMaker](https://aws.amazon.com/sagemaker/) replace `<plugin-name>` with the name of the plugin and follow [these instructions](https://github.com/kamangir/notebooks-and-scripts/blob/main/SageMaker.md).
 
 ---
-built by [`abcli-9.195.1-current`](https://github.com/kamangir/awesome-bash-cli), based on [`openai_commands-3.136.1`](https://github.com/kamangir/openai-commands).
+built by [`abcli-9.195.1-current`](https://github.com/kamangir/awesome-bash-cli), based on [`openai_commands-3.137.1`](https://github.com/kamangir/openai-commands).

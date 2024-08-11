@@ -1,6 +1,6 @@
 # 🛠️ openai-commands (`@openai`)
 
-`@openai` is a bash interface to the [OpenAI API](https://beta.openai.com/docs/introduction).
+`@openai` is a command interface to the [OpenAI API](https://beta.openai.com/docs/introduction).
 
 ```bash
 pip install openai-commands
