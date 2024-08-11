@@ -1,6 +1,7 @@
 import os
 from abcli import file
 from abcli.plugins.README import build as build_README
+from openai_commands.literature_review.README import items as literature_review_items
 from openai_commands import NAME, VERSION, ICON, REPO_NAME
 
 
@@ -84,6 +85,20 @@ def build():
         filename=os.path.join(
             file.path(__file__),
             "../README.md",
+        ),
+        NAME=NAME,
+        VERSION=VERSION,
+        REPO_NAME=REPO_NAME,
+    ) and build_README(
+        items=literature_review_items,
+        cols=2,
+        template_filename=os.path.join(
+            file.path(__file__),
+            "./literature_review/template.md",
+        ),
+        filename=os.path.join(
+            file.path(__file__),
+            "./literature_review/README.md",
         ),
         NAME=NAME,
         VERSION=VERSION,
