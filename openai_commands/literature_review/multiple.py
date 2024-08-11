@@ -65,7 +65,7 @@ def generate_workflow(
     workflow.G.nodes["combination"]["command_line"] = " ".join(
         [
             "workflow monitor",
-            f"node={question},publish_as={output_object_name}",
+            f"node=combination,publish_as={output_object_name}",
             workflow.job_name,
             "literature_review",
             "combine",
