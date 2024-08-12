@@ -13,7 +13,7 @@ pip install openai-commands
 
 [![PyPI version](https://img.shields.io/pypi/v/openai-commands.svg)](https://pypi.org/project/openai-commands/)
 
-🎁 [wish list](https://github.com/kamangir/openai-commands/issues/13)
+🎁 [wish list and bugs](https://github.com/kamangir/openai-commands/issues/13)
 
 ---
 
