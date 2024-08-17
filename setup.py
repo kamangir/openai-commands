@@ -7,7 +7,18 @@ setup(
     name=NAME,
     version=VERSION,
     description=DESCRIPTION,
-    packages=[NAME],
+    packages=[
+        NAME,
+        f"{NAME}.completion",
+        f"{NAME}.completion.functions",
+        f"{NAME}.completion.prompts",
+        f"{NAME}.DALLE",
+        f"{NAME}.gpt",
+        f"{NAME}.images",
+        f"{NAME}.literature_review",
+        f"{NAME}.vision",
+        f"{NAME}.VisuaLyze",
+    ],
     include_package_data=True,
     package_data={
         NAME: [
