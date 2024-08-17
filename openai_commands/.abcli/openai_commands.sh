@@ -23,11 +23,13 @@ function openai_commands() {
         "${@:2}"
 }
 
-abcli_source_path - caller,suffix=/tests
+abcli_source_path - \
+    caller,suffix=/tests
+
+abcli_env_dot_load \
+    caller,ssm,plugin=openai_commands,suffix=/../..
+
+abcli_env_dot_load \
+    caller,filename=config.env,suffix=/..
 
 abcli_log $(openai_commands version --show_icon 1)
-
-abcli_env dot load \
-    plugin=openai_commands
-abcli_env dot load \
-    filename=openai_commands/config.env,plugin=openai_commands
