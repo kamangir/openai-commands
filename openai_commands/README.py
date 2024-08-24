@@ -78,28 +78,14 @@ items = [
 def build():
     return build_README(
         items=items,
-        template_filename=os.path.join(
-            file.path(__file__),
-            "../template.md",
-        ),
-        filename=os.path.join(
-            file.path(__file__),
-            "../README.md",
-        ),
+        path=os.path.join(file.path(__file__), ".."),
         NAME=NAME,
         VERSION=VERSION,
         REPO_NAME=REPO_NAME,
     ) and build_README(
         items=literature_review_items,
         cols=2,
-        template_filename=os.path.join(
-            file.path(__file__),
-            "./literature_review/template.md",
-        ),
-        filename=os.path.join(
-            file.path(__file__),
-            "./literature_review/README.md",
-        ),
+        path=os.path.join(file.path(__file__), "literature_review"),
         NAME=NAME,
         VERSION=VERSION,
         REPO_NAME=REPO_NAME,
