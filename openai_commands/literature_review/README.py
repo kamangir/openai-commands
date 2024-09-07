@@ -1,8 +1,7 @@
-from functools import reduce
+from blue_objects.env import ABCLI_PUBLIC_PREFIX
 from abcli import string
 
 
-prefix = "https://kamangir-public.s3.ca-central-1.amazonaws.com"
 runner_prefix = "https://github.com/kamangir/notebooks-and-scripts/tree/main/notebooks_and_scripts/workflow/runners"
 
 list_of_runners = ["aws_batch", "local"]
@@ -14,7 +13,7 @@ items = [
     f"[![image]({url})]({url})"
     for url in [
         "{}/AMR-v7-test-litrev-multiple-{}-study-type-screening-result/workflow.gif?raw=true&random={}".format(
-            prefix,
+            ABCLI_PUBLIC_PREFIX,
             runner_type,
             string.random_(),
         )
