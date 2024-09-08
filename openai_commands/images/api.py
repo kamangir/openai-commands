@@ -2,13 +2,14 @@ import json
 from openai import OpenAI
 from typing import Tuple, Any
 from IPython.display import Image, display
+
 from blueness import module
-from abcli import file
-from abcli import string
-from abcli.modules import host
-from abcli.modules import objects
-from abcli.modules.host import is_jupyter
+from blue_options import string
+from blue_options.host import is_jupyter
+from blue_objects import file
+from abcli.modules import host, objects
 from abcli.plugins import graphics
+
 from openai_commands import NAME, VERSION
 from openai_commands import env
 from openai_commands.logger import logger

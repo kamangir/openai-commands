@@ -1,14 +1,16 @@
 import argparse
 import os
+
 from blueness import module
-from abcli import file
+from blueness.argparse.generic import sys_exit
 from blue_options.options import Options
+from blue_objects import file
 from abcli.modules import objects
+
 from articraft import html
 from openai_commands import NAME, VERSION
 from openai_commands.DALLE.canvas import Canvas
 from openai_commands.logger import logger
-from blueness.argparse.generic import sys_exit
 
 NAME = module.name(__file__, NAME)
 
@@ -69,7 +71,7 @@ if args.task == "render":
     output_filename = args.destination
     if not output_filename:
         if not is_url:
-            output_filename = file.set_extension(args.source, "png")
+            output_filename = file.add_extension(args.source, "png")
         else:
             output_filename = objects.path_of("DALL-E.png")
 

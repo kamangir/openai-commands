@@ -1,5 +1,5 @@
 from blue_objects.env import ABCLI_PUBLIC_PREFIX
-from abcli import string
+from blue_options import string
 
 
 runner_prefix = "https://github.com/kamangir/notebooks-and-scripts/tree/main/notebooks_and_scripts/workflow/runners"
@@ -15,7 +15,7 @@ items = [
         "{}/AMR-v7-test-litrev-multiple-{}-study-type-screening-result/workflow.gif?raw=true&random={}".format(
             ABCLI_PUBLIC_PREFIX,
             runner_type,
-            string.random_(),
+            string.random(),
         )
         for runner_type in list_of_runners
     ]

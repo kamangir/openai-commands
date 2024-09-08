@@ -2,7 +2,7 @@ import os
 import matplotlib.pyplot as plt
 from abcli import env, file
 from abcli import string
-from abcli.modules.host import is_jupyter
+from blue_options.host import is_jupyter
 from openai_commands.completion.functions.python import ai_function_py
 from openai_commands.logger import logger
 

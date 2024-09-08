@@ -1,13 +1,15 @@
 import argparse
 from blueness import module
 from tqdm import tqdm
-from abcli import string
+
+from blueness.argparse.generic import sys_exit
+from blue_options import string
+from blue_objects import file
 from abcli.modules import objects
-from abcli import file
+
 from openai_commands import NAME, VERSION
 from openai_commands.images.api import OpenAIImageGenerator
 from openai_commands.logger import logger
-from blueness.argparse.generic import sys_exit
 
 NAME = module.name(__file__, NAME)
 
@@ -54,7 +56,7 @@ if args.task == "generate":
     success = True
     for index, prompt in tqdm(enumerate(args.prompt.split("+"))):
         filename = objects.path_of(
-            filename=file.add_postfix(args.filename, f"{index:05d}"),
+            filename=file.add_suffix(args.filename, f"{index:05d}"),
             object_name=args.object_name,
             create=True,
         )

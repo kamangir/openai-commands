@@ -1,4 +1,4 @@
-from abcli import file
+from blue_objects import file
 from abcli.modules import objects
 
 
@@ -35,7 +35,7 @@ class bash_prompt:
             success
             if not success
             else file.save_text(
-                file.set_extension(filename, "txt"),
+                file.add_extension(filename, "txt"),
                 [
                     "to {}, run {}.".format(
                         thing[1][:-1] if thing[1].endswith(".") else thing[1],

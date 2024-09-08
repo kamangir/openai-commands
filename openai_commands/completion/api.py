@@ -1,7 +1,7 @@
 from typing import Tuple, Any, Dict
 from openai import OpenAI
 from blueness import module
-from abcli.modules.host import is_jupyter
+from blue_options.host import is_jupyter
 from openai_commands import env
 from openai_commands import NAME
 from openai_commands.logger import logger

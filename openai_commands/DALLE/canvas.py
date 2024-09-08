@@ -3,11 +3,13 @@ from PIL import Image
 from tqdm import tqdm
 import requests
 import numpy as np
+
+from blue_options.host import is_jupyter
+from blue_objects import file
 from abcli.modules.objects import signature as object_signature
 from abcli.modules.host import signature as host_signature
-from abcli.modules.host import is_jupyter
 from abcli.plugins.graphics import add_signature
-from abcli import file
+
 from openai_commands import NAME, VERSION
 from openai_commands.DALLE.brush import RandomWalkBrush, TilingBrush
 from openai_commands.logger import logger
@@ -224,7 +226,7 @@ class Canvas:
         image = self.add_signature(image)
 
         image.save(filename)
-        mask.save(file.add_postfix(filename, "mask"))
+        mask.save(file.add_suffix(filename, "mask"))
 
         if self.debug_mode and self.is_jupyter:
             from IPython.display import display, clear_output
@@ -235,7 +237,7 @@ class Canvas:
         logger.info(f"Canvas -> {filename}")
 
         file.save_json(
-            file.set_extension(filename, "json"),
+            file.add_extension(filename, "json"),
             {
                 "content": self.content,
                 "source": self.source,
