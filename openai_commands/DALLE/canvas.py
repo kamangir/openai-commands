@@ -5,9 +5,9 @@ import requests
 import numpy as np
 
 from blue_options.host import is_jupyter
+from blue_options.host import signature as host_signature
 from blue_objects import file
-from abcli.modules.objects import signature as object_signature
-from abcli.modules.host import signature as host_signature
+from blue_objects.functions import signature as object_signature
 from blue_objects.graphics import add_signature
 
 from openai_commands import NAME, VERSION
