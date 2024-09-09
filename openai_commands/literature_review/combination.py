@@ -2,8 +2,7 @@ import glob
 import pandas as pd
 
 from blueness import module
-from blue_objects import file
-from abcli.modules import objects
+from blue_objects import file, objects
 
 from openai_commands import NAME
 from openai_commands.logger import logger

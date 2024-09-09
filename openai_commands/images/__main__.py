@@ -4,8 +4,7 @@ from tqdm import tqdm
 
 from blueness.argparse.generic import sys_exit
 from blue_options import string
-from blue_objects import file
-from abcli.modules import objects
+from blue_objects import file, objects
 
 from openai_commands import NAME, VERSION
 from openai_commands.images.api import OpenAIImageGenerator

@@ -1,11 +1,13 @@
 import pytest
-from abcli.modules.objects import select
-from abcli.plugins.testing import download_object
+
+from blue_objects import objects
+
 from openai_commands import env
 from openai_commands.completion.functions.bash import ai_function_bash
 from openai_commands.completion.prompts.bash import bash_prompt
 
 
+@pytest.skip(reason="select() is obsolete.")
 @pytest.mark.parametrize(
     [
         "object_name",
@@ -15,9 +17,10 @@ from openai_commands.completion.prompts.bash import bash_prompt
     ],
 )
 def test_ai_function_bash(object_name):
-    assert download_object(object_name)
+    assert objects.download(object_name)
 
-    select(object_name)
+    # select(object_name)
+    assert False
 
     prompt = bash_prompt("ingest vancouver.")
 

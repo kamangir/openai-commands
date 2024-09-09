@@ -1,6 +1,8 @@
 import pytest
+
 from blue_options.options import Options
-from abcli.plugins.testing import download_object
+from blue_objects import objects
+
 from openai_commands import env
 from openai_commands.vision.completion import complete_object
 
@@ -15,7 +17,7 @@ from openai_commands.vision.completion import complete_object
     ],
 )
 def test_vision_complete(object_name):
-    assert download_object(object_name)
+    assert objects.download(object_name)
 
     assert isinstance(
         complete_object(

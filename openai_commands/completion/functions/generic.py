@@ -2,8 +2,7 @@ from typing import List, Dict, Any, Tuple
 import random
 
 from blue_options.host import is_jupyter
-from blue_objects import file
-from abcli.modules import objects
+from blue_objects import file, objects
 
 from openai_commands.completion.api import complete_prompt
 from openai_commands.logger import logger

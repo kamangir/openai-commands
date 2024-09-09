@@ -1,5 +1,4 @@
-from blue_objects import file
-from abcli.modules import objects
+from blue_objects import file, objects
 
 
 class bash_prompt:

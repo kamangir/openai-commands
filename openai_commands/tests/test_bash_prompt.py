@@ -1,6 +1,8 @@
 import pytest
+
+from blue_objects import objects
+
 from openai_commands.completion.prompts.bash import bash_prompt
-from abcli.modules import objects
 
 
 @pytest.mark.parametrize(

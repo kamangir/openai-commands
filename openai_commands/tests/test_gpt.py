@@ -2,8 +2,7 @@ import os
 import pytest
 from typing import List
 
-from blue_objects import file
-from abcli.modules import objects
+from blue_objects import file, objects
 
 from openai_commands.gpt.chat import chat_with_openai, interact_with_openai, list_models
 

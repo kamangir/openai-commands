@@ -4,8 +4,7 @@ import os
 from blueness import module
 from blueness.argparse.generic import sys_exit
 from blue_options.options import Options
-from blue_objects import file
-from abcli.modules import objects
+from blue_objects import file, objects
 
 from articraft import html
 from openai_commands import NAME, VERSION

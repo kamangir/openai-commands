@@ -8,8 +8,7 @@ from openai import OpenAI
 from blue_objects.env import ABCLI_PUBLIC_PREFIX
 from blue_options.options import Options
 from blue_options import string
-from blue_objects import file
-from abcli.modules import objects
+from blue_objects import file, objects
 
 from openai_commands import env, NAME
 from openai_commands.logger import logger
