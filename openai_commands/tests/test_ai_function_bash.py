@@ -7,7 +7,7 @@ from openai_commands.completion.functions.bash import ai_function_bash
 from openai_commands.completion.prompts.bash import bash_prompt
 
 
-@pytest.skip(reason="select() is obsolete.")
+@pytest.mark.skip(reason="select() is obsolete.")
 @pytest.mark.parametrize(
     [
         "object_name",
