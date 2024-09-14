@@ -45,7 +45,7 @@ def test_interact_with_openai(prompt: str):
     assert success
     assert answer
 
-    assert file.exist(
+    assert file.exists(
         os.path.join(object_path, f"{object_name}.yaml"),
     )
 

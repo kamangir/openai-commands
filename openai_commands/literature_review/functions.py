@@ -96,7 +96,7 @@ def review_literature(
         f"{filename}.csv",
         input_object_name,
     )
-    if not overwrite and file.exist(output_filename):
+    if not overwrite and file.exists(output_filename):
         logger.info(
             "continuing from a previous run: {} ...".format(file.name(output_filename))
         )
