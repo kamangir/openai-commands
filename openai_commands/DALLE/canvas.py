@@ -4,8 +4,10 @@ from tqdm import tqdm
 import requests
 import numpy as np
 
+from blueness import module
 from blue_options.host import is_jupyter
 from blue_options.host import signature as host_signature
+from blue_options.logger import crash_report
 from blue_objects import file
 from blue_objects.objects import signature as object_signature
 from blue_objects.graphics import add_signature
@@ -13,7 +15,8 @@ from blue_objects.graphics import add_signature
 from openai_commands import NAME, VERSION
 from openai_commands.DALLE.brush import RandomWalkBrush, TilingBrush
 from openai_commands.logger import logger
-from abcli.logger import crash_report
+
+NAME = module.name(__file__, NAME)
 
 
 class Canvas:

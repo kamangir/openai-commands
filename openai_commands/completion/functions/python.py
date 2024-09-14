@@ -1,5 +1,7 @@
 from typing import Dict, Any, Tuple
-from abcli.logger import crash_report
+
+from blue_options.logger import crash_report
+
 from openai_commands.completion.functions.generic import ai_function
 from openai_commands.logger import logger
 
