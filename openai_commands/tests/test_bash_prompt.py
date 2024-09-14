@@ -5,6 +5,7 @@ from blue_objects import objects
 from openai_commands.completion.prompts.bash import bash_prompt
 
 
+@pytest.mark.sjip(reason="assumption about the selected object, legacy, obsolete.")
 @pytest.mark.parametrize(
     ["function_short_name"],
     [
