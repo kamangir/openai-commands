@@ -1,7 +1,7 @@
-from openai_commands import NAME, VERSION, DESCRIPTION, ICON
-from openai_commands.logger import logger
-from openai_commands import README
 from blueness.argparse.generic import main
+
+from openai_commands import NAME, VERSION, DESCRIPTION, ICON, README
+from openai_commands.logger import logger
 
 main(
     ICON=ICON,

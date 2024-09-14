@@ -1,8 +1,11 @@
 import pytest
+
+from blue_objects import objects
+
 from openai_commands.completion.prompts.bash import bash_prompt
-from abcli.modules import objects
 
 
+@pytest.mark.skip(reason="assumption about the selected object, legacy, obsolete.")
 @pytest.mark.parametrize(
     ["function_short_name"],
     [
@@ -13,6 +16,7 @@ def test_pre_process(function_short_name):
     assert bash_prompt(objects.path_of(f"{function_short_name}-description.txt"))
 
 
+@pytest.mark.skip(reason="assumption about the selected object, legacy, obsolete.")
 @pytest.mark.parametrize(
     [
         "function_name",

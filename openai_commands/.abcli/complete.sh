@@ -32,7 +32,7 @@ function openai_commands_complete() {
 
         unset abcli_show_usage_destination
 
-        abcli_log_file $abcli_object_path/$plugin_name-description.txt
+        abcli_cat $abcli_object_path/$plugin_name-description.txt
 
         return
     fi

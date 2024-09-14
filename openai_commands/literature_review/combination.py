@@ -1,8 +1,9 @@
 import glob
 import pandas as pd
+
 from blueness import module
-from abcli import file
-from abcli.modules import objects
+from blue_objects import file, objects
+
 from openai_commands import NAME
 from openai_commands.logger import logger
 
@@ -32,7 +33,7 @@ def combine(
             object_name_2,
         )
 
-        if not file.exist(filename_2):
+        if not file.exists(filename_2):
             logger.warning(
                 "missing in object-2 [{}]: {}".format(
                     object_name_2,

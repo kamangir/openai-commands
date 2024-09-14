@@ -4,13 +4,13 @@ from typing import List
 from tqdm import tqdm
 from blueness import module
 from openai import OpenAI
+
 from blue_objects.env import ABCLI_PUBLIC_PREFIX
-from abcli import file
-from abcli import string
-from abcli.modules import objects
 from blue_options.options import Options
-from openai_commands import env
-from openai_commands import NAME
+from blue_options import string
+from blue_objects import file, objects
+
+from openai_commands import env, NAME
 from openai_commands.logger import logger
 
 NAME = module.name(__file__, NAME)
@@ -72,7 +72,7 @@ def complete_object(
     )
 
     filename = objects.path_of("openai-vision.json", object_name)
-    _, past_metadata = file.load_json(filename, civilized=True)
+    _, past_metadata = file.load_json(filename, ignore_error=True)
     past_metadata[string.timestamp()] = metadata
     if not file.save_json(filename, past_metadata, log=True):
         success = False

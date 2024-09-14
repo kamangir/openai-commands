@@ -1,6 +1,5 @@
-import os.path
+from blue_objects import file
 from openai_commands.completion.prompts.structured import structured_prompt
-from abcli import file
 
 
 def test_structured_prompt():

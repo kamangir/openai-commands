@@ -1,7 +1,9 @@
 import pytest
+
+from blue_options import string
+from blue_objects import objects
+
 from openai_commands.images.api import OpenAIImageGenerator
-from abcli import string
-from abcli.modules import objects
 
 
 @pytest.mark.parametrize(

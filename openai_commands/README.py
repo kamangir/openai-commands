@@ -1,6 +1,7 @@
 import os
-from abcli import file
-from abcli.plugins.README import build as build_README
+
+from blue_objects import file, README
+
 from openai_commands.literature_review.README import items as literature_review_items
 from openai_commands import NAME, VERSION, ICON, REPO_NAME
 
@@ -76,13 +77,13 @@ items = [
 
 
 def build():
-    return build_README(
+    return README.build(
         items=items,
         path=os.path.join(file.path(__file__), ".."),
         NAME=NAME,
         VERSION=VERSION,
         REPO_NAME=REPO_NAME,
-    ) and build_README(
+    ) and README.build(
         items=literature_review_items,
         cols=2,
         path=os.path.join(file.path(__file__), "literature_review"),

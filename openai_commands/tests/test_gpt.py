@@ -1,8 +1,9 @@
 import os
 import pytest
 from typing import List
-from abcli import file
-from abcli.modules import objects
+
+from blue_objects import file, objects
+
 from openai_commands.gpt.chat import chat_with_openai, interact_with_openai, list_models
 
 
@@ -20,7 +21,7 @@ def test_chat_with_openai():
     assert success
     assert len(conversation) == 1
 
-    assert file.exist(
+    assert file.exists(
         os.path.join(object_path, f"{object_name}.yaml"),
     )
 
@@ -44,7 +45,7 @@ def test_interact_with_openai(prompt: str):
     assert success
     assert answer
 
-    assert file.exist(
+    assert file.exists(
         os.path.join(object_path, f"{object_name}.yaml"),
     )
 

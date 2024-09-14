@@ -1,7 +1,7 @@
 import pytest
-from abcli import file
-from abcli.modules import objects
-from abcli.plugins.testing import download_object
+
+from blue_objects import file, objects
+
 from openai_commands import env
 from openai_commands.literature_review.functions import (
     generate_prompt,
@@ -25,7 +25,7 @@ def test_generate_prompt(
     object_name: str,
     question: str,
 ):
-    assert download_object(object_name)
+    assert objects.download(object_name)
 
     success, question_dict = file.load_yaml(
         objects.path_of(
@@ -68,7 +68,7 @@ def test_literature_review(
 ):
     output_object_name = objects.unique_object("test")
 
-    assert download_object(input_object_name)
+    assert objects.download(input_object_name)
 
     assert review_literature(
         input_object_name=input_object_name,

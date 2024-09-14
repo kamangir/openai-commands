@@ -1,9 +1,9 @@
-from typing import List
+from typing import List, Dict, Any, Tuple
 import random
-from typing import Dict, Any, Tuple
-from abcli import file
-from abcli.modules.host import is_jupyter
-from abcli.modules import objects
+
+from blue_options.host import is_jupyter
+from blue_objects import file, objects
+
 from openai_commands.completion.api import complete_prompt
 from openai_commands.logger import logger
 
@@ -53,7 +53,7 @@ class ai_function:
         if not filename:
             filename = objects.path_of(f"{self.__class__.__name__}_code.json")
 
-        _, content = file.load_json(filename, civilized=True)
+        _, content = file.load_json(filename, ignore_error=True)
 
         content[self.function_name] = self.to_json()
 

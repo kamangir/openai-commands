@@ -34,7 +34,7 @@ function openai_commands_gpt() {
     local do_upload=$(abcli_option_int "$options" upload $(abcli_not $do_dryrun))
 
     local object_name=$(abcli_clarify_object $2 gpt-chat-$(abcli_string_timestamp))
-    local object_path=$abcli_object_root/$object_name
+    local object_path=$ABCLI_OBJECT_ROOT/$object_name
     mkdir -p $object_path
 
     abcli_tag set $object_name gpt_chat
