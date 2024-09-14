@@ -4,9 +4,9 @@ from typing import Tuple, Any
 from IPython.display import Image, display
 
 from blueness import module
-from blue_options import string
+from blue_options import string, host
 from blue_options.host import is_jupyter
-from blue_objects import file, host, graphics, objects
+from blue_objects import file, graphics, objects
 
 from openai_commands import NAME, VERSION
 from openai_commands import env
