@@ -37,7 +37,7 @@ function openai_commands_gpt() {
     local object_path=$ABCLI_OBJECT_ROOT/$object_name
     mkdir -p $object_path
 
-    abcli_tag set $object_name gpt_chat
+    abcli_tags set $object_name gpt_chat
 
     abcli_eval dryrun=$do_dryrun \
         python3 -m openai_commands.gpt \
