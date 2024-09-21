@@ -7,14 +7,14 @@ from blue_options.options import Options
 from blue_objects import file, objects
 
 from articraft import html
-from openai_commands import NAME, VERSION
+from openai_commands import NAME
 from openai_commands.DALLE.canvas import Canvas
 from openai_commands.logger import logger
 
 NAME = module.name(__file__, NAME)
 
 
-parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
+parser = argparse.ArgumentParser(NAME)
 parser.add_argument(
     "task",
     type=str,

@@ -1,14 +1,16 @@
 import argparse
+
 from blueness import module
-from openai_commands import NAME, VERSION
+from blueness.argparse.generic import sys_exit
+
+from openai_commands import NAME
 from openai_commands.completion.prompts.bash import bash_prompt
 from openai_commands.logger import logger
-from blueness.argparse.generic import sys_exit
 
 NAME = module.name(__file__, NAME)
 
 
-parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
+parser = argparse.ArgumentParser(NAME)
 parser.add_argument(
     "task",
     type=str,

@@ -1,18 +1,20 @@
 import argparse
 import base64
+
 from blueness import module
-from openai_commands import NAME, VERSION
+from blueness.argparse.generic import sys_exit
+
+from openai_commands import NAME
 from openai_commands.literature_review.combination import combine
 from openai_commands.literature_review.functions import review_literature
 from openai_commands.literature_review.multiple import (
     generate_workflow as generate_multiple_review_workflow,
 )
 from openai_commands.logger import logger
-from blueness.argparse.generic import sys_exit
 
 NAME = module.name(__file__, NAME)
 
-parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
+parser = argparse.ArgumentParser(NAME)
 parser.add_argument(
     "task",
     type=str,
