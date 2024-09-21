@@ -1,19 +1,19 @@
 import argparse
-from blueness import module
 from tqdm import tqdm
 
+from blueness import module
 from blueness.argparse.generic import sys_exit
 from blue_options import string
 from blue_objects import file, objects
 
-from openai_commands import NAME, VERSION
+from openai_commands import NAME
 from openai_commands.images.api import OpenAIImageGenerator
 from openai_commands.logger import logger
 
 NAME = module.name(__file__, NAME)
 
 
-parser = argparse.ArgumentParser(NAME, description=f"{NAME}-{VERSION}")
+parser = argparse.ArgumentParser(NAME)
 parser.add_argument(
     "task",
     type=str,
