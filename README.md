@@ -20,4 +20,4 @@ to use on [AWS SageMaker](https://aws.amazon.com/sagemaker/) replace `<plugin-na
 
 [![pylint](https://github.com/kamangir/openai-commands/actions/workflows/pylint.yml/badge.svg)](https://github.com/kamangir/openai-commands/actions/workflows/pylint.yml) [![pytest](https://github.com/kamangir/openai-commands/actions/workflows/pytest.yml/badge.svg)](https://github.com/kamangir/openai-commands/actions/workflows/pytest.yml) [![bashtest](https://github.com/kamangir/openai-commands/actions/workflows/bashtest.yml/badge.svg)](https://github.com/kamangir/openai-commands/actions/workflows/bashtest.yml) [![PyPI version](https://img.shields.io/pypi/v/openai-commands.svg)](https://pypi.org/project/openai-commands/)
 
-built by 🌀 [`blue_options-4.76.1-abcli-current`](https://github.com/kamangir/awesome-bash-cli), based on [`openai_commands-3.183.1`](https://github.com/kamangir/openai-commands).
+built by 🌀 [`blue_options-4.84.1-abcli-current`](https://github.com/kamangir/awesome-bash-cli), based on [`openai_commands-3.184.1`](https://github.com/kamangir/openai-commands).
