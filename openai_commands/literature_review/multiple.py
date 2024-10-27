@@ -1,6 +1,6 @@
 from typing import List
 from blueness import module
-from notebooks_and_scripts.workflow.generic import Workflow
+from blueflow.workflow.generic import Workflow
 from openai_commands import NAME
 from openai_commands.logger import logger
 

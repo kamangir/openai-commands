@@ -1,6 +1,7 @@
 blueness
 abcli
 articraft
+blueflow
 IPython
 beautifulsoup4
 boto3
@@ -10,7 +11,6 @@ folium
 geojson
 geopandas
 matplotlib
-notebooks_and_scripts
 # https://platform.openai.com/docs/quickstart?context=python
 openai
 opencv-python

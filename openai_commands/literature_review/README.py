@@ -2,7 +2,7 @@ from blue_objects.env import ABCLI_PUBLIC_PREFIX
 from blue_options import string
 
 
-runner_prefix = "https://github.com/kamangir/notebooks-and-scripts/tree/main/notebooks_and_scripts/workflow/runners"
+runner_prefix = "https://github.com/kamangir/notebooks-and-scripts/tree/main/blueflow/workflow/runners"
 
 list_of_runners = ["aws_batch", "local"]
 
