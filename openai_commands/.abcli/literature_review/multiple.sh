@@ -53,7 +53,7 @@ function literature_review_multiple() {
         --args $args
     [[ $? -ne 0 ]] && return 1
 
-    workflow submit \
+    blueflow_workflow_submit \
         ~download,$workflow_options \
         $job_name
 }
