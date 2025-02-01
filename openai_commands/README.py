@@ -30,11 +30,6 @@ features = {
         "thumbnail": "https://github.com/kamangir/openai-commands/blob/main/assets/completion_i2i_function.png?raw=true",
         "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/completion#%EF%B8%8F-code-generation",
     },
-    "gpt": {
-        "description": "co-authored with ChapGPT.",
-        "thumbnail": default_thumbnail,
-        "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/gpt",
-    },
     "image generation": {
         "description": "sentence -> image, text -> mural, images",
         "thumbnail": "https://github.com/kamangir/openai-commands/blob/main/assets/DALL-E.png?raw=true",

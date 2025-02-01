@@ -4,7 +4,7 @@ ICON = "🛠️"
 
 DESCRIPTION = f"{ICON} a command interface to the OpenAI API."
 
-VERSION = "3.206.1"
+VERSION = "3.207.1"
 
 REPO_NAME = "openai-commands"
 
