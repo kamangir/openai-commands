@@ -12,6 +12,8 @@ graph LR
 
     openai_generate_image["@openai generate_image filename=<filename.png> <prompt> <object-name>"]
 
+    openai_vision["@openai vision~~-~~- <prompt> <object-name>"]
+
     litrev["@litrev question=<question> <object-name>"]
     litrev_multiple["@litrev multiple questions=<question1+question2+...> to=<runner>~~- <object-name>"]
     litrev_combine["@litrev combine~~- <object-name-1> <object-name-2> <object-name>"]
@@ -27,6 +29,9 @@ graph LR
 
     text --> openai_generate_image
     openai_generate_image --> image
+
+    object --> openai_vision
+    openai_vision --> object
 
     object --> litrev
     litrev --> object

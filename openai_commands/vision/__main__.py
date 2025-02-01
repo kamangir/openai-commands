@@ -21,7 +21,7 @@ parser.add_argument(
     "--detail",
     type=str,
     default="auto",
-    help="auto|low|high",
+    help="auto | low | high",
 )
 parser.add_argument(
     "--object_name",
@@ -29,7 +29,7 @@ parser.add_argument(
     default="",
 )
 parser.add_argument(
-    "--options",
+    "--image_options",
     type=str,
     default="",
     help="Davie,~Bute,.jpg",
@@ -58,7 +58,7 @@ if args.task == "complete":
         detail=Detail[args.detail.upper()],
         max_count=args.max_count,
         object_name=args.object_name,
-        options=Options(args.options),
+        image_options=Options(args.image_options),
         prompt=args.prompt,
         verbose=args.verbose,
     )

@@ -12,6 +12,8 @@ graph LR
 
     openai_generate_image["@openai<br>generate_image<br>filename=&lt;filename.png&gt;<br>&lt;prompt&gt;<br>&lt;object-name&gt;"]
 
+    openai_vision["@openai<br>vision - -<br>&lt;prompt&gt;<br>&lt;object-name&gt;"]
+
     litrev["@litrev<br>question=&lt;question&gt;<br>&lt;object-name&gt;"]
     litrev_multiple["@litrev<br>multiple<br>questions=&lt;question1+question2+...&gt;<br>to=&lt;runner&gt; -<br>&lt;object-name&gt;"]
     litrev_combine["@litrev<br>combine -<br>&lt;object-name-1&gt;<br>&lt;object-name-2&gt;<br>&lt;object-name&gt;"]
@@ -27,6 +29,9 @@ graph LR
 
     text --> openai_generate_image
     openai_generate_image --> image
+
+    object --> openai_vision
+    openai_vision --> object
 
     object --> litrev
     litrev --> object
@@ -56,4 +61,4 @@ graph LR
 
 [![pylint](https://github.com/kamangir/openai-commands/actions/workflows/pylint.yml/badge.svg)](https://github.com/kamangir/openai-commands/actions/workflows/pylint.yml) [![pytest](https://github.com/kamangir/openai-commands/actions/workflows/pytest.yml/badge.svg)](https://github.com/kamangir/openai-commands/actions/workflows/pytest.yml) [![bashtest](https://github.com/kamangir/openai-commands/actions/workflows/bashtest.yml/badge.svg)](https://github.com/kamangir/openai-commands/actions/workflows/bashtest.yml) [![PyPI version](https://img.shields.io/pypi/v/openai-commands.svg)](https://pypi.org/project/openai-commands/) [![PyPI - Downloads](https://img.shields.io/pypi/dd/openai-commands)](https://pypistats.org/packages/openai-commands)
 
-built by 🌀 [`blue_options-4.201.1`](https://github.com/kamangir/awesome-bash-cli), based on [`openai_commands-3.228.1`](https://github.com/kamangir/openai-commands).
+built by 🌀 [`blue_options-4.201.1`](https://github.com/kamangir/awesome-bash-cli), based on [`openai_commands-3.229.1`](https://github.com/kamangir/openai-commands).

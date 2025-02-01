@@ -9,6 +9,7 @@ from openai_commands.help.literature_review import (
     help_functions as help_literature_review,
 )
 from openai_commands.help.prompt_completion import help_complete
+from openai_commands.help.vision import help_vision
 
 
 def help_browse(
@@ -36,5 +37,6 @@ help_functions.update(
         "complete": help_complete,
         "generate_image": help_generate_image,
         "literature_review": help_literature_review,
+        "vision": help_vision,
     }
 )

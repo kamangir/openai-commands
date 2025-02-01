@@ -25,7 +25,7 @@ class Detail(Enum):
 def complete_object(
     prompt: str,
     object_name: str,
-    options: Options,
+    image_options: Options,
     max_count: int = 5,
     detail: Detail = Detail.AUTO,
     verbose: bool = False,
@@ -35,19 +35,22 @@ def complete_object(
             NAME,
             detail,
             prompt,
-            options.to_str(),
+            image_options.to_str(),
             max_count,
             object_name,
         )
     )
 
-    options["inference"] = False
     list_of_images = objects.list_of_files(object_name, cloud=True)
-    for keyword in options:
+    for keyword in image_options:
         list_of_images = [
             filename
             for filename in list_of_images
-            if (keyword in filename if options[keyword] else keyword not in filename)
+            if (
+                keyword in filename
+                if image_options[keyword]
+                else keyword not in filename
+            )
         ]
 
     list_of_image_urls = [
