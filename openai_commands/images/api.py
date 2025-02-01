@@ -22,6 +22,8 @@ class OpenAIImageGenerator:
         model="dall-e-3",
         verbose: bool = False,
     ):
+        assert env.OPENAI_API_KEY
+
         self.client = OpenAI(api_key=env.OPENAI_API_KEY)
         self.verbose = verbose
         self.model = model
@@ -45,11 +47,9 @@ class OpenAIImageGenerator:
             )
         )
 
-        augmented_prompt = self.augment_prompt(prompt)
-
         response = self.client.images.generate(
             model=self.model,
-            prompt=augmented_prompt,
+            prompt=prompt,
             size="1024x1024",
             quality="standard",
             n=1,
@@ -90,22 +90,3 @@ class OpenAIImageGenerator:
             success,
             response,
         )
-
-    def augment_prompt(self, prompt: str) -> str:
-        # https://community.openai.com/t/api-image-generation-in-dall-e-3-changes-my-original-prompt-without-my-permission/476355
-        prompt = " ".join(
-            [
-                "THIS IS A RAW EXECUTION. ABSOLUTELY DO NOT REVISE THIS PROMPT:",
-                prompt,
-            ]
-        )
-
-        if self.verbose:
-            logger.info(
-                "{}.augment_prompt: {}".format(
-                    self.__class__.__name__,
-                    prompt,
-                )
-            )
-
-        return prompt

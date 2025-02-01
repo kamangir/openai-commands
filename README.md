@@ -31,4 +31,4 @@ graph LR
 
 [![pylint](https://github.com/kamangir/openai-commands/actions/workflows/pylint.yml/badge.svg)](https://github.com/kamangir/openai-commands/actions/workflows/pylint.yml) [![pytest](https://github.com/kamangir/openai-commands/actions/workflows/pytest.yml/badge.svg)](https://github.com/kamangir/openai-commands/actions/workflows/pytest.yml) [![bashtest](https://github.com/kamangir/openai-commands/actions/workflows/bashtest.yml/badge.svg)](https://github.com/kamangir/openai-commands/actions/workflows/bashtest.yml) [![PyPI version](https://img.shields.io/pypi/v/openai-commands.svg)](https://pypi.org/project/openai-commands/) [![PyPI - Downloads](https://img.shields.io/pypi/dd/openai-commands)](https://pypistats.org/packages/openai-commands)
 
-built by 🌀 [`blue_options-4.200.1`](https://github.com/kamangir/awesome-bash-cli), based on [`openai_commands-3.209.1`](https://github.com/kamangir/openai-commands).
+built by 🌀 [`blue_options-4.200.1`](https://github.com/kamangir/awesome-bash-cli), based on [`openai_commands-3.210.1`](https://github.com/kamangir/openai-commands).
