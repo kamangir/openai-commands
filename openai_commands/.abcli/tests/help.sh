@@ -22,10 +22,6 @@ function test_openai_commands_help() {
     #    \
     #    "openai_commands_gpt" \
     #    "openai_commands_gpt list_models" \
-    #    \
-    #    "VisuaLyze" \
-    #    "VisuaLyze browse" \
-    #    "VisuaLyze run" \
 
     local module
     for module in \

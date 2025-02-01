@@ -35,12 +35,6 @@ features = {
         "thumbnail": default_thumbnail,
         "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/gpt",
     },
-    "VisuaLyze": {
-        "description": 'How about calling it "VisuaLyze"? This name combines "visualize" and "analyze," reflecting the tool\'s capability to generate custom data visualizations and analyze user input through AI - OpenAI',
-        "icon": ICON,
-        "thumbnail": "https://github.com/kamangir/openai-commands/assets/1007567/7c0ed5f7-6941-451c-a17e-504c6adab23f",
-        "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/VisuaLyze",
-    },
     "prompt completion": {
         "description": "basic prompt completion.",
         "icon": ICON,

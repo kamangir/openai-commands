@@ -17,7 +17,6 @@ setup(
         f"{NAME}.images",
         f"{NAME}.literature_review",
         f"{NAME}.vision",
-        f"{NAME}.VisuaLyze",
     ],
     include_package_data=True,
     package_data={

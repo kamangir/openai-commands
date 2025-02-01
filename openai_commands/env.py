@@ -18,10 +18,6 @@ OPENAI_COMMANDS_FUNCTION_BASH_TEST_OBJECT = os.getenv(
     "",
 )
 
-VISUALYZE_PORT = os.getenv(
-    "VISUALYZE_PORT",
-    "",
-)
 
 OPENAI_GPT_DEFAULT_MODEL = os.getenv(
     "OPENAI_GPT_DEFAULT_MODEL",
