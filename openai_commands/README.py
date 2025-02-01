@@ -13,27 +13,27 @@ default_thumbnail = (
 features = {
     "prompt completion": {
         "thumbnail": default_thumbnail,
-        "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/completion#%EF%B8%8F-prompt-completion",
+        "url": "./openai_commands/completion#%EF%B8%8F-prompt-completion",
     },
     "vision": {
         "description": "a command interface to the [OpenAI vision API](https://platform.openai.com/docs/guides/vision).",
         "thumbnail": "https://raw.githubusercontent.com/kamangir/assets/main/vanwatch/2023-11-25-openai-vision/ButeNorthDavie.jpg",
-        "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/vision",
+        "url": "./openai_commands/vision",
     },
     "literature review": {
         "description": "literature review using OpenAI API.",
         "thumbnail": "https://github.com/kamangir/assets/blob/main/openai_commands/literature-review/marquee.png?raw=true",
-        "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/literature_review",
+        "url": "./openai_commands/literature_review",
     },
     "code generation": {
         "description": "example notebooks to [generate python functions](./notebooks/completion_ai_function_py.ipynb), special case for [image to image python functions](./notebooks/completion_i2i_function.ipynb), and to [write a bash script](./notebooks/completion_ai_function_bash.ipynb) to use a script, for example, [vancouver-watching](https://github.com/kamangir/vancouver-watching).",
         "thumbnail": "https://github.com/kamangir/openai-commands/blob/main/assets/completion_i2i_function.png?raw=true",
-        "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/completion#%EF%B8%8F-code-generation",
+        "url": "./openai_commands/completion#%EF%B8%8F-code-generation",
     },
     "image generation": {
         "description": "sentence -> image, text -> mural, images",
         "thumbnail": "https://github.com/kamangir/openai-commands/blob/main/assets/DALL-E.png?raw=true",
-        "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/images",
+        "url": "./openai_commands/images",
     },
     "template": {
         "description": "",

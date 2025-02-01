@@ -4,11 +4,13 @@ from typing import Tuple, Any
 from IPython.display import Image, display
 
 from blueness import module
-from blue_options import string, host
+from blue_options import string
 from blue_options.host import is_jupyter
-from blue_objects import file, graphics, objects
+from blue_objects import file, graphics, objects, path
+from blue_objects.graphics.signature import sign_filename
 
 from openai_commands import NAME, VERSION
+from openai_commands.host import signature
 from openai_commands import env
 from openai_commands.logger import logger
 
@@ -39,23 +41,30 @@ class OpenAIImageGenerator:
         prompt: str,
         filename: str = "",
         sign: bool = True,
+        line_width: int = 80,
+        quality: str = "standard",
+        size: str = "1024x1024",
     ) -> Tuple[bool, Any]:
+        object_name = path.name(file.path(filename))
+
         logger.info(
-            "{}.generate: {}".format(
+            "{}.generate: {} -> {}/{}".format(
                 self.__class__.__name__,
                 prompt,
+                object_name,
+                file.name_and_extension(filename),
             )
         )
 
         response = self.client.images.generate(
             model=self.model,
             prompt=prompt,
-            size="1024x1024",
-            quality="standard",
+            size=size,
+            quality=quality,
             n=1,
         )
 
-        logger.info(json.dumps(response.dict(), indent=4))
+        logger.info(json.dumps(response.model_dump(), indent=4))
 
         success = file.download(response.data[0].url, filename) if filename else True
 
@@ -63,25 +72,32 @@ class OpenAIImageGenerator:
             success, image = file.load_image(filename)
 
         if success and sign:
-            image = graphics.add_signature(
-                image,
-                [
-                    " | ".join(host.signature()),
-                    " | ".join(objects.signature(file.name(filename))),
-                ],
-                [
-                    prompt,
-                    str(response.data[0].revised_prompt),
+            success = sign_filename(
+                filename=filename,
+                header=[
                     " | ".join(
-                        [
-                            f"{NAME}-{VERSION}",
-                            self.model,
+                        objects.signature(
+                            info=file.name_and_extension(filename),
+                            object_name=object_name,
+                        )
+                        + [
                             string.pretty_shape_of_matrix(image),
+                            f"quality: {quality}",
                         ]
                     ),
                 ],
+                footer=[
+                    " | ".join(
+                        [
+                            f"prompt: {prompt}",
+                            f"revised prompt: {str(response.data[0].revised_prompt)}",
+                            f"model: {self.model}",
+                        ]
+                        + signature()
+                    ),
+                ],
+                line_width=line_width,
             )
-            success = file.save_image(filename, image)
 
         if success and self.verbose and is_jupyter():
             display(Image(filename=filename))
