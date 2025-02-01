@@ -37,6 +37,8 @@ graph LR
 
     object --> litrev_multiple
     litrev_multiple --> object
+    litrev_multiple --> litrev
+    litrev_multiple --> litrev_combine
 
     classDef folder fill:#999,stroke:#333,stroke-width:2px;
 ```
