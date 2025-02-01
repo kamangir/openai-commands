@@ -1,4 +1,4 @@
-from openai_commands.completion.api import complete_prompt
+from openai_commands.prompt_completion.api import complete_prompt
 
 
 def test_complete_prompt():

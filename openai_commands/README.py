@@ -77,7 +77,7 @@ def build():
                 "path": "literature_review",
             },
             {
-                "path": "images",
+                "path": "image_generation",
             },
         ]
     )

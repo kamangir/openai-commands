@@ -3,30 +3,17 @@
 function test_openai_commands_help() {
     local options=$1
 
-    # TODO: add, (historic)
-    # - "openai_commands completion describe" \
-    # - "openai_commands images generate"
-
-    # TODO: add,
-    #    "literature_review" \
-    #    "literature_review combine" \
-    #    "literature_review multiple" \
-    #    "openai_commands completion" \
-    #    "openai_commands generate" \
-    #    "openai_commands generate image" \
-    #    "openai_commands generate video" \
-    #    "openai_commands generate validate" \
-    #    "openai_commands images" \
-    #    "openai_commands transform" \
-    #    "openai_commands vision" \
-    #    \
-    #    "openai_commands_gpt" \
-    #    "openai_commands_gpt list_models" \
-
     local module
     for module in \
+        "@litrev" \
+        "@litrev combine" \
+        "@litrev multiple" \
+        \
         "@openai browse" \
+        \
         "@openai complete" \
+        \
+        "@openai generate_image" \
         \
         "@openai"; do
         abcli_eval ,$options \

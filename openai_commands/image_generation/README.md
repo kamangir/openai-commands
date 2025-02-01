@@ -1,8 +1,8 @@
 # 🛠️ image generation
 
-Implements the [OpenAI Image Generation API](https://platform.openai.com/docs/guides/images/usage?context=python).
+Implements: [OpenAI Image Generation API](https://platform.openai.com/docs/guides/images/usage?context=python)
 
-Notebook: [`./notebooks/images.ipynb`](../../notebooks/images_generate.ipynb),
+Notebook: [`./notebooks/images.ipynb`](../../notebooks/images_generate.ipynb)
 
 🔥
 

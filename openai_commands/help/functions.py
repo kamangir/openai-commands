@@ -4,7 +4,8 @@ from abcli.help.generic import help_functions as generic_help_functions
 from blue_options.terminal import show_usage
 
 from openai_commands import ALIAS
-from openai_commands.help.complete import help_complete
+from openai_commands.help.image_generation import help_generate_image
+from openai_commands.help.prompt_completion import help_complete
 
 
 def help_browse(
@@ -30,5 +31,6 @@ help_functions.update(
     {
         "browse": help_browse,
         "complete": help_complete,
+        "generate_image": help_generate_image,
     }
 )
