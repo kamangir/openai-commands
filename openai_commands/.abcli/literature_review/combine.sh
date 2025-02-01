@@ -2,14 +2,6 @@
 
 function openai_commands_literature_review_combine() {
     local options=$1
-
-    if [ $(abcli_option_int "$options" help 0) == 1 ]; then
-        options="${EOP}~download,dryrun,${EOPE}publish$EOP,~upload$EOPE"
-        abcli_show_usage "@litrev combine$ABCUL[$options]$ABCUL[...|<object-name-1>]$ABCUL[..|<object-name-2>]$ABCUL[.|<object-name>]" \
-            "<object-name-1> + <object-name-2> -> <object-name>."
-        return
-    fi
-
     local do_dryrun=$(abcli_option_int "$options" dryrun 0)
     local do_download=$(abcli_option_int "$options" download $(abcli_not $do_dryrun))
     local do_upload=$(abcli_option_int "$options" upload $(abcli_not $do_dryrun))

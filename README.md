@@ -8,17 +8,35 @@ pip install openai-commands
 
 ```mermaid
 graph LR
-    complete["@openai<br>complete<br>&lt;prompt&gt;"]
-    generate_image["@openai<br>generate_image<br>filename=&lt;filename.png&gt;<br>&lt;prompt&gt;<br>&lt;object-name&gt;"]
+    openai_complete["@openai<br>complete<br>&lt;prompt&gt;"]
+
+    openai_generate_image["@openai<br>generate_image<br>filename=&lt;filename.png&gt;<br>&lt;prompt&gt;<br>&lt;object-name&gt;"]
+
+    litrev["@litrev<br>question=&lt;question&gt;<br>&lt;object-name&gt;"]
+    litrev_multiple["@litrev<br>multiple<br>questions=&lt;question1+question2+...&gt;<br>to=&lt;runner&gt; -<br>&lt;object-name&gt;"]
+    litrev_combine["@litrev<br>combine -<br>&lt;object-name-1&gt;<br>&lt;object-name-2&gt;<br>&lt;object-name&gt;"]
 
     text["📜 text"]:::folder
     image["🖼️ image"]:::folder
+    object["object"]:::folder
+    object_3["object 2"]:::folder
+    object_4["object 3"]:::folder
 
-    text --> complete
-    complete --> text
+    text --> openai_complete
+    openai_complete --> text
 
-    text --> generate_image
-    generate_image --> image
+    text --> openai_generate_image
+    openai_generate_image --> image
+
+    object --> litrev
+    litrev --> object
+
+    object --> litrev_combine
+    object_2 --> litrev_combine
+    litrev_combine --> object_3
+
+    object --> litrev_multiple
+    litrev_multiple --> object
 
     classDef folder fill:#999,stroke:#333,stroke-width:2px;
 ```
@@ -36,4 +54,4 @@ graph LR
 
 [![pylint](https://github.com/kamangir/openai-commands/actions/workflows/pylint.yml/badge.svg)](https://github.com/kamangir/openai-commands/actions/workflows/pylint.yml) [![pytest](https://github.com/kamangir/openai-commands/actions/workflows/pytest.yml/badge.svg)](https://github.com/kamangir/openai-commands/actions/workflows/pytest.yml) [![bashtest](https://github.com/kamangir/openai-commands/actions/workflows/bashtest.yml/badge.svg)](https://github.com/kamangir/openai-commands/actions/workflows/bashtest.yml) [![PyPI version](https://img.shields.io/pypi/v/openai-commands.svg)](https://pypi.org/project/openai-commands/) [![PyPI - Downloads](https://img.shields.io/pypi/dd/openai-commands)](https://pypistats.org/packages/openai-commands)
 
-built by 🌀 [`blue_options-4.201.1`](https://github.com/kamangir/awesome-bash-cli), based on [`openai_commands-3.225.1`](https://github.com/kamangir/openai-commands).
+built by 🌀 [`blue_options-4.201.1`](https://github.com/kamangir/awesome-bash-cli), based on [`openai_commands-3.226.1`](https://github.com/kamangir/openai-commands).
