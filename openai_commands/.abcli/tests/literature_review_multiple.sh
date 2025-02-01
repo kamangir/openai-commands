@@ -11,7 +11,7 @@ function test_openai_commands_literature_review_multiple() {
 
         abcli_log "📜 testing runner=$runner -> $suffix ..."
 
-        literature_review multiple \
+        openai_commands_literature_review_multiple \
             questions=study-type+screening-result,suffix=$suffix,$options \
             to=$runner,$2 \
             - \

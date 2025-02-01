@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function literature_review_multiple() {
+function openai_commands_literature_review_multiple() {
     local options=$1
     local workflow_options=$2
     local review_options=$3

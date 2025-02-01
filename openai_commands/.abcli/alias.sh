@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
 
-alias @litrev=literature_review
+alias @litrev=openai_commands_literature_review
 
 alias @openai=openai_commands

@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function literature_review_combine() {
+function openai_commands_literature_review_combine() {
     local options=$1
 
     if [ $(abcli_option_int "$options" help 0) == 1 ]; then

@@ -47,7 +47,7 @@ def generate_workflow(
                 "blueflow_workflow monitor",
                 f"node={question}",
                 workflow.job_name,
-                "literature_review",
+                "openai_commands_literature_review",
                 "question={},suffix={},{}".format(
                     question,
                     suffix,
@@ -67,7 +67,7 @@ def generate_workflow(
             "blueflow_workflow monitor",
             f"node=combination,publish_as={output_object_name}",
             workflow.job_name,
-            "literature_review",
+            "openai_commands_literature_review",
             "combine",
             "dryrun={},publish={}".format(
                 int(do_dryrun),

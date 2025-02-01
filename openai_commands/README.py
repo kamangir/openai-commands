@@ -21,7 +21,6 @@ features = {
         "url": "./openai_commands/completion#%EF%B8%8F-prompt-completion",
     },
     "image generation": {
-        "description": "sentence -> image, text -> mural, images",
         "thumbnail": "https://github.com/kamangir/openai-commands/blob/main/assets/DALL-E.png?raw=true",
         "url": "./openai_commands/images",
     },
