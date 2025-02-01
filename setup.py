@@ -12,7 +12,6 @@ setup(
         f"{NAME}.completion",
         f"{NAME}.completion.functions",
         f"{NAME}.completion.prompts",
-        f"{NAME}.DALLE",
         f"{NAME}.gpt",
         f"{NAME}.help",
         f"{NAME}.images",

@@ -1,7 +1,7 @@
-| | | |
-|-|-|-|
+| | |
+|-|-|
 | sentence -> image | text -> mural | images |
-| ![image](../../assets/carrot.png) |  ![image](../../assets/DALL-E.png) | ![image](https://github.com/kamangir/assets/blob/main/openai_commands/2024-01-20-19-00-28-67378.png?raw=true) |
+| ![image](../../assets/carrot.png) | ![image](https://github.com/kamangir/assets/blob/main/openai_commands/2024-01-20-19-00-28-67378.png?raw=true) |
 
 # 🛠️ sentence -> image
 
@@ -11,18 +11,6 @@
   ~dryrun,height=1024,width=1024 \
   carrot - \
   "an orange carrot walking on Mars."
-```
-
-
-# 🛠️ text -> mural
-
-"[The Laughing Heart](https://allpoetry.com/poem/14326890-The-Laughing-Heart-by-Charles-Bukowski)" by Charles Bukowski, [more examples](http://kamangir.net/private/?object=2023-03-26-19-10-26-51814).
-
-```bash
-@select - open; \
-DALL-E render  \
-  ~dryrun,publish,url,verbose \
-  https://allpoetry.com/poem/14326890-The-Laughing-Heart-by-Charles-Bukowski
 ```
 
 # 🛠️ images

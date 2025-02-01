@@ -6,7 +6,6 @@ function test_openai_commands_help() {
     # TODO: add, (historic)
     # - "openai_commands completion describe" \
     # - "openai_commands images generate"
-    # - "DALL-E render" \
 
     # TODO: add,
     #    "literature_review" \
@@ -27,7 +26,6 @@ function test_openai_commands_help() {
     #    "VisuaLyze" \
     #    "VisuaLyze browse" \
     #    "VisuaLyze run" \
-    #     "DALL-E"
 
     local module
     for module in \
