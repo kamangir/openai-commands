@@ -1,10 +1,6 @@
 # 🛠️ image generation
 
-Implements: [OpenAI Image Generation API](https://platform.openai.com/docs/guides/images/usage?context=python)
-
-Notebook: [`./notebooks/images.ipynb`](../../notebooks/images_generate.ipynb)
-
-🔥
+Implements [OpenAI Image Generation API](https://platform.openai.com/docs/guides/images/usage?context=python).
 
 ```bash
 @openai images generate - \
@@ -13,3 +9,7 @@ Notebook: [`./notebooks/images.ipynb`](../../notebooks/images_generate.ipynb)
 ```
 
 ![image](https://github.com/kamangir/assets/blob/main/openai_commands/2024-01-20-19-00-28-67378.png?raw=true)
+
+---
+
+Notebook: [`./notebooks/images.ipynb`](../../notebooks/images_generate.ipynb)
