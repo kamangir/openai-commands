@@ -14,6 +14,7 @@ setup(
         f"{NAME}.completion.prompts",
         f"{NAME}.DALLE",
         f"{NAME}.gpt",
+        f"{NAME}.help",
         f"{NAME}.images",
         f"{NAME}.literature_review",
         f"{NAME}.vision",

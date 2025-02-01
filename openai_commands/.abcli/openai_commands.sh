@@ -1,22 +1,7 @@
 #! /usr/bin/env bash
 
 function openai_commands() {
-    local task=$(abcli_unpack_keyword $1 help)
-
-    if [ $task == "help" ]; then
-        literature_review "$@"
-
-        openai_commands_browse "$@"
-        openai_commands_complete "$@"
-        openai_commands_generate "$@"
-        openai_commands_gpt "$@"
-        openai_commands_images "$@"
-        openai_commands_transform "$@"
-        openai_commands_vision "$@"
-        openai_commands_VisuaLyze "$@"
-        DALL-E "$@"
-        return
-    fi
+    local task=$(abcli_unpack_keyword $1 version)
 
     abcli_generic_task \
         plugin=openai_commands,task=$task \
