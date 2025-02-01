@@ -1,6 +1,6 @@
 # 🛠️ OpenAI Vision API
 
-Implements the [OpenAI vision API](https://platform.openai.com/docs/guides/vision).
+Implements: [OpenAI vision API](https://platform.openai.com/docs/guides/vision).
 
 > GPT-4 with Vision ... `GPT-4V` or `gpt-4-vision-preview` in the API ... model ... take in images and answer questions about them
 > ... not stateful ... ([more](https://arash-kamangir.medium.com/%EF%B8%8F-openai-vision-1-fb3691bd095a))

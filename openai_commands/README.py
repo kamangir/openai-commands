@@ -12,7 +12,6 @@ default_thumbnail = (
 
 features = {
     "literature review": {
-        "description": "literature review using OpenAI API.",
         "thumbnail": "https://github.com/kamangir/assets/blob/main/openai_commands/literature-review/marquee.png?raw=true",
         "url": "./openai_commands/literature_review",
     },
@@ -25,7 +24,6 @@ features = {
         "url": "./openai_commands/images",
     },
     "vision": {
-        "description": "a command interface to the [OpenAI vision API](https://platform.openai.com/docs/guides/vision).",
         "thumbnail": "https://raw.githubusercontent.com/kamangir/assets/main/vanwatch/2023-11-25-openai-vision/ButeNorthDavie.jpg",
         "url": "./openai_commands/vision",
     },
