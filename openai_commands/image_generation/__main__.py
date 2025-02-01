@@ -7,7 +7,7 @@ from blue_options import string
 from blue_objects import file, objects
 
 from openai_commands import NAME
-from openai_commands.images.api import OpenAIImageGenerator
+from openai_commands.image_generation.api import OpenAIImageGenerator
 from openai_commands.logger import logger
 
 NAME = module.name(__file__, NAME)
@@ -17,17 +17,12 @@ parser = argparse.ArgumentParser(NAME)
 parser.add_argument(
     "task",
     type=str,
-    help="generate",
+    help="generate_image",
 )
 parser.add_argument(
     "--object_name",
     type=str,
     default=".",
-)
-parser.add_argument(
-    "--options",
-    type=str,
-    default="",
 )
 parser.add_argument(
     "--filename",
@@ -49,7 +44,7 @@ parser.add_argument(
 args = parser.parse_args()
 
 success = False
-if args.task == "generate":
+if args.task == "generate_image":
     generator = OpenAIImageGenerator(verbose=args.verbose)
 
     success = True

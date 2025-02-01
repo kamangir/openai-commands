@@ -11,13 +11,13 @@ function openai_commands_generate_image() {
     local object_name=$(abcli_clarify_object "$3" openai-image-$(abcli_string_timestamp_short))
 
     abcli_eval dryrun=$do_dryrun \
-        python3 -m openai_commands.images \
+        python3 -m openai_commands.image_generation \
         $task \
         --filename $filename \
-        --options "$options" \
         --prompt "\"$prompt\"" \
         --object_name $object_name \
         "${@:4}"
+    [[ $? -ne 0 ]] && return 1
 
     [[ "$do_upload" == 1 ]] &&
         abcli_upload - $object_name

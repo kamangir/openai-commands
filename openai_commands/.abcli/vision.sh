@@ -29,6 +29,7 @@ function openai_commands_vision() {
         --options "$3" \
         --prompt "\"$prompt\"" \
         "${@:5}"
+    [[ $? -ne 0 ]] && return 1
 
     [[ "$do_upload" == 1 ]] &&
         abcli_upload - $object_name
