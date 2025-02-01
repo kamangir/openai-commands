@@ -12,8 +12,8 @@ function test_openai_commands_vision() {
 
     openai_commands_vision \
         - \
-        "list some of the things that you see in these images." \
         Davie,Bute,.jpg \
+        "list some of the things that you see in these images." \
         $object_name \
         --max_count 10 \
         --verbose 1
