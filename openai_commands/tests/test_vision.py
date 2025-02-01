@@ -21,9 +21,9 @@ def test_vision_complete(object_name):
 
     assert isinstance(
         complete_object(
-            object_name=object_name,
-            options=Options("Arbutus16"),
             prompt="describe these images",
+            object_name=object_name,
+            image_options=Options("Arbutus16"),
         ),
         bool,
     )
