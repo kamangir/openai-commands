@@ -26,8 +26,8 @@ graph LR
 
 |   |   |   |
 | --- | --- | --- |
-| [`prompt completion`](./openai_commands/completion#%EF%B8%8F-prompt-completion) [![image](https://github.com/kamangir/assets/raw/main/blue-plugin/marquee.png?raw=true)](./openai_commands/completion#%EF%B8%8F-prompt-completion)  | [`image generation`](./openai_commands/images) [![image](https://github.com/kamangir/openai-commands/blob/main/assets/DALL-E.png?raw=true)](./openai_commands/images) sentence -> image, text -> mural, images | [`vision`](./openai_commands/vision) [![image](https://raw.githubusercontent.com/kamangir/assets/main/vanwatch/2023-11-25-openai-vision/ButeNorthDavie.jpg)](./openai_commands/vision) a command interface to the [OpenAI vision API](https://platform.openai.com/docs/guides/vision). |
-| [`literature review`](./openai_commands/literature_review) [![image](https://github.com/kamangir/assets/blob/main/openai_commands/literature-review/marquee.png?raw=true)](./openai_commands/literature_review) literature review using OpenAI API. |  |  |
+| [`literature review`](./openai_commands/literature_review) [![image](https://github.com/kamangir/assets/blob/main/openai_commands/literature-review/marquee.png?raw=true)](./openai_commands/literature_review) literature review using OpenAI API. | [`prompt completion`](./openai_commands/completion#%EF%B8%8F-prompt-completion) [![image](https://github.com/kamangir/assets/raw/main/blue-plugin/marquee.png?raw=true)](./openai_commands/completion#%EF%B8%8F-prompt-completion)  | [`image generation`](./openai_commands/images) [![image](https://github.com/kamangir/openai-commands/blob/main/assets/DALL-E.png?raw=true)](./openai_commands/images) sentence -> image, text -> mural, images |
+| [`vision`](./openai_commands/vision) [![image](https://raw.githubusercontent.com/kamangir/assets/main/vanwatch/2023-11-25-openai-vision/ButeNorthDavie.jpg)](./openai_commands/vision) a command interface to the [OpenAI vision API](https://platform.openai.com/docs/guides/vision). |  |  |
 
 ---
 
@@ -36,4 +36,4 @@ graph LR
 
 [![pylint](https://github.com/kamangir/openai-commands/actions/workflows/pylint.yml/badge.svg)](https://github.com/kamangir/openai-commands/actions/workflows/pylint.yml) [![pytest](https://github.com/kamangir/openai-commands/actions/workflows/pytest.yml/badge.svg)](https://github.com/kamangir/openai-commands/actions/workflows/pytest.yml) [![bashtest](https://github.com/kamangir/openai-commands/actions/workflows/bashtest.yml/badge.svg)](https://github.com/kamangir/openai-commands/actions/workflows/bashtest.yml) [![PyPI version](https://img.shields.io/pypi/v/openai-commands.svg)](https://pypi.org/project/openai-commands/) [![PyPI - Downloads](https://img.shields.io/pypi/dd/openai-commands)](https://pypistats.org/packages/openai-commands)
 
-built by 🌀 [`blue_options-4.201.1`](https://github.com/kamangir/awesome-bash-cli), based on [`openai_commands-3.218.1`](https://github.com/kamangir/openai-commands).
+built by 🌀 [`blue_options-4.201.1`](https://github.com/kamangir/awesome-bash-cli), based on [`openai_commands-3.219.1`](https://github.com/kamangir/openai-commands).
