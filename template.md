@@ -20,7 +20,7 @@ graph LR
 
     text["📜 text"]:::folder
     image["🖼️ image"]:::folder
-    object["object"]:::folder
+    object_1["object 1"]:::folder
     object_2["object 2"]:::folder
     object_3["object 3"]:::folder
 
@@ -30,18 +30,18 @@ graph LR
     text --> openai_generate_image
     openai_generate_image --> image
 
-    object --> openai_vision
-    openai_vision --> object
+    image --> openai_vision
+    openai_vision --> text
 
-    object --> litrev
-    litrev --> object
+    object_1 --> litrev
+    litrev --> object_1
 
-    object --> litrev_combine
+    object_1 --> litrev_combine
     object_2 --> litrev_combine
     litrev_combine --> object_3
 
-    object --> litrev_multiple
-    litrev_multiple --> object
+    object_1 --> litrev_multiple
+    litrev_multiple --> object_1
     litrev_multiple --> litrev
     litrev_multiple --> litrev_combine
 

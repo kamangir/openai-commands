@@ -49,7 +49,7 @@ literature review at scale on [AWS Batch](https://aws.amazon.com/batch/) through
 |   |   |
 | --- | --- |
 | [aws_batch](https://github.com/kamangir/notebooks-and-scripts/tree/main/blueflow/workflow/runners/aws_batch.py) | [local](https://github.com/kamangir/notebooks-and-scripts/tree/main/blueflow/workflow/runners/local.py) |
-| [![image](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v7-test-litrev-multiple-aws_batch-study-type-screening-result/workflow.gif?raw=true&random=ivcicnmq6qyk677i)](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v7-test-litrev-multiple-aws_batch-study-type-screening-result/workflow.gif?raw=true&random=ivcicnmq6qyk677i) | [![image](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v7-test-litrev-multiple-local-study-type-screening-result/workflow.gif?raw=true&random=lki0vkduwmje5eoq)](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v7-test-litrev-multiple-local-study-type-screening-result/workflow.gif?raw=true&random=lki0vkduwmje5eoq) |
+| [![image](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v7-test-litrev-multiple-aws_batch-study-type-screening-result/workflow.gif?raw=true&random=oomn4qhg14b2woft)](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v7-test-litrev-multiple-aws_batch-study-type-screening-result/workflow.gif?raw=true&random=oomn4qhg14b2woft) | [![image](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v7-test-litrev-multiple-local-study-type-screening-result/workflow.gif?raw=true&random=ddsjfda1uafplpiq)](https://kamangir-public.s3.ca-central-1.amazonaws.com/AMR-v7-test-litrev-multiple-local-study-type-screening-result/workflow.gif?raw=true&random=ddsjfda1uafplpiq) |
 
 ---
 
