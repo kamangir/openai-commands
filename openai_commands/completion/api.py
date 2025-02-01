@@ -16,6 +16,11 @@ def complete_prompt(
     max_tokens: int = 2000,
     verbose=None,
 ) -> Tuple[bool, str, Dict[str, Any]]:
+    if not env.OPENAI_API_KEY:
+        error_message = "OPENAI_API_KEY is not set."
+        logger.error(error_message)
+        return False, "", {"error": error_message}
+
     client = OpenAI(api_key=env.OPENAI_API_KEY)
 
     try:
