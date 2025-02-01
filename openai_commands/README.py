@@ -57,17 +57,27 @@ items = [
 
 
 def build():
-    return README.build(
-        items=items,
-        path=os.path.join(file.path(__file__), ".."),
-        NAME=NAME,
-        VERSION=VERSION,
-        REPO_NAME=REPO_NAME,
-    ) and README.build(
-        items=literature_review_items,
-        cols=2,
-        path=os.path.join(file.path(__file__), "literature_review"),
-        NAME=NAME,
-        VERSION=VERSION,
-        REPO_NAME=REPO_NAME,
+    return all(
+        README.build(
+            items=readme.get("items", []),
+            cols=readme.get("cols", 3),
+            path=os.path.join(file.path(__file__), readme["path"]),
+            NAME=NAME,
+            VERSION=VERSION,
+            REPO_NAME=REPO_NAME,
+        )
+        for readme in [
+            {
+                "items": items,
+                "path": "..",
+            },
+            {
+                "items": literature_review_items,
+                "cols": 2,
+                "path": "literature_review",
+            },
+            {
+                "path": "images",
+            },
+        ]
     )
