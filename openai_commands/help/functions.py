@@ -11,15 +11,15 @@ def help_browse(
     tokens: List[str],
     mono: bool,
 ) -> str:
-    options = "actions|repo"
+    options = "actions | dashboard"
 
     return show_usage(
         [
-            "@plugin",
+            "@openai",
             "browse",
             f"[{options}]",
         ],
-        "browse blue_plugin.",
+        "browse @openai.",
         mono=mono,
     )
 
