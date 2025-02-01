@@ -19,8 +19,8 @@ graph LR
     text["📜 text"]:::folder
     image["🖼️ image"]:::folder
     object["object"]:::folder
-    object_3["object 2"]:::folder
-    object_4["object 3"]:::folder
+    object_2["object 2"]:::folder
+    object_3["object 3"]:::folder
 
     text --> openai_complete
     openai_complete --> text

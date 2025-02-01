@@ -19,8 +19,8 @@ graph LR
     text["📜 text"]:::folder
     image["🖼️ image"]:::folder
     object["object"]:::folder
-    object_3["object 2"]:::folder
-    object_4["object 3"]:::folder
+    object_2["object 2"]:::folder
+    object_3["object 3"]:::folder
 
     text --> openai_complete
     openai_complete --> text
@@ -54,4 +54,4 @@ graph LR
 
 [![pylint](https://github.com/kamangir/openai-commands/actions/workflows/pylint.yml/badge.svg)](https://github.com/kamangir/openai-commands/actions/workflows/pylint.yml) [![pytest](https://github.com/kamangir/openai-commands/actions/workflows/pytest.yml/badge.svg)](https://github.com/kamangir/openai-commands/actions/workflows/pytest.yml) [![bashtest](https://github.com/kamangir/openai-commands/actions/workflows/bashtest.yml/badge.svg)](https://github.com/kamangir/openai-commands/actions/workflows/bashtest.yml) [![PyPI version](https://img.shields.io/pypi/v/openai-commands.svg)](https://pypi.org/project/openai-commands/) [![PyPI - Downloads](https://img.shields.io/pypi/dd/openai-commands)](https://pypistats.org/packages/openai-commands)
 
-built by 🌀 [`blue_options-4.201.1`](https://github.com/kamangir/awesome-bash-cli), based on [`openai_commands-3.226.1`](https://github.com/kamangir/openai-commands).
+built by 🌀 [`blue_options-4.201.1`](https://github.com/kamangir/awesome-bash-cli), based on [`openai_commands-3.227.1`](https://github.com/kamangir/openai-commands).
