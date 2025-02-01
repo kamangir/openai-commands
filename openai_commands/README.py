@@ -12,7 +12,7 @@ default_thumbnail = (
 
 features = {
     "prompt completion": {
-        "description": "basic prompt completion.",
+        "description": "",
         "icon": ICON,
         "thumbnail": default_thumbnail,
         "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/completion#%EF%B8%8F-prompt-completion",
