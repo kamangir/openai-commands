@@ -17,7 +17,7 @@ features = {
     },
     "prompt completion": {
         "thumbnail": default_thumbnail,
-        "url": "./openai_commands/completion#%EF%B8%8F-prompt-completion",
+        "url": "./openai_commands/prompt_completion",
     },
     "image generation": {
         "thumbnail": "https://github.com/kamangir/openai-commands/blob/main/assets/DALL-E.png?raw=true",
