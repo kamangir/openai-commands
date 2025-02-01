@@ -15,7 +15,7 @@ features = {
         "thumbnail": default_thumbnail,
         "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/completion#%EF%B8%8F-prompt-completion",
     },
-    "OpenAI Vision API": {
+    "vision": {
         "description": "a command interface to the [OpenAI vision API](https://platform.openai.com/docs/guides/vision).",
         "thumbnail": "https://raw.githubusercontent.com/kamangir/assets/main/vanwatch/2023-11-25-openai-vision/ButeNorthDavie.jpg",
         "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/vision",
