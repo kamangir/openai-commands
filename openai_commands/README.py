@@ -12,44 +12,36 @@ default_thumbnail = (
 
 features = {
     "prompt completion": {
-        "description": "",
-        "icon": ICON,
         "thumbnail": default_thumbnail,
         "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/completion#%EF%B8%8F-prompt-completion",
     },
     "OpenAI Vision API": {
         "description": "a command interface to the [OpenAI vision API](https://platform.openai.com/docs/guides/vision).",
-        "icon": ICON,
         "thumbnail": "https://raw.githubusercontent.com/kamangir/assets/main/vanwatch/2023-11-25-openai-vision/ButeNorthDavie.jpg",
         "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/vision",
     },
     "literature review": {
         "description": "literature review using OpenAI API.",
-        "icon": ICON,
         "thumbnail": "https://github.com/kamangir/assets/blob/main/openai_commands/literature-review/marquee.png?raw=true",
         "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/literature_review",
     },
     "code generation": {
         "description": "example notebooks to [generate python functions](./notebooks/completion_ai_function_py.ipynb), special case for [image to image python functions](./notebooks/completion_i2i_function.ipynb), and to [write a bash script](./notebooks/completion_ai_function_bash.ipynb) to use a script, for example, [vancouver-watching](https://github.com/kamangir/vancouver-watching).",
-        "icon": ICON,
         "thumbnail": "https://github.com/kamangir/openai-commands/blob/main/assets/completion_i2i_function.png?raw=true",
         "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/completion#%EF%B8%8F-code-generation",
     },
     "gpt": {
         "description": "co-authored with ChapGPT.",
-        "icon": ICON,
         "thumbnail": default_thumbnail,
         "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/gpt",
     },
     "image generation": {
         "description": "sentence -> image, text -> mural, images",
-        "icon": ICON,
         "thumbnail": "https://github.com/kamangir/openai-commands/blob/main/assets/DALL-E.png?raw=true",
         "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/images",
     },
     "template": {
         "description": "",
-        "icon": ICON,
         "thumbnail": default_thumbnail,
         "url": "",
     },
@@ -57,13 +49,12 @@ features = {
 
 
 items = [
-    "{}[`{}`]({}) [![image]({})]({}) {}".format(
-        details["icon"],
+    "[`{}`]({}) [![image]({})]({}) {}".format(
         feature,
         details["url"],
         details["thumbnail"],
         details["url"],
-        details["description"],
+        details.get("description", ""),
     )
     for feature, details in features.items()
     if feature != "template"
