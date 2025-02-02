@@ -66,4 +66,5 @@ def complete_prompt(
 
     if verbose:
         logger.info(f"{NAME}.complete(): finish_reason: {choice.finish_reason}.")
-    return choice.finish_reason == "stop", choice.message.content, metadata
+
+    return choice.finish_reason == "stop", str(choice.message.content), metadata
