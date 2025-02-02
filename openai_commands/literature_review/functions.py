@@ -7,7 +7,7 @@ from blueness import module
 from blue_objects import file, objects
 
 from openai_commands import NAME
-from openai_commands.completion.api import complete_prompt
+from openai_commands.prompt_completion.api import complete_prompt
 from openai_commands.logger import logger
 
 

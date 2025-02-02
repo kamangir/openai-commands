@@ -9,15 +9,11 @@ setup(
     description=DESCRIPTION,
     packages=[
         NAME,
-        f"{NAME}.completion",
-        f"{NAME}.completion.functions",
-        f"{NAME}.completion.prompts",
-        f"{NAME}.DALLE",
-        f"{NAME}.gpt",
-        f"{NAME}.images",
+        f"{NAME}.help",
+        f"{NAME}.image_generation",
         f"{NAME}.literature_review",
+        f"{NAME}.prompt_completion",
         f"{NAME}.vision",
-        f"{NAME}.VisuaLyze",
     ],
     include_package_data=True,
     package_data={

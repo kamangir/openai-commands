@@ -1,25 +1,12 @@
 #! /usr/bin/env bash
 
-export LITERATURE_REVIEW_ARGS="[--count <-1>]$ABCUL[--filename <filename>]$ABCUL[--overwrite 1]$ABCUL[--verbose 1]"
-
-function literature_review() {
+function openai_commands_literature_review() {
     local options=$1
-
-    if [ $(abcli_option_int "$options" help 0) == 1 ]; then
-        local args=$LITERATURE_REVIEW_ARGS
-        options="${EOP}dryrun,~download,${EOPE}publish,question=<question>$EOP,suffix=<suffix>,~upload$EOPE"
-        abcli_show_usage "@litrev$ABCUL[$options]$ABCUL[$LITERATURE_REVIEW_OBJECT|<object-name>]$ABCUL$args" \
-            "ask a multiple-choice question about the list of studies in <object-name>.${ABCUL2}input: <object-name>/<filename>.csv, column: Abstract.${ABCUL2}question: <object-name>/<question>.yaml.${ABCUL2}output: <object-name>-<suffix>-<question>/<filename>.csv, column: <question>."
-
-        literature_review_combine "$@"
-        literature_review_multiple "$@"
-        return
-    fi
 
     local task
     for task in combine multiple; do
         if [ $(abcli_option_int "$options" $task 0) == 1 ]; then
-            literature_review_$task "${@:2}"
+            openai_commands_literature_review_$task "${@:2}"
             return
         fi
     done

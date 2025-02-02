@@ -12,50 +12,23 @@ default_thumbnail = (
 
 features = {
     "literature review": {
-        "description": "literature review using OpenAI API.",
-        "icon": ICON,
         "thumbnail": "https://github.com/kamangir/assets/blob/main/openai_commands/literature-review/marquee.png?raw=true",
-        "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/literature_review",
-    },
-    "OpenAI Vision API": {
-        "description": "a command interface to the [OpenAI vision API](https://platform.openai.com/docs/guides/vision).",
-        "icon": ICON,
-        "thumbnail": "https://raw.githubusercontent.com/kamangir/assets/main/vanwatch/2023-11-25-openai-vision/ButeNorthDavie.jpg",
-        "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/vision",
-    },
-    "code generation": {
-        "description": "example notebooks to [generate python functions](./notebooks/completion_ai_function_py.ipynb), special case for [image to image python functions](./notebooks/completion_i2i_function.ipynb), and to [write a bash script](./notebooks/completion_ai_function_bash.ipynb) to use a script, for example, [vancouver-watching](https://github.com/kamangir/vancouver-watching).",
-        "icon": ICON,
-        "thumbnail": "https://github.com/kamangir/openai-commands/blob/main/assets/completion_i2i_function.png?raw=true",
-        "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/completion#%EF%B8%8F-code-generation",
-    },
-    "gpt": {
-        "description": "co-authored with ChapGPT.",
-        "icon": ICON,
-        "thumbnail": default_thumbnail,
-        "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/gpt",
-    },
-    "VisuaLyze": {
-        "description": 'How about calling it "VisuaLyze"? This name combines "visualize" and "analyze," reflecting the tool\'s capability to generate custom data visualizations and analyze user input through AI - OpenAI',
-        "icon": ICON,
-        "thumbnail": "https://github.com/kamangir/openai-commands/assets/1007567/7c0ed5f7-6941-451c-a17e-504c6adab23f",
-        "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/VisuaLyze",
+        "url": "./openai_commands/literature_review",
     },
     "prompt completion": {
-        "description": "basic prompt completion.",
-        "icon": ICON,
         "thumbnail": default_thumbnail,
-        "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/completion#%EF%B8%8F-prompt-completion",
+        "url": "./openai_commands/prompt_completion",
     },
     "image generation": {
-        "description": "sentence -> image, text -> mural, images",
-        "icon": ICON,
         "thumbnail": "https://github.com/kamangir/openai-commands/blob/main/assets/DALL-E.png?raw=true",
-        "url": "https://github.com/kamangir/openai-commands/tree/main/openai_commands/images",
+        "url": "./openai_commands/images",
+    },
+    "vision": {
+        "thumbnail": "https://raw.githubusercontent.com/kamangir/assets/main/vanwatch/2023-11-25-openai-vision/ButeNorthDavie.jpg",
+        "url": "./openai_commands/vision",
     },
     "template": {
         "description": "",
-        "icon": ICON,
         "thumbnail": default_thumbnail,
         "url": "",
     },
@@ -63,13 +36,12 @@ features = {
 
 
 items = [
-    "{}[`{}`]({}) [![image]({})]({}) {}".format(
-        details["icon"],
+    "[`{}`]({}) [![image]({})]({}) {}".format(
         feature,
         details["url"],
         details["thumbnail"],
         details["url"],
-        details["description"],
+        details.get("description", ""),
     )
     for feature, details in features.items()
     if feature != "template"
@@ -77,17 +49,28 @@ items = [
 
 
 def build():
-    return README.build(
-        items=items,
-        path=os.path.join(file.path(__file__), ".."),
-        NAME=NAME,
-        VERSION=VERSION,
-        REPO_NAME=REPO_NAME,
-    ) and README.build(
-        items=literature_review_items,
-        cols=2,
-        path=os.path.join(file.path(__file__), "literature_review"),
-        NAME=NAME,
-        VERSION=VERSION,
-        REPO_NAME=REPO_NAME,
+    return all(
+        README.build(
+            items=readme.get("items", []),
+            cols=readme.get("cols", 3),
+            path=os.path.join(file.path(__file__), readme["path"]),
+            NAME=NAME,
+            VERSION=VERSION,
+            REPO_NAME=REPO_NAME,
+        )
+        for readme in [
+            {
+                "items": items,
+                "cols": 2,
+                "path": "..",
+            },
+            {
+                "items": literature_review_items,
+                "cols": 2,
+                "path": "literature_review",
+            },
+            {
+                "path": "image_generation",
+            },
+        ]
     )

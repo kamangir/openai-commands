@@ -1,6 +1,6 @@
 # 🛠️ OpenAI Vision API
 
-Implements the [OpenAI vision API](https://platform.openai.com/docs/guides/vision).
+Implements: [OpenAI vision API](https://platform.openai.com/docs/guides/vision).
 
 > GPT-4 with Vision ... `GPT-4V` or `gpt-4-vision-preview` in the API ... model ... take in images and answer questions about them
 > ... not stateful ... ([more](https://arash-kamangir.medium.com/%EF%B8%8F-openai-vision-1-fb3691bd095a))
@@ -11,21 +11,12 @@ Example use on the images ingested from the traffic cameras in downtown Vancouve
 @openai vision \
     "list some of the things that you see in these images." \
     - Davie,Bute,.jpg \
-    $(vanwatch list area=vancouver,ingest,published \
+    $(@mlflow tags search area=vancouver,ingest,published \
         --log 0 \
         --count 1 \
         --offset 0) \
     --max_count 10 \
     --verbose 1
-```
-
-Or, equivalently,
-
-```bash
-vanwatch vision \
-    "list some of the things that you see in these images." \
-    area=vancouver,offset=0 \
-    Davie,Bute
 ```
 
 | ![image](https://github.com/kamangir/assets/blob/main/vanwatch/2023-11-25-openai-vision/ButeNorthDavie.jpg?raw=true) | ![image](https://github.com/kamangir/assets/blob/main/vanwatch/2023-11-25-openai-vision/ButeSouthDavie.jpg?raw=true) | ![image](https://github.com/kamangir/assets/blob/main/vanwatch/2023-11-25-openai-vision/DavieEastBute.jpg?raw=true) | ![image](https://github.com/kamangir/assets/blob/main/vanwatch/2023-11-25-openai-vision/DavieWestBute.jpg?raw=true) |

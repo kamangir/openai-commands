@@ -1,6 +1,5 @@
 blueness
 abcli
-articraft
 blueflow
 IPython
 beautifulsoup4
