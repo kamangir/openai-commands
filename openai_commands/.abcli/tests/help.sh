@@ -11,9 +11,9 @@ function test_openai_commands_help() {
         \
         "@openai browse" \
         \
-        "@openai complete" \
-        \
         "@openai generate_image" \
+        \
+        "@openai generate_text" \
         \
         "@openai"; do
         abcli_eval ,$options \
