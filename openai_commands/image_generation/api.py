@@ -31,7 +31,9 @@ def generate_image(
     footer: List[str] = [],
     verbose: bool = False,
 ) -> Tuple[bool, Any]:
-    assert env.OPENAI_API_KEY
+    if not env.OPENAI_API_KEY:
+        logger.error("OPENAI_API_KEY not found.")
+        return False, {}
 
     client = OpenAI(api_key=env.OPENAI_API_KEY)
 
@@ -98,7 +100,4 @@ def generate_image(
     if success and verbose and is_jupyter():
         display(Image(filename=full_filename))
 
-    return (
-        success,
-        response,
-    )
+    return success, response

@@ -18,10 +18,13 @@ NAME = module.name(__file__, NAME)
 def generate_text(
     messages: List = [],
     prompt: str = "",
+    model: str = env.OPENAI_GPT_DEFAULT_MODEL,
     max_tokens: int = 2000,
     verbose=None,
 ) -> Tuple[bool, str, Dict[str, Any]]:
-    assert env.OPENAI_API_KEY
+    if not env.OPENAI_API_KEY:
+        logger.error("OPENAI_API_KEY not found.")
+        return False, "", {}
 
     client = OpenAI(api_key=env.OPENAI_API_KEY)
 
@@ -38,7 +41,7 @@ def generate_text(
     try:
         response = client.chat.completions.create(
             messages=messages,
-            model=env.OPENAI_GPT_DEFAULT_MODEL,
+            model=model,
             max_tokens=max_tokens,
         )
     except Exception as e:
