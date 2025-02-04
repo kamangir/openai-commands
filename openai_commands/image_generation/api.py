@@ -1,15 +1,15 @@
 import json
 from openai import OpenAI
-from typing import Tuple, Any
+from typing import Tuple, Any, List
 from IPython.display import Image, display
 
 from blueness import module
 from blue_options import string
 from blue_options.host import is_jupyter
-from blue_objects import file, graphics, objects, path
+from blue_objects import file, objects, path
 from blue_objects.graphics.signature import sign_filename
 
-from openai_commands import NAME, VERSION
+from openai_commands import NAME
 from openai_commands.host import signature
 from openai_commands import env
 from openai_commands.logger import logger
@@ -44,6 +44,8 @@ class OpenAIImageGenerator:
         line_width: int = 80,
         quality: str = "standard",
         size: str = "1024x1024",
+        sign_with_prompt: bool = True,
+        footer: List[str] = [],
     ) -> Tuple[bool, Any]:
         object_name = path.name(file.path(filename))
 
@@ -88,9 +90,14 @@ class OpenAIImageGenerator:
                 ],
                 footer=[
                     " | ".join(
-                        [
-                            f"prompt: {prompt}",
-                            f"revised prompt: {str(response.data[0].revised_prompt)}",
+                        footer
+                        + ([f"prompt: {prompt}"] if sign_with_prompt else [])
+                        + (
+                            [f"revised prompt: {str(response.data[0].revised_prompt)}"]
+                            if self.verbose
+                            else []
+                        )
+                        + [
                             f"model: {self.model}",
                         ]
                         + signature()
