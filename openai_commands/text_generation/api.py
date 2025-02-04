@@ -21,9 +21,7 @@ def generate_text(
     max_tokens: int = 2000,
     verbose=None,
 ) -> Tuple[bool, str, Dict[str, Any]]:
-    if not env.OPENAI_API_KEY:
-        logger.error("OPENAI_API_KEY is not set.")
-        return False, "", {}
+    assert env.OPENAI_API_KEY
 
     client = OpenAI(api_key=env.OPENAI_API_KEY)
 

@@ -3,7 +3,7 @@ import pytest
 from blue_options import string
 from blue_objects import objects
 
-from openai_commands.image_generation.api import OpenAIImageGenerator
+from openai_commands.image_generation.api import generate_image
 
 
 @pytest.mark.parametrize(
@@ -12,19 +12,11 @@ from openai_commands.image_generation.api import OpenAIImageGenerator
         ("a person flying through the streets of Vancouver."),
     ],
 )
-def test_image_generation(prompt):
-    object_name = objects.unique_object("test_image_generation")
-
-    generator = OpenAIImageGenerator(verbose=False)
-
-    filename = objects.path_of(
-        f"{string.timestamp()}.png",
-        object_name,
-    )
-
-    success, _ = generator.generate(
+def test_image_generation(prompt: str):
+    success, _ = generate_image(
         prompt=prompt,
-        filename=filename,
+        object_name=objects.unique_object("test_image_generation"),
+        filename=f"{string.timestamp()}.png",
     )
 
     assert success
