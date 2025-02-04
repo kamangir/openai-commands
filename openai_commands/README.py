@@ -11,13 +11,9 @@ default_thumbnail = (
 )
 
 features = {
-    "literature review": {
-        "thumbnail": "https://github.com/kamangir/assets/blob/main/openai_commands/literature-review/marquee.png?raw=true",
-        "url": "./openai_commands/literature_review",
-    },
-    "prompt completion": {
+    "text generation": {
         "thumbnail": default_thumbnail,
-        "url": "./openai_commands/prompt_completion",
+        "url": "./openai_commands/text_generation",
     },
     "image generation": {
         "thumbnail": "https://github.com/kamangir/openai-commands/blob/main/assets/DALL-E.png?raw=true",
@@ -26,6 +22,14 @@ features = {
     "vision": {
         "thumbnail": "https://raw.githubusercontent.com/kamangir/assets/main/vanwatch/2023-11-25-openai-vision/ButeNorthDavie.jpg",
         "url": "./openai_commands/vision",
+    },
+    "literature review": {
+        "thumbnail": "https://github.com/kamangir/assets/blob/main/openai_commands/literature-review/marquee.png?raw=true",
+        "url": "./openai_commands/literature_review",
+    },
+    "AI DAG runner": {
+        "thumbnail": "https://github.com/kamangir/assets/raw/main/blue-amo-2025-02-03-nswnx6/stitching_the_frames-2.png?raw=true",
+        "url": "https://github.com/kamangir/blue-assistant",
     },
     "template": {
         "description": "",
