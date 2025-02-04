@@ -3,7 +3,7 @@ from typing import List
 from blue_options.terminal import show_usage
 
 
-def help_complete(
+def help_generate_text(
     tokens: List[str],
     mono: bool,
 ) -> str:
@@ -15,10 +15,10 @@ def help_complete(
     return show_usage(
         [
             "@openai",
-            "complete",
+            "generate_text",
             '"<prompt>"',
         ]
         + args,
-        "complete <prompt>.",
+        "generate text.",
         mono=mono,
     )

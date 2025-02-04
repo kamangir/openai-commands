@@ -7,7 +7,7 @@ from blueness import module
 from blue_objects import file, objects
 
 from openai_commands import NAME
-from openai_commands.prompt_completion.api import complete_prompt
+from openai_commands.text_generation.api import generate_text
 from openai_commands.logger import logger
 
 
@@ -22,7 +22,7 @@ def generate_prompt(question: Dict[str, Dict]) -> str:
     choices = question.get("choices", {})
     description = question.get(
         "description",
-        "read this abstract of a scentific paper",
+        "read this abstract of a scientific paper",
     )
 
     logger.info(
@@ -126,8 +126,8 @@ def review_literature(
 
         abstract = str(df.loc[idx, "Abstract"])
 
-        success, assessment, _ = complete_prompt(
-            clean_prompt(f"{prompt} {abstract}"),
+        success, assessment, _ = generate_text(
+            prompt=clean_prompt(f"{prompt} {abstract}"),
             verbose=verbose,
         )
         if not success:

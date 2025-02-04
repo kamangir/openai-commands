@@ -12,7 +12,7 @@ function openai_commands_generate_image() {
 
     abcli_eval dryrun=$do_dryrun \
         python3 -m openai_commands.image_generation \
-        $task \
+        generate_image \
         --filename $filename \
         --prompt "\"$prompt\"" \
         --object_name $object_name \

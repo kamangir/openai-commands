@@ -8,7 +8,7 @@ from openai_commands.help.image_generation import help_generate_image
 from openai_commands.help.literature_review import (
     help_functions as help_literature_review,
 )
-from openai_commands.help.prompt_completion import help_complete
+from openai_commands.help.text_generation import help_generate_text
 from openai_commands.help.vision import help_vision
 
 
@@ -34,8 +34,8 @@ help_functions = generic_help_functions(plugin_name=ALIAS)
 help_functions.update(
     {
         "browse": help_browse,
-        "complete": help_complete,
         "generate_image": help_generate_image,
+        "generate_text": help_generate_text,
         "literature_review": help_literature_review,
         "vision": help_vision,
     }

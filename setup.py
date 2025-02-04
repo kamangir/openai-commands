@@ -12,7 +12,7 @@ setup(
         f"{NAME}.help",
         f"{NAME}.image_generation",
         f"{NAME}.literature_review",
-        f"{NAME}.prompt_completion",
+        f"{NAME}.text_generation",
         f"{NAME}.vision",
     ],
     include_package_data=True,

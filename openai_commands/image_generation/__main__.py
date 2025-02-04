@@ -7,7 +7,8 @@ from blue_options import string
 from blue_objects import file, objects
 
 from openai_commands import NAME
-from openai_commands.image_generation.api import OpenAIImageGenerator
+from openai_commands.tests.test_text_generation import test_prompt
+from openai_commands.image_generation.api import generate_image
 from openai_commands.logger import logger
 
 NAME = module.name(__file__, NAME)
@@ -20,20 +21,19 @@ parser.add_argument(
     help="generate_image",
 )
 parser.add_argument(
-    "--object_name",
-    type=str,
-    default=".",
-)
-parser.add_argument(
     "--filename",
     type=str,
     default=f"{string.timestamp()}.png",
 )
 parser.add_argument(
+    "--object_name",
+    type=str,
+)
+parser.add_argument(
     "--prompt",
     type=str,
     default="",
-    help="prompt+prompt+prompt",
+    help=test_prompt,
 )
 parser.add_argument(
     "--verbose",
@@ -45,21 +45,12 @@ args = parser.parse_args()
 
 success = False
 if args.task == "generate_image":
-    generator = OpenAIImageGenerator(verbose=args.verbose)
-
-    success = True
-    for index, prompt in tqdm(enumerate(args.prompt.split("+"))):
-        filename = objects.path_of(
-            filename=file.add_suffix(args.filename, f"{index:05d}"),
-            object_name=args.object_name,
-            create=True,
-        )
-
-        if not generator.generate(
-            prompt=prompt,
-            filename=filename,
-        )[0]:
-            success = False
+    success, _ = generate_image(
+        prompt=args.prompt,
+        filename=args.filename,
+        object_name=args.object_name,
+        verbose=args.verbose,
+    )
 else:
     success = None
 
