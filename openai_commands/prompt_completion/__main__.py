@@ -4,7 +4,7 @@ from blueness import module
 from blueness.argparse.generic import sys_exit
 
 from openai_commands import NAME
-from openai_commands.prompt_completion.api import complete_prompt
+from openai_commands.prompt_completion.api import generate_text
 from openai_commands.logger import logger
 
 NAME = module.name(__file__, NAME)
@@ -39,7 +39,7 @@ args = parser.parse_args()
 
 success = False
 if args.task == "complete":
-    success, text, _ = complete_prompt(
+    success, text, _ = generate_text(
         args.prompt,
         args.max_token,
         args.verbose == 1,
